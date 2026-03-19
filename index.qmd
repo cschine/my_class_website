@@ -1,0 +1,11 @@
+---
+title: "Home"
+---
+
+## Welcome
+
+This is a small website for class materials, examples, and optional extras.
+
+I put this together last night while half asleep, which is honestly part of the point: this is a very lightweight way to put your work online.
+
+Use the navigation bar above to explore.

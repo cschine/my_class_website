@@ -1,0 +1,16 @@
+project:
+  type: website
+  output-dir: docs
+
+website:
+  title: "Casey’s Data Science Extras"
+  navbar:
+    left:
+      - href: index.qmd
+        text: Home
+      - href: sampler.qmd
+        text: Sampler
+
+format:
+  html:
+    theme: cosmo
