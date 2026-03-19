@@ -509,5 +509,7 @@ shinyApp(ui, server)
 
 This is a fun one that I would love for you to choose because I really want to learn it. This would also be a very cool thing to be able to put on a resume and showcase all of your cool plots that you've made!
 
+Changing my sampler to demonstrate git. 
+
 
 
