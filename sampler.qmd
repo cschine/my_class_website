@@ -230,7 +230,6 @@ ggplotly(p, tooltip = "text")
 Let's try it with the gapminder data. 
 
 ```{r}
-library(gapminder)
 
 p <-  gapminder |> 
   filter(year == 2007) |>
