@@ -1,0 +1,185 @@
+---
+title: "Midterm Prep"
+subtitle: 'Thursday: How to turn exploration into a clear analysis'
+author: "Casey Schine"
+format:
+  html: 
+    toc: TRUE
+    code-overflow: wrap
+    embed-resources: true
+    code-tools:
+      source: true
+      toggle: false
+      caption: none
+execute: 
+  message: FALSE
+  warning: FALSE
+editor_options: 
+  chunk_output_type: console
+---
+
+# 1. Recap
+
+### Workflow:
+
+Question → Plot → Pattern → Interpretation
+
+```{r}
+library(tidyverse)
+library(scales)
+library(ggthemes)
+
+#code to read in data
+getwd()
+# EJI
+library(sf)
+eji_data <- st_read("~/Dropbox/!Middlebury/Teaching/STAT 118/S2026/S2026_R_Proj/midterm/eji_sf.gpkg")
+
+# YRBS
+yrbs_data <- read_csv("~/Dropbox/!Middlebury/Teaching/STAT 118/S2026/S2026_R_Proj/midterm/yrbss_2024.csv")
+```
+
+Plot we made using the EJI dataset looking at the relationship between smoke exposure and cancer levels.
+
+```{r}
+#variables to explore smoke v. cancer
+#E_SMOKE
+#E_CANCER
+eji_data |>
+  #filter(STATE_NAME=="California") |>
+  ggplot() +
+  geom_point(aes(x=E_SMOKE, y=E_CANCER), alpha=0.05) +
+  ggtitle("Canver vs. Wildfire Smoke Scatterplot with all data") +
+  #scale_x_log10() +
+  labs(x="Avg. Annualized Frequency of Smoky Days",
+       y="Individuals with Cancer (%)") +
+  theme_tufte()
+
+eji_data |>
+  filter(E_SMOKE>15) |>
+  ggplot(aes(x=E_SMOKE, y=E_CANCER)) +
+  geom_hex(bins=50) +
+  geom_smooth(color="red") +
+  scale_fill_viridis_c() +
+   ggtitle("Canver vs. Smoke 2D density plot with smoke threshold at 15") +
+  scale_x_log10() +
+  theme_tufte()
+
+eji_data |>
+  #filter(E_SMOKE>15) |>
+  ggplot(aes(x=E_BURN, y=E_CANCER)) +
+  geom_hex(bins=50) +
+  geom_smooth(color="red") +
+  scale_fill_viridis_c() +
+  ggtitle("Canver vs. Burn Area 2D density plot with all data") +
+  scale_x_log10() +
+  theme_tufte()
+
+# Question: What does California look like compared with the entire population?
+eji_data |>
+  filter(STATE_NAME=="California") |>
+  ggplot() +
+  geom_point(data=eji_data, aes(x=E_SMOKE, y=E_CANCER), alpha=0.05) +
+  ggtitle("Canver vs. Wildfire Smoke Scatterplot with all data, California in Red") +
+  #scale_x_log10() +
+  labs(x="Avg. Annualized Frequency of Smoky Days",
+       y="Individuals with Cancer (%)") +
+  geom_point(aes(x=E_SMOKE, y=E_CANCER), alpha=0.2, color="red") +
+  theme_tufte()
+
+# Same as last plot but histogram 
+eji_data |>
+  mutate(is_cali = case_when(STATE_NAME=="California" ~ "CA",
+                             STATE_NAME!="California" ~ "Not CA")) |>
+  ggplot() +
+  geom_histogram(aes(x=E_SMOKE, fill=is_cali), alpha=0.5, position="identity") +
+  #scale_x_log10() +
+  ggtitle("Wildfire Smoke Histogram with all data, California in Red") +
+  labs(x="Avg. Annualized Frequency of Smoky Days") +
+  theme_tufte()
+
+# Same as last plot but density plot to deal with very different quantities of data
+eji_data |>
+  mutate(is_cali = case_when(STATE_NAME=="California" ~ "CA",
+                             STATE_NAME!="California" ~ "Not CA")) |>
+  ggplot() +
+  geom_density(aes(x=E_SMOKE, fill=is_cali, color=is_cali), alpha=0.5, position="identity") +
+  #scale_x_log10() +
+  ggtitle("Wildfire Smoke Histogram with all data, California in Red") +
+  labs(x="Avg. Annualized Frequency of Smoky Days") +
+  theme_tufte()
+
+# still working with smoke but now histogram of all states with facet
+eji_data |>
+  ggplot() +
+  geom_histogram(aes(x=E_SMOKE, fill=STATE_NAME), alpha=0.5, position="identity") +
+  #scale_x_log10() +
+  ggtitle("Wildfire Smoke Histogram by STATE") +
+  labs(x="Avg. Annualized Frequency of Smoky Days") +
+  facet_wrap(~STATE_NAME) +
+  theme_tufte() +
+  theme(legend.position="none")
+  
+```
+
+### In your report:
+
+Introduction → dataset + question
+
+Results → plots + patterns
+
+Discussion → interpretation
+
+# 2. Group check-in: What questions are you exploring?
+
+Each person briefly share, what question you are currently exploring and how you are approaching it. Help your group mates clarify and refine their questions.
+
+# 3. Question → Plot
+
+Plot choice is part of the reasoning process, not simply decoration. You should be picturing the plot that you want to make and then matching it with the skills needed o make it. Rather than the other way around. Drawing it out on paper and breaking down the steps you will need to make it can be very helpful.
+
+Give me some example questions.
+
+What kind of plot would help answer this?
+
+# 4. Turning messy plots into clear plots
+
+Let's take a rough exploratory plot and improve it.
+
+Possible improvements:
+
+-   reorder categories
+-   simplify colors
+-   improve axis labels
+-   add clear titles
+-   remove unnecessary clutter
+
+Explain:
+
+Your first plots help you explore. The plots in your report should help the reader understand the pattern.
+
+# 5. Results versus Discussion
+
+What do you see in this plot?
+
+```{r}
+#make example plot
+```
+
+Write down answers and separate into what belongs in the results and what belongs in the discussion.
+
+### Results = describe pattern
+
+### Discussion = explain pattern
+
+# 6. Studio work
+
+Work on your project with your group. Ask questions and help each other debug code.
+
+# 7. End-of-class checkpoint
+
+Finish these statements:
+
+-   My question is...
+-   My two key plots will show...
+-   The main pattern I see is...

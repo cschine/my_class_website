@@ -1,0 +1,135 @@
+---
+title: "STAT 118: Homework R"
+subtitle: 'Lubridate'
+author: "YOUR NAME HERE"
+format:
+  html: 
+    toc: true
+    code-overflow: wrap
+    code-fold: true
+    embed-resources: true
+---
+
+```{r message=FALSE, warning=FALSE}
+#LOAD PACKAGES 
+library(tidyverse)
+library(lubridate)
+
+#LOAD DATA
+library(nycflights23)
+data("flights")
+
+
+# this is code to create hour and minute columns that you can then use 
+# for your datetime column in question 1
+flights <- flights |>
+  mutate(dep_hour = dep_time %/%  100) |>  # "500" %/% 100 ---> "5" 
+  mutate(dep_minute = dep_time %% 100)  # "500" %% 100 --> "00"
+```
+
+
+# 1.
+Create a new column in the flights dataset called `departure_datetime` which displays the departure datetime (for example, 2023-01-01 05:15:00). I did not teach you this exact thing in class. I suggest looking at the lubridate package documentation for a likely candidate function to do this. 
+
+```{r}
+
+flights <- flights |>
+  mutate(departure_datetime = make_datetime(year, month, day, dep_hour, dep_minute)) 
+
+
+```
+
+
+# 2. 
+Create a new column in the flights dataset called  `sched_departure_datetime` which displays the scheduled departure datetime (for example, 2013-01-01 05:15:00). *Hint: look carefully at the columns to find what you need.*
+
+```{r}
+# hour == sched departure hour "5"
+# minute == sched departure minute "00"
+
+flights <- flights %>% 
+  mutate(sched_departure_datetime = make_datetime(year, month, day ,hour, minute)) #%>% 
+  mutate(sched_departure_datetime = case_when(
+    sched_dep_time == dep_time ~ sched_departure_datetime, #case where flight is exactly on time
+    sched_dep_time > dep_time & dep_delay > 0 ~ sched_departure_datetime - days(1), #case where flight delayed to next day
+    sched_dep_time < dep_time & dep_delay >= 0 ~ sched_departure_datetime, #case where flight delayed, no day change
+    sched_dep_time > dep_time & dep_delay <= 0 ~ sched_departure_datetime, #case where flight early, no day change
+    sched_dep_time < dep_time & dep_delay < 0 ~ sched_departure_datetime + days(1), #case where flight early, day earlier! 
+    TRUE ~ NA
+    )
+  )
+```
+
+# 3.
+Use an appropriate function to calculate the difference, in minutes, between the scheduled departure and the actual departure time. Save your results in a new column called `calc_dep_delay`. Note that your new column `calc_dep_delay` should have the same values as `dep_delay`. You know how I tell you not to over complicate things a lot. This one is actually complicated. If your values don't match the dep_delay values, think carefully about why that might be. 
+
+```{r}
+#%>% 
+  mutate(sched_departure_datetime = case_when(
+    sched_dep_time == dep_time ~ sched_departure_datetime, #case where flight is exactly on time
+    sched_dep_time > dep_time & dep_delay > 0 ~ sched_departure_datetime - days(1), #case where flight delayed to next day
+    sched_dep_time < dep_time & dep_delay >= 0 ~ sched_departure_datetime, #case where flight delayed, no day change
+    sched_dep_time > dep_time & dep_delay <= 0 ~ sched_departure_datetime, #case where flight early, no day change
+    sched_dep_time < dep_time & dep_delay < 0 ~ sched_departure_datetime + days(1), #case where flight early, day earlier! 
+    TRUE ~ NA
+    )
+  )
+```
+
+# 4. 
+Create a new column that extracts the day of the week from the scheduled departure time. Call this column weekday. The output should be the name of the weekday (e.g., Monday, Tuesday, etc.). You may need to dig into the `wday` function help documentation to see what options there are for arguments. 
+
+```{r}
+
+```
+
+
+# 5.
+Create a new column called `overnight` which displays a 1 if the flights is overnight and 0 if the flight is not overnight. *Hint: If the flight is overnight, the arrival time will be before the departure time.* 
+
+```{r}
+
+```
+
+
+# 6.
+Which hour of the day has the longest average departure delay? What do you think might cause this? *Hint: You may want to make a column for the scheduled departure hour.* 
+
+```{r}
+
+```
+
+# 7. 
+
+Create a calendar-style heatmap of average departure delays using weekday and week.
+
+(a) Create a new column that rounds the sched_departure_datetime down to the nearest week  (use `floor_date()`)
+(b) Extract the weekday from sched_departure_datetime
+(c) Summarize the average delay for each week and weekday
+(d) Create a heatmap using `ggplot` and  `geom_tile`. 
+(e) Apply a non-default theme and color palette
+
+```{r}
+
+test <- flights |>
+  mutate(sched_dep_date_week = floor_date(sched_departure_datetime, "week"),
+         sched_departure_wday = wday(sched_departure_datetime, label=TRUE)) |>
+  group_by(sched_dep_date_week, sched_departure_wday) |>
+  summarize(mean_delay=mean(dep_delay, na.rm=TRUE)) |>
+  ggplot() +
+  geom_tile(aes(x=sched_departure_wday, y=sched_dep_date_week, fill=mean_delay))
+  
+
+```
+
+# 8. Turn the plot from #7 into a plotly plot. Answer on which day of which week was the highest average departure delay experienced. What was the average delay on that day?
+
+```{r}
+
+library(plotly)
+
+ggplotly(test)
+
+```
+
+

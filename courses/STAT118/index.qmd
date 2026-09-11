@@ -1,0 +1,5 @@
+---
+title: "Stat 118: Intro to Data Science"
+---
+
+Use the navigation bar on the left to look at notes from previous classes.

@@ -1,0 +1,340 @@
+---
+title: 'Maps with `maps` and `sf`'
+author: 'Casey Schine adapted from Emily Malcolm-White'
+format:
+  html: 
+    toc: TRUE
+    code-overflow: wrap
+    embed-resources: true
+    code-tools:
+      source: true
+      toggle: false
+      caption: none
+execute: 
+  message: FALSE
+  warning: FALSE
+editor_options: 
+  chunk_output_type: console
+---
+### Before we get started, some context:
+
+-   `R` is ***fantastic*** for spatial analysis (not covered in this class... look for classes related to spatial statistics)
+-   `R` is *great* for interactive data visualization (via `leaflet` or `shiny`... more on this on Thursday)
+-   `R` is *okay* at spatial data visualization (creating maps).
+    -   There are many different packages in `R` for creating maps. I've found that different packages perform best for different maps. We will talk about a few different ones today.
+    -   If you have a highly map-centric project, there is nothing wrong with working in ArcGIS or QGIS if you find the mapping tools in R insufficient. There are many recent improvements with new packages (like `sp`, `rgdal` and `rgeos`) which profiles much of the functionality of GIS packages! Exciting! (not very beginner friendly - requires familiarity with GIS concepts)
+
+# Using the `sf` package
+
+Vector data for maps are typically encoded using the "simple features" standard produced by the Open Geospatial Consortium. The `sf` package developed by Edzer Pebesma provides an excellent toolset for working with such data, and the `geom_sf()` and `coord_sf()` functions in ggplot2 are designed to work together with the `sf` package.
+
+```{r}
+#LOAD PACKAGES
+library(tidyverse)
+
+#install.packages("sf") - note some students are getting a pop-up when they install the sf package for the first time. Select the "no" option when it pops up in your console. 
+library(sf)
+
+#some students are needing into install the rgeos package separately as well
+#library(rgeos)
+```
+
+For our first example, we will be working with a dataset of North Carolina that is built in to the `sf` package.
+
+```{r}
+demo(nc, ask = FALSE, echo = FALSE)
+```
+
+You should notice that the `nc` dataset is now saved in your R environment. This dataset contains information about Sudden Infant Death Syndrome (SIDS) for North Carolina counties, over two time periods (1974-78 and 1979-84). We will be looking only at birth rates. 
+
+Each row represents a county in North Carolina. This data frame contains the following columns:
+
+-   `AREA` County polygon areas in degree units
+-   `PERIMETER` County polygon perimeters in degree units
+-   `CNTY_` Internal county ID
+-   `NAME` County names
+-   `FIPS` County ID
+-   `FIPSNO` County ID
+-   `CRESS_ID` Cressie papers ID
+-   `BIR74` births, 1974-78
+-   `SID74` SID deaths, 1974-78
+-   `NWBIR74` non-white births, 1974-78
+-   `BIR79` births, 1979-84
+-   `SID79` SID deaths, 1979-84
+-   `NWBIR79` non-white births, 1979-84
+ 
+Let's begin by simply plotting the map using `geom_sf`: Let's begin by simply plotting the map using `geom_sf`. Note that you don't need to specify the x- or y-axes -- sf figures that out for you.
+
+```{r}
+#look at polygons column in data
+
+#basic map using geom_sf polygons
+
+# make empty plot (just polygons)
+
+
+```
+
+Let's pretty it up:
+
+```{r}
+
+# change fill (not by variable)
+
+# change line color (not by variable)
+
+# add theme
+
+
+```
+
+# Choropleth maps
+
+::: callout-note
+# What is a cloropleth map?
+
+A **choropleth map** is a type of thematic map where areas (such as countries, states, or regions) are shaded or colored based on data values. It’s commonly used to visualize statistical information, such as population density, election results, or income levels, by using different shades or colors to represent varying data ranges.
+
+![An example from USA Today](https://github.com/emalcolmwhite/emalcolmwhite.github.io/blob/main/courses/stat0118/images/maps_federalfunds.JPG?raw=true)
+:::
+
+Suppose we want to shade each of these counties, based on the number of births in 1974.
+
+```{r}
+
+# then add color by BIR74
+
+
+# then add fill by BIR74
+
+```
+
+# Color Palettes
+
+```{r}
+#| echo: FALSE
+# Install if not already installed
+library(RColorBrewer)
+library(viridis)
+library(wesanderson)
+library(scales)
+
+display_palette <- function(colors) {
+  df <- data.frame(x = seq_along(colors), color = colors)
+  
+  ggplot(df, aes(x = factor(x), y = 1, fill = color)) +
+    geom_tile() +
+    scale_fill_identity() +
+    theme_void() +
+    theme(legend.position = "none")
+}
+```
+
+## Discrete Color Palettes
+
+|  |  |
+|---------------------|---------------------------------------------------|
+| **Best for...** | Categorical Data, Unordered or Sequential |
+| **Examples** | Species, Groups, Brands |
+| **`RColorBrewer` Palettes** | `"Set1"`, `"Dark2"`, `"Paired"` |
+| Example R Code | `scale_fill_brewer(palette = "Set1")` |
+| **`wesanderson` Palettes** | `"GrandBudapest1"`, `"Darjeeling1"`, `"Moonrise2"` |
+| Example R Code | `scale_fill_manual(values = wes_palette("GrandBudapest1"))` |
+| **`RColorBrewer` Palettes** | `"Blues"`, `"Reds"`, `"Greens"` |
+| Example R Code | `scale_fill_brewer(palette = "Blues")` |
+
+```{r}
+#| fig-height: 1
+#| fig-ncol: 2
+#| echo: FALSE
+display_palette(brewer.pal(8, "Set2"))
+display_palette(wes_palette("Moonrise2"))
+```
+
+### Using Discrete Color Palettes
+
+```{r}
+# make categorical column
+
+# don't worry about this, i just needed a categorical column, you are not meant to be able to do this. 
+nc <- nc |>
+  mutate(area_cat = cut(AREA, breaks = quantile(AREA, probs = seq(0, 1, 0.25)),
+                        include.lowest = TRUE,
+                        labels = c("Small", "Medium-Small", "Medium-Large", "Large")))
+```
+
+```{r}
+# add color palette using scale_fill_manual(values = wes_palette("GrandBudapest1"))
+
+# pick one palette
+
+
+# change to a different palette
+
+# do it with RColorBrewer using scale_fill_brewer(palette = "Set1")
+
+
+# add color palette using RColorBrewer scale_fill_brewer(palette=BuGn)
+# for discrete data that is ordered
+
+
+```
+
+
+
+## Continuous Color Palettes
+
+|  |  |
+|---------------------|---------------------------------------------------|
+| **Best for...** | Ordered, continuous data |
+| **Examples** | Temperature, Population Density |
+| **`viridis` Palettes** | `"viridis"`, `"magma"`, `"plasma"`, `"cividis"` |
+| Example R Code | `scale_fill_viridis_c(option = "magma")` |
+| **Build your Own** | `scale_fill_gradientn(colors=c("red", "yellow"))` |
+
+```{r}
+#| fig-height: 1
+#| fig-ncol: 2
+#| echo: FALSE
+
+display_palette(viridis_pal(option = "magma")(8))
+display_palette(brewer.pal(9, "Blues"))
+```
+
+### Using Continuous Color Palettes
+```{r}
+
+# add color palette using RColorBrewer scale_fill_brewer(palette=BuGn)
+
+# add color palette using scale_fill_viridis()
+
+
+#?scale_fill_viridis for help documentation
+
+# change option for different palette
+
+
+# add manual color palette using scale_fill_gradientn(colors=c())
+
+
+# add color palette using RColor Brewer and scale_fill_distiller(palette="")
+
+
+# add name to the colorbar using labs()
+
+
+```
+
+
+## Diverging Color Palettes
+
+|  |  |
+|---------------------|---------------------------------------------------|
+| **Best for...** | Data with a central midpoint |
+| **Examples** | Election Results, Anomaly Detection |
+| **`RColorBrewer` Palettes** | `"RdBu"`, `"Spectral"` |
+| Example R Code | `scale_fill_distiller(palette = "RdBu")` |
+| **Build your Own** | `scale_fill_gradient(low="",mid="", high"")` |
+
+```{r}
+#| fig-height: 1
+#| fig-ncol: 2
+#| echo: FALSE
+
+display_palette(brewer.pal(11, "RdBu"))
+display_palette(brewer.pal(9, "Spectral"))
+```
+
+
+### Using Diverging Color Palettes
+```{r}
+
+
+#first make a variable that has meaning above and below zero
+# nc <- nc |> mutate(county_growth = (BIR79 - BIR74) / BIR74)
+
+# add color palette using RColorBrewer scale_fill_distiller(palette="Spectral")
+
+
+
+# add manual color palette using scale_fill_gradient2(low=, mid=, high=)
+
+
+
+# add name to the colorbar using labs()
+
+
+```
+
+::: callout-tip
+# Some general guidelines when choosing color palettes:
+
+✅ Match palette type to data type
+
+✅ Choose colorblind-friendly palettes when designing for general audiences
+
+✅ Limit colors to avoid overwhelming the reader - for categorical data limit the number of distinct colors to 5-8 max (beyond that, consider grouping)
+
+✅ Consider the meaning of colors in your audience’s cultural context.
+
+✅ If the data is skewed, consider using the `scales` package to log -scale.
+
+🔴 Avoid: Using blue for land in maps
+:::
+
+
+# Adding labels with `geom_sf_text()`
+
+```{r}
+# add labels for county name with geom_sf_text()
+
+
+# make labels smaller using the size argument
+
+```
+
+::: callout-warning
+Since population density naturally drives most data trends, these maps frequently fail to provide any useful or surprising information.
+
+![XKCD](https://github.com/emalcolmwhite/emalcolmwhite.github.io/blob/main/courses/stat0118/images/maps_careful.PNG?raw=true)
+
+🔴 **Correlation doesn't imply causation!** Just because two variables show similar patterns doesn’t mean one causes the other.
+
+✅ Use rates, percentages, or per capita values rather than absolute numbers. Example: Instead of showing total website users per state, show website users per 100,000 residents.
+
+✅ Use location quotients or z-scores to highlight areas with unusually high or low values relative to expectations. Example: Show the percentage of a state’s population that subscribes to Martha Stewart Living relative to the national average.
+:::
+
+# In-Class Exercise: Comparing Two County-Level Rates
+
+Today you will create and compare two variables using the North Carolina dataset.
+
+## Step 1: Create Two Proportions (1974)
+
+Add the following variables to your dataset:
+
+- Proportion of nonwhite births, calculated as `NWBIR74 / BIR74`
+- SIDS deaths per birth, calculated as `SID74 / BIR74`
+
+Why are we dividing by total births instead of mapping raw counts?
+
+## Step 2: Map Each Variable
+
+Create two separate choropleth maps: 1) Proportion of nonwhite births, 2) SIDS deaths per birth.
+
+Use a continuous color scale using the techniques we just learned in class, and use anything other than the default ggplot theme. Add a title to your plot and name your colorbar.
+
+```{r}
+
+```
+
+
+## Step 3: Compare the Maps
+
+Write a short paragraph (3–4 sentences) answering the questions: 
+
+- Do these variables show similar spatial patterns?
+- Where do they look similar or different?
+- What is one limitation of comparing county-level maps like this?
+
+There will be a place for you to copy your in-class work over to the homework. 

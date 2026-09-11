@@ -1,0 +1,192 @@
+---
+title: 'working with text with `stringr`'
+subtitle: |
+  | ![](https://stringr.tidyverse.org/logo.png){width=10%}
+author: 'Emily Malcolm-White and Violet Ross'
+institute: 'Middlebury College'
+format:
+  html: 
+    toc: TRUE
+    code-overflow: wrap
+    embed-resources: true
+---
+
+```{r message=FALSE, warning=FALSE}
+#LOAD PACKAGES 
+library(tidyverse)
+library(stringr)
+```
+
+## A few basics
+
+**What is a string?**
+  
+A string is a data type used to represent text. In R, we indicate that something is a string by referring to it with quotes.
+
+Examples of strings:
+
+- 
+- 
+- 
+
+NOT a string:
+
+- 
+
+**What is ** `stringr` **?**
+  
+stringr is a package containing a bunch of functions that help us work with strings.
+  
+
+# Using `stringr`
+
+**I'm registering for classes for this upcoming Spring and am trying to decide which courses to take.**
+  
+Let's look at the course catalog!
+
+Read in the courses data.
+
+```{r}
+
+```
+
+## `str_detect` 
+  
+**inputs**: 
+  
+-  a string (or a column of strings) to search *from*  
+-  a string to search *for*  
+  
+**output**: boolean value (TRUE or FALSE)  
+
+little example:
+```{r}
+
+
+```
+
+I only want to take classes in Warner! Let's filter for rows where we *detect* the word "Warner" in the `location` column.
+```{r}
+
+
+```
+  
+  
+  
+Suppose I don't want any classes on Friday. Let's use `str_detect` to find our options.
+```{r}
+
+
+```
+  
+  
+  
+## `str_extract` and `str_remove`
+  
+  
+**str_extract inputs**: 
+  
+-  a string (or a column of strings) to extract *from*  
+-  a string to extract  
+  
+**str_extract output**: the string you wanted to extract OR nothing  
+
+**str_remove inputs**: 
+  
+-  a string (or a column of strings) to remove stuff *from*  
+-  a string to remove  
+  
+**str_remove output**: the first input string with the second input removed  
+
+little example:
+```{r}
+
+
+
+```
+  
+  
+  
+CW is part of the distribution requirement column. I want CW to be its own column.  
+First we can create a new column called `isCW` by *extracting* instances of "CW" from the `distros` column in each row.  
+Then we can **remove** all instances of "CW" from the `distros` column.
+```{r}
+
+
+
+```
+  
+  
+  
+## `str_sub`
+  
+  
+**str_sub inputs**:
+  
+-  a string (or a column of strings) take substrings of  
+-  where the substring should start
+-  where the substring should end
+  
+**str_sub output**: the substring    
+  
+little example:
+```{r}
+
+
+```
+  
+
+Maybe I want to see what 700 level classes are offered next semester. 700-level courses are typically reserved for senior capstone courses, senior projects, and senior thesises. 
+
+We want to create a new column called `level` that contains only the sixth character from the `course_code` column.  
+
+
+```{r}
+
+
+
+```
+
+Then we can filter for 700-level courses: 
+
+```{r}
+
+```
+
+Are we sure we've got all the 700-level courses? 
+
+  
+## `str_count`
+
+**str_count inputs**: 
+  
+-  a string (or a column of strings) to count *from*  
+-  a string you want to count the number of instances of  
+  
+**str_count output**: the number of times the second string occurs in your first string
+  
+  
+little example:
+```{r}
+
+
+```
+ 
+  
+
+Maybe I only want my classes to meet twice a week. Let's **count** how many times "day" appears in the `meet` column and put this value in a new column called `dayCount`. `dayCount` represents how many days a week a class meets.
+```{r}
+
+
+
+
+```
+
+Let's visualize this data.
+```{r}
+
+
+  
+```
+
+[**stringr cheat sheet**](https://evoldyn.gitlab.io/evomics-2018/ref-sheets/R_strings.pdf)

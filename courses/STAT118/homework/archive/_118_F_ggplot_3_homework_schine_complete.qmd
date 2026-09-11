@@ -1,0 +1,127 @@
+---
+title: "STAT 118: Homework F"
+subtitle: "Customizing Plots: `scales`, labels, `facet_wrap()`"
+author: "YOUR NAME HERE"
+format:
+  html: 
+    toc: true
+    code-overflow: wrap
+    code-fold: true
+    embed-resources: true
+---
+
+```{r}
+# load packages
+library(tidyverse)
+
+# load data
+library(gapminder)
+library(scales)
+library(ggrepel)
+data(gapminder)
+```
+
+# 1. Gapminder Scatterplot
+
+- For the year 2007, plot GDP per capita (x-axis) vs. life expectancy (y-axis).
+- Format large numbers as numbers with commas (not scientific notation)
+- color points by continent
+- Be sure your axes are clearly labelled for a general audience
+
+```{r}
+gapminder |>
+  filter(year==2007) |>
+ggplot(aes(x=gdpPercap, y=lifeExp)) +
+  geom_point(aes(color=continent)) +
+  scale_x_continuous(labels=label_comma())
+```
+
+
+# 2. Log-Transformed Gapminder Scatterplot
+
+Take your scatterplot from the previous problem. Log-transform the GDP per capita axis. Explain why a log-transformed x-axis is useful here. 
+
+```{r}
+gapminder |>
+  filter(year==2007) |>
+ggplot(aes(x=gdpPercap, y=lifeExp)) +
+  geom_point(aes(color=continent)) +
+  scale_x_log10(labels=label_comma())
+```
+
+# 3. Gapminder Scatterplot with labels
+
+Take your scatterplot from the previous problem. Use `geom_text_repel()` to label the subset of countries which have a GDP per capita over over $40,000. 
+
+```{r}
+
+gapminder |>
+  filter(year==2007) |>
+  mutate(high_gdp=case_when(gdpPercap > 40000 ~ country,
+                            TRUE ~ NA)) |>
+ggplot(aes(x=gdpPercap, y=lifeExp)) +
+  geom_point(aes(color=continent)) +
+  geom_text_repel(aes(label=high_gdp)) +
+  scale_x_log10(labels=label_comma())
+
+```
+
+
+# 4. Gapminder Scatterplot over the years
+
+Repeat your plot for #2 for all years in the dataset. Hint: you'll need to make sure you are using the full dataset for all years (not just 2007 like in the previous plots). 
+
+```{r}
+
+gapminder |>
+ggplot(aes(x=gdpPercap, y=lifeExp)) +
+  geom_point(aes(color=continent), alpha=0.5) +
+  scale_x_log10(labels=label_comma())
+
+```
+
+# 5. Gapminder US Time Series
+
+- Create a time-series line plot for GDP per capita in the United States
+- Label the highest and lowest years using geom_text_repel(). 
+- Be sure that the axis showing the GDP per capita is shown in currency format (with dollar signs!)
+- Be sure your axes are clearly labelled for a general audience
+
+```{r}
+
+gapminder |>
+  filter(country=="United States"|country=="France"|country=="Canada")|>
+  ggplot(aes(x=year, y=gdpPercap, color=country)) +
+  geom_line()
+
+
+
+```
+
+# 6. Explain using Gapminder US Time Series
+
+How has GDP per capita in the U.S. changed over time? What major historical events might explain large shifts?
+
+
+
+# In-class excercise: Make a Scatterplot with Percents and Colors
+*copy your code from the in-class excercise here. You will need to load in the can_lang dataset here or your code will not render.*
+
+Create a scatterplot with `most_at_home_percent` and `mother_tongue_percent`. Vary the color and shape of the points depending on the category of language. You may need to adjust the position of the legend:
+
+Use `mutate` to create new columns with percentage of Canadians who speak the language as their mother tongue:
+
+```{r}
+# total population of Canada at time of data collection was 35151728
+
+```
+
+Create a scatterplot with `most_at_home_percent` and `mother_tongue_percent`. Vary the color and shape of the points depending on the category of language. You may need to adjust the position of the legend:
+
+```{r}
+
+```
+
+
+
+

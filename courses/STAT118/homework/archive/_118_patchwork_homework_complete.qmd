@@ -1,0 +1,132 @@
+---
+title: "Homework: Practicing New Plot Types"
+subtitle: 'with small multiples and patchwork'
+author: "YOUR NAME HERE"
+format:
+  html: 
+    toc: true
+    code-overflow: wrap
+    code-fold: true
+    embed-resources: true
+---
+
+## Instructions
+
+Use the `diamonds` dataset from `ggplot2`.
+
+Follow the steps below exactly. The goal is to practice using new plotting tools.
+
+For each section:
+- Create the plot
+- Make the required modifications
+- Write 1–2 sentences describing what you see
+- Use something other than the default theme. But don't be too cute, your plots still need to be legible. 
+
+```{r}
+library(tidyverse)
+library(ggplot2)
+library(ggridges)
+library(patchwork)
+
+data(diamonds)
+```
+
+## 1. Heatmap (Categorical × Categorical)
+
+Create a heatmap showing the **proportion of clarity within each cut**. You will first need to create a variable for proportion using `mutate`.
+
+
+```{r}
+df_counts <- diamonds |>
+  count(cut, clarity) |>
+  group_by(cut) |>
+  mutate(prop = n / sum(n))
+
+diamonds |>
+  count(cut, clarity) |>
+  group_by(cut) |>
+  mutate(prop = n / sum(n))
+
+p1 <- ggplot(df_counts, aes(x = cut, y = clarity, fill = prop)) +
+  geom_tile()
+
+p1
+
+diamonds |>
+  group_by(cut, clarity) |>
+  summarize(n=n()) |>
+  mutate(prop=n/sum(n))
+```
+
+**Required modifications**
+- Change the legend title to "Proportion"
+- Add a plot title
+- Reorder `clarity` so the levels appear in a meaningful order (unless you are very familiar with diamond clarity categories, you will need to do a little research to develop a meaningful order)
+
+**Write (1–2 sentences)**
+- What does the color represent?
+- What pattern do you observe?
+
+## 2. Distribution Across Groups (Ridgeline Plot)
+
+Compare the distribution of **price across cut**.
+
+```{r}
+p2 <- ggplot(diamonds, aes(x = price, y = cut, fill = cut)) +
+  geom_density_ridges()
+
+p2
+```
+
+**Required modifications**
+- Set `alpha` to less than 1
+- Remove the legend
+- Add a clear x-axis label
+
+**Write (1–2 sentences)**
+- How does price distribution differ across cuts?
+
+## 3. 2D Density Plot
+
+Visualize the relationship between **carat and price**.
+
+```{r}
+ggplot(diamonds, aes(x = carat, y = price)) +
+  geom_point()
+
+p3 <- ggplot(diamonds, aes(x = carat, y = price)) +
+  geom_density_2d_filled()
+```
+
+**Required modifications**
+- Zoom to the main data region using `coord_cartesian()` (we have *not* discussed how to do this in class, you will need to figure out how on your own, the help documentation for the function is a great place to start).
+- Add a plot title
+- Add readable axis labels
+
+**Write (1–2 sentences)**
+- Where are most observations concentrated?
+- What relationship do you see?
+
+## 4. Combined Figure (Patchwork)
+
+Combine your three plots into a multi-panel figure.
+
+```{r}
+(p1 | p2) / p3 +
+  plot_layout(guides = "collect", heights = c(1, 2)) +
+  plot_annotation(title = "Your title here")
+```
+
+**Requirements**
+- Heatmap and ridgeline plot in the first row
+- 2D density plot in the second row
+- Second row taller than the first
+- Legends collected
+- Overall title added
+
+**Write (1–2 sentences)**
+- What does each panel show?
+- What is the overall takeaway?
+
+***Remember to give your rendered .html a quick look for formatting before submitting.***
+

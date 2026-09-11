@@ -1,0 +1,105 @@
+---
+title: "STAT 118: Homework D"
+subtitle: "Making plots  with ggplot2: barplots and scatterplots"
+author: "YOUR NAME HERE"
+format:
+  html: 
+    toc: true
+    code-overflow: wrap
+    code-fold: true
+    embed-resources: true
+---
+
+```{r}
+#make sure the package is installed on your computer or this won't run! 
+library(tidyverse)
+```
+
+```{r}
+#load the gapminder data for this lab
+library(gapminder)
+data('gapminder')
+```
+
+# 1.
+
+Pick a year. Create a dataset which only contains that data for that year and is appropriately labeled. For example, if you choose the year `2007`, you might choose to call this new dataset `gapminder2007`. You will use this dataset for the rest of the assignment.
+
+```{r}
+gapminder2007 <- gapminder |>
+  filter(year==2007)
+
+head(gapminder2007)
+```
+
+# 2.
+
+Using your dataset you created in 1, create a barplot which displays the GDP per capita of the ten countries with the highest GDP per capita that year. Be sure your axes are appropriately labeled. *I would suggest piping in a wrangled dataset here. There are other ways too.*
+
+```{r}
+gapminder2007 |>
+  arrange(desc(gdpPercap)) |>
+  slice(1:10) |>
+  ggplot() +
+  geom_col(aes(y=country, x=gdpPercap))
+```
+
+# 3.
+
+Pick a continent. Using your dataset you created in 1, create a barplot which displays the life expectancy of all the countries in that continent in that year. You should sort the countries from highest life expectancy to lowest life expectancy. Be sure your axes are appropriately labeled.
+
+```{r}
+
+```
+
+# 4.
+
+```{r}
+#Load Penguins Data
+library(palmerpenguins)
+data("penguins")
+```
+
+To the best of your ability, recreate the following plot from the `penguins` dataset. Focus your efforts on getting the content correct. If you have time at the end, as a bonus, you can try to match the styling as closely as you can. 
+![https://github.com/emalcolmwhite/emalcolmwhite.github.io/blob/main/courses/stat0118/images/penguins_scatterplot.png](https://github.com/emalcolmwhite/emalcolmwhite.github.io/blob/main/courses/stat0118/images/penguins_scatterplot.png?raw=true)
+
+This image will also be available on the Canvas assignment (in case this link/preview don't work for you).
+
+```{r}
+
+```
+
+
+# In-Class Excercise: 
+
+If you completed this in class, copy your code and text in here. If you weren't able to get through it in class, now's your chance! So exciting! 
+
+Here is the data prep for this section that we did in class to save you the work of copying it over.
+
+```{r}
+#load the data
+data(mtcars)
+
+# change am from numeric to factor variable
+mtcars <- mtcars |>  
+  mutate(am_factor = as.factor(am)) 
+```
+
+## Plot 1
+
+Create a scatterplot using `geom_point()` to explore the relationship between engine displacement (`disp`) and horsepower (`hp`) in the `mtcars` dataset. In addition to plotting these two numeric variables, *map a third numeric variable* of your choice to color. Apply a non-default continuous color scale (either `scale_color_gradient()` or `scale_color_viridis_c()`), and include a clear title, axis labels, and a non-default theme. After creating your plot, write 2–3 sentences describing the pattern you observe between displacement and horsepower.
+
+```{r}
+
+```
+
+
+## Plot 2 
+
+Now extend the story by investigating a different relationship in the dataset. Choose two numeric variables other than `hp` and `disp` that you think might help explain fuel efficiency or vehicle performance, and create a new scatterplot using `geom_point()`. Convert one relevant grouping variable (such as `am`, `cyl`, or `gear`) to a factor and map it to color. Apply a non-default discrete color scale using `scale_color_manual()`, and include a clear title, axis labels, and a theme. In 2–3 sentences, explain why you chose these variables and what you observe in the plot.
+
+```{r}
+
+```
+
+

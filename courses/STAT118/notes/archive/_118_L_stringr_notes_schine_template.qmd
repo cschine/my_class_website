@@ -1,0 +1,300 @@
+---
+title: 'working with text with `stringr`'
+subtitle: |
+  | ![](https://stringr.tidyverse.org/logo.png){width=10%}
+author: 'Violet Ross'
+institute: 'Middlebury College'
+format:
+  html: 
+    toc: TRUE
+    code-overflow: wrap
+    embed-resources: true
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r message=FALSE, warning=FALSE}
+#LOAD PACKAGES 
+library(tidyverse)
+library(stringr)
+```
+
+## A few basics
+
+**What is a string?**
+  
+A string is a data type used to represent text. In R, we indicate that something is a string by referring to it with quotes.
+
+Examples of strings:
+
+- 
+- 
+- 
+
+NOT a string:
+
+- 
+
+**What is ** `stringr` **?**
+  
+stringr is a package containing a bunch of functions that help us work with strings.
+  
+[**stringr cheat sheet**](https://evoldyn.gitlab.io/evomics-2018/ref-sheets/R_strings.pdf)
+
+# Using `stringr`
+
+**I'm registering for classes for this Fall and am trying to decide which courses to take.**
+  
+Let's look at the course catalog!
+
+Read in the courses data.
+
+```{r, message=FALSE, warning=FALSE}
+# Download the courses.csv dataset
+
+# you will need to put in your own filepath here
+# !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+courses <- read_csv("~/Dropbox/!Middlebury/Teaching/STAT 118/S2026/S2026_R_Proj/data/courses.csv")
+# !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+view(courses)
+
+```
+
+## `str_detect` 
+  
+**inputs**: 
+  
+-  a string (or a column of strings) to search *from*  
+-  a string to search *for*  
+  
+**output**: boolean value (TRUE or FALSE)  
+
+little example:
+```{r}
+# using str_detect to search for strings
+# for the string "Welcome to data science, look at this cool data"
+
+#find the pattern "data" 
+
+
+# find the pattern "pineapple" 
+
+```
+
+I only want to take classes in Warner! Let's filter for rows where we **detect** the word "Warner" in the `location` column.
+```{r}
+# filter for where the location column contains the pattern "WNS"
+
+
+
+```
+  
+  
+  
+Suppose I don't want any classes on Friday. Let's use `str_detect` to find our options.
+```{r}
+# look for instances of the pattern "Friday" in the meet column
+# using str_detect() 
+# filter them out
+
+
+```
+
+
+Perhaps I'm interested in artificial intelligence. 
+We can use `str_detect` to find course descriptions that mention artificial intelligence.  
+  
+The `regex` function is used to write regular expressions in R. Regular expressions are helpful if you want to search for a pattern rather than a specific word or phrase.  
+For now, we will only use regex to ignore capitalization. 
+If you're interested in using regular expressions at some point, this [regex cheat sheet](https://cheatography.com/davechild/cheat-sheets/regular-expressions/) will be super helpful.
+
+```{r}
+
+# filter for class descriptions that contain the pattern "immigration" using str_detect()
+# use regex to ignore upper versus lower case as: regex("immigration", ignore_case=TRUE)
+
+
+
+
+```
+  
+  
+  
+## `str_extract` and `str_remove`
+  
+  
+**str_extract inputs**: 
+  
+-  a string (or a column of strings) to extract *from*  
+-  a string to extract  
+  
+**str_extract output**: the string you wanted to extract OR nothing  
+
+**str_remove inputs**: 
+  
+-  a string (or a column of strings) to remove stuff *from*  
+-  a string to remove  
+  
+**str_remove output**: the first input string with the second input removed  
+
+little example:
+```{r}
+# for the string "Welcome to data science, look at this cool data"
+# and the pattern "data"
+
+# str_extract() extracts first instance
+
+# str_extract_all() extracts all instances
+
+# str_remove() removes first instance
+
+# str_remove_all() removes all instances
+
+```
+  
+  
+  
+CW is part of the distribution requirement column. I want CW to be its own column.  
+First we can create a new column called `isCW` by **extracting** instances of "CW" from the `distros` column in each row.  
+Then we can **remove** all instances of "CW" from the `distros` column.
+```{r}
+
+# make new column that states whether a course is CW or not
+# and count how many classes are CW
+
+
+# now make a new column for distros and remove CW using str_remove()
+
+  
+
+```
+  
+  
+  
+## `str_sub`
+  
+  
+**str_sub inputs**:
+  
+-  a string (or a column of strings) take substrings of  
+-  where the substring should start
+-  where the substring should end
+  
+**str_sub output**: the substring    
+  
+little example:
+```{r}
+
+#extract the pieces of a string using str_sub() function
+# extract the substring data science
+# from the sentence "Welcome to data science, look at this cool data"
+# need to define the position of the start character and the end character
+
+
+#move the start and end to extract a different string
+
+```
+
+  
+
+Maybe I only want 200 level math and stats classes.  
+First we filter for just math/stats classes. 
+Then we can create a new column called `level` that contains only the sixth character from the `courses` column.  
+
+
+We can then filter our `level` column for specific course levels.
+```{r}
+# first let's get all of the exact department names
+
+
+
+# mutate on a column called level that extracts the 6th character from courseNum column
+
+
+
+# now filter for only the level 2 classes
+
+
+```
+  
+  
+  
+## `str_count`
+  
+**str_count inputs**: 
+  
+-  a string (or a column of strings) to count *from*  
+-  a string you want to count the number of instances of  
+  
+**str_count output**: the number of times the second string occurs in your first string
+
+little example:
+```{r}
+# count the instance of the word "data" in the sentence "Welcome to data science, look at this cool data"
+# using str_count()
+
+
+```
+ 
+
+Maybe I only want my classes to meet twice a week. Let's **count** how many times "day" appears in the `meet` column and put this value in a new column called `day_count`. `day_count` represents how many days a week a class meets.
+```{r}
+
+# mutate on a column called day_count using str_count() for the meet column, looking for instances of the string "day"
+
+# save day_count as a column 
+
+
+
+# now extract what is the max number of days a class meets
+
+
+
+```
+
+Let's visualize this data.
+```{r}
+# make a bar plot of dayCount with x=day_count 
+
+
+  
+```
+
+## `word`
+
+Allows you to select words from a string. The function assumes as a default that the words are separated by a space, but you can define a different separator if you need using the `sep=` arguement. 
+
+```{r}
+# let's look at the help docs
+#?word
+
+# mutate new column called building with just the first word from location
+
+
+
+```
+
+Let's make a plot using some of the columns we've just made:
+
+```{r}
+# what should we plot???
+
+```
+
+
+## In groups
+
+Make a bar plot with the number of classes that meet in each building. Put the building name on the y-axis and the number of classes that meet there on the x-axis. Put the y-axis in order from the building with the most classes to the building with the least classes. It doesn't have to be perfect. With more time and for a more polished plot there are things you would do to clean it up. This is about combining some of the tools you just learned with some that you learned throughout the semester. 
+
+```{r}
+# mutate column called building with first 2 words from location 
+
+
+
+# make bar plot of the number of classes by building 
+
+
+```
+
+

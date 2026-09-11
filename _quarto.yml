@@ -5,19 +5,42 @@ project:
   render:
     - index.qmd
     - sampler.qmd
-    - notes/published/*.qmd
+    - courses/STAT118/index.qmd
+    - courses/STAT118/notes/published/*.qmd
 
 website:
   title: "Casey’s Data Science Extras"
   navbar:
     left:
-      - href: index.qmd
-        text: Home
-      - href: sampler.qmd
-        text: Sampler
+      - text: "Home"
+        href: index.qmd
+
+      - text: "STAT 118: Intro to Data Science"
+        href: courses/STAT118/index.qmd
+        
+      - text: "Samplers"
+        href: sampler.qmd
+        
+  sidebar:
+    - id: STAT118
+      title: "STAT 118: Intro to Data Science"
+      logo: courses/STAT118/images/stat0118_hex_sticker.png
+      style: docked
+      contents:
+        - text: "STAT 118 Home"
+          href: courses/STAT118/index.qmd
+
+        - text: "📖 Course Notes"
+          class: sidebar-item-group
+
+        - text: "Intro to R & RStudio"
+          href: courses/STAT118/notes/published/118_A_intro_quarto.qmd
+
+
 
 format:
   html:
     theme: cosmo
-    resource-path:
-      - .
+    
+execute:
+  freeze: auto

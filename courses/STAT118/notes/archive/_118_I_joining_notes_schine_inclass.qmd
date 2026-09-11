@@ -1,0 +1,298 @@
+---
+title: 'Joining tables with `dplyr`'
+author: 'Casey Schine adapted from Emily Malcolm-White'
+format:
+  html: 
+    toc: TRUE
+    code-overflow: wrap
+    embed-resources: true
+    code-tools:
+      source: true
+      toggle: false
+      caption: none
+    code-annotations: hover
+  pdf: default
+execute: 
+  message: FALSE
+  warning: FALSE
+editor_options: 
+  chunk_output_type: console
+---
+
+# `nycflights23` dataset
+
+```{r}
+#LOAD PACKAGES
+library(tidyverse)
+
+#LOAD DATA
+library(nycflights23)
+data("flights")
+```
+
+`nycflights23` contains information about all `r nrow(flights)` flights departing NYC in 2023.
+
+![](https://r4ds.hadley.nz/diagrams/relational.png)
+
+# Join dataframes
+
+## Matching key variable names
+
+Some airline names might be easy to guess (ie. "UA" is United Airlines), but what airlines have the code "VX", "HA", and "B6"? Data on airline codes is provided in a dataset called `airlines`.
+
+```{r}
+data("airlines")
+```
+
+We want to have all this information in one data frame instead of two separate data frames.
+
+The variable `carrier` in `flights` match the variable `carrier` in the `airlines` dataset -- this is our *key variable*. In this case, they have the same name, but this doesn't necessarily have to be true.
+
+```{r}
+# look at carrier variable in airlines data 
+# open data in viewer
+
+# look at carrier variable in flights data
+# Data set is too long to just click on it and get a good look, so what can we do here?
+
+flights |>
+  distinct(carrier)
+
+```
+
+::: callout-note
+# Different Types of Joins
+
+![Credit: RStudio](http://rafalab.dfci.harvard.edu/dsbook/wrangling/img/joins.png)
+
+There are several different kinds of joins. Which one you choose will depend on what you are trying to accomplish.
+:::
+
+```{r}
+# use "key" variable to join the two data sets
+# ?join to look at the help documentation
+
+flights_joined <- flights |>
+  left_join(airlines, by="carrier")
+
+
+# check join
+flights_joined |>
+  filter(is.na(name))
+
+
+
+```
+
+## Different key variable names
+
+Say instead you are interested in the destinations of all domestic flights departing NYC in 2013, and you ask yourself questions like: “What cities are these airports in?”, or “Is "ORD" Orlando?”
+
+```{r}
+data("airports")
+```
+
+In `airports` the airport code is in `faa`, whereas in `flights` the airport codes are in `origin` and `dest`.
+
+```{r}
+
+# look at airports and flights data to find where airport variables are stored
+
+
+# join airport to flights data 
+# reminder: by=c("dest"="faa")
+
+flights_with_airlines <- flights |>
+  left_join(airports, by=c("dest"="faa")) |>
+  rename(destination_name=name) # new_name=old_name
+
+
+
+# check the join
+
+flights_with_airlines |>
+  filter(is.na(destination_name))
+```
+
+### In Groups
+
+In groups, construct the chain of pipe operators \|\> that computes the number of flights from NYC to each destination, but also includes information about each destination airport. Start with the first part, compute the number of flights from NYC to each destination, and then do your join.
+
+```{r}
+# In groups!!!
+flights_joined_again_count <- flights |>
+  group_by(dest) |>
+  count() |>
+  left_join(airports, by=c("dest"="faa"))
+
+
+  
+flights_joined_again_summarize <- flights |>
+  group_by(dest) |>
+  summarize(n=n()) |>
+  left_join(airports, by=c("dest"="faa"))
+
+```
+
+Now, make a kable table with the top 5 airports with airport name in the first column, the airport code in the next column, and the number of flights to that airport from NYC in the third column.
+
+```{r}
+library(kableExtra)
+
+
+### casey will come back and figure out why slice isn't working
+### and she figured it out!
+
+# slice was making issues because R will still interpreting the data
+# from the version we made using count() as grouped
+# and we need to ungroup it in order to use slice
+
+flights |>
+  group_by(dest) |>
+  count(sort=TRUE) |>
+  left_join(airports, by=c("dest"="faa")) |>
+  ungroup() |> # this is why slice wan't working
+  slice(1:5)
+  
+
+flights_joined_again_count |>
+  ungroup() |> # this is why slice wasn't working
+  arrange(desc(n)) |>
+  slice(1:5)
+
+# if we use the summarize version, we don't have this issue
+# computers are weird
+
+flights_joined_again_summarize |>
+  arrange(desc(n)) |>
+  slice(1:5)
+
+flights_joined_again_summarize |>
+  arrange(desc(n)) |>
+  slice(1:5) |>
+  select(name, dest, n) |>
+  kbl() |>
+  kable_styling()
+
+```
+
+## Multiple Key variables
+
+In order to join the flights and weather data frames, we need more than one key variable: `year`, `month`, `day`, `hour`, and `origin`. This is because the combination of these 5 variables act to uniquely identify each observational unit in the weather data frame: hourly weather recordings at each of the 3 NYC airports.
+
+```{r}
+data("weather")
+```
+
+```{r}
+
+# join weather data to flights using left_join()
+# what variables do we need for a clean join?
+
+# what is in weather data???
+
+
+# what are the matching variables in flights that we need???
+#origin
+#year
+#month
+#day
+#hour
+
+flights_weather_joined <- flights |>
+  left_join(weather, by=c("time_hour","origin"))
+
+flights_weather_joined <- flights |>
+  left_join(weather, by=c("origin", "year", "month", "day", "hour"))
+
+
+
+```
+
+### In groups
+
+In groups, join the `weather` data to the `flights` data with an `inner_join()`.
+
+```{r}
+
+flights_weather_joined_inner <- flights |>
+  inner_join(weather, by=c("origin", "year", "month", "day", "hour"))
+
+
+
+```
+
+What is the difference between the result with a `left_join()` and an `inner_join()`? How many rows different are the resulting datasets? Which rows did you lose? Why did you lose them? Which is the better join in this case? *Hint: Look at the table at the beginning with different kinds of joins*
+
+```{r}
+
+flights |>
+  anti_join(weather, by=c("origin", "year", "month", "day", "hour")) |>
+  distinct(year, month, day)
+
+
+```
+
+## Why is this useful?
+
+Updating labels:
+
+```{r}
+library(ggthemes)
+# make bar plot (using geom_bar) with y as carrier and fill as origin
+# use original flights dataset
+
+flights |>
+  ggplot(aes(y=carrier, fill=origin)) +
+  geom_bar() +
+  theme_tufte()
+
+
+```
+
+### In groups
+
+Now make the same figure as above, but use joining to replace the origin airport code with the origin airport name using the `aiports` dataset and the carrier code with the carrier name using the `airlines` dataset.
+
+*Hint: if doing it all at once seems overwhelming do it one piece at a time and then put all of the pieces together. First, do the airports join. Then do the airlines join. And then put them together.*
+
+```{r}
+
+# now do the same thing but join the airports and airlines datasets to the flights dataset
+
+flights |>
+  left_join(airports, by=c("origin"="faa")) |> #join the airports data
+  left_join(airlines, by="carrier") |> # join the airlines data
+  ggplot(aes(y=name.y, fill=name.x)) +
+  geom_bar() +
+  theme_tufte()
+
+
+```
+
+Exploring relationships between variables in separate tables:
+
+```{r}
+# look at the relationship between temp and dep_delay in the flights and weather joined dataset (filter for dep_delay > 0)
+
+flights_weather_joined |>
+  filter(dep_delay>0) |>
+  ggplot(aes(x=temp, y=dep_delay)) +
+  geom_point() +
+  theme_tufte()
+
+
+# add color by another variable
+
+library(viridis)
+
+flights_weather_joined |>
+  filter(dep_delay>0) |>
+  filter(origin=="EWR") |>
+  ggplot(aes(x=temp, y=dep_delay, color=pressure)) +
+  geom_point(alpha=0.4) +
+  scale_color_viridis() +
+  theme_tufte()
+```
+
+
