@@ -43,7 +43,7 @@ website:
 
 format:
   html:
-    theme: hacker
+    theme: cyborg
     
 execute:
   freeze: auto
