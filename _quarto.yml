@@ -33,6 +33,9 @@ website:
         - text: "📖 Course Notes"
           class: sidebar-item-group
 
+        - text: "Installing R and RStudio"
+          href: courses/STAT118/notes/published/installationguide.qmd
+          
         - text: "Intro to R & RStudio"
           href: courses/STAT118/notes/published/118_A_intro_quarto.qmd
 
@@ -40,7 +43,7 @@ website:
 
 format:
   html:
-    theme: cosmo
+    theme: hacker
     
 execute:
   freeze: auto

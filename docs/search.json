@@ -92,7 +92,7 @@
     "href": "courses/STAT118/notes/published/118_A_intro_quarto.html",
     "title": "Intro to R and RStudio",
     "section": "",
-    "text": "You will need to follow the directions available at https://posit.co/download/rstudio-desktop/ to download both R and RStudio.\n\n\n\nCredit: moderndive\n\n\nR (The brain behind it all)\n\nR is the actual programming language and the computational engine that performs all the calculations, data analysis, and visualizations.\nWithout R, there’s no way to run your code or perform any data analysis tasks.\nWorking in base R is possible, but it’s\n\nRStudio (The interface you work with)\nRStudio is an IDE (Integrated Development Environment) that gives you a user-friendly interface to write and run your R code.\n\n\n\n\n\n\nTip\n\n\n\nThink of it like this:1\n\nR is the engine of a car that powers the vehicle,\nRStudio is the dashboard, steering wheel, and GPS that help you control and navigate the car.\nYou need both for a smooth ride! 🚗\n\n\n\nWhen you open RStudio, you should see something similar to this:",
+    "text": "If you have not already, please refer to the Installation Guide to install R and RStudio on your computer.\nR (The brain behind it all)\nRStudio (The interface you work with)\nRStudio is an IDE (Integrated Development Environment) that gives you a user-friendly interface to write and run your R code.\nWhen you open RStudio, you should see something similar to this:",
     "crumbs": [
       "STAT 118: Intro to Data Science",
       "Intro to R & RStudio"
@@ -141,5 +141,19 @@
       "STAT 118: Intro to Data Science",
       "Intro to R & RStudio"
     ]
+  },
+  {
+    "objectID": "courses/STAT118/notes/published/installguide.html",
+    "href": "courses/STAT118/notes/published/installguide.html",
+    "title": "Installing R and RStudio",
+    "section": "",
+    "text": "For this course, you will need to install both R and RStudio on your computer.\n\nR is the programming language that runs your code.\nRStudio is the program we will use to write and run R code.\n\nInstall R first, then install RStudio.\n\n1. Install R\nGo to the R Project download page.\n\nMac\n\nClick Download R for macOS.\nDownload the appropriate installer for your Mac.\nOpen the downloaded .pkg file and follow the installation instructions.\n\n\n\n\n\n\n\nTip\n\n\n\nIf you are unsure which R version you need, click on the Apple in the upper lefthand corner of the screen and select “About This Mac”, this will contain information both about the chip in your Mac (Intel or M) and the OS that you are running.\n\n\n\n\nWindows\n\nClick Download R for Windows.\nClick install R for the first time.\nClick Download R-4.6.1 for Windows (the exact R version number may have changed).\nOpen the downloaded installer and accept the default installation options.\n\n\n\n\n2. Install RStudio Desktop\nGo to the RStudio Desktop download page.\n\nDownload the free version of RStudio Desktop for your operating system.\nOpen the installer.\nFollow the installation instructions.\n\n\n\n3. Make sure everything works\nOpen RStudio.\n\n\n\nCredit: moderndive\n\n\nIf the installation was successful, you should see the RStudio interface with a Console pane containing some text about your version of R and a &gt; prompt.\nAt the &gt; prompt, type:\n\n2 + 2\n\nIf R responds with:\n[1] 4\nyou’re ready for class!\nIf you are stumped by 3. Don’t worry about it. If you didn’t get any errors during installation and can open the program ok, then you should be good to go."
+  },
+  {
+    "objectID": "courses/STAT118/notes/published/installguide.html#installing-r-and-rstudio",
+    "href": "courses/STAT118/notes/published/installguide.html#installing-r-and-rstudio",
+    "title": "R and RStudio Installation Instructions",
+    "section": "",
+    "text": "For this course, you will need to install both R and RStudio on your computer.\n\nR is the programming language that runs your code.\nRStudio is the program we will use to write and run R code.\n\nInstall R first, then install RStudio.\n\n\nGo to the R Project download page.\n\n\n\nClick Download R for macOS.\nDownload the appropriate installer for your Mac.\nOpen the downloaded .pkg file and follow the installation instructions.\n\n\n\n\n\n\n\nTip\n\n\n\nIf you are unsure which R version you need, click on the Apple in the upper lefthand corner of the screen and select “About This Mac”, this will contain information both about the chip in your Mac (Intel or M) and the OS that you are running.\n\n\n\n\n\n\nClick Download R for Windows.\nClick install R for the first time.\nClick Download R-4.6.1 for Windows (the exact R version number may have changed).\nOpen the downloaded installer and accept the default installation options.\n\n\n\n\n\nGo to the RStudio Desktop download page.\n\nDownload the free version of RStudio Desktop for your operating system.\nOpen the installer.\nFollow the installation instructions.\n\n\n\n\nOpen RStudio.\n\n\n\nCredit: moderndive\n\n\nIf the installation was successful, you should see the RStudio interface with a Console pane containing some text about your version of R and a &gt; prompt.\nAt the &gt; prompt, type:\n\n2 + 2\n\n[1] 4\n\n\nIf R responds with:\n[1] 4\nyou’re ready for class!"
   }
 ]

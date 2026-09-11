@@ -1,6 +1,6 @@
 ---
 title: "Intro to R and RStudio"
-author: "Emily Malcolm-White"
+author: "Emily Malcolm-White (slightly altered by Casey Schine)"
 format:
   html: 
     toc: TRUE
@@ -16,9 +16,8 @@ execute:
   warning: FALSE
 ---
 
-# Install R and R Studio
 
-You will need to follow the directions available at <https://posit.co/download/rstudio-desktop/> to download both R and RStudio.
+If you have not already, please refer to the Installation Guide to install R and RStudio on your computer. 
 
 ![Credit: moderndive](../../images/R_vs_RStudio.png)
 

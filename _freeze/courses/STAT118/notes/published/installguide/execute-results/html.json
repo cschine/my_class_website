@@ -1,0 +1,15 @@
+{
+  "hash": "b40a02700bb63ace037be68994f6b329",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\ntitle: \"Installing R and RStudio\"\nauthor: \"Casey Schine\"\nformat:\n  html: \n    toc: TRUE\n    code-overflow: wrap\n    embed-resources: true\n    code-tools:\n      source: true\n      toggle: false\n      caption: none\n    code-annotations: hover\nexecute: \n  message: FALSE\n  warning: FALSE\n---\n\n\n\nFor this course, you will need to install **both R and RStudio** on your computer.\n\n- **R** is the programming language that runs your code.\n- **RStudio** is the program we will use to write and run R code.\n\n**Install R first, then install RStudio.**\n\n### 1. Install R\n\nGo to the [R Project download page](https://cloud.r-project.org/).\n\n#### Mac\n\n1. Click **Download R for macOS**.\n2. Download the appropriate installer for your Mac. \n3. Open the downloaded `.pkg` file and follow the installation instructions.\n\n::: callout-tip\nIf you are unsure which R version you need, click on the Apple in the upper lefthand corner of the screen and select \"About This Mac\", this will contain information both about the chip in your Mac (Intel or M) and the OS that you are running.\n:::\n\n#### Windows\n\n1. Click **Download R for Windows**.\n2. Click **install R for the first time**.\n3. Click **Download R-4.6.1 for Windows** (the exact R version number may have changed).\n4. Open the downloaded installer and accept the default installation options.\n\n### 2. Install RStudio Desktop\n\nGo to the [RStudio Desktop download page](https://posit.co/download/rstudio-desktop/).\n\n1. Download the **free version of RStudio Desktop** for your operating system.\n2. Open the installer.\n3. Follow the installation instructions.\n\n### 3. Make sure everything works\n\nOpen **RStudio**.\n\n![Credit: moderndive](../../images/R_vs_RStudio.png)\n\nIf the installation was successful, you should see the RStudio interface with a **Console** pane containing some text about your version of R and a `>` prompt.\n\nAt the `>` prompt, type:\n\n\n\n::: {.cell}\n\n```{.r .cell-code}\n2 + 2\n```\n:::\n\n\n\nIf R responds with:\n\n```\n[1] 4\n```\n\nyou're ready for class!\n\nIf you are stumped by 3. Don't worry about it. If you didn't get any errors during installation and can open the program ok, then you should be good to go.\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

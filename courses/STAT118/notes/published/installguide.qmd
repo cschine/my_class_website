@@ -1,0 +1,77 @@
+---
+title: "Installing R and RStudio"
+author: "Casey Schine"
+format:
+  html: 
+    toc: TRUE
+    code-overflow: wrap
+    embed-resources: true
+    code-tools:
+      source: true
+      toggle: false
+      caption: none
+    code-annotations: hover
+execute: 
+  message: FALSE
+  warning: FALSE
+---
+
+For this course, you will need to install **both R and RStudio** on your computer.
+
+- **R** is the programming language that runs your code.
+- **RStudio** is the program we will use to write and run R code.
+
+**Install R first, then install RStudio.**
+
+### 1. Install R
+
+Go to the [R Project download page](https://cloud.r-project.org/).
+
+#### Mac
+
+1. Click **Download R for macOS**.
+2. Download the appropriate installer for your Mac. 
+3. Open the downloaded `.pkg` file and follow the installation instructions.
+
+::: callout-tip
+If you are unsure which R version you need, click on the Apple in the upper lefthand corner of the screen and select "About This Mac", this will contain information both about the chip in your Mac (Intel or M) and the OS that you are running.
+:::
+
+#### Windows
+
+1. Click **Download R for Windows**.
+2. Click **install R for the first time**.
+3. Click **Download R-4.6.1 for Windows** (the exact R version number may have changed).
+4. Open the downloaded installer and accept the default installation options.
+
+### 2. Install RStudio Desktop
+
+Go to the [RStudio Desktop download page](https://posit.co/download/rstudio-desktop/).
+
+1. Download the **free version of RStudio Desktop** for your operating system.
+2. Open the installer.
+3. Follow the installation instructions.
+
+### 3. Make sure everything works
+
+Open **RStudio**.
+
+![Credit: moderndive](../../images/R_vs_RStudio.png)
+
+If the installation was successful, you should see the RStudio interface with a **Console** pane containing some text about your version of R and a `>` prompt.
+
+At the `>` prompt, type:
+
+```{r eval=FALSE}
+2 + 2
+```
+
+If R responds with:
+
+```
+[1] 4
+```
+
+you're ready for class!
+
+If you are stumped by 3. Don't worry about it. If you didn't get any errors during installation and can open the program ok, then you should be good to go.
