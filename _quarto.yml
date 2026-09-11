@@ -43,7 +43,10 @@ website:
 
 format:
   html:
-    theme: cyborg
+    theme: 
+      - cosmo
+      - custom.scss
+    
     
 execute:
   freeze: auto

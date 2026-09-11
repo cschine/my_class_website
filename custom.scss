@@ -1,0 +1,53 @@
+/*-- scss:defaults --*/
+
+/* Scientific notebook palette */
+$body-bg: #faf9f5;
+$body-color: #292929;
+$link-color: #356b73;
+
+/* Typography */
+$font-family-sans-serif: "Helvetica Neue", Helvetica, Arial, sans-serif;
+$headings-font-family: Georgia, "Times New Roman", serif;
+
+$headings-color: #263238;
+
+
+/*-- scss:rules --*/
+
+/* Give the page a slightly more open, paper-like feel */
+body {
+  line-height: 1.65;
+}
+
+/* Headings: more like a scientific document */
+h1, h2, h3 {
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}
+
+/* Subtle rule beneath major section headings */
+h2 {
+  border-bottom: 1px solid #d8d6cf;
+  padding-bottom: 0.25rem;
+}
+
+/* Code should feel distinct without becoming a giant gray box */
+code {
+  color: #39464a;
+}
+
+pre {
+  border: 1px solid #dedcd5;
+  border-radius: 3px;
+}
+
+/* Slightly quieter sidebar */
+.sidebar {
+  font-size: 0.95rem;
+}
+
+/* Blockquotes / notes */
+blockquote {
+  border-left: 3px solid #78989c;
+  color: #555;
+}
