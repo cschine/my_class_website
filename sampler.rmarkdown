@@ -14,6 +14,9 @@ editor_options:
   chunk_output_type: console
 ---
 
+
+
+
 ## Overview
 
 In this class, we've focused on building solid data analysis skills.
@@ -32,6 +35,9 @@ You will **vote on which of these we explore further**.
 
 Here is where you may need to install some new packages:
 
+
+
+
 ```{r warning=FALSE, message=FALSE}
 # Uncomment if needed
 # install.packages(c("tidyverse", "leaflet", "plotly", "gganimate",
@@ -47,9 +53,15 @@ library(palmerpenguins)
 
 ```
 
+
+
+
 ## Leaflet Interactive Maps
 
 Let's start with a basic map of earthquakes near New Zealand. We can set the earthquakes to size by magnitude. I messed around with the math a little to get a size ratio that I liked.
+
+
+
 
 ```{r}
 data(quakes)
@@ -72,8 +84,14 @@ quakes |>
     fillOpacity = 0.6
   )
 ```
+
+
+
  
 Color the points by magnitude and add a legend: 
+
+
+
 
 ```{r}
 pal <- colorNumeric(
@@ -101,9 +119,15 @@ leaflet(quakes) |>
 ```
 
 
+
+
+
 Now let's start playing around with the basemaps. You can find all of the possibilities on this website: 
 
 https://leaflet-extras.github.io/leaflet-providers/preview/
+
+
+
 
 ```{r}
 
@@ -151,7 +175,13 @@ leaflet() |>
   )
 ```
 
+
+
+
 Now with the EJI data. I strongly recommend that you don't try to run this one. 
+
+
+
 
 ```{r}
 library(sf)
@@ -192,11 +222,17 @@ leaflet() |>
 ```
 
 
+
+
+
 ## Plotly Interactive Plots
 
 Plotly doesn’t change your analysis at all — it just changes how your results exist. It turns a static figure into something you could actually put on a website or share with someone to explore.
 
 Let's start simple. You make a plot in ggplot and then you feed it into plotly and it's like magic.
+
+
+
 
 ```{r}
 p <- ggplot(mpg, aes(x = displ, y = hwy, color = class,
@@ -208,7 +244,13 @@ ggplotly(p, tooltip = "text")
 
 ```
 
+
+
+
 Let's add more information to the pop-up:
+
+
+
 
 ```{r}
 p <- ggplot(mpg, aes(x = displ, y = hwy, color = class)) +
@@ -227,7 +269,13 @@ p <- ggplot(mpg, aes(x = displ, y = hwy, color = class)) +
 ggplotly(p, tooltip = "text")
 ```
 
+
+
+
 Let's try it with the gapminder data. 
+
+
+
 
 ```{r}
 
@@ -244,7 +292,13 @@ p <-  gapminder |>
 ggplotly(p)
 ```
 
+
+
+
 With facets:
+
+
+
 
 ```{r}
 p <- ggplot(mpg, aes(displ, hwy, color = class)) +
@@ -255,7 +309,13 @@ p <- ggplot(mpg, aes(displ, hwy, color = class)) +
 ggplotly(p)
 ```
 
+
+
+
 With a boxplot:
+
+
+
 
 ```{r}
 p <- ggplot(mpg, aes(class, hwy, fill = class)) +
@@ -265,9 +325,15 @@ p <- ggplot(mpg, aes(class, hwy, fill = class)) +
 ggplotly(p)
 ```
 
+
+
+
 This is my first time doing this with a boxplot, and now this is the only way I'm making a boxplot ever again!
 
 Let's do it with a line!
+
+
+
 
 ```{r}
 economics <- ggplot2::economics
@@ -279,7 +345,13 @@ p <- ggplot(economics, aes(date, unemploy)) +
 ggplotly(p)
 ```
 
+
+
+
 WITH A DENSITY PLOT!
+
+
+
 
 ```{r}
 p <- ggplot(diamonds, aes(x = price, fill = cut)) +
@@ -289,12 +361,18 @@ p <- ggplot(diamonds, aes(x = price, fill = cut)) +
 ggplotly(p)
 ```
 
+
+
+
 This is AMAZING! Why am I only just learning this????
 
 
 ## Animation
 
 This animation shows the gapminder dataset through time, with GDP per capita on the x-axis and Life expectancy on the y-axis. The points are colored by continent and sized by population (on a log scale).
+
+
+
 
 ```{r eval=FALSE}
 
@@ -333,9 +411,15 @@ animate(
 )
 ```
 
+
+
+
 You may be able to tell by how many plots I made with the others and how few animations I have given you, that my heart isn't really in animations. This single animation took about 50% of the time I spent making this. They can be a real pain. A good animation is absolute gold, but it is very hard to make a good animation. 
 
 ## Spatial Data - but not people data
+
+
+
 
 ```{r}
 library(terra)
@@ -359,9 +443,15 @@ ggplot(volcano_df, aes(x, y, fill = elevation)) +
 
 ```
 
+
+
+
 Here is some code from my Data Science Across Disciplines class this last January looking at instrumented seal data from the Southern Ocean. 
 
 First, some data prep. You are not expected to understand this part. 
+
+
+
 
 ```{r data_prep, cache=TRUE, message=FALSE}
 
@@ -386,7 +476,13 @@ seal_data_mod <- seal_data |>
 world <- map_data("world")
 ```
 
+
+
+
 First a map with "raster" data. 
+
+
+
 
 ```{r map_bathy_with_seals, message=FALSE, fig.height=4, fig.width=10}
 raster_dir <- "/Users/caseysmith/Dropbox/!Middlebury/Teaching/DSAD 1230/DSAD_2025/R_code/Argo_vis_shiny_app"
@@ -473,9 +569,15 @@ ggplot() +
   ggtitle("NPP difference 2010-2011 minus 2011-2012")
 ```
 
+
+
+
 ## Schiny
 
 This is just some example code. We're not going to run this. I'm going to show you an example from students I had during J-term. 
+
+
+
 
 ```{r eval=FALSE, echo=TRUE}
 library(shiny)
@@ -507,11 +609,15 @@ server <- function(input, output) {
 shinyApp(ui, server)
 ```
 
+
+
+
 ## Github Website
 
 This is a fun one that I would love for you to choose because I really want to learn it. This would also be a very cool thing to be able to put on a resume and showcase all of your cool plots that you've made!
 
 Changing my sampler to demonstrate git. 
+
 
 
 

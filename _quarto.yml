@@ -1,6 +1,11 @@
 project:
   type: website
   output-dir: docs
+  execute-dir: project
+  render:
+    - index.qmd
+    - sampler.qmd
+    - notes/published/*.qmd
 
 website:
   title: "Casey’s Data Science Extras"
@@ -14,3 +19,5 @@ website:
 format:
   html:
     theme: cosmo
+    resource-path:
+      - .

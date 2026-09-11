@@ -3,3 +3,12 @@
 .quarto/
 .Rproj.user/
 .DS_Store
+
+# Unreleased/private course materials
+notes/private/
+notes/archive/
+homework/future/
+homework/solutions/
+homework/archive/
+
+/.quarto/
