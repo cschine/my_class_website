@@ -34,7 +34,7 @@ website:
           class: sidebar-item-group
 
         - text: "Installing R and RStudio"
-          href: courses/STAT118/notes/published/installationguide.qmd
+          href: courses/STAT118/notes/published/installguide.qmd
           
         - text: "Intro to R & RStudio"
           href: courses/STAT118/notes/published/118_A_intro_quarto.qmd
