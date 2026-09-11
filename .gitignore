@@ -5,10 +5,10 @@
 .DS_Store
 
 # Unreleased/private course materials
-notes/private/
-notes/archive/
-homework/future/
-homework/solutions/
-homework/archive/
+courses/STAT118/notes/private/
+courses/STAT118/notes/archive/
+courses/STAT118/homework/future/
+courses/STAT118/homework/solutions/
+courses/STAT118/homework/archive/
 
 /.quarto/
