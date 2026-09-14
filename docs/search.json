@@ -152,5 +152,12 @@
       "STAT 118: Intro to Data Science",
       "Intro to R & RStudio"
     ]
+  },
+  {
+    "objectID": "courses/STAT118/notes/published/118_A_in_class_notes.html",
+    "href": "courses/STAT118/notes/published/118_A_in_class_notes.html",
+    "title": "Class A Notes",
+    "section": "",
+    "text": "Directory structure\n📁 STAT118/\n   ├── class-notes.qmd\n   ├── homework-01.qmd\n   ├── homework-02.qmd\n   ├── 📁 data/\n   └── 📁 images/\n\n\nR and Rstudio\n\nWhat is the difference?\n\n\nWhat do the different windows do?\n\n\n\nSettings\n\nRearrange windows\nGo to:\nTools → Global Options → Pane Layout\n\n\nChange theme\nGo to:\nTools → Global Options → Appearance\nLet’s agree on my theme and make sure everyone can see it!\n\n\nChange Downloads Permission\nGoogle Chrome:\n\nGo to the three-dot menu (top-right corner) → Settings.\nScroll down and click Downloads.\nToggle on “Ask where to save each file before downloading.”\n\nFirefox:\n\nClick the three-line menu (top-right corner) → Settings.\nIn the General section, under Files and Applications, select: “Always ask you where to save files.”\n\nSafari (Mac):\n\nGo to Safari &gt; Preferences &gt; General.\nUnder File download location, select: “Ask for each download.”\n\n\n\n\nQuarto\n\nMarkdown Syntax\nbold\nitalics\nbold and italics\na list\n\n\n\n\n\nlink\nwords\nimage\n\n\n\ncaption\n\n\n\n\nUsing R in Quarto\nR chunks\ncreate an object\ncommenting code\n\n\nRender\nadd arrow image"
   }
 ]

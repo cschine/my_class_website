@@ -1,0 +1,123 @@
+---
+title: "Class A Notes"
+subtitle: "Intro to RStudio and Quarto"
+author: "Casey Schine"
+format:
+  html:
+    toc: true
+    code-overflow: wrap
+    code-fold: true
+    embed-resources: true
+---
+
+### Directory structure
+
+```text
+📁 STAT118/
+   ├── class-notes.qmd
+   ├── homework-01.qmd
+   ├── homework-02.qmd
+   ├── 📁 data/
+   └── 📁 images/
+```
+
+
+### R and Rstudio
+
+#### What is the difference?
+
+
+#### What do the different windows do?
+
+
+### Settings
+
+#### Rearrange windows
+
+Go to: 
+
+```Tools → Global Options → Pane Layout```
+
+
+#### Change theme
+
+Go to: 
+
+```Tools → Global Options → Appearance```
+
+Let's agree on my theme and make sure everyone can see it!
+
+
+#### Change Downloads Permission
+
+**Google Chrome:**
+
+1.  Go to the three-dot menu (top-right corner) → Settings.
+
+2.  Scroll down and click Downloads.
+
+3.  Toggle on “Ask where to save each file before downloading.”
+
+**Firefox:**
+
+1.  Click the three-line menu (top-right corner) → Settings.
+
+2.  In the General section, under Files and Applications, select: “Always ask you where to save files.”
+
+**Safari (Mac):**
+
+1.  Go to Safari \> Preferences \> General.
+
+2.  Under File download location, select: “Ask for each download.”
+
+### Quarto
+
+#### Source vs. Visual
+
+#### Markdown Syntax
+
+bold
+
+italics
+
+bold and italics
+
+a list
+
+-
+-
+-
+
+link
+
+[words](link)
+
+image
+
+![caption](image)
+
+
+#### Using R in Quarto
+
+R code chunks
+
+Create an object
+
+Working with objects
+
+| Operator  | Description                          |
+|-----------|--------------------------------------|
+| `+`       | Addition                            |
+| `-`       | Subtraction                         |
+| `*`       | Multiplication                      |
+| `/`       | Division                            |
+| `^` or `**` | Exponentiation                     |
+
+Commenting code
+
+
+#### Render
+
+add arrow image
+
+
