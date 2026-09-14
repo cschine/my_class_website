@@ -34,7 +34,7 @@ Go to the [R Project download page](https://cloud.r-project.org/).
 3. Open the downloaded `.pkg` file and follow the installation instructions.
 
 ::: callout-tip
-If you are unsure which R version you need, click on the Apple in the upper lefthand corner of the screen and select "About This Mac", this will contain information both about the chip in your Mac (Intel or M) and the OS that you are running.
+If you are unsure which R version you need, click on the Apple in the upper lefthand corner of your desktop and select "About This Mac", this will contain information both about the chip in your Mac (Intel or M) and the OS that you are running which will allow you to select the correct version of R.
 :::
 
 #### Windows
@@ -46,7 +46,7 @@ If you are unsure which R version you need, click on the Apple in the upper left
 
 ### 2. Install RStudio Desktop
 
-Go to the [RStudio Desktop download page](https://posit.co/download/rstudio-desktop/).
+Go to the [RStudio Desktop download page](https://docs.posit.co/ide/user/#direct-downloads-open-source).
 
 1. Download the **free version of RStudio Desktop** for your operating system.
 2. Open the installer.
