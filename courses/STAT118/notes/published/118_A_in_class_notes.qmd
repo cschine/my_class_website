@@ -6,13 +6,42 @@ format:
   html:
     toc: true
     code-overflow: wrap
-    code-fold: true
     embed-resources: true
 ---
 
+### Resources
+
+-   **Canvas Site:** *Will be used for all assignments and contains the course schedule where absolutely everything will be linked*
+
+-   **Course Schedule:** *This is probably the most important page for the entire course, everything will be linked here, it is available on the Canvas Site, under "Schedule" from the Homepage*
+
+-   **Github Website:** *Completed notes will be rendered and posted to the site*
+
+-   **Github Code Repository:** *Files used for homeowrk assignments and .qmd versions of class notes, as well as template files for class notes will be availble here*
+
+### Syllabus
+
+-   **Assignments:** *See the Syllabus and Schedule for more details, but briefly, you will have 2 Homework Assignments per week, a Midterm Project, and a Final Project*
+
+-   **Grade Allocation:** *Homework is 40% of your grade, Midterm Project is 25% and Final Project is 35%*
+
+-   **Late Policy:** *See Syllabus for details*
+
+### Thoughts on AI
+
+-   **Assignment prompts:** *You will be prompted at the end of your Homework Assignments to tell me whether you used AI, how you used it, and how you think it helped or hindered your learning*
+
+-   **Thinking about what it gives you and what it takes away:** *I am not here to police your use of AI, but I do think it requires important consideration of how it impacts your learning (either positively or negatively)*
+
+### Download Notes Template
+
+These will always be linked on the Schedule (on the Canvas Site) before each class. You should download these at the beginning of class so that you will be better able to code along with me in class.
+
 ### Directory structure
 
-```text
+The directory structure outlined below is intended to prevent a number of headaches in how Quarto references files automatically. Please make sure that your files and folders are structured like this. 
+
+``` text
 📁 STAT118/
    ├── class-notes.qmd
    ├── homework-01.qmd
@@ -21,34 +50,46 @@ format:
    └── 📁 images/
 ```
 
-
 ### R and Rstudio
 
 #### What is the difference?
 
+R is the engine and RStudio is the car. 
 
 #### What do the different windows do?
 
+The **Source** window is where you will create and edit your Quarto documents, and write your code. This window should be in the top left pane.
+
+The **Console** window is where the code is run. This window should be in the top right pane.
+
+The **Environment** window will show you the objects and other things that you have created and defined in your code. this should be on the bottom left. 
+
+The window on the lower right should include **Files, Plots, Packages, Help, and Viewer** (it's ok if there are additional tabs). This is where you can look for help documentation on the different functions available through R and additional R packages. This is also where figures and rendered files should pop up. 
 
 ### Settings
 
-#### Rearrange windows
+#### Rearrange panes
 
-Go to: 
+If your panes are not in the configuration outlined above, please change them using the instructions below. 
 
-```Tools → Global Options → Pane Layout```
+Go to:
 
+`Tools → Global Options → Pane Layout`
 
 #### Change theme
 
-Go to: 
+If you want to change how your RStudio appears.
 
-```Tools → Global Options → Appearance```
+We decided that I could continue to use my dark theme. Yay!
 
-Let's agree on my theme and make sure everyone can see it!
+Go to:
+
+`Tools → Global Options → Appearance`
 
 
 #### Change Downloads Permission
+
+Please take a minute to change your downloads permissions for the browser that you use. This will make it easier for you to direct downloads to the correct folder and not have to go hunting for things that got sent to weird places. 
 
 **Google Chrome:**
 
@@ -76,48 +117,142 @@ Let's agree on my theme and make sure everyone can see it!
 
 #### Markdown Syntax
 
-bold
+##### Bold and Italics
 
-italics
+You make **bold** text by placing two `*` before and after the text you wish to **bold**: `**make this text bold**`
 
-bold and italics
+**make this text bold**
+
+You make *italics* text by placing one `*` before and after the text you wish to appear in *italics*: `*make this text italics*`
+
+*make this text italics*
+
+You make ***bold and italics*** text by placing three `*` before and after the text you wish to appear in ***bold and italics***: `***make this text bold and italics***`
+
+***make this text bold and italics***
+
+##### Lists
+
+To make a list put a `-` before each item on the list. 
+
+```
+a list
+
+-   one thing
+-   second thing
+-   third thing
+
+```
+
+The result will look like this:
 
 a list
 
--
--
--
+-   one thing
+-   second thing
+-   third thing
 
-link
+*Always make sure to include an empty line before the first item on the list, otherwise it will not render properly.*
 
-[words](link)
+##### Hyperlink
 
-image
+To add a hyperlink use this syntax:
 
-![caption](image)
+`[words here](link here)`
 
+The text should look like this:
+
+`[this is a link to the class website](https://cschine.github.io/my_class_website/courses/STAT118/)`
+
+The result will look like this:
+
+[this is a link to the class website](https://cschine.github.io/my_class_website/courses/STAT118/)
+
+
+##### Images
+
+To add an image, use this syntax:
+
+`![caption](image)`
+
+The text should look something like this:
+
+`![this is an image](images/NBP_midnight_sun.jpeg)`
+
+And the result will look like this:
+
+![this is an image](images/NBP_midnight_sun.jpeg){width=70%}
 
 #### Using R in Quarto
 
 R code chunks
 
-Create an object
+Use the green +C buttom in the toolbar to add a code chunk
 
-Working with objects
+```{r}
 
-| Operator  | Description                          |
-|-----------|--------------------------------------|
-| `+`       | Addition                            |
-| `-`       | Subtraction                         |
-| `*`       | Multiplication                      |
-| `/`       | Division                            |
-| `^` or `**` | Exponentiation                     |
 
-Commenting code
 
+```
+
+
+Create an object like this:
+
+```{r}
+
+aardvark <- 17
+
+yeti <- 23
+
+```
+
+
+You can do basic arithmetic with named objects using the standard operators:
+
+| Operator    | Description    |
+|-------------|----------------|
+| `+`         | Addition       |
+| `-`         | Subtraction    |
+| `*`         | Multiplication |
+| `/`         | Division       |
+| `^` or `**` | Exponentiation |
+
+Like this:
+
+```{r}
+
+aardvark*yeti
+
+aardvark/yeti
+
+chalk <- aardvark*yeti
+
+chalk
+
+```
+
+To comment code use the `#` at the beginning of the line and write a description of what the code should be doing, or a note to yourself, or whatever you want. Like this: 
+
+```{r}
+# multiply aardvark and yeti
+aardvark*yeti
+
+# divide aardvark by yeti
+aardvark/yeti
+
+# assign chalk a value of aardvark multiplied by yeti
+chalk <- aardvark*yeti
+
+# call chalk up
+chalk
+```
 
 #### Render
 
-add arrow image
+Now it is time to Render your Quarto (.qmd) doc into a .html file (which is the format in which you will be submitting all of your assignments). To do this press the ![render arrow](images/Render.png) Render button, which should be visible in the toolbar at the top of your Source Pane (the pane in which you are editing your Quarto document).
 
+If your quarto doc does not render correctly, errors can be found in the Background Jobs tab in the Console Pane. This can be very useful and sometimes very confusing. 
 
+### Assignments
+
+Assignments will be linked on the Schedule on Canvas. If you are having any difficulty with your assignment please come to office hours sooner rather than later so that we can get things figured out. 

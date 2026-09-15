@@ -36,8 +36,8 @@ website:
         - text: "Installing R and RStudio"
           href: courses/STAT118/notes/published/installguide.qmd
           
-        - text: "Intro to R & RStudio"
-          href: courses/STAT118/notes/published/118_A_intro_quarto.qmd
+        - text: "Intro to R & RStudio (Class A)"
+          href: courses/STAT118/notes/published/118_A_in_class_notes.qmd
 
 
 

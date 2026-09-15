@@ -63,14 +63,49 @@
     "text": "Github Website\nThis is a fun one that I would love for you to choose because I really want to learn it. This would also be a very cool thing to be able to put on a resume and showcase all of your cool plots that you’ve made!\nChanging my sampler to demonstrate git."
   },
   {
-    "objectID": "courses/STAT118/notes/published/installguide.html",
-    "href": "courses/STAT118/notes/published/installguide.html",
-    "title": "Installing R and RStudio",
+    "objectID": "courses/STAT118/notes/published/118_A_intro_quarto.html",
+    "href": "courses/STAT118/notes/published/118_A_intro_quarto.html",
+    "title": "Intro to R and RStudio",
     "section": "",
-    "text": "For this course, you will need to install both R and RStudio on your computer.\n\nR is the programming language that runs your code.\nRStudio is the program we will use to write and run R code.\n\nInstall R first, then install RStudio.\n\n1. Install R\nGo to the R Project download page.\n\nMac\n\nClick Download R for macOS.\nDownload the appropriate installer for your Mac.\nOpen the downloaded .pkg file and follow the installation instructions.\n\n\n\n\n\n\n\nTip\n\n\n\nIf you are unsure which R version you need, click on the Apple in the upper lefthand corner of your desktop and select “About This Mac”, this will contain information both about the chip in your Mac (Intel or M) and the OS that you are running which will allow you to select the correct version of R.\n\n\n\n\nWindows\n\nClick Download R for Windows.\nClick install R for the first time.\nClick Download R-4.6.1 for Windows (the exact R version number may have changed).\nOpen the downloaded installer and accept the default installation options.\n\n\n\n\n2. Install RStudio Desktop\nGo to the RStudio Desktop download page.\n\nDownload the free version of RStudio Desktop for your operating system.\nOpen the installer.\nFollow the installation instructions.\n\n\n\n3. Make sure everything works\nOpen RStudio.\n\n\n\nCredit: moderndive\n\n\nIf the installation was successful, you should see the RStudio interface with a Console pane containing some text about your version of R and a &gt; prompt.\nAt the &gt; prompt, type:\n\n2 + 2\n\nIf R responds with:\n[1] 4\nyou’re ready for class!\nIf you are stumped by 3. Don’t worry about it. If you didn’t get any errors during installation and can open the program ok, then you should be good to go.",
+    "text": "If you have not already, please refer to the Installation Guide to install R and RStudio on your computer.\nR (The brain behind it all)\nRStudio (The interface you work with)\nRStudio is an IDE (Integrated Development Environment) that gives you a user-friendly interface to write and run your R code.\nWhen you open RStudio, you should see something similar to this:"
+  },
+  {
+    "objectID": "courses/STAT118/notes/published/118_A_intro_quarto.html#open-your-.qmd-file-in-rstudio",
+    "href": "courses/STAT118/notes/published/118_A_intro_quarto.html#open-your-.qmd-file-in-rstudio",
+    "title": "Intro to R and RStudio",
+    "section": "1️⃣ Open Your .qmd File in RStudio",
+    "text": "1️⃣ Open Your .qmd File in RStudio\nNavigate to the file on your local computer and click to open it!\n\nSome folks prefer to use the “Files” tab within RStudio to navigate to the file\nOther folks prefer to interact with their files in their typical way (Using Finder on Mac or File Explorer on PC)\n\nEither way works just fine!"
+  },
+  {
+    "objectID": "courses/STAT118/notes/published/118_A_intro_quarto.html#install-quarto-in-rstudio",
+    "href": "courses/STAT118/notes/published/118_A_intro_quarto.html#install-quarto-in-rstudio",
+    "title": "Intro to R and RStudio",
+    "section": "2️⃣ Install Quarto in RStudio",
+    "text": "2️⃣ Install Quarto in RStudio\nOption 1: Using the RStudio Interface\n\nGo to the Packages pane in RStudio (bottom-right by default),\nClick Install,\nIn the box that appears:\n\nEnter the package name (quarto),\n\nMake sure Install dependencies is checked,\nClick Install.\n\n\n\nOption 2: Using R Code in the Console\n\ninstall.packages(\"quarto\")"
+  },
+  {
+    "objectID": "courses/STAT118/notes/published/118_A_intro_quarto.html#render-and-preview",
+    "href": "courses/STAT118/notes/published/118_A_intro_quarto.html#render-and-preview",
+    "title": "Intro to R and RStudio",
+    "section": "3️⃣ Render and Preview",
+    "text": "3️⃣ Render and Preview\nClick the Render button () at the top-right of your RStudio editor window.\nTada! You now have created a .html file!\nThe file has been created in the same folder as your .qmd file: \nWhen you render, a preview of the document will show up!\n\n\n\n\n\n\nTip\n\n\n\nBy default, the preview of .html will pop up in your web browser. This is totally okay. In fact, I tend to prefer this approach when I’m working at a computer station with multiple monitors.\nHowever, you may prefer to have the .html preview in your viewer pane right within RStudio. This is what I prefer when I’m just working on just my laptop.\nClick on the “gear button”  and select “Preview in Viewer Pane”\n\n\nThe preview will update whenever you re-render the document."
+  },
+  {
+    "objectID": "courses/STAT118/notes/published/118_A_intro_quarto.html#footnotes",
+    "href": "courses/STAT118/notes/published/118_A_intro_quarto.html#footnotes",
+    "title": "Intro to R and RStudio",
+    "section": "Footnotes",
+    "text": "Footnotes\n\n\nhttps://moderndive.com/1-getting-started.html↩︎"
+  },
+  {
+    "objectID": "courses/STAT118/index.html",
+    "href": "courses/STAT118/index.html",
+    "title": "Stat 118: Intro to Data Science",
+    "section": "",
+    "text": "Use the navigation bar on the left to look at notes from previous classes.",
     "crumbs": [
       "STAT 118: Intro to Data Science",
-      "Installing R and RStudio"
+      "STAT 118 Home"
     ]
   },
   {
@@ -88,69 +123,14 @@
     "text": "This is a small website for class materials, examples, and optional extras.\nI put this together last night while half asleep, which is honestly part of the point: this is a very lightweight way to put your work online.\nUse the navigation bar above to explore."
   },
   {
-    "objectID": "courses/STAT118/index.html",
-    "href": "courses/STAT118/index.html",
-    "title": "Stat 118: Intro to Data Science",
+    "objectID": "courses/STAT118/notes/published/installguide.html",
+    "href": "courses/STAT118/notes/published/installguide.html",
+    "title": "Installing R and RStudio",
     "section": "",
-    "text": "Use the navigation bar on the left to look at notes from previous classes.",
+    "text": "For this course, you will need to install both R and RStudio on your computer.\n\nR is the programming language that runs your code.\nRStudio is the program we will use to write and run R code.\n\nInstall R first, then install RStudio.\n\n1. Install R\nGo to the R Project download page.\n\nMac\n\nClick Download R for macOS.\nDownload the appropriate installer for your Mac.\nOpen the downloaded .pkg file and follow the installation instructions.\n\n\n\n\n\n\n\nTip\n\n\n\nIf you are unsure which R version you need, click on the Apple in the upper lefthand corner of your desktop and select “About This Mac”, this will contain information both about the chip in your Mac (Intel or M) and the OS that you are running which will allow you to select the correct version of R.\n\n\n\n\nWindows\n\nClick Download R for Windows.\nClick install R for the first time.\nClick Download R-4.6.1 for Windows (the exact R version number may have changed).\nOpen the downloaded installer and accept the default installation options.\n\n\n\n\n2. Install RStudio Desktop\nGo to the RStudio Desktop download page.\n\nDownload the free version of RStudio Desktop for your operating system.\nOpen the installer.\nFollow the installation instructions.\n\n\n\n3. Make sure everything works\nOpen RStudio.\n\n\n\nCredit: moderndive\n\n\nIf the installation was successful, you should see the RStudio interface with a Console pane containing some text about your version of R and a &gt; prompt.\nAt the &gt; prompt, type:\n\n2 + 2\n\nIf R responds with:\n[1] 4\nyou’re ready for class!\nIf you are stumped by 3. Don’t worry about it. If you didn’t get any errors during installation and can open the program ok, then you should be good to go.",
     "crumbs": [
       "STAT 118: Intro to Data Science",
-      "STAT 118 Home"
-    ]
-  },
-  {
-    "objectID": "courses/STAT118/notes/published/118_A_intro_quarto.html",
-    "href": "courses/STAT118/notes/published/118_A_intro_quarto.html",
-    "title": "Intro to R and RStudio",
-    "section": "",
-    "text": "If you have not already, please refer to the Installation Guide to install R and RStudio on your computer.\nR (The brain behind it all)\nRStudio (The interface you work with)\nRStudio is an IDE (Integrated Development Environment) that gives you a user-friendly interface to write and run your R code.\nWhen you open RStudio, you should see something similar to this:",
-    "crumbs": [
-      "STAT 118: Intro to Data Science",
-      "Intro to R & RStudio"
-    ]
-  },
-  {
-    "objectID": "courses/STAT118/notes/published/118_A_intro_quarto.html#open-your-.qmd-file-in-rstudio",
-    "href": "courses/STAT118/notes/published/118_A_intro_quarto.html#open-your-.qmd-file-in-rstudio",
-    "title": "Intro to R and RStudio",
-    "section": "1️⃣ Open Your .qmd File in RStudio",
-    "text": "1️⃣ Open Your .qmd File in RStudio\nNavigate to the file on your local computer and click to open it!\n\nSome folks prefer to use the “Files” tab within RStudio to navigate to the file\nOther folks prefer to interact with their files in their typical way (Using Finder on Mac or File Explorer on PC)\n\nEither way works just fine!",
-    "crumbs": [
-      "STAT 118: Intro to Data Science",
-      "Intro to R & RStudio"
-    ]
-  },
-  {
-    "objectID": "courses/STAT118/notes/published/118_A_intro_quarto.html#install-quarto-in-rstudio",
-    "href": "courses/STAT118/notes/published/118_A_intro_quarto.html#install-quarto-in-rstudio",
-    "title": "Intro to R and RStudio",
-    "section": "2️⃣ Install Quarto in RStudio",
-    "text": "2️⃣ Install Quarto in RStudio\nOption 1: Using the RStudio Interface\n\nGo to the Packages pane in RStudio (bottom-right by default),\nClick Install,\nIn the box that appears:\n\nEnter the package name (quarto),\n\nMake sure Install dependencies is checked,\nClick Install.\n\n\n\nOption 2: Using R Code in the Console\n\ninstall.packages(\"quarto\")",
-    "crumbs": [
-      "STAT 118: Intro to Data Science",
-      "Intro to R & RStudio"
-    ]
-  },
-  {
-    "objectID": "courses/STAT118/notes/published/118_A_intro_quarto.html#render-and-preview",
-    "href": "courses/STAT118/notes/published/118_A_intro_quarto.html#render-and-preview",
-    "title": "Intro to R and RStudio",
-    "section": "3️⃣ Render and Preview",
-    "text": "3️⃣ Render and Preview\nClick the Render button () at the top-right of your RStudio editor window.\nTada! You now have created a .html file!\nThe file has been created in the same folder as your .qmd file: \nWhen you render, a preview of the document will show up!\n\n\n\n\n\n\nTip\n\n\n\nBy default, the preview of .html will pop up in your web browser. This is totally okay. In fact, I tend to prefer this approach when I’m working at a computer station with multiple monitors.\nHowever, you may prefer to have the .html preview in your viewer pane right within RStudio. This is what I prefer when I’m just working on just my laptop.\nClick on the “gear button”  and select “Preview in Viewer Pane”\n\n\nThe preview will update whenever you re-render the document.",
-    "crumbs": [
-      "STAT 118: Intro to Data Science",
-      "Intro to R & RStudio"
-    ]
-  },
-  {
-    "objectID": "courses/STAT118/notes/published/118_A_intro_quarto.html#footnotes",
-    "href": "courses/STAT118/notes/published/118_A_intro_quarto.html#footnotes",
-    "title": "Intro to R and RStudio",
-    "section": "Footnotes",
-    "text": "Footnotes\n\n\nhttps://moderndive.com/1-getting-started.html↩︎",
-    "crumbs": [
-      "STAT 118: Intro to Data Science",
-      "Intro to R & RStudio"
+      "Installing R and RStudio"
     ]
   },
   {
@@ -158,6 +138,10 @@
     "href": "courses/STAT118/notes/published/118_A_in_class_notes.html",
     "title": "Class A Notes",
     "section": "",
-    "text": "Directory structure\n📁 STAT118/\n   ├── class-notes.qmd\n   ├── homework-01.qmd\n   ├── homework-02.qmd\n   ├── 📁 data/\n   └── 📁 images/\n\n\nR and Rstudio\n\nWhat is the difference?\n\n\nWhat do the different windows do?\n\n\n\nSettings\n\nRearrange windows\nGo to:\nTools → Global Options → Pane Layout\n\n\nChange theme\nGo to:\nTools → Global Options → Appearance\nLet’s agree on my theme and make sure everyone can see it!\n\n\nChange Downloads Permission\nGoogle Chrome:\n\nGo to the three-dot menu (top-right corner) → Settings.\nScroll down and click Downloads.\nToggle on “Ask where to save each file before downloading.”\n\nFirefox:\n\nClick the three-line menu (top-right corner) → Settings.\nIn the General section, under Files and Applications, select: “Always ask you where to save files.”\n\nSafari (Mac):\n\nGo to Safari &gt; Preferences &gt; General.\nUnder File download location, select: “Ask for each download.”\n\n\n\n\nQuarto\n\nMarkdown Syntax\nbold\nitalics\nbold and italics\na list\n\n\n\n\n\nlink\nwords\nimage\n\n\n\ncaption\n\n\n\n\nUsing R in Quarto\nR chunks\ncreate an object\ncommenting code\n\n\nRender\nadd arrow image"
+    "text": "Resources\n\nCanvas Site: Will be used for all assignments and contains the course schedule where absolutely everything will be linked\nCourse Schedule: This is probably the most important page for the entire course, everything will be linked here, it is available on the Canvas Site, under “Schedule” from the Homepage\nGithub Website: Completed notes will be rendered and posted to the site\nGithub Code Repository: Files used for homeowrk assignments and .qmd versions of class notes, as well as template files for class notes will be availble here\n\n\n\nSyllabus\n\nAssignments: See the Syllabus and Schedule for more details, but briefly, you will have 2 Homework Assignments per week, a Midterm Project, and a Final Project\nGrade Allocation: Homework is 40% of your grade, Midterm Project is 25% and Final Project is 35%\nLate Policy: See Syllabus for details\n\n\n\nThoughts on AI\n\nAssignment prompts: You will be prompted at the end of your Homework Assignments to tell me whether you used AI, how you used it, and how you think it helped or hindered your learning\nThinking about what it gives you and what it takes away: I am not here to police your use of AI, but I do think it requires important consideration of how it impacts your learning (either positively or negatively)\n\n\n\nDownload Notes Template\nThese will always be linked on the Schedule (on the Canvas Site) before each class. You should download these at the beginning of class so that you will be better able to code along with me in class.\n\n\nDirectory structure\nThe directory structure outlined below is intended to prevent a number of headaches in how Quarto references files automatically. Please make sure that your files and folders are structured like this.\n📁 STAT118/\n   ├── class-notes.qmd\n   ├── homework-01.qmd\n   ├── homework-02.qmd\n   ├── 📁 data/\n   └── 📁 images/\n\n\nR and Rstudio\n\nWhat is the difference?\nR is the engine and RStudio is the car.\n\n\nWhat do the different windows do?\nThe Source window is where you will create and edit your Quarto documents, and write your code. This window should be in the top left pane.\nThe Console window is where the code is run. This window should be in the top right pane.\nThe Environment window will show you the objects and other things that you have created and defined in your code. this should be on the bottom left.\nThe window on the lower right should include Files, Plots, Packages, Help, and Viewer (it’s ok if there are additional tabs). This is where you can look for help documentation on the different functions available through R and additional R packages. This is also where figures and rendered files should pop up.\n\n\n\nSettings\n\nRearrange panes\nIf your panes are not in the configuration outlined above, please change them using the instructions below.\nGo to:\nTools → Global Options → Pane Layout\n\n\nChange theme\nIf you want to change how your RStudio appears.\nWe decided that I could continue to use my dark theme. Yay!\nGo to:\nTools → Global Options → Appearance\n\n\nChange Downloads Permission\nPlease take a minute to change your downloads permissions for the browser that you use. This will make it easier for you to direct downloads to the correct folder and not have to go hunting for things that got sent to weird places.\nGoogle Chrome:\n\nGo to the three-dot menu (top-right corner) → Settings.\nScroll down and click Downloads.\nToggle on “Ask where to save each file before downloading.”\n\nFirefox:\n\nClick the three-line menu (top-right corner) → Settings.\nIn the General section, under Files and Applications, select: “Always ask you where to save files.”\n\nSafari (Mac):\n\nGo to Safari &gt; Preferences &gt; General.\nUnder File download location, select: “Ask for each download.”\n\n\n\n\nQuarto\n\nSource vs. Visual\n\n\nMarkdown Syntax\n\nBold and Italics\nYou make bold text by placing two * before and after the text you wish to bold: **make this text bold**\nmake this text bold\nYou make italics text by placing one * before and after the text you wish to appear in italics: *make this text italics*\nmake this text italics\nYou make bold and italics text by placing three * before and after the text you wish to appear in bold and italics: ***make this text bold and italics***\nmake this text bold and italics\n\n\nLists\nTo make a list put a - before each item on the list.\na list\n\n-   one thing\n-   second thing\n-   third thing\n\nThe result will look like this:\na list\n\none thing\nsecond thing\nthird thing\n\nAlways make sure to include an empty line before the first item on the list, otherwise it will not render properly.\n\n\nHyperlink\nTo add a hyperlink use this syntax:\n[words here](link here)\nThe text should look like this:\n[this is a link to the class website](https://cschine.github.io/my_class_website/courses/STAT118/)\nThe result will look like this:\nthis is a link to the class website\n\n\nImages\nTo add an image, use this syntax:\n![caption](image)\nThe text should look something like this:\n![this is an image](images/NBP_midnight_sun.jpeg)\nAnd the result will look like this:\n\n\n\nthis is an image\n\n\n\n\n\nUsing R in Quarto\nR code chunks\nUse the green +C buttom in the toolbar to add a code chunk\nCreate an object like this:\n\naardvark &lt;- 17\n\nyeti &lt;- 23\n\nYou can do basic arithmetic with named objects using the standard operators:\n\n\n\nOperator\nDescription\n\n\n\n\n+\nAddition\n\n\n-\nSubtraction\n\n\n*\nMultiplication\n\n\n/\nDivision\n\n\n^ or **\nExponentiation\n\n\n\nLike this:\n\naardvark*yeti\n\n[1] 391\n\naardvark/yeti\n\n[1] 0.7391304\n\nchalk &lt;- aardvark*yeti\n\nchalk\n\n[1] 391\n\n\nTo comment code use the # at the beginning of the line and write a description of what the code should be doing, or a note to yourself, or whatever you want. Like this:\n\n# multiply aardvark and yeti\naardvark*yeti\n\n[1] 391\n\n# divide aardvark by yeti\naardvark/yeti\n\n[1] 0.7391304\n\n# assign chalk a value of aardvark multiplied by yeti\nchalk &lt;- aardvark*yeti\n\n# call chalk up\nchalk\n\n[1] 391\n\n\n\n\nRender\nNow it is time to Render your Quarto (.qmd) doc into a .html file (which is the format in which you will be submitting all of your assignments). To do this press the  Render button, which should be visible in the toolbar at the top of your Source Pane (the pane in which you are editing your Quarto document).\nIf your quarto doc does not render correctly, errors can be found in the Background Jobs tab in the Console Pane. This can be very useful and sometimes very confusing.\n\n\n\nAssignments\nAssignments will be linked on the Schedule on Canvas. If you are having any difficulty with your assignment please come to office hours sooner rather than later so that we can get things figured out.",
+    "crumbs": [
+      "STAT 118: Intro to Data Science",
+      "Intro to R & RStudio (Class A)"
+    ]
   }
 ]
