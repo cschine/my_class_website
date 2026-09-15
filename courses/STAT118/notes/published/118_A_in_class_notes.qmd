@@ -3,10 +3,18 @@ title: "Class A Notes"
 subtitle: "Intro to RStudio and Quarto"
 author: "Casey Schine"
 format:
-  html:
-    toc: true
+  html: 
+    toc: TRUE
     code-overflow: wrap
     embed-resources: true
+    code-tools:
+      source: true
+      toggle: false
+      caption: none
+    code-annotations: hover
+execute: 
+  message: FALSE
+  warning: FALSE
 ---
 
 ### Resources
