@@ -1,0 +1,96 @@
+---
+title: "STAT 118: Homework B"
+subtitle: "Wrangling Basics"
+author: "YOUR NAME HERE"
+format:
+  html:
+    toc: true
+    code-overflow: wrap
+    code-fold: true
+    embed-resources: true
+execute: 
+  warning: false
+  message: false
+---
+
+***Please be sure to proofread your rendered document before submitting it***
+
+*In your assignments your answers need to either be written out or include output from your code chunks. Please make sure that the output from your code chunks actually shows up and shows up the way that you want it to. Answers that do not contain the information needed to answer the question will be marked incorrect.*
+
+```{r}
+# load in your tidyverse package here
+
+
+```
+
+This assignment concerns the `gapminder` dataset which is available in the `gapminder` package.
+
+First, install the gapminder package. You only need to do this once. Once it has been installed, you will need to load it. Then you can use the code already provided for you to read in the data that you will need to complete the assignment.
+
+```{r}
+# load the gapminder package here
+
+
+# code provided for loading gapminder data
+data(gapminder) 
+```
+
+If you want to view this data, click on the word `gapminder` in your environment and it should open up
+
+::: callout-tip
+There are often many different ways to get to the right answer on this assignment! I don't care *how* you get the answer. I care that you are clearly explaining how you got your answer -- either by showing any code you used or explaining in words how you got to the answer you did.
+:::
+
+::: callout-tip
+In the problems below, I have not given you any blank R chunks. If you wish to use some R code to answer the problem, you can add your own R chunk -- either by typing it directly OR going to Code --\> Insert Chunk in the top menu.
+:::
+
+# 1.
+
+How many rows and columns does this dataset have?
+
+
+
+# 2.
+
+What are the names of the 6 columns? *You can either write out this answer or use code to have R print the answer for you.*
+
+
+# 3.
+
+Create a dataset called `gapminder2002` which only contains information for each of the countries in 2002. Output the first few rows of your resulting object to ensure everything has worked correctly.
+
+
+# 4.
+
+If you instead try to choose the subset with year equal to 2005, something will go wrong. Try it and explain what happens and why.
+
+
+# 5.
+
+Print out the row of data corresponding to the US in 2002.
+
+
+# 6.
+
+In the above problem, you would have put quotes around `United States` but not around `2002`. Explain why.
+
+
+
+# 7.
+
+Which country had a higher life expectancy in 1977: Japan or Ireland? *Note there are many different possible correct ways of solving this. You just need to find one*
+
+
+
+# 8.
+
+What is the lowest life expectancy in the gapminder dataset? Which country and year does it correspond to?
+
+
+
+# 9.
+
+For the year 2002, print out a list of the top 10 countries with the highest life expectancy. They should be ordered from highest life expectancy to 10th highest life expectancy. You should only display the countries name and life expectancy (and no other data).
+
+

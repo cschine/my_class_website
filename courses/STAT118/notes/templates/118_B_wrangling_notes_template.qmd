@@ -1,0 +1,356 @@
+---
+title: 'Wrangling Basics'
+author: 
+  - "Casey Schine"
+  - 'adapted from Emily Malcolm-White'
+format:
+  html: 
+    toc: TRUE
+    code-overflow: wrap
+    embed-resources: true
+execute: 
+  message: FALSE
+  warning: FALSE
+editor_options: 
+  chunk_output_type: console
+---
+
+# Packages and functions
+
+## What is a package?
+
+A package is a bundle of tools that someone has written and shared to help you do specific kinds of work in R.
+
+It usually contains:
+
+-   Functions (the main thing you use)
+-   Documentation (help files)
+-   Sometimes example datasets
+
+A package is like installing an “app” for R. Base R is what comes pre-installed and Packages are extra apps you download when you need new features
+
+## What is a function?
+
+A function is a named command that does a specific job.
+
+You give it inputs → it does something → it gives you an output.
+
+It is like a button on a calculator. You press “mean” → it computes the mean.
+
+# Installing and Using Packages
+
+## Installing a package
+
+You can install a package by selecting the packages tab your console pane where you have Files, Plots, Packages, etc. Then click on the install icon at the top left. Start typing in the package you want to install. It will give you some autofill options, you can type the whole thing in or select it from the autofill options. Then click on 'Install'.
+
+You can also run a simple line of code (which you can see in your R Console is what all the button clicking in the previous paragraph does).
+
+```{r}
+
+# package name must be in quotes
+#install.packages("tidyverse")
+
+# after you have installed the package you do not need to install it again
+
+
+```
+
+You only run this line one time and then once the package is installed you should not run this line of code again. Either comment it out or delete it. Now you have a copy of the package saved on your computer.
+
+## Loading packages
+
+Once a package is installed you need to load it. This makes the package available in your current R session.
+
+I highly recommend creating a setup code chunk at the beginning of each of your Quarto documents where you load in all of the packages that you will need. If you load an additional package later in the document, circle back around and add it to your setup chunk.
+
+```{r}
+#set this to suppress a warning or message when you run a chunk
+#| warning: FALSE 
+#| message: FALSE
+
+# load tidyverse package
+
+```
+
+Today we are specifically going to be talking about the package `dplyr` which is useful to manipulating data sets.
+
+# `can_lang` dataset
+
+In this class, we are going to be working with a dataset relating to the languages spoken at home by Canadian residents. Many Indigenous peoples exist in Canada with their own languages and cultures. Sadly, colonization has led to the loss of many of these languages. This data is a subset of data collected during the 2016 census.
+
+# Importing Data
+
+What is a .csv file?
+
+How do we import it into R?
+
+Use `read_csv()`! Note that your data file (`.csv`) needs to be saved in the same folder as your notes template document (`.qmd`).
+
+::: callout-tip
+There is another function called `read.csv`, don't use it. Using `read_csv` will save you a lot of headaches in the long run. They work slightly differently and `read_csv` does a better job interpreting different data types and assigning classes correctly when reading in data. You may not understand what this means right now, but trust me, it will matter later.
+:::
+
+```{r}
+# use ?read_csv to look at the help documentation
+# assigning a whole data frame to an object names can_lang
+#can_lang <- read_csv("./data/can_lang.csv") 
+
+# my filepath might look different from yours, you need to direct R
+# to where you put your file, don't just copy my path
+
+
+# if you have used the file structure I have given you
+# then your filepath should simply be:
+# "data/can_lang.csv"
+```
+
+Alternatively, you can download it directly from the internet. Github user `ttimbers` hosts this file to share with the public at the link: <https://raw.githubusercontent.com/ttimbers/canlang/master/inst/extdata/can_lang.csv>
+
+```{r}
+# this is another way to read in the data
+#can_lang <- read_csv("https://raw.githubusercontent.com/ttimbers/canlang/master/inst/extdata/can_lang.csv") 
+
+#how do we look at it?
+# look at just the first few rows with head()
+
+# look at the whole thing by calling the object in the command line
+
+
+```
+
+In the environment, if you click on the word `can_lang` (not the blue play button, the word itself) it will open the object so you can see what is saved inside.
+
+Let's take a look at this data for a minute to see what information has been recorded. 
+
+::: callout-note
+Let's take a second to look at what the data set actually contains.
+
+With a partner or in a group of three, answer:
+
+- What does a single row represent?
+- What variables are contained in the dataset?
+- If you look at the console print out when you call the can_lang object, there is something printed under each column name, these are the classes of the columns. Take a guess at what these mean. 
+:::
+
+```{r}
+# use length to look at number of rows
+# ?length() to look at help documentation
+# also use search function to look at help documentation
+# without pipe
+# with pipe
+
+
+# Use colnames to look at column names
+# ?colnames() to look at help documentation
+# without pipe
+# with pipe
+
+```
+
+# Now let's Wrangle!
+
+## `distinct()`
+
+We can use `distinct` to get more information from the `can_lang` dataset. Such as the number of different language categories in the dataset.
+
+```{r}
+
+# ?distinct() to look at the help documentation
+# distinct() also to get list of languages can filter by
+
+# using distinct without the pipe
+
+
+# using distinct with pipe
+
+
+```
+
+
+## `filter()`
+
+We can use the `filter` function to extract ***rows*** from the data that match a certain condition or set of conditions.
+
+We define the condition with a logical expression using the logical operators are given below:
+
+| Operator | Description              |
+|----------|--------------------------|
+| `<`      | Less than                |
+| `>`      | Greater than             |
+| `<=`     | Less than or equal to    |
+| `>=`     | Greater than or equal to |
+| `==`     | Equal to                 |
+| `!=`     | Not equal to             |
+| `!x`     | Not x                    |
+| `x | y`  | x OR y                   |
+| `x & y`  | x AND y                  |
+
+For example, we may be interested in only looking at only the languages in this dataset that are Aboriginal languages.
+
+```{r}
+
+# ?filter() for help documentation
+# wants data and an expression that returns a logical value
+
+# filter for only Aboriginal languages without pipe
+
+
+# filter for only Aboriginal languages using pipe
+
+
+# filter and then pipe into count() to get number of Aboriginal languages
+
+
+```
+
+Oftentimes, we want to take our subset and give it a new name. This takes our subset and assigns it to a new dataset called `aboriginal_lang`.
+
+```{r}
+# define new object with only aboriginal languages
+
+
+```
+
+Suppose we want a list of all the languages in Canada that are spoken by less than 100 people as their mother tongue.
+
+```{r}
+
+# filter mother_tongue less than 100
+
+
+## multiple pipes
+## We can feed the result of 1 pipe into another
+
+# how many total using count()
+
+
+# pull just the language names using pull()
+# returns vector
+
+
+```
+
+
+Now let's change up the conditions and create combinations of conditions. 
+
+```{r}
+# change up logical operators to show how the result changes
+# everything that is Aboriginal (reminder from above)
+
+# everything that isn't Aboriginal
+
+
+# two cases using the "or" operator to select category where either case is met
+
+
+```
+
+
+## `select()`
+
+`select` is used to extract only certain ***columns***. For example, perhaps we only want to print out a list names of the aboriginal languages (language column).
+
+```{r}
+# filter for aboriginal languages in category then select language column
+
+
+# filter for aboriginal languages in category then pull language to get vector
+
+```
+
+We can combine criteria together as well in one command with multiple pipes:
+
+```{r}
+# filter and then select...something
+
+
+```
+
+## `arrange()`
+
+The `arrange` function allows us to order the rows of the data frame by the values of a particular column.
+
+For example, arrange all the aboriginal languages in canada by from most to least spoken as mother tongue.
+
+```{r}
+
+# filter for Aboriginal languages category then arrange (desc)
+
+# do from scratch and also with object that we defined earlier; feed in aboriginal_lang then arrange
+
+# ascending arrangement by mother_tongue
+
+
+# descending by adding desc() function by mother_tongue
+
+
+# do the same thing with the aboriginal_lang object that we made earlier
+
+```
+
+Note:
+
+-   use arrange(variable) to go from least to most
+-   use arrange(desc(variable)) to go from most to least, arrange(-variable) also works
+
+# `slice()`
+
+The slice function will allow us to pick only a subset of the rows based on their numeric order (1st through last).
+
+For example, if I want a list of the 10 most commonly spoken aboriginal languages.
+
+```{r}
+# filter for Aboriginal language, arrange descending, slice(1:10)
+# arrange in descending order
+# slice for rows 1 through 10
+
+
+# slice for rows (1,2,5,7,9)
+
+
+```
+
+## `mutate()`
+
+`mutate()` creates new columns that are functions of existing variables.
+
+For example, if I want to create a new column called `mother_tongue_K` which represents the number of people who speak the language their mother tongue in thousands. You may want to save this new dataset over top of the original dataset so you could use this new column in the future.
+
+```{r}
+
+
+# make a column of all 5
+
+# without assignming to a new object
+
+# with assigning to the original object
+
+# with assigning to a new object
+
+
+# mutate on column of mother_tongue/1000
+
+
+# do the same thing as above but add a column of 1000 and then do the math with the columns
+
+
+# add multiple columns together
+
+
+
+```
+
+This can be useful for unit conversions. It also be useful for making new calculations based on existing data (for example, price and number of square feet could be used to calculate price per square foot).
+
+
+# Making sure things actually print out in your assignment
+
+There are various ways to make sure that your answers in your assignment actually print out in the rendered document. 
+
+The output of a series of pipes will print out automatically unless you save it to a new object. 
+
+You can have the first few rows print out using the `head()` function. You can also just call the object by name, which will create a printed output that will vary depending on the type of object. 
+
+In your assignments you will be expected to have printed output or written answers to all of the questions. Please proofread your html document once it is rendered and before submitting it. 
+
+
