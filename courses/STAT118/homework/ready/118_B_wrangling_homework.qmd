@@ -93,4 +93,8 @@ What is the lowest life expectancy in the gapminder dataset? Which country and y
 
 For the year 2002, print out a list of the top 10 countries with the highest life expectancy. They should be ordered from highest life expectancy to 10th highest life expectancy. You should only display the countries name and life expectancy (and no other data).
 
+# 10. 
+
+Did you use AI to help you with this assignment. If so, what did you use, how did you use it, and how do you think it impacted your learning (either positively or negatively)?
+
 
