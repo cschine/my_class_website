@@ -55,7 +55,7 @@ You can also run a simple line of code (which you can see in your R Console is w
 
 ```
 
-You only run this line one time and then once the package is installed you should not run this line of code again. Either comment it out or delete it. Now you have a copy of the package saved on your computer.
+You only run the `install.packages()` function for a given package one time and then once the package is installed you should not run this line of code again. Either comment it out or delete it. Now you have a copy of the package saved on your computer.
 
 ## Loading packages
 
@@ -98,9 +98,10 @@ There is another function called `read.csv`, don't use it. Using `read_csv` will
 # my filepath might look different from yours, you need to direct R
 # to where you put your file, don't just copy my path
 
+# absolute filepath to the location of can_lang.csv on my computer
 can_lang <- read_csv("~/Dropbox/!Middlebury/Teaching/my_class_website/courses/STAT118/notes/published/data/can_lang.csv") # yours
 
-# mine
+# relative filepath to the same thing
 can_lang <- read_csv("./courses/STAT118/notes/published/data/can_lang.csv")
 
 
@@ -114,6 +115,11 @@ Alternatively, you can download it directly from the internet. Github user `ttim
 ```{r}
 # this is another way to read in the data
 can_lang <- read_csv("https://raw.githubusercontent.com/ttimbers/canlang/master/inst/extdata/can_lang.csv") 
+```
+
+Now let's take a little peak at the `can_lang` dataset.
+
+```{r}
 
 #how do we look at it?
 # look at just the first few rows with head()
@@ -138,22 +144,22 @@ With a partner or in a group of three, answer:
 :::
 
 ```{r}
-# use length to look at number of rows
+# use length to look at number of variables (columns)
 # ?length() to look at help documentation
 # also use search function to look at help documentation
+
 # without pipe
 
 length(can_lang)
-# incorrect, what went wrong
 
 # with pipe
-
 can_lang |>
   length()
 
 
 # Use colnames to look at column names
 # ?colnames() to look at help documentation
+
 # without pipe
 
 colnames(can_lang)
@@ -163,6 +169,7 @@ colnames(can_lang)
 can_lang |>
   colnames()
 
+# using magrittr pipe
 can_lang %>%
   colnames()
 
@@ -187,12 +194,10 @@ We can use `distinct` to get more information from the `can_lang` dataset. Such 
 # using distinct without the pipe
 distinct(select(can_lang, category))
 
+# using distinct with pipe
 can_lang |>
   select(category) |>
   distinct()
-
-# using distinct with pipe
-
 
 ```
 
@@ -257,7 +262,11 @@ Suppose we want a list of all the languages in Canada that are spoken by less th
 
 can_lang |>
   filter(mother_tongue < 100)
+```
 
+
+Then we can count the number of languages that meet this condition, by piping the result into the `count()` function.
+```{r}
 
 ##subsequent pipes
 ## We can feed the result of 1 pipe into another
@@ -267,7 +276,6 @@ can_lang |>
 can_lang |>
   filter(mother_tongue < 100) |>
   count()
-
 
 ```
 
@@ -283,15 +291,11 @@ Now let's change up the conditions and create combinations of conditions.
 can_lang |>
   filter(category != "Aboriginal languages")
 
-can_lang |>
-  filter(category != "Aboriginal languages")
-
 
 # two cases using the "or" operator to select category where either case is met
 
 can_lang |>
   filter(category != "Aboriginal languages" & mother_tongue < 500)
-
 
 ```
 
@@ -303,14 +307,13 @@ can_lang |>
 ```{r}
 # filter for aboriginal languages in category then select language column
 
+# for a single column
 can_lang |>
-  select(mother_tongue)
+  select(mother_tongue) 
 
+# for multiple columns
 can_lang |>
   select(mother_tongue, language)
-
-
-
 
 ```
 
@@ -334,8 +337,6 @@ For example, arrange all the aboriginal languages in canada by from most to leas
 ```{r}
 
 # filter for Aboriginal languages category then arrange (desc)
-
-# do from scratch and also with object that we defined earlier; feed in aboriginal_lang then arrange
 
 # ascending arrangement by mother_tongue
 
@@ -388,6 +389,10 @@ can_lang |>
 
 
 ```
+
+-------------------------------------------------------------------------------
+***This is as far as we got on 9/17. We will pick up here on Tuesday***
+-------------------------------------------------------------------------------
 
 ## `mutate()`
 
