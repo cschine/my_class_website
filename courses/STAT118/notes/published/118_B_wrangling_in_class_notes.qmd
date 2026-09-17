@@ -8,11 +8,14 @@ format:
     toc: TRUE
     code-overflow: wrap
     embed-resources: true
+    code-tools:
+      source: true
+      toggle: false
+      caption: none
+    code-annotations: hover
 execute: 
   message: FALSE
   warning: FALSE
-editor_options: 
-  chunk_output_type: console
 ---
 
 # Packages and functions

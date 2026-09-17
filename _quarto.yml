@@ -38,6 +38,9 @@ website:
           
         - text: "Intro to R & RStudio (Class A)"
           href: courses/STAT118/notes/published/118_A_in_class_notes.qmd
+          
+        - text: "Data Wrangling Basics (Class B)"
+          href: courses/STAT118/notes/published/118_B_wrangling_in_class_notes.qmd
 
 
 
