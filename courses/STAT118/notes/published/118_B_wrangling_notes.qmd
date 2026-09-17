@@ -67,7 +67,9 @@ I highly recommend creating a setup code chunk at the beginning of each of your 
 #set this to suppress a warning or message when you run a chunk
 #| warning: FALSE 
 #| message: FALSE
-library(tidyverse) 
+
+library(tidyverse)
+
 ```
 
 Today we are specifically going to be talking about the package `dplyr` which is useful to manipulating data sets.
@@ -95,7 +97,12 @@ There is another function called `read.csv`, don't use it. Using `read_csv` will
 
 # my filepath might look different from yours, you need to direct R
 # to where you put your file, don't just copy my path
+
+can_lang <- read_csv("~/Dropbox/!Middlebury/Teaching/my_class_website/courses/STAT118/notes/published/data/can_lang.csv") # yours
+
+# mine
 can_lang <- read_csv("./courses/STAT118/notes/published/data/can_lang.csv")
+
 
 # if you have used the file structure I have given you
 # then your filepath should simply be:
@@ -135,16 +142,31 @@ With a partner or in a group of three, answer:
 # ?length() to look at help documentation
 # also use search function to look at help documentation
 # without pipe
+
+length(can_lang)
+# incorrect, what went wrong
+
 # with pipe
+
 can_lang |>
   length()
+
 
 # Use colnames to look at column names
 # ?colnames() to look at help documentation
 # without pipe
+
+colnames(can_lang)
+
 # with pipe
 
-# What are the classes of the different columns
+can_lang |>
+  colnames()
+
+can_lang %>%
+  colnames()
+
+# What are the classes of the different column?
 
 
 # what do these classes mean?
@@ -163,11 +185,14 @@ We can use `distinct` to get more information from the `can_lang` dataset. Such 
 # distinct() also to get list of languages can filter by
 
 # using distinct without the pipe
-distinct(can_lang, category)
+distinct(select(can_lang, category))
+
+can_lang |>
+  select(category) |>
+  distinct()
 
 # using distinct with pipe
-can_lang |>
-  distinct(category)
+
 
 ```
 
@@ -197,17 +222,19 @@ For example, we may be interested in only looking at only the languages in this 
 # ?filter() for help documentation
 # wants data and an expression that returns a logical value
 
-# filter for only Aboriginal languages without pipe
-filter(can_lang, category=="Aboriginal languages")
 
 # filter for only Aboriginal languages using pipe
+
 can_lang |>
-  filter(category=="Aboriginal languages")
+  filter(category == "Aboriginal languages")
+
 
 # filter and then pipe into count() to get number of Aboriginal languages
+
 can_lang |>
-  filter(category=="Aboriginal languages") |>
+  filter(category == "Aboriginal languages") |>
   count()
+
 
 ```
 
@@ -215,8 +242,10 @@ Oftentimes, we want to take our subset and give it a new name. This takes our su
 
 ```{r}
 # define new object with only aboriginal languages
+
 aboriginal_lang <- can_lang |>
-  filter(category=="Aboriginal languages")
+  filter(category == "Aboriginal languages")
+
 
 ```
 
@@ -225,22 +254,20 @@ Suppose we want a list of all the languages in Canada that are spoken by less th
 ```{r}
 
 # filter mother_tongue less than 100
+
 can_lang |>
   filter(mother_tongue < 100)
+
 
 ##subsequent pipes
 ## We can feed the result of 1 pipe into another
 
 # how many total using count()
+
 can_lang |>
   filter(mother_tongue < 100) |>
   count()
 
-# pull just the language names using pull()
-# returns vector
-can_lang |>
-  filter(mother_tongue < 100) |>
-  pull(language)
 
 ```
 
@@ -252,12 +279,19 @@ Now let's change up the conditions and create combinations of conditions.
 # everything that is Aboriginal (reminder from above)
 
 # everything that isn't Aboriginal
+
 can_lang |>
-  filter(category!="Aboriginal languages")
+  filter(category != "Aboriginal languages")
+
+can_lang |>
+  filter(category != "Aboriginal languages")
+
 
 # two cases using the "or" operator to select category where either case is met
+
 can_lang |>
-  filter(category=="Aboriginal languages" | category=="Official languages")
+  filter(category != "Aboriginal languages" & mother_tongue < 500)
+
 
 ```
 
@@ -268,14 +302,16 @@ can_lang |>
 
 ```{r}
 # filter for aboriginal languages in category then select language column
-select_var <- can_lang |>
-  filter(category=="Aboriginal languages") |>
-  select(language)
 
-# filter for aboriginal languages in category then pull language to get vector
-pull_var <- can_lang |>
-  filter(category=="Aboriginal languages") |>
-  pull(language)
+can_lang |>
+  select(mother_tongue)
+
+can_lang |>
+  select(mother_tongue, language)
+
+
+
+
 ```
 
 We can combine criteria together as well in one command with multiple pipes:
@@ -283,6 +319,9 @@ We can combine criteria together as well in one command with multiple pipes:
 ```{r}
 # filter and then select...something
 
+can_lang |>
+  filter(category=="Aboriginal languages") |>
+  select(language, mother_tongue)
 
 ```
 
@@ -299,18 +338,24 @@ For example, arrange all the aboriginal languages in canada by from most to leas
 # do from scratch and also with object that we defined earlier; feed in aboriginal_lang then arrange
 
 # ascending arrangement by mother_tongue
+
 can_lang |>
   filter(category=="Aboriginal languages") |>
   arrange(mother_tongue)
 
+
 # descending by adding desc() function by mother_tongue
+
 can_lang |>
   filter(category=="Aboriginal languages") |>
   arrange(desc(mother_tongue))
 
+
 # do the same thing with the aboriginal_lang object that we made earlier
+
 aboriginal_lang |>
-  arrange(desc(mother_tongue))
+  arrange(mother_tongue)
+
 ```
 
 Note:
@@ -328,16 +373,19 @@ For example, if I want a list of the 10 most commonly spoken aboriginal language
 # filter for Aboriginal language, arrange descending, slice(1:10)
 # arrange in descending order
 # slice for rows 1 through 10
+
 can_lang |>
   filter(category=="Aboriginal languages") |>
   arrange(desc(mother_tongue)) |>
   slice(1:10)
 
 # slice for rows 1,2,5,7,9
+
 can_lang |>
   filter(category=="Aboriginal languages") |>
   arrange(desc(mother_tongue)) |>
   slice(1,2,5,7,9)
+
 
 ```
 
@@ -349,19 +397,16 @@ For example, if I want to create a new column called `mother_tongue_K` which rep
 
 ```{r}
 # make a column of all 5
-place_holder <- can_lang |>
-  mutate(add5 = 5)
+
 
 # mutate on column of mother_tongue/1000
-place_holder <- can_lang |>
-  mutate(mother_tongue_K = mother_tongue/1000)
+
 
 # do the same thing as above but add a column of 1000 and then do the math with the columns
 
 
 # add multiple columns together
-place_holder <- can_lang |>
-  mutate(lang_cat_add = mother_tongue+most_at_work+most_at_home)
+
 
 ```
 
