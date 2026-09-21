@@ -367,7 +367,7 @@ Note:
 -   use arrange(variable) to go from least to most
 -   use arrange(desc(variable)) to go from most to least, arrange(-variable) also works
 
-# `slice()`
+## `slice()`
 
 The slice function will allow us to pick only a subset of the rows based on their numeric order (1st through last).
 

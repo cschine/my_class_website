@@ -244,6 +244,17 @@
     ]
   },
   {
+    "objectID": "courses/STAT118/notes/published/118_B_wrangling_in_class_notes.html#slice",
+    "href": "courses/STAT118/notes/published/118_B_wrangling_in_class_notes.html#slice",
+    "title": "Wrangling Basics",
+    "section": "slice()",
+    "text": "slice()\nThe slice function will allow us to pick only a subset of the rows based on their numeric order (1st through last).\nFor example, if I want a list of the 10 most commonly spoken aboriginal languages.\n\n# filter for Aboriginal language, arrange descending, slice(1:10)\n# arrange in descending order\n# slice for rows 1 through 10\n\ncan_lang |&gt;\n  filter(category==\"Aboriginal languages\") |&gt;\n  arrange(desc(mother_tongue)) |&gt;\n  slice(1:10)\n\n# A tibble: 10 × 6\n   category          language mother_tongue most_at_home most_at_work lang_known\n   &lt;chr&gt;             &lt;chr&gt;            &lt;dbl&gt;        &lt;dbl&gt;        &lt;dbl&gt;      &lt;dbl&gt;\n 1 Aboriginal langu… Cree, n…         64050        37950         7800      86115\n 2 Aboriginal langu… Inuktit…         35210        29230         8795      40620\n 3 Aboriginal langu… Ojibway          17885         6175          765      28580\n 4 Aboriginal langu… Oji-Cree         12855         7905         1080      15605\n 5 Aboriginal langu… Dene             10700         7710          770      13060\n 6 Aboriginal langu… Montagn…         10235         8585         2055      11445\n 7 Aboriginal langu… Mi'kmaq           6690         3565          915       9025\n 8 Aboriginal langu… Atikame…          6150         5465         1100       6645\n 9 Aboriginal langu… Plains …          3065         1345           95       5905\n10 Aboriginal langu… Stoney            3025         1950          240       3675\n\n# slice for rows 1,2,5,7,9\n\ncan_lang |&gt;\n  filter(category==\"Aboriginal languages\") |&gt;\n  arrange(desc(mother_tongue)) |&gt;\n  slice(1,2,5,7,9)\n\n# A tibble: 5 × 6\n  category           language mother_tongue most_at_home most_at_work lang_known\n  &lt;chr&gt;              &lt;chr&gt;            &lt;dbl&gt;        &lt;dbl&gt;        &lt;dbl&gt;      &lt;dbl&gt;\n1 Aboriginal langua… Cree, n…         64050        37950         7800      86115\n2 Aboriginal langua… Inuktit…         35210        29230         8795      40620\n3 Aboriginal langua… Dene             10700         7710          770      13060\n4 Aboriginal langua… Mi'kmaq           6690         3565          915       9025\n5 Aboriginal langua… Plains …          3065         1345           95       5905\n\n\n\n\n\nThis is as far as we got on 9/17. We will pick up here on Tuesday",
+    "crumbs": [
+      "STAT 118: Intro to Data Science",
+      "Data Wrangling Basics (Class B)"
+    ]
+  },
+  {
     "objectID": "courses/STAT118/notes/published/118_B_wrangling_in_class_notes.html#mutate",
     "href": "courses/STAT118/notes/published/118_B_wrangling_in_class_notes.html#mutate",
     "title": "Wrangling Basics",
