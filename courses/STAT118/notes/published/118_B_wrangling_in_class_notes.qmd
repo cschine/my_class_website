@@ -393,33 +393,6 @@ can_lang |>
 
 ```
 
--------------------------------------------------------------------------------
-***This is as far as we got on 9/17. We will pick up here on Tuesday***
--------------------------------------------------------------------------------
-
-## `mutate()`
-
-`mutate()` creates new columns that are functions of existing variables.
-
-For example, if I want to create a new column called `mother_tongue_K` which represents the number of people who speak the language their mother tongue in thousands. You may want to save this new dataset over top of the original dataset so you could use this new column in the future.
-
-```{r}
-# make a column of all 5
-
-
-# mutate on column of mother_tongue/1000
-
-
-# do the same thing as above but add a column of 1000 and then do the math with the columns
-
-
-# add multiple columns together
-
-
-```
-
-This can be useful for unit conversions. It also be useful for making new calculations based on existing data (for example, price and number of square feet could be used to calculate price per square foot).
-
 
 # Making sure things actually print out in your assignment
 

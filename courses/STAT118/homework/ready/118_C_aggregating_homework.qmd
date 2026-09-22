@@ -1,0 +1,92 @@
+---
+title: "STAT 118: Homework C"
+subtitle: "Aggregating data"
+author: "Casey Schine"
+format:
+  html:
+    toc: true
+    code-overflow: wrap
+    code-fold: true
+    embed-resources: true
+execute: 
+  warning: false
+  message: false
+---
+
+***Please be sure to proofread your rendered document before submitting it***
+
+*In your assignments your answers need to either be written out or include output from your code chunks. Please make sure that the output from your code chunks actually shows up and shows up the way that you want it to. Answers that do not contain the information needed to answer the question will be marked incorrect.*
+
+```{r }
+#LOAD PACKAGES 
+# you will need the tidyverse package
+
+```
+
+```{r}
+#LOAD DATASET
+# This iris dataset should be built into base R (no need to download a package). Just run the code below to load it. 
+data("iris")
+```
+
+This famous (Fisher's or Anderson's) iris data set gives the measurements in centimeters for 50 flowers from each of 3 species of iris. The species are Iris setosa, versicolor, and virginica.
+
+# 1. 
+
+Briefly describe what is contained in the dataset. What variables are given and what does a single row represent? 
+
+
+
+# 2.
+
+Verify using `count()` that there are indeed 50 different flowers from each of the different species of iris.
+
+
+
+# 3.
+
+Do the same as for Question 2, but using `group_by` and `summarize` to confirm that there are 50 different flowers from each species of iris. 
+
+
+
+# 4. 
+
+Create a table which displays the average sepal length and average sepal width for the setosa species of iris. No other data should be in this table. 
+
+
+
+# 5. 
+
+Create a table which displays the average sepal length and the median sepal length for the setosa species of iris. No other data should be in this table. 
+
+
+
+# 6. 
+
+Create a table which displays the **minimum** sepal length and the **maximum** sepal length for each of the three different species of iris. 
+
+
+
+# 7. 
+
+Create one table which displays the minimum sepal length and the maximum sepal length for the species setosa and versicolor. Note that this table should *not* include any information about the virginica species. (This might be a challenge, but you can do it!)
+
+
+
+# 8.
+
+Calculate a new column that contains the ratio of sepal width to sepal length. Call this column `sepal_ratio`.
+
+
+
+# 9.
+
+Create a new column that uses `case_when()` to create two categories based on petal length. Flowers with petals longer than 2 centimeters should be called `short` and flowers with petals longer than 2 centimeters should be called `long`. *This is a difficult one, `case_when` can be a tough nut to crack, but it is so useful!*
+
+
+
+# 10.
+
+Did you use AI to help you with this assignment? If so, what did you use, how did you use it, and how do you think it impacted your learning (either positively or negatively)?
+
+

@@ -1,0 +1,322 @@
+---
+title: 'Exploring and Summarizing Data'
+author: 
+  - "Casey Schine"
+  - 'adapted from Emily Malcolm-White'
+format:
+  html: 
+    toc: TRUE
+    code-overflow: wrap
+    embed-resources: true
+    code-tools:
+      source: true
+      toggle: false
+      caption: none
+    code-annotations: hover
+execute: 
+  message: FALSE
+  warning: FALSE
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r}
+#load tidyverse package
+library(tidyverse)
+```
+
+## `palmerpenguins` dataset
+
+Size measurements, clutch observations, and blood isotope ratios for adult foraging Adélie, Chinstrap, and Gentoo penguins observed on islands in the Palmer Archipelago near Palmer Station, Antarctica. Data were collected and made available by Dr. Kristen Gorman and the Palmer Station Long Term Ecological Research (LTER) Program.
+
+```{r}
+#load data 
+library(palmerpenguins) 
+data(penguins)         
+```
+
+**Let's take a quick look at the data that we just loaded.**
+
+```{r}
+
+# give me some ideas for how to do this
+
+
+
+```
+
+::: callout-tip
+## With a partner or in groups answer
+
+What does a single row represent in each of the loaded datasets?
+
+What is the difference between the two datasets?
+:::
+
+
+## `drop_na()`
+
+`drop_na()` removes rows with missing data. If you use it with no additional arguments it will drop a row that contains an `NA` in any column.
+
+```{r}
+# save as new object
+# drop_na without pipe
+
+# drop_na with pipe
+
+```
+
+::: callout-warning
+Is it appropriate to remove rows with missing data? How many rows have missing data? Do the missing rows have something in common?
+
+Removing rows can affect the validity and generalizability of your analysis!
+:::
+
+What is the difference between `pengiuns` and `penguins_mod`?
+
+```{r}
+
+#use nrow on penguins and penguins_mod without pipe
+
+
+#same with pipe
+
+
+
+```
+
+So, weve lost 11 rows? **Where did we loose them from?** Did we actually want to remove those rows?
+
+```{r}
+# where do you think we lost the rows from?
+
+# Here is how we can take a better look at just those rows using filter()
+
+
+
+```
+
+What questions would we need to remove `NA` rows in order to answer?
+
+What questions could we answer without removing `NA` rows? Or which `NA` rows would we remove and which could we leave?
+
+## `count()`
+
+`count()` lets you quickly count the unique values of one or more variables. Suppose you want the number of penguins on each island.
+
+```{r}
+# use only count for island
+
+
+```
+
+Or the number of each species on each island.
+
+```{r}
+
+# use count for island, species
+
+
+```
+
+Or the number of each sex of each species on each island.
+
+```{r}
+
+# use count for island, species, sex
+
+
+# has weird NA groupings because sex is sometimes NA
+# get a clearer picture after dropping NAs
+
+
+
+# you can drop the NAs before or after the count
+# in some cases (not this one), that could give you different results
+
+
+```
+
+## `summarize()` or `summarise()` (either works)
+
+Suppose we are interested in the average bill length of all Adelie penguins.
+
+```{r}
+# use summarize for average bill length in Adelie penguins
+# Do it first without removing NAs
+
+
+# have to deal with the NAs
+
+# Then remove NAs using na.rm=TRUE
+
+
+```
+
+Suppose we are interested in the average bill length AND average bill depth of all Adelie penguins:
+
+```{r}
+# calculate average bill length and average bill depth for Adelie
+# filter for Adelie then summarize
+
+
+```
+
+There are lots of other functions available:
+
+-   `min`: minimum value
+-   `max`: maximum value
+-   `mean`: average or mean value
+-   `median`: median value
+-   `var`: variance
+-   `sd`: standard deviation
+-   `n`: count or number of values
+-   `n_distinct`: counts number of distinct values
+
+Suppose we are interested in the average bill length AND the median bill length of all Adelie penguins:
+
+```{r}
+
+# filter for Adelie and summarise (but change to median)
+# average bill length and MEDIAN bill length
+
+
+```
+
+We can also give the new calculated variables names of our choosing rather than letting R makes choices, because it does the wackiest stuff when left to its' own devices.
+
+```{r}
+
+# # filter for Adelie and summarise (but change to median)
+# average bill length and MEDIAN bill length
+# AND name the new variables created in summarize rather than having the names generated automatically
+
+
+```
+
+
+# `group_by()`
+
+Let's say we were interested in the average bill length and bill depth of all penguin species in this dataset. We could repeat this for the other species (Gentoo and Chinstrap). This would be a fair amount of work AND the results would not end up in the same table.
+
+OR we could use the `group_by` command!
+
+```{r}
+# group_by species and then summarize bill length and bill depth (mean)
+
+
+```
+
+### Multiple Groups
+
+Suppose we wish to have the average bill length and average bill depth broken down by sex AND species:
+
+```{r}
+
+# group by species/sex and then summarize avg bill depth
+
+
+# do it first without filtering out NAs 
+
+# do it again with NAs removed
+```
+
+We can also give the new calculated variables names of our choosing rather than letting R makes choices, because it does the wackiest stuff when left to its' own devices.
+
+
+
+## `mutate()`
+
+`mutate()` creates new columns that are functions of existing variables.
+
+```{r}
+# first just create a new column that contains all 5s
+
+```
+
+For example, let's calculate create a new column which displays the body length weight in pounds (lbs) instead of grams. Recall: to convert from grams to pounds we need to multiply by 0.00220462.
+
+```{r}
+# calculate body mass in lb from conversion factor (0.00220462 lb/g), create new column
+
+
+# then assign it to new object
+
+
+```
+
+This can be useful for unit conversions. It also be useful for making new calculations based on existing data, for example, the ratio of `bill_length` to `bill_depth`.
+
+```{r}
+
+```
+
+# `case_when()`
+
+Case when can be used in combination with `mutate` to create a new column with a categorical variable conditional on the values in another column.
+
+For example:
+
+```{r}
+# penguins <- penguins |> 
+#   mutate(penguin_length_cat = case_when(bill_length_mm > 50 ~ 'whoa! huge bill!', TRUE ~ '--' ))
+
+# make a new column with a single letter for each penguin species
+
+
+# make a new column with a body mass cutoff that labels penguins below the cutoff as "little" and the ones above it as "BIG"
+
+
+```
+
+# Penguin Data Story
+
+I love to play around with data and find little stories, which is what I will be asking you to do more and more as we move through the course material. So I had a little fun with the `palmerpenguins` data and this is what I came up with.
+
+Now let's look at the `penguins_raw` version of the data. There are a bunch more variables and below is an example of what you will be able to do by the end of next week.
+
+```{r}
+penguins_raw |>
+  ggplot() +
+  geom_point(aes(x=`Delta 13 C (o/oo)`, y=`Delta 15 N (o/oo)`, color=Species)) +
+  theme_minimal()
+```
+
+This first plot shows the 15N isotopic ratio on the y-axis plotted against the 13C isotopic ratio on the x-axis. This first plot shows the points colored by species.
+
+::: callout-tip
+## What do you see?
+
+What is plotted? (axes, units, scale, type of plot)
+
+How is information encoded? (color, size, shape)
+
+What patterns are visually undeniable (trends, clusters, gradients, discontinuities)?
+
+What do you think this figure shows?
+:::
+
+```{r}
+penguins_raw |>
+  ggplot() +
+  geom_point(aes(x=`Delta 13 C (o/oo)`, y=`Delta 15 N (o/oo)`, color=`Body Mass (g)`)) +
+  theme_minimal()
+```
+
+This second plot has the same x and y axes as the first plot, but now the points are colored by body mass.
+
+What do you see? *(refer to the tip box above)*
+
+If we then look at the distribution of body mass for each species in a boxplot:
+
+```{r}
+penguins_raw |>
+  ggplot(aes(y=Species, x=`Body Mass (g)`)) +
+  geom_boxplot() +
+  geom_jitter(aes(color=Sex)) +
+  theme_minimal()
+```
+
+What do you see? *(refer to the tip box above)*
+
+What questions do these figures raise for you? What would you want to look at next?
