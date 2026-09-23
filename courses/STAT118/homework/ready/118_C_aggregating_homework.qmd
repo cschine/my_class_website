@@ -81,7 +81,7 @@ Calculate a new column that contains the ratio of sepal width to sepal length. C
 
 # 9.
 
-Create a new column that uses `case_when()` to create two categories based on petal length. Flowers with petals longer than 2 centimeters should be called `short` and flowers with petals longer than 2 centimeters should be called `long`. *This is a difficult one, `case_when` can be a tough nut to crack, but it is so useful!*
+Create a new column that uses `case_when()` to create two categories based on petal length. Flowers with petals shorter than 2 centimeters should be called `short` and flowers with petals longer than 2 centimeters should be called `long`. *This is a difficult one, `case_when` can be a tough nut to crack, but it is so useful!*
 
 
 

@@ -44,6 +44,9 @@ website:
           
         - text: "Manipulating and Summarizing Data (Class C)"
           href: courses/STAT118/notes/published/118_C_aggregating_in_class_notes.qmd
+          
+        - text: "`ggplot2`: Barplots and Scatterplots (Class D)"
+          href: courses/STAT118/notes/published/118_D_ggplot_in_class_notes.qmd
 
 
 
