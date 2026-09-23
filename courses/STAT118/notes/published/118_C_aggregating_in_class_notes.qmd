@@ -21,6 +21,10 @@ editor_options:
 ---
 
 ```{r}
+#set this to suppress a warning or message when you run a chunk
+#| warning: FALSE 
+#| message: FALSE
+
 #load tidyverse package
 library(tidyverse)
 ```
@@ -62,7 +66,12 @@ What is the difference between the two datasets?
 # save as new object
 # drop_na without pipe
 
+penguins_mod <- drop_na(penguins)
+
 # drop_na with pipe
+
+penguins_mod <- penguins |>
+  drop_na()
 
 ```
 
@@ -78,10 +87,17 @@ What is the difference between `pengiuns` and `penguins_mod`?
 
 #use nrow on penguins and penguins_mod without pipe
 
+nrow(penguins)
+nrow(penguins_mod)
+
 
 #same with pipe
 
+penguins |>
+  nrow()
 
+penguins_mod |>
+  nrow()
 
 ```
 
@@ -92,7 +108,18 @@ So, weve lost 11 rows? **Where did we loose them from?** Did we actually want to
 
 # Here is how we can take a better look at just those rows using filter()
 
+penguins |>
+  filter(is.na(bill_length_mm))
 
+penguins |>
+  filter(is.na(sex))
+
+
+# to find out where NAs are
+summary(penguins)
+
+penguins |>
+  summary()
 
 ```
 
@@ -107,6 +134,15 @@ What questions could we answer without removing `NA` rows? Or which `NA` rows wo
 ```{r}
 # use only count for island
 
+penguins |>
+  count()
+
+penguins |>
+  count(island)
+
+penguins |>
+  count(species)
+
 
 ```
 
@@ -115,6 +151,9 @@ Or the number of each species on each island.
 ```{r}
 
 # use count for island, species
+
+penguins |>
+  count(island, species)
 
 
 ```
@@ -125,15 +164,26 @@ Or the number of each sex of each species on each island.
 
 # use count for island, species, sex
 
+penguins |>
+  count(island, species, sex)
+
 
 # has weird NA groupings because sex is sometimes NA
 # get a clearer picture after dropping NAs
+
+penguins |>
+  drop_na(sex) |>
+  count(island, species, sex)
+
 
 
 
 # you can drop the NAs before or after the count
 # in some cases (not this one), that could give you different results
 
+penguins |>
+  count(island, species, sex) |>
+  drop_na(sex)
 
 ```
 
@@ -145,11 +195,29 @@ Suppose we are interested in the average bill length of all Adelie penguins.
 # use summarize for average bill length in Adelie penguins
 # Do it first without removing NAs
 
+penguins |>
+  filter(species=="Adelie") |>
+  summarize(mean(bill_length_mm))
 
 # have to deal with the NAs
 
+penguins |>
+  filter(species=="Adelie") |>
+  summarize(mean(bill_length_mm, na.rm=TRUE))
+
+
 # Then remove NAs using na.rm=TRUE
 
+
+penguins |>
+  filter(species=="Adelie") |>
+  drop_na(bill_length_mm)  |>
+  summarize(mean(bill_length_mm))
+
+penguins |>
+  filter(species=="Adelie") |>
+  drop_na() |>
+  summarize(mean(bill_length_mm))
 
 ```
 
@@ -158,6 +226,11 @@ Suppose we are interested in the average bill length AND average bill depth of a
 ```{r}
 # calculate average bill length and average bill depth for Adelie
 # filter for Adelie then summarize
+
+penguins |>
+  filter(species=="Adelie") |>
+  summarize(mean(bill_length_mm, na.rm=TRUE),
+            mean(bill_depth_mm, na.rm=TRUE))
 
 
 ```
@@ -180,6 +253,22 @@ Suppose we are interested in the average bill length AND the median bill length 
 # filter for Adelie and summarise (but change to median)
 # average bill length and MEDIAN bill length
 
+penguins |>
+  filter(species=="Adelie") |>
+  summarize(mean(bill_length_mm, na.rm=TRUE),
+            median(bill_length_mm, na.rm=TRUE),
+            n())
+
+penguins |>
+  filter(species=="Adelie") |>
+  drop_na(bill_length_mm) |>
+  summarize(mean(bill_length_mm),
+            median(bill_length_mm),
+            n())
+
+penguins |>
+  filter(species=="Adelie") |>
+  summarize(n())
 
 ```
 
@@ -191,11 +280,33 @@ We can also give the new calculated variables names of our choosing rather than 
 # average bill length and MEDIAN bill length
 # AND name the new variables created in summarize rather than having the names generated automatically
 
+penguins |>
+  filter(species=="Adelie") |>
+  drop_na(bill_length_mm) |>
+  summarize(mean_bill_length=mean(bill_length_mm),
+            median_bill_length=median(bill_length_mm),
+            count=n())
+
+adelie_summary <- penguins |>
+  filter(species=="Adelie") |>
+  drop_na(bill_length_mm) |>
+  summarize(mean_bill_length=mean(bill_length_mm),
+            median_bill_length=median(bill_length_mm),
+            count=n())
+
+
+adelie_summary <- penguins |>
+  filter(species=="Adelie") |>
+  drop_na(bill_length_mm) |>
+  summarize(mean_bill_length=mean(bill_length_mm)) |>
+  pull(mean_bill_length)
+  
+  adelie_summary + 40
 
 ```
 
 
-# `group_by()`
+## `group_by()`
 
 Let's say we were interested in the average bill length and bill depth of all penguin species in this dataset. We could repeat this for the other species (Gentoo and Chinstrap). This would be a fair amount of work AND the results would not end up in the same table.
 
@@ -204,6 +315,18 @@ OR we could use the `group_by` command!
 ```{r}
 # group_by species and then summarize bill length and bill depth (mean)
 
+
+penguins |>
+  group_by(species) |>
+  drop_na(bill_length_mm) |>
+  summarize(mean_bill_length=mean(bill_length_mm),
+            mean_bill_depth=mean(bill_depth_mm))
+
+penguins |>
+  group_by(island) |>
+  drop_na(bill_length_mm) |>
+  summarize(mean_bill_length=mean(bill_length_mm),
+            mean_bill_depth=mean(bill_depth_mm))
 
 ```
 
@@ -214,6 +337,12 @@ Suppose we wish to have the average bill length and average bill depth broken do
 ```{r}
 
 # group by species/sex and then summarize avg bill depth
+
+penguins |>
+  group_by(species, sex) |>
+  drop_na() |>
+  summarize(mean_bill_length=mean(bill_length_mm),
+            mean_bill_depth=mean(bill_depth_mm))
 
 
 # do it first without filtering out NAs 
@@ -232,12 +361,18 @@ We can also give the new calculated variables names of our choosing rather than 
 ```{r}
 # first just create a new column that contains all 5s
 
+penguins_mod <- penguins |>
+  mutate(fives=5)
+
 ```
 
 For example, let's calculate create a new column which displays the body length weight in pounds (lbs) instead of grams. Recall: to convert from grams to pounds we need to multiply by 0.00220462.
 
 ```{r}
 # calculate body mass in lb from conversion factor (0.00220462 lb/g), create new column
+
+penguins_mod <- penguins |>
+  mutate(body_mass_lb=body_mass_g*0.00220462)
 
 
 # then assign it to new object
@@ -249,9 +384,12 @@ This can be useful for unit conversions. It also be useful for making new calcul
 
 ```{r}
 
+penguins_mod <- penguins_mod |>
+  mutate(bill_ratio = bill_depth_mm/bill_length_mm)
+
 ```
 
-# `case_when()`
+## `case_when()`
 
 Case when can be used in combination with `mutate` to create a new column with a categorical variable conditional on the values in another column.
 
@@ -263,8 +401,17 @@ For example:
 
 # make a new column with a single letter for each penguin species
 
+penguins_mod <- penguins_mod |>
+  mutate(spp_abbr = case_when(species=="Adelie" ~ "A",
+                              species=="Gentoo" ~ "G",
+                              species == "Chinstrap" ~ "C"))
+
 
 # make a new column with a body mass cutoff that labels penguins below the cutoff as "little" and the ones above it as "BIG"
+
+penguins_mod <- penguins_mod |>
+  mutate(size = case_when(body_mass_g >= 5000 ~ "BIG",
+                          body_mass_g < 5000 ~ "little"))
 
 
 ```
