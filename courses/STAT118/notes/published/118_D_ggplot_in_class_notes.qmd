@@ -1,6 +1,8 @@
 ---
 title:  'Making plots  with `ggplot2`: Barplots and Scatterplots'
-author: 'Casey Schine adapted from Emily Malcolm-White'
+author: 
+  - 'Casey Schine' 
+  - 'adapted from Emily Malcolm-White'
 format:
   html: 
     toc: TRUE
@@ -21,7 +23,7 @@ library(tidyverse)
 
 ```{r}
 #Import the can_lang dataset 
-can_lang <- read.csv("https://raw.githubusercontent.com/ttimbers/canlang/master/inst/extdata/can_lang.csv")
+can_lang <- read_csv("https://raw.githubusercontent.com/ttimbers/canlang/master/inst/extdata/can_lang.csv")
 ```
 
 ## Recall our Top 10 example:
@@ -30,6 +32,10 @@ This code gave a list of 10 Aboriginal Languages which have the most number of p
 
 ```{r}
 # code for top 10 aboriginal languages
+ten_lang <- can_lang |>
+  filter(category == "Aboriginal languages") |>
+  arrange(desc(mother_tongue)) |>
+  slice(1:10)
 
 
 ```
@@ -42,13 +48,32 @@ Suppose we wanted to display this information in a barplot instead of in a table
 # start with just ggplot()
 # blank canvas
 
+ggplot(data=ten_lang)
+
 # add data and aes()
 # now we have axes but no data
+
+ggplot(data=ten_lang, aes(x=language, y=mother_tongue))
 
 # add data using geom_col
 
 
+ggplot(data=ten_lang, aes(x=language, y=mother_tongue)) +
+  geom_col()
+
 #send in data without using new object
+
+ten_lang |>
+  ggplot(aes(x=language, y=mother_tongue)) +
+  geom_col()
+
+can_lang |>
+  filter(category=="Aboriginal languages") |>
+  arrange(desc(mother_tongue)) |>
+  slice(1:10) |>
+  ggplot(aes(x=language, y=mother_tongue)) +
+  geom_col()
+  
 
 ```
 
@@ -60,6 +85,10 @@ Display the bars horizontally instead of vertically!
 
 ```{r}
 # switch axes to change orientation
+
+ten_lang |>
+  ggplot(aes(y=language, x=mother_tongue)) +
+  geom_col()
 
 ```
 
@@ -73,8 +102,20 @@ We can alter the labels on our `x` and `y` axes.
 # add axis labels and plot title
 
 # using labs()
+ten_lang |>
+  ggplot(aes(y=language, x=mother_tongue)) +
+  geom_col() +
+  labs(x="Spoken as Mother Tongue",
+       y="Language")
+
 
 # using xlab() and ylab()
+
+ten_lang |>
+  ggplot(aes(y=language, x=mother_tongue)) +
+  geom_col() +
+  xlab("Spoken as Mother Tongue") +
+  ylab("Language")
 
 ```
 
@@ -87,6 +128,12 @@ We can change both the bar fill colors and outline colors displayed on the figur
 ```{r}
 # change bar colors using color= and fill=
 
+ten_lang |>
+  ggplot(aes(y=language, x=mother_tongue)) +
+  geom_col(color="magenta", fill="limegreen") +
+  xlab("Spoken as Mother Tongue") +
+  ylab("Language")
+
 ```
 
 We can further control the appearance of our figures with `themes`.
@@ -94,16 +141,31 @@ We can further control the appearance of our figures with `themes`.
 ```{r}
 
 # play around with themes
+ten_lang |>
+  ggplot(aes(y=language, x=mother_tongue)) +
+  geom_col(color="magenta", fill="limegreen") +
+  xlab("Spoken as Mother Tongue") +
+  ylab("Language") +
+  theme_minimal()
+
 
 ```
 
-You can find visualizations of all of the themes included in the `ggplot2` package [here[(https://ggplot2.tidyverse.org/reference/ggtheme.html). There are additional packages such as the `ggthemes` package that have even more themes. And if you are feeling really fancy, you can make your own custom theme (please don't do this right now).
+You can find visualizations of all of the themes included in the `ggplot2` package [here](https://ggplot2.tidyverse.org/reference/ggtheme.html). There are additional packages such as the `ggthemes` package that have even more themes. And if you are feeling really fancy, you can make your own custom theme (please don't do this right now).
 
 And then finally we can add a title to the figure using the `ggtitle()` function.
 
 ```{r}
 
 # add a title
+
+ten_lang |>
+  ggplot(aes(y=language, x=mother_tongue)) +
+  geom_col(color="magenta", fill="limegreen") +
+  xlab("Spoken as Mother Tongue") +
+  ylab("Language") +
+  ggtitle("Our Beautiful Plot") +
+  theme_minimal()
 
   
 ```
@@ -130,7 +192,9 @@ Scatterplots are good for displaying the relationship between two numerical vari
 ```{r}
 # what should we plot?
 
-
+mtcars|>
+  ggplot(aes(x=hp, y=mpg)) +
+  geom_point()
 
 ```
 
@@ -140,7 +204,10 @@ We can change the shape of the points using the `shape` argument within our `geo
 # change shape using pch (stands for plotting character)
 # ?pch to get available point shapes
 
-
+mtcars|>
+  ggplot(aes(x=hp, y=mpg)) +
+  geom_point(shape=8) +
+  theme_minimal()
 
 ```
 
@@ -148,16 +215,31 @@ For reasons that are entirely unclear to me shapes in `R` are referred to as `pc
 
 ![](images/pch.png)
 
-
 Likewise, we can change the color of our points using the `color` argument within our `geom_point()` function.
 
 ```{r}
 
 # change color outside of aes()
+# call color by name
+
+mtcars|>
+  ggplot(aes(x=hp, y=mpg)) +
+  geom_point(shape=8, color="purple") +
+  theme_minimal()
+```
+
+```{r}
+# call color by hex code
+mtcars|>
+  ggplot(aes(x=hp, y=mpg)) +
+  geom_point(shape=8, color="#7e1e9e") +
+  theme_minimal()
 
 ```
 
 In `R` you can call colors by name or by hex code. Named colors can be found [here](https://sape.inf.usi.ch/sites/default/files/ggplot2-colour-names.png). A decent hex code color picker can be found [here](https://www.google.com/search?si=APYL9bso3UJ9cquV6V3y0lV9aI-1cRk1OqzkBH0KgGgZLiu3ba8hjNTbhnD5Pi_XgwgBHeeVuUt-naBE1cRLOF3L6MR58QuyhvRFHViIX1eLqdjTdC17wrFZvfXNbO_KOxpHgL2qpgnJBv79-AZAE-ius-JZpybSemkZcHwzUIxEME_6fvfM3-uzj0eiI7rd837kl593saM0uTVi9ggRV0v4sUr9Rgz8Y02QpR9I30JdgGj_iIiUNYZACSm45xDbXsc9KH_UklU0E7d_CuP2DagmI9P1-4jHMqAajeoP5MeYG20DwiKEyUYgsiCe81u_jPoYPUHItkSZuqIRaiwWZuej-tHglnX6Hy84c_JNvLQW6RvCzs24ikK4lB2wCeyQohnr-e0DVR9vhlNiWftHQTCXEL5z--kDxQF7sED47K5zhJRwnwyfDTeZTwZqudbOOZstJyIWqg4tzxfNPkCh2XUnOs2u0bkrOlj2i_YfFwAnuTXxpBUoFumNUl8trBjt5X6OV4vChSqnK6t9FF2nT1Esv0-FckpFDyFIhQ8aKW6N_JOHSumQULZQQk0FfcpGsZsTPyst7Pxe&hl=en-US&shndl=21&source=sh/x/fbx/m1/1&fbxst=CgkKByMzMmE4NTI&kgs=595ca84015806d69).
+
+### Mapping Data to Color
 
 #### Quick update to the dataset
 
@@ -165,45 +247,79 @@ In `R` you can call colors by name or by hex code. Named colors can be found [he
 #code to update `mtcars` dataset so that `am` is treated as a factor rather than a continuous numeric variable
 # used mutate and as.factor() to add column to existing dataset called am_factor
 
+mtcars <- mtcars |>
+  mutate(am_factor=as.factor(am))
+
 
 ```
 
-This modifies the `am` column, which represents the transmission type of the car (0 = automatic, 1 = manual). The `as.factor(am)` function converts the am variable from a numeric type (0 or 1) into a categorical factor.
+This modifies the `am` column, which represents the transmission type of the car (0 = automatic, 1 = manual). The `as.factor()` function converts the `am` variable from a numeric type (0 or 1) into a categorical factor.
 
 ```{r}
 # what is a factor and how does it change the plotting?
 
 #plot using normal am
 
+mtcars |>
+  ggplot(aes(x=hp, y=mpg, color=am)) +
+  geom_point() +
+  theme_minimal()
+```
+
+Without turning `am` into a factor, it is plotted as a continuous variable with a color gradient for the variable.
+
+```{r}
 
 #plot using am_factor
 
+mtcars |>
+  ggplot(aes(x=hp, y=mpg, color=am_factor)) +
+  geom_point() +
+  theme_minimal()
 
 ```
 
-### Customizing Colors in Aesthetics
+If we use the factor version (`am_factor`), it plots as a discrete variable. Where a single color is assigned to each category.
 
-You can customize the colors that you use for both discrete/categorical variables and continuous variables using the `scale_color_manual()` and `scale_color_gradient()` functions, respectively. 
+#### Customizing Colors in Aesthetics
+
+You can customize the colors that you use for both discrete/categorical variables and continuous variables using the `scale_color_manual()` and `scale_color_gradient()` functions, respectively.
 
 First we are going to take a look at how to define colors for a discrete variable using the `scale_color_manual()` function and the `am_factor` variable that we created above which takes on the value of either 0 or 1.
 
 ```{r}
 # for discrete variables using scale_color_manual()
-# ggplot(mtcars, aes(x=wt, y=mpg)) +
-#   geom_point(aes(color=am_factor)) +
-#   scale_color_manual(values=c("black", "orange")) 
 
+mtcars |>
+  ggplot(aes(x=hp, y=mpg, color=am_factor)) +
+  geom_point(size=3) +
+  scale_color_manual(values=c("darkseagreen4","brown")) +
+  theme_minimal()
+```
 
+We can also change the shape within the `aes()` function, and shape will be mapped to the two categories of `am_factor` in addition to color.
+
+```{r}
+
+# change shape within aes()
+
+mtcars |>
+  ggplot(aes(x=hp, y=mpg, color=am_factor, shape=am_factor)) +
+  geom_point(size=3) +
+  scale_color_manual(values=c("darkseagreen4","brown")) +
+  theme_minimal()
 ```
 
 Now let's take a look at how to do this for a continuous variable using the `scale_color_gradient()` function that you should already have access to with the packages that you have loaded.
 
 ```{r}
-# for continuous variables
-# without loading in new library
-# scale_color_gradient(high=, low=)
-# scale_color_gradient(low  = "lightblue",high = "darkblue")
+# for continuous variables use scale_color_manual()
 
+mtcars |>
+  ggplot(aes(x=hp, y=mpg, color=qsec)) +
+  geom_point() +
+  scale_color_gradient(low="pink", high="violetred4") +
+  theme_minimal()
 
 ```
 
@@ -214,17 +330,85 @@ There are lots of ways to control the colors and palette and we will get into ho
 -   Use `scale_color_gradient()` when assigning colors to continuous variables.
 :::
 
+### Mapping Data to Shape
+
+We can also map data to `shape`, just like we've done for `color`. Instead of using the `color` argument within the `aes()` function, we use the `shape` argument.
+
+```{r}
+mtcars |>
+  ggplot(aes(x=hp, y=mpg, shape=am_factor)) +
+  geom_point(size=3) +
+  theme_minimal()
+```
+
+#### Customizing Shapes in Aesthetics
+
+If you want to control which shape is mapped to which variable, you can use the `scale_shape_manual()` function, which operates very similarly to the `scale_color_manual()` function.
+
+```{r}
+
+# use the pch chart to find the numbers that correspond to different shapes
+
+mtcars |>
+  ggplot(aes(x=hp, y=mpg, shape=am_factor)) +
+  geom_point(size=3) +
+  scale_shape_manual(values = c(0, 2)) + 
+  theme_minimal()
+
+```
+
+If we want to control which variable is given which shape (this can be especially useful when you have more than just two categories), we can adjust our call to the `scale_shape_manual()` function like this:
+
+```{r}
+
+# use the pch chart to find the numbers that correspond to different shapes
+
+mtcars |>
+  ggplot(aes(x=hp, y=mpg, shape=am_factor)) +
+  geom_point(size=3) +
+  scale_shape_manual(values = c("0" = 2, "1" = 0)) +
+  theme_minimal()
+
+```
+
+*Hint: You can also control how colors are mapped to discrete variables using the same syntax inside of `scale_color_manual()`.*
+
+
 ## Global vs. Local Data and Aesthetics
 
 Where you define your input data and `aes()` matters. Global aesthetic mappings apply to all geometries and can be defined when you initially call `ggplot()`. All the geometries added as layers will default to this mapping. Local aesthetic mappings add additional information or override the default mappings.
+
+If we define our data mapping within the `geom_point()` function, additional geoms do not know anything about the mapping. We either have to define the mapping in each individual geom (locally):
 
 ```{r}
 
 #local variables
 # geom_line() does not know about the data defined in geom_point()
 
+# commented this figure out, because it is purposefully broken
+# mtcars |>
+#   ggplot() +
+#   geom_point(aes(x=hp, y=mpg)) +
+#   geom_line() + 
+#   theme_minimal()
+
+  ggplot() +
+  geom_point(data=mtcars, aes(x=hp, y=mpg)) +
+  geom_line(data=mtcars, aes(x=hp, y=mpg)) + 
+  theme_minimal()
+```
+
+Or we need to define them at a higher level, inside the `ggplot()` function. This sets the mapping for all subsequent geoms, unless we explicitly say otherwise within the individual geoms:
+
+```{r}
 # global variables
 # if we define data and aesthetics in ggplot() every subsequent geom tht we call will know about them
+
+mtcars |>
+  ggplot(aes(x=hp, y=mpg)) +
+  geom_point() +
+  geom_line() + 
+  theme_minimal()
 
 ```
 
@@ -233,25 +417,31 @@ Where you define your input data and `aes()` matters. Global aesthetic mappings 
 -   If the thing you are trying to change (color, shape, size, etc.) should happen for all things, you should not put it inside the aesthetics.
 :::
 
-```{r}
-#color = qsec as a global aesthetic 
-# set color gradient using scale_color_gradient()
-
-
-
-```
+We can map a variable to `color` within the `aes()` function locally so that the `qsec` variable is only mapped to color for `geom_point()` and not to `geom_line()`.
 
 ```{r}
 #color = qsec as a local aesthetic
 # set color gradient using scale_color_gradient()
 
+mtcars |>
+  ggplot(aes(x=hp, y=mpg)) +
+  geom_line() + 
+  geom_point(aes(color=qsec), size=3) +
+  scale_color_gradient(low="blue4", high="thistle2") +
+  theme_minimal()
 
 ```
+
+We can overwrite global data mapping by setting `color` to a single value locally outside `aes()` if we want to override the data mapping for `color` and set it to single color instead.
 
 ```{r}
 # overwriting color = qsec as a global aesthetic with a local aesthetic in geom_point()
 
-
+mtcars |>
+  ggplot(mapping=aes(x=hp, y=mpg, color=qsec)) +
+  geom_point(size=3, color="magenta") +
+  scale_color_gradient(low="blue4", high="thistle2") +
+  theme_minimal()
 
 ```
 
