@@ -1,7 +1,7 @@
 ---
 title: "STAT 118: Homework C"
 subtitle: "Aggregating data"
-author: "Casey Schine"
+author: "YOUR NAME HERE"
 format:
   html:
     toc: true

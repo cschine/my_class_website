@@ -23,7 +23,7 @@ Recreate the following plots from the the iris, gapminder, and penguins datasets
 
 # 1: Iris Side-by-Side Boxplot
 
-![](../../images/iris_boxplot.jpg)
+![](images/iris_boxplot.jpg)
 
 ```{r}
 #load the iris dataset
@@ -32,7 +32,7 @@ data("iris")
 
 # 2: Gapminder Barplot
 
-![](../../images/gapminder_country_barplot.png)
+![](images/gapminder_country_barplot.png)
 
 ```{r}
 #load the gapminder dataset
@@ -42,7 +42,7 @@ data("gapminder")
 
 # 3: Gapminder Line Graph
 
-![](../../images/gapminder_linegraph.png)
+![](images/gapminder_linegraph.png)
 
 ```{r}
 library(ggthemes) # you might need this to help with the theme... 
@@ -50,7 +50,7 @@ library(ggthemes) # you might need this to help with the theme...
 
 # 4: Penguins Histogram
 
-![](../../images/penguins_histogram.png)
+![](images/penguins_histogram.png)
 
 ```{r}
 #Load Penguins Data
