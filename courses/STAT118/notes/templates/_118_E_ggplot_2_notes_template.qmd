@@ -9,19 +9,13 @@ format:
 execute: 
   message: FALSE
   warning: FALSE
-editor_options: 
-  chunk_output_type: console
 ---
 
 ```{r}
 # load packages
 library(tidyverse)
-library(ggthemes) # for additional themes
+library(ggthemes)
 ```
-
-# Housekeeping
-
-- Homeworks continue to be due on Wednesday and Friday
 
 ## Line Graph
 
@@ -31,8 +25,6 @@ This dataset was produced from US economic time series data available from <http
 data("economics")
 
 # what is in the data?
-
-# ?economics
 ```
 
 Create a line plot with the unemployment rate of the US over time:
@@ -40,15 +32,23 @@ Create a line plot with the unemployment rate of the US over time:
 ```{r}
 
 # basic line plot
-
+economics |>
+  ggplot(aes(x=date, y=unemploy)) +
+  geom_line()
 # add theme
+economics |>
+  ggplot(aes(x=date, y=unemploy)) +
+  geom_line() +
+  theme_tufte()
 
 # change color
+economics |>
+  ggplot(aes(x=date, y=unemploy)) +
+  geom_line(color="linen") +
+  theme_economist()
 
 
 ```
-
-When is it appropriate to use a line to connect observations like this?
 
 ::: callout-tip
 In ggplot2, you use the **`group`** aesthetic in a `geom_line()` plot when you need to explicitly tell R how to group data points together into lines.
@@ -74,10 +74,16 @@ df
 ```{r}
 # Incorrect: Only one line drawn without group
 # with geom_line
-
+df |>
+  ggplot(aes(x=time, y=value)) +
+  geom_line(color="blue") +
+  theme_minimal()
 
 # with geom_path
-
+df |>
+  ggplot(aes(x=time, y=value)) +
+  geom_path(color="blue") +
+  theme_minimal()
 
 ```
 
@@ -87,10 +93,16 @@ df
 # Correct: Separate lines for each category using group
 
 # with geom_line
-
+df |>
+  ggplot(aes(x=time, y=value, group=category)) +
+  geom_line(color="blue") +
+  theme_minimal()
 
 # with geom_path
-
+df |>
+  ggplot(aes(x=time, y=value, group=category)) +
+  geom_path(color="blue") +
+  theme_minimal()
 
 ```
 
@@ -99,13 +111,24 @@ df
 ```{r}
 # Automatically groups by color
 
-# change linetype globally
-# map category to color
+# with geom_line
+df |>
+  ggplot(aes(x=time, y=value, color=category)) +
+  geom_line(aes(linetype=category)) +
+  theme_minimal()
 
+df |>
+  ggplot(aes(x=time, y=value, color=category)) +
+  geom_line(linetype="dashed") +
+  scale_color_manual(values=c("hotpink", "red")) +
+  theme_minimal()
 
-# control colors using scale_color_manual()
+df |>
+  ggplot(aes(x=time, y=value, color=category)) +
+  geom_line(linetype="dotted") +
+  theme_minimal()
 
-
+# ??? How to control linetype like color using scale_color_manual?
 ```
 
 ### Control linetype when mapped to variable
@@ -114,10 +137,11 @@ In class a question came up about how to control linetype when it is mapped to a
 
 ```{r}
 
-# map linetype to category variable inside aesthetics
-
-
-# use scale_linetype_manual() to map to specific linetypes
+df |>
+  ggplot(aes(x=time, y=value, color=category, linetype=category)) +
+  geom_line() +
+  scale_linetype_manual(values=c("dashed", "dotted")) + #this is where we control linteype
+  theme_minimal()
 
 ```
 
@@ -132,11 +156,9 @@ There are two different populations (`pop`): `Vic` (Victoria) and `other` (New S
 #Be sure to install the DAAG package if you've never used it before... 
 library(DAAG)
 data("possum")
-
-# what is in this dataset??
 ```
 
-## Histograms using `geom_histogram`
+# Histograms
 
 ::: callout-tip
 Histograms are great for looking at the distributions of numeric variables
@@ -145,28 +167,42 @@ Histograms are great for looking at the distributions of numeric variables
 A histogram for the foot length (`footlgth`) of all possums in this dataset:
 
 ```{r}
-# simple histogram using footlgth
+# simple histogram
 
+possum |>
+  ggplot(aes(x=footlgth)) +
+  geom_histogram()
 
 # what do you see?
 
-#change bin size inside geom_histogram() using the bins argument
+#change bin size
 
+possum |>
+  ggplot(aes(x=footlgth)) +
+  geom_histogram(bins=50)
 
-
+# not a great choice fo these data
 ```
 
 You can also customize by color:
 
 ```{r}
-# use color and fill in aes for pop
+# use fill in aes for pop
+possum |>
+  ggplot(aes(x=footlgth, color=Pop)) +
+  geom_histogram()
+
+possum |>
+  ggplot(aes(x=footlgth, fill=Pop)) +
+  geom_histogram()
 
 #what do you see?
 
-# use position="identity" inside of geom_histogram to change how it is plotted
+# use position="identity" to change how it is plotted
 
-
-# change transparency using alpha so that you can see both populations
+possum |>
+  ggplot(aes(x=footlgth, fill=Pop)) +
+  geom_histogram(position="identity", alpha=0.5)
 
 ```
 
@@ -176,53 +212,50 @@ Some people prefer to use `geom_density` for a smoother effect:
 ```{r}
 # first use geom_density to look at full dataset
 
+possum |>
+  ggplot(aes(x=footlgth, fill=Pop)) +
+  geom_density(alpha=0.5)
 
-# separate populations (Pop) using fill argument
+# use geom density to fix data overlap issue
 # use alpha
 # add theme
 
-
-```
-
-
-::: callout-tip
-`geom_density` gives us slightly different information about our data distribution from `geom_histogram`. 
-
-With a partner or ins groups of 3 take a look back at the histogram and density plot that we made of the same `footlgth` data, with the separate populations. 
-
-What do you see? 
-
-What is on x-axis? What is on the y-axis? 
-
-What is the difference between the two types of plots? When might you use one versus the other?
-:::
-
-We can also control the appearance of our density plots in the same way as the other plot types we have looked at, adding axis labels and controlling colors.
-
-```{r}
+possum |>
+  ggplot(aes(x=footlgth, fill=Pop)) +
+  geom_density(alpha=0.5) +
+  theme_tufte()
   
 # add axis labels
 
+possum |>
+  ggplot(aes(x=footlgth, fill=Pop)) +
+  geom_density(alpha=0.5) +
+  labs(x="Foot length (mm)", y= "Count") +
+  theme_tufte()
+# change colors
 
-# add fill label in labs()
+possum |>
+  ggplot(aes(x=footlgth, fill=Pop)) +
+  geom_density(alpha=0.5) +
+  scale_fill_manual(values=c("blue", "green")) +
+  labs(x="Foot length (mm)", y= "Count") +
+  theme_tufte()
 
-# change colors using scale_fill_manual()
+
+#pass in a filtered dataset
+
+possum |>
+  filter(sex=="m") |>
+  ggplot(aes(x=footlgth, fill=Pop)) +
+  geom_density(alpha=0.5) +
+  scale_fill_manual(values=c("blue", "green")) +
+  labs(x="Foot length (mm)", y= "Count") +
+  theme_tufte()
 
 
 ```
 
-
-We can also alter our dataset before passing it into a plot. Here we have filtered for only male possums, and then plotted the resulting data density distribution.
-
-```{r}
-
-#pass in a filtered dataset (filter for sex=="m")
-
-
-
-```
-
-## Boxplots using `geom_boxplot`
+# Boxplots
 
 ::: callout-tip
 Boxplots are good for displaying the spread, central tendency, and distribution of one numeric variable.
@@ -236,10 +269,14 @@ A lone box-plot for one numeric variable (foot length) with some custom colors:
 
 # boxplot for footlgth
 
+ggplot(data=possum, aes(y=footlgth)) +
+  geom_boxplot()
 
 
-#control color and fill inside geom_boxplot
+#control color and fill
 
+ggplot(data=possum, aes(y=footlgth)) +
+  geom_boxplot(color="blue", fill="lightblue")
 
 ```
 
@@ -257,6 +294,13 @@ If only one boxplot, it puts weird numbers on the x axis, you may want to use th
 #     axis.title.x = element_blank()  # Hide axis title
 #   )
 
+ggplot(data=possum, aes(y=footlgth)) +
+  geom_boxplot() +
+  theme(
+    axis.text.x = element_blank(),  # Hide text
+    axis.ticks.x = element_blank(), # Hide tick marks
+    axis.title.x = element_blank()  # Hide axis title
+  )
 
 ```
 :::
@@ -269,45 +313,66 @@ A side-by-side boxplot to compare the foot lengths between the two populations o
 
 ```{r}
 # same color for both boxplots use footlgth
-# group by population on the x-axis
+ggplot(data=possum, aes(y=footlgth, x=Pop)) +
+  geom_boxplot()
 
-# different color for both boxplots using color inside of aes()
+# different color for both boxplots
 
+ggplot(data=possum, aes(y=footlgth, x=Pop, color=Pop)) +
+  geom_boxplot()
 
-# add theme
-
-
+ggplot(data=possum, aes(y=footlgth, x=Pop, fill=Pop)) +
+  geom_boxplot() +
+  theme_tufte()
 #alter the colors
-
-```
-
-A personal favorite of mine is to show a boxplot with something called a `jitter` which is done using `geom_jitter()`. I find that boxplots hide too much information about data distribution and I really like pairing the raw data with the boxplot that describes the statistical distribution.
-
-```{r}
+ggplot(data=possum, aes(y=footlgth, x=Pop, fill=Pop)) +
+  geom_boxplot() +
+  scale_fill_manual(values=c("lightblue4", "chartreuse")) +
+  theme_tufte()
 
 # add a jitter (this is a personal favorite)
-
+ggplot(data=possum, aes(y=footlgth, x=Pop, fill=Pop)) +
+  geom_boxplot(outlier.alpha=0) +
+  scale_fill_manual(values=c("lightblue4", "chartreuse")) +
+  geom_jitter() +
+  theme_tufte()
 
 # clean up
 
-# narrow the jitter using width inside of geom_jitter()
+# narrow the jitter using width
+ggplot(data=possum, aes(y=footlgth, x=Pop, fill=Pop)) +
+  geom_boxplot(outlier.alpha=0) +
+  scale_fill_manual(values=c("lightblue4", "chartreuse")) +
+  geom_jitter(width=0.25) +
+  theme_tufte()
 
 
 ```
 
-## Violin Plot
+# Violin Plot
 
 A violin plot is yet another plot type used to show data distribution. 
 
 ```{r}
 # violin plot using geom_violin
-
+ggplot(data=possum, aes(y=footlgth, x=Pop, fill=Pop)) +
+  geom_violin() +
+  scale_fill_manual(values=c("lightblue4", "chartreuse")) +
+  theme_tufte()
 
 # alter colors and theme
-
+ggplot(data=possum, aes(y=footlgth, x=Pop, fill=Pop)) +
+  geom_violin() +
+  scale_fill_manual(values=c("lightblue", "blue")) +
+  theme_minimal()
 
 # add labels
-
+ggplot(data=possum, aes(y=footlgth, x=Pop, fill=Pop)) +
+  geom_violin() +
+  scale_fill_manual(values=c("lightblue", "blue")) +
+  labs(x="Population", y="Foot Length (mm)", 
+       fill="Population") +
+  theme_minimal()
   
 ```
 
@@ -316,8 +381,8 @@ A violin plot is yet another plot type used to show data distribution.
 Histograms, Boxplots, and Violin Plots are all different ways to visualize data distribution. Violin plots and Boxplots are especially good for comparing data distribution between groups. 
 :::
 
-## In class exercise 
-Choose one numeric variable from the possum dataset (not `footlgth`). Create two different distribution plots of that variable (choose from: histogram, density, boxplot, violin). Filter for only one of the populations (the `Pop` variable) and then compare across a different grouping variable (other than `Pop`). 
+## In class exersize
+Choose one numeric variable from the possum dataset. Create two different distribution plots of that variable (choose from: histogram, density, boxplot, violin). Filter for only one of the populations and then compare across a different grouping variable (other than `Population`). 
 
 - Change the theme
 - Change the colors
