@@ -58,6 +58,16 @@ library(palmerpenguins)
 data("penguins")
 ```
 
+
+```{r}
+penguins |>
+  ggplot(aes(x=flipper_length_mm, fill=species)) +
+  geom_histogram(position="identity", 
+                 alpha=0.5)
+
+
+```
+
 # 5: In class exersize
 
 ```{r}
