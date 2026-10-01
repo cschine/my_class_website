@@ -12,13 +12,13 @@ format:
       toggle: false
       caption: none
     code-annotations: hover
-  pdf: default
 execute: 
   message: FALSE
   warning: FALSE
 editor_options: 
   chunk_output_type: console
 ---
+
 
 ```{r}
 #| warning: FALSE
@@ -38,19 +38,38 @@ can_lang <- read.csv("https://raw.githubusercontent.com/ttimbers/canlang/master/
 
 # make base plot (scatter) with x as most_at_home and y as mother_tongue
 
+can_lang |>
+  ggplot(aes(x=most_at_home, y= mother_tongue)) +
+  geom_point()
+
+
+
 
 # Assign the plot to an object so it can be recalled
 # Use these labels for the axis labels. 
   #xlab("Language spoken most at home \n (number of Canadian residents)") +
   #ylab("Mother tongue \n (number of Canadian residents)") +
 
+can_lang_baseplot <- can_lang |>
+  ggplot(aes(x=most_at_home, y= mother_tongue)) +
+  geom_point()
+
+can_lang_baseplot
 
 
 # recall the baseplot and change the theme
-
+ 
+can_lang_baseplot +
+  theme_tufte()
 
 # set the theme on the baseplot 
-
+can_lang_baseplot <- can_lang |>
+  ggplot(aes(x=most_at_home, y= mother_tongue)) +
+  geom_point() +
+  xlab("Language spoken most at home \n (number of Canadian residents)") +
+  ylab("Mother tongue \n (number of Canadian residents)") +
+  theme_tufte()
+  
 
 ```
 
@@ -74,6 +93,10 @@ We want to customize how the continuous x and y axes look, so we need to use the
 # same base plot, change to scale_*_continuous and use the labels argument to control the appearance of the axes
 # set labels=label_comma()
 
+can_lang_baseplot +
+  scale_x_continuous(labels=label_comma()) +
+  scale_y_continuous(labels=label_comma())
+
 
 
 ```
@@ -92,11 +115,9 @@ When passing a formatting function inside `scale_*_continuous(labels = ...)` you
 | `label_pvalue()` | Formats p-values | `0.00005` | `"<0.0001"` |
 :::
 
-Anything else?
 
 ### Logarithmic Axes Transformations
 
-***Render this to show it***
 ::: callout-note
 # Applying a Log Transformation
 
@@ -214,6 +235,9 @@ For you to do this yourself, you need to use `scale_*_log10()` instead of `scale
 ```{r}
 # same plot, change x and y to scale_*_log10
 # set labels=label_comma() so that we still get our commas
+can_lang_baseplot +
+  scale_x_log10(labels=label_comma()) +
+  scale_y_log10(labels=label_comma())
 
 
 ```
@@ -222,7 +246,6 @@ For you to do this yourself, you need to use `scale_*_log10()` instead of `scale
 2.  `scale_y_log10()` converts y-axis to a log-scale
 
 
-***Render this to show it***
 ::: callout-tip
 # Use ✅ `scale_*_log10()` instead of 🚫`log(variable)`
 
@@ -282,6 +305,11 @@ A add label for each language in this dataset using `geom_text(aes(label = langu
 # same base plot, use scale_x_log10 
 # set labels=label_comma()
 
+can_lang_baseplot +
+  geom_text(aes(label=language)) +
+  scale_x_log10(labels=label_comma()) +
+  scale_y_log10(labels=label_comma())
+
 
 
 ```
@@ -301,15 +329,23 @@ library(ggrepel)
 
 # add labels using geom_text_repel assign label=language in aes()
 
+can_lang_baseplot +
+  geom_text_repel(aes(label=language)) +
+  scale_x_log10(labels=label_comma()) +
+  scale_y_log10(labels=label_comma())
 
 # use max.overlaps argument to display more labels
-
+can_lang_baseplot +
+  geom_text_repel(aes(label=language),
+                  max.overlaps=25) +
+  scale_x_log10(labels=label_comma()) +
+  scale_y_log10(labels=label_comma())
 
 ```
 
 ### Subset the labels
 
-Create a new column for the labels. Use `case_when` (or `ifelse`) to only use the official language names and not to put a label for other language categories.
+Create a new column for the labels. Use `case_when` to only use the official language names and not to put a label for other language categories.
 
 ```{r}
 # mutate new column for official languages using case_when()
@@ -317,7 +353,13 @@ Create a new column for the labels. Use `case_when` (or `ifelse`) to only use th
 
 # remember the second half if you are are assigning a value to the things you have not set an explicit rule for you use TRUE ~ NA
 
+can_lang |>
+  distinct(category)
 
+can_lang <- can_lang |>
+  mutate(official_lang = case_when(
+    category=="Official languages" ~ language, 
+    TRUE ~ NA)) 
 
 ```
 
@@ -325,19 +367,36 @@ Create a new column for the labels. Use `case_when` (or `ifelse`) to only use th
 # now make plot, using new base plot with just the official languages labeled
 
 # run code with old base plot
-
-
-
+# commented out because it is broken
+# need to rerun the baseplot(below) with the updated can_lang
+# can_lang_baseplot +
+#   geom_text_repel(aes(label=official_lang)) +
+#   scale_x_log10(labels=label_comma()) +
+#   scale_y_log10(labels=label_comma())
 
 # We need to redo the base plot with the new can_lang dataset with the new official_languages column in it 
 
-
+can_lang_baseplot <- can_lang |>
+  ggplot(aes(x=most_at_home, y= mother_tongue)) +
+  geom_point() +
+  xlab("Language spoken most at home \n (number of Canadian residents)") +
+  ylab("Mother tongue \n (number of Canadian residents)") +
+  theme_tufte()
 
 # Try the plot again
 
-
+can_lang_baseplot +
+  geom_text_repel(aes(label=official_lang)) +
+  scale_x_log10(labels=label_comma()) +
+  scale_y_log10(labels=label_comma())
 
 # play around with color
+
+can_lang_baseplot +
+  geom_text_repel(aes(label=official_lang), color="red") +
+  scale_x_log10(labels=label_comma()) +
+  scale_y_log10(labels=label_comma())
+
 ```
 
 ## Facet Wrap
@@ -348,15 +407,70 @@ Create separate side-by-side plots for each different category of language.
 
 ```{r}
 # make the baseplot with facets by category
-
+can_lang_baseplot +
+  geom_text_repel(aes(label=official_lang), color="red") +
+  scale_x_log10(labels=label_comma()) +
+  scale_y_log10(labels=label_comma()) +
+  facet_wrap(~category)
 
 
 # make the same plot with different themes
+can_lang_baseplot +
+  geom_text_repel(aes(label=official_lang), color="red") +
+  scale_x_log10(labels=label_comma()) +
+  scale_y_log10(labels=label_comma()) +
+  facet_wrap(~category) +
+  theme_minimal()
 
+can_lang_baseplot +
+  geom_text_repel(aes(label=official_lang), color="red") +
+  scale_x_log10(labels=label_comma()) +
+  scale_y_log10(labels=label_comma()) +
+  facet_wrap(~category) +
+  theme_bw()
+
+can_lang_baseplot +
+  geom_text_repel(aes(label=official_lang), color="red") +
+  scale_x_log10(labels=label_comma()) +
+  scale_y_log10(labels=label_comma()) +
+  facet_wrap(~category) +
+  theme_economist()
 
 
 # set scales="free" to show how the axes can be altered
-
+can_lang_baseplot +
+  geom_text_repel(aes(label=official_lang), color="red") +
+  scale_x_log10(labels=label_comma()) +
+  scale_y_log10(labels=label_comma()) +
+  facet_wrap(~category, scales="free")
 
 
 ```
+
+### Make a more complicated faceted plot
+
+In class we talked about how to add colored points on top of the full data set with the facets. Here is a cleaned up version of the solution that I came up with. I also poked around online and could not come up with a fundamentally different way of doing this. 
+
+```{r}
+# create a data set that does not contain the category column
+can_lang_abbr <- can_lang |>
+  select(mother_tongue, most_at_home)
+
+ggplot() +
+  geom_point(data=can_lang_abbr, #use abbreviated data set for the background points
+             aes(x=most_at_home, y=mother_tongue), color="gray") +
+  geom_point(data=can_lang, # use the full data set 
+             aes(x=most_at_home, 
+                 y=mother_tongue, 
+                 color=category)) + # map category to color
+  scale_color_manual(values=c("#E1AF00","#3B9AB2", "#F21A00")) +
+  scale_x_log10(labels=label_comma()) +
+  scale_y_log10(labels=label_comma()) +
+  xlab("Language spoken most at home \n (number of Canadian residents)") +
+  ylab("Mother tongue \n (number of Canadian residents)") +
+  facet_wrap(~category) + #facet by category
+  theme_tufte() +
+  theme(legend.position = "none")
+  
+```
+
