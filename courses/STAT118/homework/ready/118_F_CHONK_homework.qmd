@@ -1,0 +1,122 @@
+---
+title: "Project CHONK"
+subtitle: "Comparative Heaviness Observations of Native Krill-eaters"
+author: "YOUR NAME HERE"
+format:
+  html: 
+    toc: true
+    code-overflow: wrap
+    code-fold: true
+    embed-resources: true
+editor_options: 
+  chunk_output_type: console
+---
+
+Welcome to **Project CHONK** (Comparative Heaviness Observations of Native Krill-eaters).
+
+You have been recruited to answer two questions of considerable scientific importance:
+
+***1) Which are the chonkiest penguins?***
+
+***2) Where, on average, do we find the chonkiest penguins?***
+
+*Chonky* is an affectionate and highly scientific-sounding term for something that is pleasantly chubby, hefty, or solidly built. Here at CHONK, we will use a slightly more precise working definition:
+
+> **A chonky penguin is a penguin that is particularly heavy for its body size.**
+
+This distinction is important. A large penguin may weigh more simply because it is a large penguin. True chonkiness requires us to think about **heaviness relative to size**.
+
+Your task is to use the Palmer Penguins dataset to figure out how we might measure chonkiness, identify the penguins that best meet our definition, and determine where they are found.
+
+```{r}
+#| warning: FALSE 
+#| message: FALSE
+#| 
+#Load Packages
+library(tidyverse) 
+library(ggthemes)
+```
+
+```{r}
+#| warning: FALSE 
+#| message: FALSE
+
+#Load Penguins Data
+library(palmerpenguins)
+data("penguins")
+```
+
+::: {.callout-important title="Figure expectations"}
+All figures in Project CHONK should be polished and easy to interpret. For every figure:
+
+- Use a non-default theme.
+- Give axes clear, descriptive labels that include units where appropriate.
+- Give legends clear, descriptive titles.
+- Choose colors intentionally (do not use the the default ggplot colors).
+
+Not every figure will need every type of customization. Your goal is to make choices that help the reader understand the data and the question the figure is answering.
+:::
+
+## Part 1: Find the heavy penguins
+
+### A. Identify the heaviest penguins
+What species and sex are the five heaviest penguins, and what islands do they come from? Make a table that shows this information and no other information *(this should just be a print out of the data from your code, nothing fancy)*.
+
+### B. Compare average body mass
+Calculate mean body mass for each species. Show a table of your results.
+
+### C. Compare body mass distributions
+Make a figure to illustrate how the data distribution of body mass differs between penguin species.
+
+### D. Is heavy the same as chonky?
+In a short paragraph, explain why body mass alone might be a poor measure of chonkiness. Use evidence from your results in 1A–1C, including which species has the greatest mean body mass, how this compares to the five heaviest individual penguins, and the body mass distributions you observed in 1C.
+
+
+
+## Part 2: Body size versus composition
+
+### A. Body size enters the picture
+Flipper length provides us with one measure related to penguin body size. Create a scatterplot showing the relationship between flipper length and body mass. **Format the body-mass axis so that values in the thousands are displayed with commas**. Describe the relationship between flipper length and body mass.
+
+### B. What about species?
+Modify your previous figure so that points are colored by species. Do the three species occupy the same regions of the figure? Which species generally has the longest flippers? Which generally has the greatest body mass? 
+
+### C. What about sex?
+Modify your figure again to now facet by species, and use color to show sex. Do the the sexes within a species occupy the same regions of the figure? How do male and female penguins differ? Is this consistent across species? *Your color legend should only have two categories, male and female, make sure to remove any additional categories.*
+
+### D. Putting the pieces together
+In a short paragraph, use evidence from your figures in 2A–2C to explain what you have learned about the relationship between body size and body mass. How might we use this relationship to identify penguins that are particularly heavy for their body size?
+
+
+
+## Part 3: Find the chonky penguins
+
+### A. Define the CHONK index
+Moving forward we will define a CHONK index, which will be the ratio of body mass to flipper length. Calculate this as a new column called `chonk_index` in your dataset *(make sure to both save this column to your dataset and to print out a few rows of the dataset to show that the column was created)*.
+
+### B. Visualize the CHONK index
+Create a scatterplot that displays flipper length on the x-axis and body mass on the y-axis with the color showing the CHONK index that you just calculated. Where on the figure do you find penguins with the highest CHONK index?
+
+### C.
+In a short paragraph, use evidence from your figure to describe how CHONK index relates to flipper length and body mass. Also address Based on our working definition of chonkiness, why is this a better measure than body mass alone?
+
+
+
+## Part 4: CHONK Committee Final Determination
+
+### A. Identify the CHONK champions
+For each species, identify the male and female penguin with the highest CHONK index. Save these six penguins as a new dataset called `chonk_champions`. The dataset should be a single table that reports the species, sex, island, flipper length, body mass, and chonk index for both penguins. *Hint: you have all the pieces, but have not used them in this configuration before.*
+
+Return to your scatterplot of flipper length versus body mass from 3B. Add `chonk_champions` as a second layer and use `geom_text_repel()` to label only these six penguins. 
+
+In a short paragraph, use evidence from your figure to explain what distinguishes the CHONK champions. Address whether they are simply the largest penguins and what their location on the figure tells you about what the CHONK index measures.
+
+
+### B. Where are the chonkiest penguins?
+Create a violin plot showing the distribution of CHONK index on each island. Add points for the individual penguins using `geom_jitter()` and use point color to distinguish species.
+
+In a short paragraph, use evidence from your figure to explain which island appears to have the chonkiest penguins. Address how the CHONK distributions and the species found on each island complicate that conclusion.
+
+## Attribution
+
+Did you get help from AI or anyone else while completing this assignment? If so, describe what help you received, how you used it, and how you think it affected your learning (positively or negatively).

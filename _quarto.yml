@@ -50,6 +50,9 @@ website:
           
         - text: "`ggplot2`: Line Graphs, Histograms, and Boxplots  (Class E)"
           href: courses/STAT118/notes/published/118_E_ggplot_2_in_class_notes.qmd
+          
+        - text: "`ggplot2`: Customizing Plots (Class F)"
+          href: courses/STAT118/notes/published/118_F_ggplot_3_in_class_notes.qmd
 
 
 format:
