@@ -53,6 +53,9 @@ website:
           
         - text: "`ggplot2`: Customizing Plots (Class F)"
           href: courses/STAT118/notes/published/118_F_ggplot_3_in_class_notes.qmd
+        
+        - text: "Mapping Data with Choropleth Maps (Class G)"
+          href: courses/STAT118/notes/published/118_G_maps_in_class_notes.qmd
 
 
 format:
