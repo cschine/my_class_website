@@ -1,0 +1,88 @@
+---
+title: "Homework H"
+subtitle: '`forcats`: working with categorical data'
+author: "YOUR NAME HERE"
+format:
+  html: 
+    toc: true
+    code-overflow: wrap
+    code-fold: true
+    embed-resources: true
+---
+
+```{r message=FALSE, warning=FALSE}
+#LOAD PACKAGES 
+library(tidyverse)
+library(forcats)
+library(kableExtra)
+library(ggthemes)
+
+#LOAD DATASET
+# This diamonds dataset is built into the tidyverse package
+data("gss_cat")
+```
+
+Today's dataset, `gss_cat`, is a sample of data from the General Social Survey, a long-running US survey conducted by the independent research organization NORC at the University of Chicago. The survey has thousands of questions, but `gss_cat` only contains the 9 variables.   
+
+Begin by reading more about each variable in the dataset by typing `?gss_cat` into the console. 
+
+# 1.  
+For each categorical/factor variable in `gss_cat` identify whether the order of the levels is ordinal or nominal. 
+
+marital - 
+race - 
+rincome - 
+partyid - 
+relig - 
+denom - 
+
+
+# 2. 
+What are the levels of the variable `partyid`? Create a table which displays how many people are in each category of `partyid`. 
+
+
+
+# 3. 
+Construct a barplot which displays `partyid` on the x-axis and the the height of the bars represents the count of how many people fall in each category. What makes the default bar chart hard to understand? 
+
+
+# 4.
+Regroup `partyid` variable to only contain four groups: "rep", "ind", "dem", and "other". Recreate the barchart above with your improved groupings. 
+
+
+
+# 5.
+What are the levels of the `relig` variable? Create a table which counts how many people belong to each religion. Be sure to print out your table in a pretty way using the `kableExtra` package. 
+
+
+# 6. 
+Create a new variable in the dataset called `top_relig` which only contains the 5 most popular religions and all other categories are grouped into an "other category". Create table which counts the number of people in each `top_relig` category. Be sure to print out your table is a pretty way using the `kableExtra` package.  
+
+
+
+# 7. 
+
+Use your regrouped political affiliation variable from Question 4 and your `top_relig` variable from Question 6 to explore the relationship between political affiliation and religion. Create a heatmap where each tile represents a combination of political affiliation and religion and the fill color represents the **number of people** in that group. Make sure your figure is clearly labeled.
+
+What patterns do you notice in the heatmap? Describe 1–2 observations.
+
+
+
+# Explore the Youth Risk Behavior Survey
+
+### 1. Understand the dataset
+Look through the YRBS documentation and briefly describe what the dataset contains and what one row represents.
+
+### 2. Choose a variable 
+Find one variable that interests you. What does it measure, and what are its possible values? 
+
+### 3. Summarize it
+Use `count()` or `group_by()` + `summarize()` to explore your variable.
+
+### 4. Make a figure 
+Choose a second variable and create a visualization that helps you explore how the two variables are related.
+
+### 5. Ask a question
+Based on what you found, write one question about the YRBS data that you would be interested in investigating further. 
+
+
