@@ -13,6 +13,8 @@ format:
 execute: 
   message: FALSE
   warning: FALSE
+editor_options: 
+  chunk_output_type: console
 ---
 
 The R package `forcats` is designed to make working with categorical variables easier and more efficient. It provides a set of functions that allow you to manipulate and analyze categorical data with ease. In this lesson, we'll cover the basics of the `forcats` package and some of its most useful functions.
@@ -38,6 +40,7 @@ library(forcats)
 library(tidyverse)
 data("mpg")
 library(ggthemes)
+
 ```
 
 Let's take a look at a side-by-side boxplot:
@@ -45,6 +48,10 @@ Let's take a look at a side-by-side boxplot:
 ```{r}
 # boxplot of hwy in each class
 
+mpg |>
+  ggplot(aes(y=class, x=hwy)) +
+  geom_boxplot() +
+  theme_tufte()
 
 ```
 
@@ -60,8 +67,9 @@ Is `class` a factor?
 # returns TRUE or FALSE
 # with pull()
 
-
-
+mpg |>
+  pull(class) |>
+  is.factor()
 ```
 
 Let's make it a factor!
@@ -69,6 +77,9 @@ Let's make it a factor!
 ```{r}
 # use mutate to write over class with new factor variable called class
 # use as.factor()
+
+mpg <- mpg |>
+  mutate(class = as.factor(class))
 
 
 ```
@@ -80,7 +91,13 @@ Let's check the levels and their current ordering!
 # use levels() to get factor levels
 # levels() requires vector so must use pull() rather than select()
 
+mpg |>
+  pull(class) |>
+  is.factor()
 
+mpg |>
+  pull(class) |>
+  levels()
 
 ```
 
@@ -91,9 +108,15 @@ Let's check the levels and their current ordering!
 # reorder using fct_relevel() 
 # use mutate to overwrite the existing class column
 
-
+mpg <- mpg |>
+  mutate(class = fct_relevel(class, c("compact","2seater",
+                                      "subcompact", "midsize",
+                                    "suv","minivan","pickup")))
 
 # check the levels
+mpg |>
+  pull(class) |>
+  levels()
 
 ```
 
@@ -102,7 +125,10 @@ Let's recreate our side-by-side boxplot now:
 ```{r}
 
 # boxplot of hwy in each class
-
+mpg |>
+  ggplot(aes(x=hwy, y=class)) +
+  geom_boxplot() +
+  theme_tufte()
 
 ```
 
@@ -117,17 +143,25 @@ Rather than reordering them manually by typing the order, you could also re-leve
 # as fct_reorder(class, hwy, median)
 # fct_reorder(factor, values, function)
 
-
+mpg <- mpg |>
+  mutate(class=fct_reorder(class, hwy, median))
 
 # take a look at the order again
-
+mpg |>
+  pull(class) |>
+  levels()
 
 # remake the boxplot again with the new order
 
+mpg |>
+  ggplot(aes(x=hwy, y=class)) +
+  geom_boxplot() +
+  theme_tufte()
 
-# what other functions can we use to reorder???
 
 ```
+
+Other functions you can use to reorder data include `max`, `min`, and `mean`.
 
 ## Renaming Factor levels with `fct_recode`
 
@@ -138,9 +172,15 @@ Sometimes you might not like the way the levels are named.
 # fct_recode("two-seater" = "2seater")
 ## NEW NAME = OLD NAME
 
+mpg <- mpg |>
+  mutate(class=fct_recode(class, "two-seater"="2seater"))
+
 
 # take another look at the factor
 
+mpg |>
+  pull(class) |>
+  levels()
 
 ```
 
@@ -154,8 +194,20 @@ Let's say we wanted to create only two categories -- cars and larger vehicles.
 # mutate on new variable called class_two
 # fct_collapse(class, cars = c("compact", "subcompact", "midsize", "two-seater"), big = c("pickup", "suv", "minivan"))
 
+mpg <- mpg |>
+  mutate(class_two = fct_collapse(class,
+                                  cars = c("compact", 
+                                           "subcompact", 
+                                           "midsize", 
+                                           "two-seater"),
+                                  big = c("pickup", "suv", 
+                                          "minivan")))
+
 
 # take a look at the new variable factor levels
+mpg |>
+  pull(class_two) |>
+  levels()
 
 ```
 
@@ -172,7 +224,8 @@ Now let's look at the data for manufacturers:
 ```{r}
 # count manufacturers in dataset
 
-
+mpg |>
+  count(manufacturer)
 ```
 
 Let's say we wanted only the manufacturers with at least 15 cars produced. Everything else we want to just be other:
@@ -184,20 +237,28 @@ Let's say we wanted only the manufacturers with at least 15 cars produced. Every
 # lumps anything that does not have a minimum number of entries
 # use mutate() to make variable a new column
 
+mpg <- mpg |>
+  mutate(man_lump = fct_lump_min(manufacturer, 15))
+  
+
 
 # look at the result with count()
+
+mpg |>
+  count(man_lump)
 
 
 # now with fct_lump_n() for the top 5
 # lumps everything that isn't the 5 highest manufacturers
 # as a new column
 
-
+mpg <- mpg |>
+  mutate(man_lump_n = fct_lump_n(manufacturer, 5))
 
 # look at the result with count()
 
-
-
+mpg |>
+  count(man_lump_n)
 
 ```
 
@@ -211,33 +272,59 @@ library(kableExtra)
 # make table for manufacturer before and after lumping 
 # using kbl() |> kable_styling()
 
+mpg |>
+  count(manufacturer) |>
+  kbl() |>
+  kable_styling()
+
 
 
 # using lumped manufacturers
 
+mpg |>
+  count(man_lump_n) |>
+  kbl() |>
+  kable_styling()
+
 
 ```
 
-If we want to change the order of items that appear in our table we can use some of the tricks that we just learned for reordering factors! 
+
+If we want to change the order of items that appear in our table we can use some of the tricks that we just learned for reordering factors!
 
 We can also use Kable tables to display summary data.
+
 
 ```{r}
 
 # we can use group_by() and summarize() to get statistics for each group
 # calculate median hwy miles per gallon
 
+mpg |>
+  group_by(class) |>
+  summarize(median_hwy = median(hwy)) |>
+  kbl() |>
+  kable_styling()
+
 
 # we can also use the fct_reorder() function to reorder the factor by a calculated value (as we did above)
 # class = fct_reorder(class, hwy, .fun = median)
 # calculate median hwy and add count using the n() function in summarize
+
+mpg |>
+  group_by(class) |>
+  summarize(median_hwy = median(hwy),
+            count=n()) |>
+  kbl() |>
+  kable_styling()
+
 
 
 # add caption for the table using the caption argument in kbl()
 
 ```
 
-We can also control aspects of the table and how it looks using arguments in the `kbl()` and `kable_styling()` functions. 
+We can also control aspects of the table and how it looks using arguments in the `kbl()` and `kable_styling()` functions.
 
 ```{r}
 
@@ -245,13 +332,52 @@ We can also control aspects of the table and how it looks using arguments in the
 #?kbl to look at some of the options
 
 # can set the number of digits using the digits=x argument in kbl()
-
+# add caption for the table using the caption argument in kbl()
 # also col.names=c() argument to change the column names for the output table
 
-
-
+mpg |>
+  group_by(class) |>
+  summarize(median_hwy = median(hwy),
+            count=n()) |>
+  kbl(digits=0,
+      col.names=c("Class", "Median mpg", "Count"),
+      caption="Table showing the median highway miles per gallon for different classes of cars") |>
+  kable_styling()
 
 ```
+
+::: {.callout-note .compact-table icon="false"}
+## Difference between `kbl()` and `kable_styling()`
+
+`kbl()`
+Turns R data frame or tibble into a basic table structure. It can handle basic attributes like the number of digits shown in the table or adding a caption or changing column names.
+
+`kable_styling()`
+Takes the output from `kbl()` and applies themes and layouts. Controls the visual presentation, including table width and alignment within the rendered document
+
+If we take the table we just made and apply some of the `kable_styling()` options we can see the changes:
+
+```{r}
+
+mpg |>
+  group_by(class) |>
+  summarize(median_hwy = median(hwy),
+            count=n()) |>
+  kbl(digits=0,
+      col.names=c("Class", "Median mpg", "Count"),
+      caption="Median highway miles per gallon for different classes of cars") |>
+  kable_classic( # applies a different table theme
+                "hover", # highlights rows when you put your mouse over them
+                full_width=FALSE, # table won't take up full width
+                html_font = "Cambria",
+                position="center"
+                )
+
+```
+
+This [website](https://haozhu233.github.io/kableExtra/awesome_table_in_html.html) gives excellent examples for all of the options you have for `kable_styling()` with html tables. You can get very fancy with some of the options. 
+
+:::
 
 
 ## Heatmaps
@@ -264,6 +390,9 @@ Let's start by looking at two categorical variables: vehicle `class` and drive t
 # count the number of observations in each combination
 # of class and drive type
 
+mpg |>
+  count(class, drv)
+
 
 ```
 
@@ -272,6 +401,12 @@ We can display these counts as a heatmap using `geom_tile()`:
 ```{r}
 # count(class, drv) and set x to drv, y to class, and fill to n
 
+mpg |>
+  count(class, drv) |>
+  ggplot(aes(x=drv, y=class, fill=n)) +
+  geom_tile() +
+  geom_text(aes(label=n)) +
+  theme_tufte()
 
 ```
 
@@ -287,7 +422,8 @@ The color does not have to represent a count. We can calculate a summary statist
 
 mpg |>
   group_by(class, drv) |>
-  summarize(mean_hwy = mean(hwy))
+  summarize(mean_hwy=mean(hwy))
+
 ```
 
 Now we can map `mean_hwy` to `fill` instead:
@@ -295,14 +431,9 @@ Now we can map `mean_hwy` to `fill` instead:
 ```{r}
 mpg |>
   group_by(class, drv) |>
-  summarize(mean_hwy = mean(hwy)) |>
-  ggplot(aes(x = drv, y = class, fill = mean_hwy)) +
+  summarize(mean_hwy=mean(hwy)) |>
+  ggplot(aes(x=drv, y=class, fill=mean_hwy)) +
   geom_tile() +
-  labs(
-    x = "Drive type",
-    y = "Vehicle class",
-    fill = "Mean highway MPG"
-  ) +
   theme_tufte()
 ```
 
@@ -311,17 +442,38 @@ Heatmaps are `ggplot` figures, so we can customize them using the same tools we 
 ## Explore the Youth Risk Behavior Survey
 
 ### 1. Understand the dataset
+
 Look through the YRBS documentation and briefly describe what the dataset contains and what one row represents.
 
-### 2. Choose a variable 
-Find one variable that interests you. What does it measure, and what are its possible values? 
+```{r}
+data <- read_csv("./courses/STAT118/data/yrbss_2024.csv")
+```
 
+### 2. Choose a variable
+
+Find one variable that interests you. What does it measure, and what are its possible values?
 
 ### 3. Summarize it
+
 Use `count()` or `group_by()` + `summarize()` to explore your variable.
 
-### 4. Make a figure 
+### 4. Make a figure
+
 Choose a second variable and create a visualization that helps you explore how the two variables are related.
 
+```{r}
+
+# Q68 v Q42
+# Q68 has to do with juice consumption and Q42 with alcohol consumption
+
+data |>
+  count(Q68, Q42) |>
+  ggplot(aes(x=Q42, y=Q68, fill=n)) +
+  geom_tile() +
+  theme_tufte()
+
+```
+
 ### 5. Ask a question
-Based on what you found, write one question about the YRBS data that you would be interested in investigating further. 
+
+Based on what you found, write one question about the YRBS data that you would be interested in investigating further.

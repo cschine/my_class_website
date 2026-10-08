@@ -13,6 +13,11 @@ $headings-color: #263238;
 
 
 /*-- scss:rules --*/
+.compact-table table.table {
+  width: auto !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
 
 /* Give the page a slightly more open, paper-like feel */
 body {

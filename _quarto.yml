@@ -56,6 +56,10 @@ website:
         
         - text: "Mapping Data with Choropleth Maps (Class G)"
           href: courses/STAT118/notes/published/118_G_maps_in_class_notes.qmd
+        
+        - text: "Categorical Data with factors, heatmaps, and tables (Class H)"
+          href: courses/STAT118/notes/published/118_H_forcats_in_class_notes.qmd
+
 
 
 format:
