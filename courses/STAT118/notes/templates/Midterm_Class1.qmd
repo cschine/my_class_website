@@ -1,0 +1,232 @@
+---
+title: "Midterm Class 1"
+format:
+  html: 
+    toc: TRUE
+    code-overflow: wrap
+    embed-resources: true
+    code-tools:
+      source: true
+      toggle: false
+      caption: none
+execute: 
+  message: FALSE
+  warning: FALSE
+editor_options: 
+  chunk_output_type: console
+---
+
+# Housekeeping
+
+-   Midterm Report due Thursday
+-   Additional Office Hours on Tuesday
+-   Remember the automatic extension
+
+Today we are going to work through data wrangling, visualization, and pattern identification/description. We are also going to pick up some particularly useful tools for this type of data and for your report. 
+
+# Which Dataset are you using???
+
+Let's read in the data:
+
+```{r}
+#code to read in data
+# EJI
+library(sf)
+library(tidyverse)
+library(ggthemes)
+library(viridis)
+library(patchwork)
+
+# load in your data here, using the filepath that works on your computer
+```
+
+# Exploratory Data Analysis
+
+The process we will practice today is called **exploratory data analysis (EDA)**.
+
+EDA is the process of using summaries and visualizations to discover patterns in data and develop questions about those patterns.
+
+**The workflow usually looks something like this:**
+
+→ Understand the dataset\
+→ Ask questions\
+→ Create plots\
+→ Identify patterns\
+→ Interpret what those patterns might mean
+
+This process is **iterative**.
+
+![](https://r4ds.had.co.nz/diagrams/data-science-explore.png){fig-align="center"}
+
+# Generating Questions
+
+Now that we have looked at the structure of the dataset, the next step is to think about questions we might ask.
+
+**Some common types of exploratory questions include:**
+
+-   Do groups differ from one another?
+-   Are two variables related?
+-   What are the highest or lowest values?
+-   How does something change across categories?
+
+## Matching the Question with the Visualization
+
+Once we have a question, the next step is to think about what kind of visualization might help answer that question.
+
+Different kinds of questions are best answered by different kinds of plots.
+
+|  |  |
+|------------------------------------|------------------------------------|
+| Question type | Useful plot |
+| Comparing groups | Bar chart, boxplot |
+| Relationship between variables | Scatterplot/Heatmap |
+| Distribution of values | Histogram, density plot, boxplot, violin plot |
+| Geographical data | Choropleth map |
+
+[Here](https://www.data-to-viz.com/) is an excellent resource for matching your data type and question to the many plot options out there.
+
+# Let's go through some iterations of the process
+
+→ Understand the dataset\
+→ Ask questions\
+→ Create plots\
+→ Identify patterns\
+→ Interpret what those patterns might mean
+
+*Your first plots do not need to be perfect. Exploratory plots are tools for helping us see patterns in the data.*
+
+## YRBSS
+
+### Proportionality
+
+There is a disproportionate distribution of data in many instances, especially of the YRBS data. This means that raw count is going to make it difficult to see patterns, and that proportions need to be considered instead.
+
+#### Proportional Bar Graph
+
+Let's start with a basic proportional bar graph.
+
+```{r}
+# Q75 - How many days did you eat breakfast in the past 7 days
+# Q87 - During the past 12 months how would you describe your grades in school
+
+# first stacked with position="stack" 
+
+
+# now proportional with position="fill" 
+
+
+
+# Don't forget about faceting!
+# let's add a facet_wrap() (Q2 is sex, which could work)
+
+```
+
+#### How to calculate proportions
+
+If we want to work with these variables outside of something that does all of the calculations for you we will need to calculate the proportions ourselves. 
+
+```{r}
+# Q75 - How many days did you eat breakfast in the past 7 days
+# Q87 - During the past 12 months how would you describe your grades in school
+
+# stashing this here for myself in case I cannot conjur this up at 8am
+# yrbs_data |>
+#   drop_na(Q75, Q87) |>
+#   count(Q75, Q87) |> #calculate # in each category combo
+#   group_by(Q75) |> # group by breakfast group
+#   mutate(prop = n / sum(n))  # within each breakfast group divide number in combo category by total number in breakfast category
+  
+    
+
+# do it again with sex included as a variable
+
+
+```
+
+
+#### Proportional Heatmap
+
+```{r}
+
+# make heatmap with proportion calculations above
+    
+
+# do it again with sex
+
+
+```
+
+## EJI
+
+```{r}
+# what variables should we use?
+
+# start with histogram of both variables
+
+# next scatterplot (of all data)
+
+# next redo with subset for specific state
+
+
+  
+```
+
+### Data density
+
+In a lot of cases the EJI has so much data that you actually cannot see through the cloud of points. What are some ways that we can handle this?
+
+#### Density plots
+
+We can look at data density using a variety of techniques, including setting a lower `alpha`, using `geom_density_2d`/`geom_density_2d_filled`, or using `geom_hex`.
+
+```{r}
+
+# multiple ways to view dense data with the same plot
+
+
+
+```
+
+#### Trend lines
+
+To help make a pattern clear from a cloud of data it cane be useful to add a trend line using `geom_smooth`. Look at the help documentation to understand what statistical methods are generating the trendline.
+
+```{r}
+# add trendline with geom_smooth()
+
+
+```
+
+## Identify and describe patterns
+
+When we look at a plot, the first step is to describe what we see.
+
+Examples of descriptive observations include:
+
+-   One group has higher values than another group
+-   The values increase across categories
+-   There appears to be a relationship between two variables
+-   Try to focus on what the data show, rather than explaining why.
+
+Questions you should be answering with your descriptive observations:
+
+-   What does the plot show?
+-   What doesn't it show?
+-   What questions does it answer?
+-   What questions does it raise?
+
+
+# Multi-panel figures with faceting or `patchwork`
+
+```{r}
+
+# grab 2 plots from above and put into panel. 
+
+# side by side
+
+
+# stacked 
+
+    
+```
+
