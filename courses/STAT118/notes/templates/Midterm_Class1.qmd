@@ -22,6 +22,8 @@ editor_options:
 -   Additional Office Hours on Tuesday
 -   Remember the automatic extension
 
+**form groups**
+
 Today we are going to work through data wrangling, visualization, and pattern identification/description. We are also going to pick up some particularly useful tools for this type of data and for your report. 
 
 # Which Dataset are you using???
@@ -37,7 +39,9 @@ library(ggthemes)
 library(viridis)
 library(patchwork)
 
-# load in your data here, using the filepath that works on your computer
+# read in your data here
+
+
 ```
 
 # Exploratory Data Analysis
@@ -95,71 +99,10 @@ Different kinds of questions are best answered by different kinds of plots.
 
 *Your first plots do not need to be perfect. Exploratory plots are tools for helping us see patterns in the data.*
 
-## YRBSS
-
-### Proportionality
-
-There is a disproportionate distribution of data in many instances, especially of the YRBS data. This means that raw count is going to make it difficult to see patterns, and that proportions need to be considered instead.
-
-#### Proportional Bar Graph
-
-Let's start with a basic proportional bar graph.
-
-```{r}
-# Q75 - How many days did you eat breakfast in the past 7 days
-# Q87 - During the past 12 months how would you describe your grades in school
-
-# first stacked with position="stack" 
-
-
-# now proportional with position="fill" 
-
-
-
-# Don't forget about faceting!
-# let's add a facet_wrap() (Q2 is sex, which could work)
-
-```
-
-#### How to calculate proportions
-
-If we want to work with these variables outside of something that does all of the calculations for you we will need to calculate the proportions ourselves. 
-
-```{r}
-# Q75 - How many days did you eat breakfast in the past 7 days
-# Q87 - During the past 12 months how would you describe your grades in school
-
-# stashing this here for myself in case I cannot conjur this up at 8am
-# yrbs_data |>
-#   drop_na(Q75, Q87) |>
-#   count(Q75, Q87) |> #calculate # in each category combo
-#   group_by(Q75) |> # group by breakfast group
-#   mutate(prop = n / sum(n))  # within each breakfast group divide number in combo category by total number in breakfast category
-  
-    
-
-# do it again with sex included as a variable
-
-
-```
-
-
-#### Proportional Heatmap
-
-```{r}
-
-# make heatmap with proportion calculations above
-    
-
-# do it again with sex
-
-
-```
-
 ## EJI
 
 ```{r}
-# what variables should we use?
+#what variables should we use?
 
 # start with histogram of both variables
 
@@ -197,7 +140,82 @@ To help make a pattern clear from a cloud of data it cane be useful to add a tre
 
 ```
 
-## Identify and describe patterns
+### Creating groups from continuous data
+
+Creating groups from continuous data can be a great way to tease out patterns. While we have gone over all of the tools for doing this, you haven't been asked to put them together quite this way before. 
+
+## Discussion
+
+In your groups:
+- Share a pattern you've already noticed in your dataset.
+- What question does that pattern raise?
+- Is there a visualization or technique from today's lesson that could help you investigate it?
+- What would your next step be?
+
+**Write down one concrete next step**
+
+## YRBSS
+
+### Proportionality
+
+There is a disproportionate distribution of data in many instances, especially of the YRBS data. This means that raw count is going to make it difficult to see patterns, and that proportions need to be considered instead.
+
+#### Proportional Bar Graph
+
+Let's start with a basic proportional bar graph.
+
+```{r}
+# Q75 - How many days did you eat breakfast in the past 7 days
+# Q87 - During the past 12 months how would you describe your grades in school
+
+# first stacked with position="stack" 
+
+
+# now proportional with position="fill" 
+
+
+
+# Don't forget about faceting!
+# let's add a facet_wrap() (Q2 is sex, which could work)
+
+```
+
+#### How to calculate proportions
+
+If we want to work with these variables outside of something that does all of the calculations for you we will need to calcualte the proportions ourselves. 
+
+```{r}
+# Q75 - How many days did you eat breakfast in the past 7 days
+# Q87 - During the past 12 months how would you describe your grades in school
+
+# stashing this here for myself in case I cannot conjur this up at 8am
+# yrbs_data |>
+#   drop_na(Q75, Q87) |>
+#   count(Q75, Q87) |> #calculate # in each category combo
+#   group_by(Q75) |> # group by breakfast group
+#   mutate(prop = n / sum(n))  # within each breakfast group divide number in combo category by total number in breakfast category
+  
+    
+
+# do it again with sex included as a variable
+
+
+```
+
+
+#### Proportional Heatmap
+
+```{r}
+
+# make heatmap with proportion calculations above
+    
+
+# do it again with sex
+
+
+```
+
+### Identify and describe patterns
 
 When we look at a plot, the first step is to describe what we see.
 
@@ -215,6 +233,15 @@ Questions you should be answering with your descriptive observations:
 -   What questions does it answer?
 -   What questions does it raise?
 
+## Discussion
+
+In small groups: 
+- Share one question you're investigating in your midterm project.
+- Are there groups or categories in your data that you want to compare?
+- Would comparing counts or proportions help answer your question? Why?
+- Could adding another variable reveal something interesting?
+
+**Write down one concrete next step**
 
 # Multi-panel figures with faceting or `patchwork`
 

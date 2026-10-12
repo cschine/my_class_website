@@ -99,6 +99,62 @@ Different kinds of questions are best answered by different kinds of plots.
 → Interpret what those patterns might mean
 
 *Your first plots do not need to be perfect. Exploratory plots are tools for helping us see patterns in the data.*
+
+## EJI
+
+```{r}
+#what variables should we use?
+
+# start with histogram of both variables
+
+# next scatterplot (of all data)
+
+# next redo with subset for specific state
+
+
+  
+```
+
+### Data density
+
+In a lot of cases the EJI has so much data that you actually cannot see through the cloud of points. What are some ways that we can handle this?
+
+#### Density plots
+
+We can look at data density using a variety of techniques, including setting a lower `alpha`, using `geom_density_2d`/`geom_density_2d_filled`, or using `geom_hex`.
+
+```{r}
+
+# multiple ways to view dense data with the same plot
+
+
+
+```
+
+#### Trend lines
+
+To help make a pattern clear from a cloud of data it cane be useful to add a trend line using `geom_smooth`. Look at the help documentation to understand what statistical methods are generating the trendline.
+
+```{r}
+# add trendline with geom_smooth()
+
+
+```
+
+### Creating groups from continuous data
+
+Creating groups from continuous data can be a great way to tease out patterns. While we have gone over all of the tools for doing this, you haven't been asked to put them together quite this way before. 
+
+## Discussion
+
+In your groups:
+- Share a pattern you've already noticed in your dataset.
+- What question does that pattern raise?
+- Is there a visualization or technique from today's lesson that could help you investigate it?
+- What would your next step be?
+
+**Write down one concrete next step**
+
 ## YRBSS
 
 ### Proportionality
@@ -178,69 +234,13 @@ Questions you should be answering with your descriptive observations:
 -   What questions does it answer?
 -   What questions does it raise?
 
-### Discussion
+## Discussion
 
 In small groups: 
 - Share one question you're investigating in your midterm project.
 - Are there groups or categories in your data that you want to compare?
 - Would comparing counts or proportions help answer your question? Why?
 - Could adding another variable reveal something interesting?
-
-**Write down one concrete next step**
-
-
-## EJI
-
-```{r}
-#what variables should we use?
-
-# start with histogram of both variables
-
-# next scatterplot (of all data)
-
-# next redo with subset for specific state
-
-
-  
-```
-
-### Data density
-
-In a lot of cases the EJI has so much data that you actually cannot see through the cloud of points. What are some ways that we can handle this?
-
-#### Density plots
-
-We can look at data density using a variety of techniques, including setting a lower `alpha`, using `geom_density_2d`/`geom_density_2d_filled`, or using `geom_hex`.
-
-```{r}
-
-# multiple ways to view dense data with the same plot
-
-
-
-```
-
-#### Trend lines
-
-To help make a pattern clear from a cloud of data it cane be useful to add a trend line using `geom_smooth`. Look at the help documentation to understand what statistical methods are generating the trendline.
-
-```{r}
-# add trendline with geom_smooth()
-
-
-```
-
-### Creating groups from continuous data
-
-Creating groups from continuous data can be a great way to tease out patterns. While we have gone over all of the tools for doing this, you haven't been asked to put them together quite this way before. 
-
-### Discussion
-
-In your groups:
-- Share a pattern you've already noticed in your dataset.
-- What question does that pattern raise?
-- Is there a visualization or technique from today's lesson that could help you investigate it?
-- What would your next step be?
 
 **Write down one concrete next step**
 
