@@ -16,15 +16,9 @@ editor_options:
   chunk_output_type: console
 ---
 
-# Housekeeping
+Today we are going to work through data wrangling, visualization, and pattern identification/description. We are also going to pick up some particularly useful tools for this type of data and for your report.
 
--   Midterm Report due Thursday
--   Additional Office Hours on Tuesday
--   Remember the automatic extension
-
-**form groups**
-
-Today we are going to work through data wrangling, visualization, and pattern identification/description. We are also going to pick up some particularly useful tools for this type of data and for your report. 
+***Since making these plots in class, I have gone through and done some factor recoding and cleaned up the axis labels on a few of the plots. This is to provide you with examples of how to do this with your own data. The expectation is that all of the plots in your Midterm Report will be polished according to the Visualization Guidelines in the the Assignment Description.***
 
 # Which Dataset are you using???
 
@@ -104,16 +98,67 @@ Different kinds of questions are best answered by different kinds of plots.
 
 ```{r}
 #what variables should we use?
+# E_ROAD % tract within 1-mile to road
+# E_DSLPM
+# E_ASTHMA % people in tract with asthma
+
 
 # start with histogram of both variables
 
+eji_data |>
+  ggplot(aes(x=E_ROAD)) +
+  geom_histogram() +
+  labs(x= "% of Tract Within 1 Mile of a Road") +
+  theme_tufte()
+
+eji_data |>
+  ggplot(aes(x=E_DSLPM)) +
+  geom_histogram() +
+  labs(x= "Ambient concentration of diesel particulate matter") +
+  theme_tufte()
+  
+eji_data |>
+  ggplot(aes(x=E_ASTHMA)) +
+  geom_histogram() +
+  labs(x= "% of People with Asthma") +
+  theme_tufte()
+
 # next scatterplot (of all data)
+
+eji_data |>
+  ggplot(aes(x=E_DSLPM, y=E_ASTHMA)) +
+  geom_point() +
+  theme_tufte()
+
+eji_data |>
+  ggplot(aes(y=E_DSLPM, x=E_ROAD)) +
+  geom_point() +
+  labs(x= "% of Tract Within 1 Mile of a Road",
+       y= "Ambient concentration of diesel particulate matter") +
+  theme_tufte()
 
 # next redo with subset for specific state
 
+eji_data |>
+  filter(STATE_NAME=="California") |>
+  ggplot(aes(y=E_DSLPM, x=E_ROAD)) +
+  geom_point(alpha=0.05) +
+  labs(x= "% of Tract Within 1 Mile of a Road",
+       y= "Ambient concentration of diesel particulate matter") +
+  theme_tufte()
+
+eji_data |>
+  filter(STATE_NAME=="California") |>
+  ggplot(aes(x=E_DSLPM, y=E_ASTHMA)) +
+  labs(x= "Ambient concentration of diesel particulate matter",
+       y= "% of People with Asthma") +
+  geom_point(alpha=0.05) +
+  theme_tufte() 
 
   
 ```
+
+The overall conclusion here, is that controlling point transparency is not a great way to visualize dense data as it makes places where data are sparse practically invisible, while still leaving the densest patches opaque. 
 
 ### Data density
 
@@ -127,6 +172,33 @@ We can look at data density using a variety of techniques, including setting a l
 
 # multiple ways to view dense data with the same plot
 
+# next scatterplot (of all data)
+
+eji_data |>
+  ggplot(aes(x=E_DSLPM, y=E_ASTHMA)) +
+  geom_density_2d_filled() +
+  labs(x= "Ambient concentration of diesel particulate matter (units???)",
+       y= "% of People with Asthma") +
+  theme_tufte()
+
+eji_data |>
+  ggplot(aes(y=E_DSLPM, x=E_ROAD)) +
+  geom_density_2d_filled() +
+  theme_tufte()
+
+eji_data |>
+  ggplot(aes(x=E_DSLPM, y=E_ASTHMA)) +
+  geom_hex(bins=100) +
+  scale_fill_viridis(trans="log")+
+  labs(x= "Ambient concentration of diesel particulate matter (units???)",
+       y= "% of People with Asthma") +
+  theme_tufte()
+
+eji_data |>
+  ggplot(aes(y=E_DSLPM, x=E_ROAD)) +
+  geom_hex(bins=50) +
+  scale_fill_viridis(trans="log")+
+  theme_tufte()
 
 
 ```
@@ -138,20 +210,37 @@ To help make a pattern clear from a cloud of data it cane be useful to add a tre
 ```{r}
 # add trendline with geom_smooth()
 
-
+eji_data |>
+  ggplot(aes(y=E_DSLPM, x=E_ROAD)) +
+  geom_hex(bins=50) +
+  geom_smooth(method="lm") +
+  scale_fill_viridis(trans="log") +
+  theme_tufte()
 ```
 
 ### Creating groups from continuous data
 
-Creating groups from continuous data can be a great way to tease out patterns. While we have gone over all of the tools for doing this, you haven't been asked to put them together quite this way before. 
+```{r}
+eji_data <- eji_data |>
+  mutate(road_grp = as.factor(case_when(E_ROAD <= 25 ~ "low",
+                              E_ROAD > 25 & E_ROAD < 75 ~ "mid",
+                              E_ROAD >= 75 ~ "high"))) |>
+  mutate(road_grp = fct_relevel(road_grp, c("low", "mid", "high"))) # relevel factor
+
+eji_data |>
+  drop_na(road_grp) |>
+  ggplot(aes(x=road_grp, y=E_DSLPM)) +
+  geom_boxplot() +
+  theme_tufte()
+
+```
+
+
+Creating groups from continuous data can be a great way to tease out patterns. While we have gone over all of the tools for doing this, you haven't been asked to put them together quite this way before.
 
 ## Discussion
 
-In your groups:
-- Share a pattern you've already noticed in your dataset.
-- What question does that pattern raise?
-- Is there a visualization or technique from today's lesson that could help you investigate it?
-- What would your next step be?
+In your groups: - Share a pattern you've already noticed in your dataset. - What question does that pattern raise? - Is there a visualization or technique from today's lesson that could help you investigate it? - What would your next step be?
 
 **Write down one concrete next step**
 
@@ -171,19 +260,53 @@ Let's start with a basic proportional bar graph.
 
 # first stacked with position="stack" 
 
+yrbs_data_mod <-yrbs_data |>
+  drop_na(Q75, Q87) |>
+  mutate(Q75_fac=as.factor(Q75),
+         Q87_fac=as.factor(Q87)) |>
+  mutate(Q75_fac=fct_recode(Q75_fac, "0"="1", "1"="2", "2"="3", 
+                                    "3"="4", "4"="5", "5"="6",
+                                    "6"="7", "7"="8"),
+         Q87_fac = fct_recode(Q87_fac, "A"="1", "B"="2", "C"="3",
+                              "D"="4", "F"="5", "None of these"="6",
+                              "Not sure"="7"))
+
+
+yrbs_data_mod |>
+  ggplot(aes(x=Q75_fac, fill=Q87_fac, 
+             group=Q87_fac)) +
+  geom_bar(position="stack") +
+  labs(x= "Number of days in the last week ate breakfast", 
+       fill= "Grades") +
+  theme_tufte()
 
 # now proportional with position="fill" 
-
-
+yrbs_data_mod |>
+  ggplot(aes(x=Q75_fac, fill=Q87_fac, 
+             group=Q87_fac)) +
+  geom_bar(position="fill") +
+  labs(x= "Number of days in the last week ate breakfast", 
+       fill= "Grades") +
+  theme_tufte()
 
 # Don't forget about faceting!
 # let's add a facet_wrap() (Q2 is sex, which could work)
+yrbs_data_mod |>
+  drop_na(Q75, Q87, Q2) |>
+  mutate(gender = fct_recode(as.factor(Q2), "female"="1", "male"="2")) |>
+  ggplot(aes(x=Q75_fac, fill=Q87_fac, group=Q87_fac)) +
+  geom_bar(position="fill") +
+  labs(x= "Number of days in the last week ate breakfast", 
+       fill= "Grades",
+       y= "Proportion") +
+  theme_tufte() +
+  facet_wrap(~gender)
 
 ```
 
 #### How to calculate proportions
 
-If we want to work with these variables outside of something that does all of the calculations for you we will need to calcualte the proportions ourselves. 
+If we want to work with these variables outside of something that does all of the calculations for you we will need to calcualte the proportions ourselves.
 
 ```{r}
 # Q75 - How many days did you eat breakfast in the past 7 days
@@ -195,11 +318,25 @@ If we want to work with these variables outside of something that does all of th
 #   count(Q75, Q87) |> #calculate # in each category combo
 #   group_by(Q75) |> # group by breakfast group
 #   mutate(prop = n / sum(n))  # within each breakfast group divide number in combo category by total number in breakfast category
-  
-    
+
+yrbs_data |>
+  drop_na(Q75, Q87) |>
+  count(Q75, Q87) |>
+  group_by(Q75) |>
+  mutate(prop=n/sum(n))
+```
+
+***In class we only had time to do this with 2 variables, so I've done it with a 3rd variable here:***
+
+```{r}
 
 # do it again with sex included as a variable
 
+yrbs_data |>
+  drop_na(Q75, Q87, Q2) |>
+  count(Q75, Q87, Q2) |>
+  group_by(Q75, Q2) |>
+  mutate(prop=n/sum(n))
 
 ```
 
@@ -210,11 +347,70 @@ If we want to work with these variables outside of something that does all of th
 
 # make heatmap with proportion calculations above
     
+yrbs_data |>
+  drop_na(Q75, Q87) |>
+  count(Q75, Q87) |>
+  group_by(Q75) |>
+  mutate(prop=n/sum(n)) |>
+  ggplot(aes(x=Q75, y=Q87, fill=prop)) +
+  geom_tile() +
+  scale_fill_viridis() +
+  theme_tufte()
 
 # do it again with sex
+yrbs_data |>
+  drop_na(Q75, Q87, Q2) |>
+  count(Q75, Q87, Q2) |>
+  group_by(Q75, Q2) |>
+  mutate(prop=n/sum(n)) |>
+  ggplot(aes(x=Q75, y=Q87, fill=prop)) +
+  geom_tile() +
+  scale_fill_viridis() +
+  theme_tufte() +
+  facet_wrap(~Q2)
 
 
 ```
+
+***Here is an example o the other version I was talking about, where you add a third variable as color rather than the proportion that falls within each combination category.***
+
+```{r}
+
+# we are going to add mental health
+# Q84 - During the past 30 days, how often was your mental health not good?
+
+yrbs_data |>
+  drop_na(Q75, Q87, Q84) |> # remove NAs from all Qs used in subsequent code
+  mutate(Q75_bin = case_when(Q75 ==1 | Q75 == 2 ~ "0 - 1", # bin categories of breakfast
+                             Q75 == 3 | Q75 == 4 ~ "2 - 3",
+                             Q75 == 5 | Q75 == 6 ~ "4 - 5",
+                             Q75 == 7 | Q75 == 8 ~ "6 - 7"),
+         mental_health = case_when(Q84 <= 3 ~ "Infrequent", # turn mental health into 2 categories
+                                   Q84 > 3 ~ "Frequent")) |>
+   mutate(Q87_fac=as.factor(Q87)) |>
+  mutate(Q87_fac = fct_recode(Q87_fac, "A"="1", "B"="2", "C"="3",
+                              "D"="4", "F"="5", "None of these"="6",
+                              "Not sure"="7")) |>
+  filter(Q87 <= 5) |> # filter out the meaningless categories using the numeric Q87
+  count(Q75_bin, Q87_fac, mental_health) |> # count the number of people that fall within each 3 category combo
+  group_by(Q75_bin, Q87_fac) |> # regroup by breakfast bin and grades
+  mutate(prop = n / sum(n)) |> # calculate the proportion of each mental health group relative to total number of people that fall within each Q75_bin/Q87 category combination
+  filter(mental_health == "Frequent") |> #filter for only the proportion bad mental health
+  ggplot(aes(x=as.factor(Q75_bin), 
+             y=Q87_fac,
+             fill= prop)) +
+  geom_tile() +
+  geom_text(aes(label=round(prop,2))) + #use round() to control significant digits in label
+  scale_fill_viridis() +
+   labs(x= "Number of days in the last week ate breakfast", 
+       y= "Typical Grades",
+       fill= "Proportion Poor\nMental Health") + # use \n for line break in label
+  theme_tufte()
+
+
+```
+
+My take on this figure is that number of days a student eats breakfast is a very important determinant of mental health because they have poorer mental health regardless of grades and people who eat breakfast almost every day have lower proportions of bad mental health compared with other breakfast categories. Then within each category mental health gets worse as grades get worse. However, the decline in mental health with bad grades is less pronounced with more days per week that a student has eaten breakfast. 
 
 ### Identify and describe patterns
 
@@ -236,11 +432,7 @@ Questions you should be answering with your descriptive observations:
 
 ## Discussion
 
-In small groups: 
-- Share one question you're investigating in your midterm project.
-- Are there groups or categories in your data that you want to compare?
-- Would comparing counts or proportions help answer your question? Why?
-- Could adding another variable reveal something interesting?
+In small groups: - Share one question you're investigating in your midterm project. - Are there groups or categories in your data that you want to compare? - Would comparing counts or proportions help answer your question? Why? - Could adding another variable reveal something interesting?
 
 **Write down one concrete next step**
 
@@ -249,12 +441,84 @@ In small groups:
 ```{r}
 
 # grab 2 plots from above and put into panel. 
+plot1 <- yrbs_data |>
+  drop_na(Q75, Q87) |>
+  ggplot(aes(x=as.factor(Q75), fill=as.factor(Q87), 
+             group=as.factor(Q87))) +
+  geom_bar(position="fill") +
+  theme_tufte()
+
+plot2 <- yrbs_data |>
+  drop_na(Q75, Q87) |>
+  count(Q75, Q87) |>
+  group_by(Q75) |>
+  mutate(prop=n/sum(n)) |>
+  ggplot(aes(x=Q75, y=Q87, fill=prop)) +
+  geom_tile() +
+  scale_fill_viridis() +
+  theme_tufte()
 
 # side by side
+plot1 + plot2
 
 
 # stacked 
+plot1 / plot2
 
     
 ```
 
+# Other options
+
+## Calculating polygon area
+
+The `sf` package provides a way to calculate polygin area with minimal effort
+
+```{r}
+# mutate on a new column
+# as.numeric(st_area(geom)) / 1e6) mutate on a new column 
+
+eji_data |>
+  filter(STATE_NAME=="California") |>
+  select(E_TOTPOP, geom) |>
+  mutate(area_km2 = as.numeric(st_area(geom)/1e6))
+```
+
+Let's check visually to see if it worked the way we expect it to:
+
+```{r}
+eji_data |>
+  filter(STATE_NAME=="California") |>
+  select(E_TOTPOP, geom) |>
+  mutate(area_km2 = as.numeric(st_area(geom)/1e6)) |>
+  ggplot()+
+  geom_sf(aes(fill=area_km2)) +
+  scale_fill_viridis() +
+  theme_tufte()
+
+```
+
+## Third variable
+
+Using color:
+
+```{r}
+eji_data |>
+  filter(STATE_NAME=="Oregon") |>
+  ggplot(aes(y=E_DSLPM, x=E_ROAD, color=E_ASTHMA)) +
+  geom_point() +
+  scale_color_viridis() +
+  theme_tufte()
+
+eji_data |>
+  filter(STATE_NAME=="Oregon") |>
+  ggplot(aes(y=E_DSLPM, x=road_grp, color=E_ASTHMA)) +
+  geom_boxplot() +
+  geom_jitter(alpha=0.7) +
+  scale_color_viridis() +
+  theme_tufte()
+```
+
+Using size:
+
+To use size to show a variable use the `size=variable` argument within `aes()`. Try it and see if it helps with anything. Color is usually the better choice, but sometimes not. 
