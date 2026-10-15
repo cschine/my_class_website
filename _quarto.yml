@@ -60,8 +60,12 @@ website:
         - text: "Categorical Data with factors, heatmaps, and tables (Class H)"
           href: courses/STAT118/notes/published/118_H_forcats_in_class_notes.qmd
           
-       - text: "Exploratory Data Analysis: working with dense data and proportions"
+        - text: "Exploratory Data Analysis: working with dense data and proportions"
           href: courses/STAT118/notes/published/Midterm_Class1.qmd
+          
+        - text: "Exploratory Data Analysis: percentile rank and building a narrative"
+          href: courses/STAT118/notes/published/Midterm_Class2.qmd
+          
 
 
 
