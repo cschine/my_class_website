@@ -1,0 +1,89 @@
+---
+title: "STAT 118: Homework I"
+subtitle: 'Joining tables with dplyr'
+author: "YOUR NAME HERE"
+format:
+  html: 
+    toc: true
+    code-overflow: wrap
+    code-fold: true
+    embed-resources: true
+---
+
+```{r message=FALSE, warning=FALSE}
+#LOAD PACKAGES 
+library(tidyverse)
+
+#Load gapminder data
+library(gapminder)
+data(gapminder)
+```
+
+***Please be sure to proofread your rendered document before submitting it***
+
+*In your assignments your answers need to either be written out or include output from your code chunks. Please make sure that the output from your code chunks actually shows up and shows up the way that you want it to. Answers that do not contain the information needed to answer the question will be marked incorrect.*
+
+# 0.
+Download the `co2.csv` file from Canvas. Import the dataset into this assignment in a dataframe called `co2`. 
+
+
+# 1.
+Use your brain and skills to figure out what the code below is doing. Add a sentence describing what this does. 
+
+```{r}
+country_continent <- gapminder |> 
+  select(country, continent) |>
+  distinct()
+```
+
+# 2.
+What columns do `country_continent` and `co2` have in common? (*This is your key*)
+
+
+# 3.
+What columns does `country_continent` have that `co2` doesn't? 
+
+
+# 4.
+What columns does `co2` have that `country_continent` doesn't? 
+
+
+# 5.
+Create a new table called `co2_joined`, which includes all columns from `co2` in addition to the column `continent`. To start, use `inner_join()`. Print out the first few lines of the completed table. How many rows you have in the new table and how many rows did you have in the original tables?
+
+
+# 6.
+Create a new table called `co2_joined_left`, which includes all columns from `co2` in addition to the column `continent` but this time use `left_join()` instead of `inner_join()`. Print out the first few lines of the completed table. How many rows do you have in the new table versus the original tables? Based on Questions 5 and 6, what can you tell me about the difference between an `inner_join()` and a `left_join()`?
+
+
+# 7. 
+What columns do `gapminder` and `co2` have in common? 
+
+
+# 8.
+What columns does `gapminder` have that `co2` doesn't? 
+
+
+# 9.
+What columns does `co2` have that `gapminder` doesn't? 
+
+
+# 10. 
+Create a new table called `gapminder_joined`, which includes only *complete* rows from data from both tables joined together by the varaibles that they have in common. Print out the first few lines of the completed table. How many rows you have in the new table versus the original tables?
+
+
+# 11. 
+Identify which rows (if any) in the `gapminder` dataset do NOT have a match in the `co2` dataset. 
+
+# 12. 
+Identify which rows (if any) in the `co2` dataset do NOT have a match in out `gapminder` dataset.
+
+
+# 13.
+Use `gapminder_joined` to create a scatterplot of  `gdpPercap` vs. `co2_emissions_pc` for any one year. 
+
+
+# 14. 
+Did you use AI to help you with this assignment. If so, what did you use, how did you use it, and how do you think it impacted your learning (either positively or negatively)? 
+
+
