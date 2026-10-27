@@ -11,7 +11,6 @@ format:
       toggle: false
       caption: none
     code-annotations: hover
-  pdf: default
 execute: 
   message: FALSE
   warning: FALSE
@@ -62,6 +61,8 @@ The variable `carrier` in `flights` match the variable `carrier` in the `airline
 
 # use distinct() to look at all of the carriers
 
+flights |>
+  distinct(carrier)
 
 ```
 
@@ -78,12 +79,18 @@ There are several different kinds of joins. Which one you choose will depend on 
 # ?join to look at the help documentation
 # what variable can we use to join these two datasets?
 
+#carrier
+
 # new syntax, by=join_by(column_name), column_name does not go in quotes
+
+flights_joined <- flights |>
+  left_join(airlines, by=join_by(carrier))
 
 
 # check join using filter(is.na()) to check for the introduction of NAs by a bad join
 
-
+flights_joined |>
+  filter(is.na(name))
 
 ```
 
@@ -105,12 +112,16 @@ In `airports` the airport code is in `faa`, whereas in `flights` the airport cod
 # reminder: by=join_by(dest==faa)
 # rename new variable to destination name using rename(new_name=old_name)
 
-
-
-
+flights_joined_airport <- flights_joined |>
+  left_join(airports, by=join_by(dest==faa)) |>
+  rename(carrier_name=name.x, destination_airport=name.y)
+  
 
 # check the join
 # use filter(is.na()) to check for the introduction of NAs by a bad join
+
+flights_joined_airport |>
+  filter(is.na(destination_airport))
 
 ```
 
@@ -121,6 +132,14 @@ In groups, construct the chain of pipe operators \|\> that computes the number o
 ```{r}
 # In groups!!!
 
+dest_summary <- flights |>
+  count(dest) |>
+  left_join(airports, by=join_by(dest==faa))
+
+dest_summary_summarize <- flights |>
+  group_by(dest) |>
+  summarize(count=n()) |>
+  left_join(airports, by=join_by(dest==faa))
 
 ```
 
@@ -131,7 +150,12 @@ library(kableExtra)
 
 # hint: slice() will not work with a grouped dataset, you need to ungroup() it first
 
-
+dest_summary |>
+  arrange(desc(n)) |>
+  slice(1:5) |>
+  select(`Airport Name`=name, airport_code=dest, count=n) |>
+  kbl() |>
+  kable_styling()
 
 ```
 
@@ -149,9 +173,23 @@ data("weather")
 
 # what is in weather data???
 
-
 # what are the matching variables in flights that we need???
+#time_hour
+#origin
 
+# join with left_join()
+
+flights_weather_joined <- flights |>
+  left_join(weather, by=join_by(time_hour, origin)) 
+  
+flights_weather_joined |>
+  filter(is.na(precip))
+
+flights_weather_joined <- flights |>
+  left_join(weather, by=join_by(time_hour, origin, year, month, day, hour)) 
+
+flights_weather_joined |>
+  filter(is.na(precip))
 
 ```
 
@@ -161,7 +199,8 @@ In groups, join the `weather` data to the `flights` data with an `inner_join()`.
 
 ```{r}
 
-
+flights_weather_inner_join <- flights |>
+  inner_join(weather, by=join_by(time_hour, origin, year, month, day, hour)) 
 
 ```
 
@@ -172,6 +211,11 @@ What is the difference between the result with a `left_join()` and an `inner_joi
 # We can use anti_join() to look specifically at the unmatched rows
 # this will tell us which rows in flight do not have matching weather data
 
+flights_weather_anti_join <- flights |>
+  anti_join(weather, by=join_by(time_hour, origin, year, month, day, hour)) 
+
+flights_weather_anti_join |>
+  distinct(origin, year, month, day)
 
 ```
 
@@ -186,6 +230,11 @@ library(ggthemes)
 # make bar plot (using geom_bar) with y as carrier and fill as origin
 # use original flights dataset
 
+flights |>
+  ggplot(aes(y=carrier, fill=origin)) +
+  geom_bar() +
+  theme_tufte()
+
 
 
 ```
@@ -197,11 +246,44 @@ Now make the same figure as above, but use joining to replace the origin airport
 *Hint: if doing it all at once seems overwhelming do it one piece at a time and then put all of the pieces together. First, do the airports join. Then do the airlines join. And then put them together.*
 
 ```{r}
-
+library(wesanderson)
 # now do the same thing but join the airports and airlines datasets to the flights dataset
 # you should do these joins one at a time
 
+flights |>
+  left_join(airlines, by=join_by(carrier)) |> #join airline data
+  rename(carrier_name=name) |> # change name to carrier_name
+  left_join(airports, by=join_by(origin==faa)) |> # join airport data
+  rename(airport_name=name) |> # change name to airport_name
+  ggplot(aes(y=carrier_name, fill=airport_name)) +
+  geom_bar() +
+  scale_fill_manual(values=wes_palette("FantasticFox1")) + #make the fill colors better
+  labs(fill="Departure\nAirport", #use the \n to break the legend title onto two rows
+       y="Airline",
+       x="Number of Flights") +
+  theme_tufte() +
+  theme(legend.position = "bottom") #move the legend to the bottom of the plot
 
+```
+
+After looking at the plot that we did in class, I decided that it was not helpful. I am more interested in how many flights different airlines have going out of each airport. I don't think the stacked bars does a good job making this comparison. In order to make this comparison more easily, I wanted to plot the flight number each airport next to each other. So I remade the plot with `facet_wrap(~airport_name)` to get individual plots for each departure airport.
+
+```{r}
+
+flights |>
+  left_join(airlines, by=join_by(carrier)) |> #join airline data
+  rename(carrier_name=name) |> # change name to carrier_name
+  left_join(airports, by=join_by(origin==faa)) |> # join airport data
+  rename(airport_name=name) |> # change name to airport_name
+  ggplot(aes(y=carrier_name, fill=airport_name)) +
+  geom_bar() +
+  scale_fill_manual(values=wes_palette("FantasticFox1")) +
+  labs(fill="Departure\nAirport", 
+       y="Airline",
+       x="Number of Flights") +
+  facet_wrap(~ airport_name) +
+  theme_tufte() +
+  theme(legend.position = "none") # suppress legend entirely 
 
 ```
 
@@ -213,11 +295,37 @@ library(viridis)
 
 # look at the relationship between temp and dep_delay in the flights and weather joined dataset (filter for dep_delay > 0)
 
+flights_weather_inner_join |>
+  filter(dep_delay > 0) |>
+  ggplot(aes(x=temp, y=dep_delay)) +
+  geom_point(alpha=0.2) +
+  theme_tufte()
+```
 
+To bet a better look at data density in this plot, we can view it using `geom_hex()` which shows the number of points that fall within each hexagon. This allows us to see the regions where we have tons of points plotting on top of each other.  
+```{r}
 
-# add color by another variable
-
+flights_weather_inner_join |>
+  filter(dep_delay > 0) |>
+  ggplot(aes(x=temp, y=dep_delay)) +
+  geom_hex(bins=50) +
+  scale_fill_viridis() +
+  theme_tufte()
 
 ```
 
+Let's go back to the scatter plot and add another variable by color. 
+
+```{r}
+
+# add color by another variable
+
+flights_weather_inner_join |>
+  filter(dep_delay > 0) |>
+  ggplot(aes(x=temp, y=dep_delay, color=pressure)) +
+  geom_point(alpha=0.2) +
+  scale_color_viridis() +
+  theme_tufte() 
+
+```
 
