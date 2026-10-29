@@ -14,7 +14,12 @@ format:
 execute: 
   message: FALSE
   warning: FALSE
+editor_options: 
+  chunk_output_type: console
 ---
+
+# Housekeeping
+- FFF presentation at Friday 1:15 Axinn 232
 
 The goal of `tidyr` is to help you create tidy data.
 

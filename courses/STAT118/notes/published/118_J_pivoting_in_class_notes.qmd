@@ -2,8 +2,8 @@
 title: 'reshaping data with `tidyr`'
 author: 'Casey Schine adapted from Emily Malcolm-White'
 format:
-  html: 
-    toc: TRUE
+  html:
+    toc: true
     code-overflow: wrap
     embed-resources: true
     code-tools:
@@ -11,10 +11,15 @@ format:
       toggle: false
       caption: none
     code-annotations: hover
-execute: 
-  message: FALSE
-  warning: FALSE
+execute:
+  message: false
+  warning: false
+editor_options:
+  chunk_output_type: console
 ---
+
+# Housekeeping
+- FFF presentation at Friday 1:15 Axinn 232
 
 The goal of `tidyr` is to help you create tidy data.
 
@@ -27,6 +32,7 @@ The Portal Project dataset comes from a long-term ecological study that began in
 ```{r}
 #LOAD PACKAGES
 library(tidyverse)
+library(ggthemes)
 
 #LOAD DATA
 portal_rodent <- read.csv("https://github.com/weecology/PortalData/raw/main/Rodents/Portal_rodent.csv")
@@ -59,6 +65,8 @@ Practicing transforming this data from long to wide format:
 
 # pivot the summary dataset wider and save to a new object
 
+portal_summary_wide <- portal_wgt_summary |>
+  pivot_wider(names_from=species, values_from=mean_wgt)
 
 
 ```
@@ -74,15 +82,24 @@ Practicing transforming this data from long to wide format:
 # calculate difference between species abundance across plots 
 # calc diff between OL and PB
 
-
+portal_summary_wide_mod <- portal_summary_wide |>
+  mutate(OL_PB_diff=OL-PB)
+  
 
 # plot the diff across plots using geom_col()
-
+portal_summary_wide_mod |>
+  ggplot(aes(x=plot, y=OL_PB_diff)) +
+  geom_col() +
+  theme_tufte()
 
 
 # plot both OL and PB without reshaping the data again
 
-
+portal_summary_wide_mod |>
+  ggplot() +
+  geom_line(aes(x=plot, y=OL), color="red") +
+  geom_line(aes(x=plot, y=PB), color="blue") +
+  theme_tufte()
 
 ```
 
@@ -103,6 +120,10 @@ Practicing transforming this data from wide to long format:
 # ?pivot_longer
 
 # might need to remake wide portal dataset
+portal_summary_long <- portal_summary_wide |>
+  pivot_longer(cols=2:28,
+               names_to="species",
+               values_to="mean_wgt")
 
 
 # names_to="column_name", this is where you assign the new longer column a name, where each row is the text from the wide columns
@@ -110,12 +131,10 @@ Practicing transforming this data from wide to long format:
 
 # use column names, cols=start_col:end_col
 
-  
-
-
-
-# same thing but use column numbers
-
+portal_summary_long <- portal_summary_wide |>
+  pivot_longer(cols=BA:SX,
+               names_to="species",
+               values_to="mean_wgt")
 
 
 
@@ -140,11 +159,17 @@ You can pivot the dataset wider with either each species getting a single column
 
 # pivot example_data wider
 
-
+example_data |>
+  pivot_wider(names_from=month,
+              values_from=avg_weight)
 
 
 # fill missing value with values_fill by setting values_fill=number
 
+example_data |>
+  pivot_wider(names_from=month,
+              values_from=avg_weight,
+              values_fill=-999)
 
 ```
 
@@ -165,16 +190,27 @@ example_data
 ```{r}
 
 # pivot new example_data wider
-
+example_data |>
+  pivot_wider(names_from=month,
+              values_from=avg_weight)
 
 #look at the result and warning message
 
 # now use values_fn to tell R how to handle duplicates (this is suggested in the warning)
 
 # with values_fn = mean
+example_data |>
+  pivot_wider(names_from=month,
+              values_from=avg_weight,
+              values_fn=mean)
 
 
 # with values_fn = max
+
+example_data |>
+  pivot_wider(names_from=month,
+              values_from=avg_weight,
+              values_fn=max)
 
 
 ```
@@ -196,9 +232,18 @@ example_data
 
 # basic pivot_longer of new example_data
 
+example_data |>
+  pivot_longer(cols=2:3,
+               names_to="sex",
+               values_to="weight")
+
 
 # basic pivot identifying columns using starts_with("prefixstring")
 
+example_data |>
+  pivot_longer(cols=starts_with("weight"),
+               names_to="sex",
+               values_to="weight")
 
 
 ```
@@ -207,7 +252,11 @@ example_data
 
 # pivot_longer but set names_prefix="matching_prefix_text"
 
-
+example_data |>
+  pivot_longer(cols=starts_with("weight"),
+               names_to="sex",
+               values_to="weight",
+               names_prefix="weight_")
 
 ```
 
@@ -222,11 +271,14 @@ Divide column names as part of pivot:
 # use names_to = names_to = c(".value", "sex") to tell R what to do with the two parts of the separated name
 # ".value" tells R to take that part of the name and use it to name the columns where it is placing the values
 
-
+example_data |>
+  pivot_longer(cols=starts_with("weight"),
+               names_sep="_",
+               names_to=c(".value", "sex"))
 
 
 # What if the name is in a different order, sex first and then weight
-example <- tibble(species_id = c("DM", "DO"),
+example_data <- tibble(species_id = c("DM", "DO"),
                   male_weight = c(40, 32),
                   female_weight = c(38, 31))
 
@@ -235,13 +287,18 @@ example_data
 # change the order of names_to = c("sex", ".value")
 
 
+example_data |>
+  pivot_longer(cols=ends_with("weight"),
+               names_sep="_",
+               names_to=c("sex", ".value"))
+
 ```
 
 This way of naming columns by parsing the names of the variables really comes in handy when you have more than one variable.
 
 ```{r}
 
-example <- tibble(species_id = c("DM", "DO"),
+example_data <- tibble(species_id = c("DM", "DO"),
                   male_weight = c(40, 32),
                   female_weight = c(38, 31),
                   male_length = c(25, 28),
@@ -249,6 +306,11 @@ example <- tibble(species_id = c("DM", "DO"),
 
 # pivot_longer for the new example
 # specify columns by number
+
+example_data |> 
+  pivot_longer(cols=2:5,
+               names_sep="_",
+               names_to=c("sex", ".value"))
 
 
 ```
@@ -258,7 +320,17 @@ example <- tibble(species_id = c("DM", "DO"),
 Reshape the rodents data frame with year as columns, plot as rows, and the number of species per plot as the values. You will need to summarize before reshaping, and use the function `n_distinct()` to get the number of unique species within a particular chunk of data. It’s a powerful function! See `?n_distinct` for more.
 
 ```{r}
+# first make the dataset that you  are going to pivot
+portal_rodent |>
+  select(species, year, plot) |>
+  group_by(plot, year) |>
+  summarize(spp_num=n_distinct(species)) 
 
-
+# now add the code to pivot the data
+portal_rodent |>
+  select(species, year, plot) |>
+  group_by(plot, year) |>
+  summarize(spp_num=n_distinct(species)) |>
+  pivot_wider(names_from=year, values_from=spp_num)
 
 ```

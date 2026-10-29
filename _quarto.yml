@@ -66,8 +66,11 @@ website:
         - text: "Exploratory Data Analysis: percentile rank and building a narrative"
           href: courses/STAT118/notes/published/Midterm_Class2.qmd
          
-        - text: "Joining data sets with `dplyr` (Class I)"
-          href: courses/STAT118/notes/published/118_I_joinining_in_class_notes.qmd  
+        - text: "Joining datasets with `dplyr` (Class I)"
+          href: courses/STAT118/notes/published/118_I_joining_in_class_notes.qmd  
+          
+        - text: "Pivoting datasets `tidyr` (Class J)"
+          href: courses/STAT118/notes/published/118_J_pivoting_in_class_notes.qmd  
 
 
 

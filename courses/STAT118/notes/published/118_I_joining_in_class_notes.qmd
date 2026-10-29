@@ -11,7 +11,7 @@ format:
       toggle: false
       caption: none
     code-annotations: hover
- execute: 
+execute: 
   message: FALSE
   warning: FALSE
 editor_options: 
