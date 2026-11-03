@@ -1,0 +1,104 @@
+---
+title: "STAT 118: Homework"
+subtitle: "Working with text with `stringr`"
+author: "YOUR NAME HERE"
+format:
+  html: 
+    toc: true
+    code-overflow: wrap
+    code-fold: true
+    embed-resources: true
+---
+
+```{r}
+#LOAD PACKAGES 
+library(tidyverse)
+
+#LOAD DATA
+courses <- read_csv("~/Dropbox/!Middlebury/Teaching/my_class_website/courses/STAT118/homework/solutions/courses_S26-2.csv")
+
+# code to clean your data a bit for you
+courses <- courses |>
+  mutate(isCW = str_extract(distros, "CW")) |>
+  mutate(distros = str_remove(distros, "CW"))
+```
+
+# 1.
+Create new column called `isDED` which indicates courses which have "DED" listed inside the `distros` column. 
+
+
+
+# 2.
+
+Create a new column(s) called `courseDEPT` and `courseCODE` and `courseSECT` which seperate the the department course identifier (ie. STAT0118B-S26) into three separate pieces (ie. STAT, 0118, and B). 
+
+
+
+# 3.
+
+How many classes will be offered in Spring 2026 which satisfy the DED requirements? (Classes with multiple sections will contribute several classes to the count).
+
+
+
+
+# 4.
+How many *unique* classes will be offered in Spring 2026 which satisfy the DED requirements? (Classes with multiple sections will only count as one class).
+
+
+
+
+# 5.
+Suppose you are interested in taking a class which satisfies one of the cultures and civilization requirement (SOA, NOA, MDE, SAF, EUR, or AMR). Which classes will be offered in Spring 2026 which satisfy at least one cultures and civilization tag?
+
+
+
+
+# 6.
+A "unicorn class" is defined as a course which is able to satisfy three different distribution requirements -- a college writing class, an academic distribution requirement, and a regional requirement. Create a list of all the unicorn classes offered in Spring 2026.
+
+
+
+# 7.
+Suppose you are interested in taking a class that meets on Wednesday nights (and only Wednesday nights). Are there any classes offered in Spring 2026 that meet this criteria? 
+
+
+
+# 8.
+How many unique courses offer one section? How many offer two sections, three sections, etc.? Create a table showing the number of courses offered with each number of sections.
+
+
+
+
+# 9.
+Which class(es) offer(s) the most number of sections? 
+
+
+
+
+
+# 10. Revisiting your joining homework
+
+Import the `co2.csv` dataset from your joining homework into this assignment in a dataframe called `co2`. 
+ 
+ Load the gapminder data:
+```{r}
+#Load gapminder data
+library(gapminder)
+data(gapminder)
+```
+ 
+When we joined these datasets in our previous homework, some countries did not match because they had different names in the two datasets. 
+
+**a.** Identify the countries in the `co2` dataset that have different names in the `gapminder` dataset. Remember that `anti_join()` can help you identify observations that don't have a match. Print a list of the unmatched country names and identify which ones you think are present in both datasets under different names. *Hint: you identified the missing countries in question 11 of your joining homework.*
+
+**b.** Use `str_replace()` to change the mismatched country names in the `co2` dataset to match the names used in `gapminder`. Save the result as `co2_clean`. Create a `kable` table showing the original and corrected country names side by side so we can see what you changed.
+
+**c.** Join `co2_clean` with `gapminder`, keeping only observations with matching country and year values. Save the result as `gapminder_joined` and print the first few rows of your new dataset.
+ 
+**d.** Compare your new `gapminder_joined` dataset with the joined dataset you created in your joining homework. How many additional observations were you able to match by correcting the country names?
+
+
+
+
+
+
