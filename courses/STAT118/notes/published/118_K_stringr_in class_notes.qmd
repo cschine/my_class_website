@@ -14,6 +14,8 @@ editor_options:
 #LOAD PACKAGES 
 library(tidyverse)
 library(stringr)
+library(ggthemes)
+
 ```
 
 ## A few basics
@@ -76,10 +78,11 @@ little example:
 
 #find the pattern "data" 
 
+str_detect("Welcome to data science, look at this cool data", "data")
+
 
 # find the pattern "pineapple" 
-
-
+str_detect("Welcome to data science, look at this cool data", "pineapple")
 ```
 
 
@@ -90,12 +93,20 @@ I only want to take classes in Warner! Let's filter for rows where we **detect**
 # use str_detect() inside filter(), on the location column
 # save as new object to take a closer look
 
+warner_courses <- courses |>
+  filter(str_detect(location, "WNS"))
 
+warner_courses
 
 # look at what str_detect actually outputs in column
 # mutate on a new column using str_detect()
 # save as new object again
 
+warner_courses <- courses |>
+  mutate(warner_class = str_detect(location, "WNS")) |>
+  select(titles, department, location, warner_class)
+
+warner_courses
 
 ```
 
@@ -106,18 +117,29 @@ Suppose I don't want any classes on Friday. Let's use `str_detect` to find our o
 # using !str_detect() 
 # filter them out based on the meet column
 
+nofriday_classes <- courses |>
+  filter(!str_detect(meet, "Friday")) |>
+  select(titles, department, time, location, meet)
 
+nofriday_classes
 
 # we can do the same thing using the negate argument in str_detect
 # by setting negate=TRUE inside of str_detect()
 
+nofriday_classes <- courses |>
+  filter(str_detect(meet, "Friday", negate=TRUE)) |>
+  select(titles, department, time, location, meet)
 
+nofriday_classes
 
 # Do with lowercase friday
 # this doesn't work because the string is not an exact match due to difference in case
 
+nofriday_classes <- courses |>
+  filter(str_detect(meet, "friday", negate=TRUE)) |>
+  select(titles, department, time, location, meet)
 
-
+nofriday_classes
 ```
 
 Perhaps I'm interested in immigration. We can use `str_detect` to find course descriptions that mention immigration.
@@ -130,8 +152,13 @@ For now, we will only use regex to ignore capitalization. If you're interested i
 # filter for class descriptions that contain the pattern "immigration" using str_detect() on the description column
 # use regex to ignore upper versus lower case as: regex("immigration", ignore_case=TRUE)
 
+immigration_courses <- courses |>
+  filter(str_detect(description, regex("immigration", ignore_case=TRUE))|
+           str_detect(titles, regex("immigration", ignore_case=TRUE))) |>
+  select(titles, department, time, description)
 
-
+immigration_courses
+  
 ```
 
 ## `str_extract` and `str_remove`
@@ -158,12 +185,18 @@ little example:
 
 # str_extract() extracts first instance
 
+str_extract("Welcome to data science, look at this cool data", "data")
+
 # str_extract_all() extracts all instances
+
+str_extract_all("Welcome to data science, look at this cool data", "data")
 
 # str_remove() removes first instance
 
-# str_remove_all() removes all instances
+str_remove("Welcome to data science, look at this cool data", "data")
 
+# str_remove_all() removes all instances
+str_remove_all("Welcome to data science, look at this cool data", "data")
 ```
 
 CW is part of the distribution requirement column. I want CW to be its own column. First we can create a new column called `isCW` by **extracting** instances of "CW" from the `distros` column in each row. Then we can **remove** all instances of "CW" from the `distros` column.
@@ -173,12 +206,24 @@ CW is part of the distribution requirement column. I want CW to be its own colum
 # make new column that states whether a course is CW or not
 # use str_extract on the distros column for the pattern "CW"
 
+CW_courses <- courses |>
+  mutate(isCW = str_extract(distros, "CW")) |>
+  select(titles, department, distros, location, isCW)
 
+CW_courses
 
 # now make a new column for distros and remove CW using str_remove()
 
-  
+CW_courses <- CW_courses |>
+  mutate(distros=str_remove(distros, "CW")) |>
+  select(titles, department, distros, location, isCW)
+
+CW_courses
+
 # count the number of CW courses
+
+CW_courses |>
+  count(isCW)
 
 
 ```
@@ -198,15 +243,19 @@ little example:
 ```{r}
 
 #extract the pieces of a string using str_sub() function
-# extract the substring data science
+# extract the substring "data science"
 # from the sentence "Welcome to data science, look at this cool data"
 # need to define the position of the start character and the end character by their position in the string
 
-
+str_sub("Welcome to data science, look at this cool data",
+        start=12, end=23)
 
 
 # move the start and end to extract a different string
 # the default end is the end of the string
+
+str_sub("Welcome to data science, look at this cool data",
+        start=26)
 
 ```
 
@@ -217,17 +266,33 @@ We can then filter our `level` column for specific course levels.
 
 ```{r}
 # first let's get all of the exact department names
+courses |>
+  distinct(department) |>
+  filter(str_detect(department, "Math"))
 
 
 # filter for only math/stats classes using str_detect()
 # mutate on a column called level that extracts the 6th character from courseNum column
 # filter for only level==2
 
+math_courses_200 <- courses |>
+  filter(department=="Mathematics & Statistics") |>
+  mutate(level=str_sub(courseNum, start=6, end=6)) |>
+  filter(level==2) |>
+  select(titles, department, courseNum, level)
+
+
+math_courses_200
 
 # filter for 200 level classes without mutating first
 # use str_sub() inside of filter
 
+math_courses_200 <- courses |>
+  filter(department=="Mathematics & Statistics") |>
+  filter((str_sub(courseNum, start=6, end=6))==2) |>
+  select(titles, department, courseNum)
 
+math_courses_200
 
 ```
 
@@ -246,9 +311,13 @@ str_replace output: A string with the first matching pattern replaced.
 # in the phrase "Welcome to data science, look at this cool data"
 # replace the first instance of "data" with "statistics" using str_replace()
 
+str_replace("Welcome to data science, look at this cool data",
+            "data", "pineapple")
+
 
 # replace ALL instances of "data" using str_replace_all
-
+str_replace_all("Welcome to data science, look at this cool data",
+            "data", "pineapple")
 
 ```
 
@@ -262,6 +331,8 @@ Let's look at the locations in our course catalog.
 
 ```{r}
 
+courses |>
+  distinct(location)
 
 ```
 
@@ -272,9 +343,19 @@ We know that `WNS` refers to Warner. Suppose we want to replace that abbreviatio
 # use str_replace_all() to replace "WNS" with "Warner" in the location column
 # inside of a mutate()
 
+warner_courses <- courses |>
+  mutate(location=str_replace(location, "WNS", "Warner")) |>
+  select(titles, department, location)
+
+warner_courses
 
 # check the results
 
+warner_courses <- warner_courses |>
+  filter(str_detect(location, "Warner")) 
+  
+  
+warner_courses
 
 ```
 
@@ -283,7 +364,12 @@ We can also replace abbreviations without overwriting the original column.
 ```{r}
 # same thing but save it to a new column
 
+warner_courses <- courses |>
+  mutate(location_long=str_replace(location, "WNS", "Warner")) |>
+  filter(str_detect(location_long, "Warner")) |>
+  select(titles, department, location, location_long)
 
+warner_courses
 
 ```
 
@@ -315,7 +401,9 @@ example_courses
 # define the delimeter using delim = ""
 # define the names of the new columns using names=c("new_name1", new_name2")
 
-
+example_courses |>
+separate_wider_delim(course, delim="_",
+                     names=c("dept", "coursenum"))
 
 ```
 
@@ -325,8 +413,10 @@ What happens if we want to keep the original column?
 
 ```{r}
 # Do the same thing, but set cols_remove=FALSE to keep the original column
-
-
+example_courses |>
+separate_wider_delim(course, delim="_",
+                     names=c("dept", "coursenum"),
+                     cols_remove=FALSE)
 ```
 
 #### Let's try it with our courses
@@ -335,20 +425,18 @@ Before separating a column, we need to understand how the information is organiz
 
 Let's look at the `time` column.
 
-```{r}
-
-
-```
-
 Each course is given a start time and an end time. We can separate these into 2 different columns.
 
 ```{r}
-# use separate_wider_delim() to separate the start and end times of each class into different columns
-# save to a new object so that we can look at it
 
+course_times <- courses |>
+  separate_wider_delim(time, "-",
+                       names=c("start_time", "end_time"),
+                       cols_remove=FALSE) |>
+  select(titles, department, location, start_time, end_time, time)
 
+course_times
 ```
-
 
 `separate_wider_delim()` works best when the text follows a consistent pattern. Before separating a column, we should inspect its values to make sure our delimiter will work as expected.
 
@@ -368,8 +456,11 @@ little example:
 # count the instance of the word "data" in the sentence "Welcome to data science, look at this cool data"
 # using str_count()
 
+str_count("Welcome to data science, look at this cool data", "data")
 
 # count the word "look"
+
+str_count("Welcome to data science, look at this cool data", "look")
 
 ```
 
@@ -379,17 +470,23 @@ Maybe I only want my classes to meet twice a week. Let's **count** how many time
 
 # mutate on a column called day_count using str_count() for the meet column, looking for instances of the string "day"
 
-# save day_count as a column 
+daycount_courses <- courses |>
+  mutate(day_count=str_count(meet, "day")) |>
+  select(titles, department, location, meet, day_count)
 
-
+daycount_courses
 
 # now extract what is the max number of days a class meets
 
+daycount_courses |>
+  count(day_count)
 
 
 # which courses meet 6 days a week
 
-
+daycount_courses |>
+  filter(day_count==6) |>
+  select(titles, department)
 
 ```
 
@@ -399,7 +496,11 @@ Let's visualize this data.
 # make a bar plot of day_count with x=day_count 
 # geom_bar() just handles this because it's default is to count the number of instances in each group (in this case, what we have put on the x-axis)
 
-  
+daycount_courses |>
+  ggplot(aes(x=day_count)) +
+  geom_bar() +
+  theme_tufte()
+
 ```
 
 ## `word`
@@ -410,10 +511,13 @@ Allows you to select words from a string. The function assumes as a default that
 # let's look at the help docs
 #?word
 
-# extract word 3
-
-
 # mutate new column called building with just the first word from location
+
+course_building <- courses |>
+  mutate(building = word(location, 1)) |>
+  select(titles, department, location, building)
+
+course_building
 
 
 ```
@@ -427,11 +531,25 @@ Let's make a plot using some of the columns we've just made:
 # we do this by counting the number of spaces and then adding 1
 # use str_count() with  pattern=" " to count spaces
 
+course_desc <- courses |>
+  mutate(word_count= str_count(description, " ") + 1) |>
+  select(titles, department, word_count, description)
+
+course_desc
 
 # make a histogram of the results
 
+course_desc |>
+  ggplot(aes(x=word_count)) +
+  geom_histogram() +
+  theme_tufte()
+```
 
+Let's make a figure to visualize word count in course descriptions by department to see which departments have the longest and which have the shortest course descriptions.
 
+I'm going to make a ridgeline plot using the `ggridges` package. This can be a fun way to visualize a shifting data distribution based on category. 
+
+```{r}
 # Now I'm wondering which courses have the longest descriptions
 
 
@@ -442,25 +560,18 @@ library(ggridges)
 # use fct_lump_min() to lump departments with less than 10 instances
 # fct_reorder(,.fun=max) to reorder 
 
-
-
-
-
-```
-
-## In groups
-
-Make a bar plot with the number of classes that meet in each building. Put the building name on the y-axis and the number of classes that meet there on the x-axis. Put the y-axis in order from the building with the most classes to the building with the least classes. It doesn't have to be perfect. With more time and for a more polished plot there are things you would do to clean it up. This is about combining some of the tools you just learned with some that you learned throughout the semester.
-
-```{r}
-# mutate column called building with first 2 words from location 
-
+course_desc |>
+  filter(word_count > 0) |> #remove any instances where course description is absent
+  mutate(dept_factor = factor(department), #turn department into a factor
+         dept_factor = fct_lump_min(dept_factor, 10), #lump together departments with fewer than 10 courses
+         dept_factor = fct_reorder(dept_factor, word_count, .fun="median")) |> # reorder factor by median word count
+  ggplot(aes(x=word_count, y=dept_factor, fill=dept_factor)) +
+  geom_density_ridges() +
+  labs(x="Course Description Word Count",
+       y="Department") +
+  theme_tufte() +
+  theme(legend.position="none") # suppress legend
 
 ```
 
-```{r}
-# make bar plot of the number of classes by building 
 
-
-
-```

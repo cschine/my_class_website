@@ -70,7 +70,10 @@ website:
           href: courses/STAT118/notes/published/118_I_joining_in_class_notes.qmd  
           
         - text: "Pivoting datasets `tidyr` (Class J)"
-          href: courses/STAT118/notes/published/118_J_pivoting_in_class_notes.qmd  
+          href: courses/STAT118/notes/published/118_J_pivoting_in_class_notes.qmd 
+          
+        - text: "Working with strings `stringr` (Class K)"
+          href: courses/STAT118/notes/published/118_K_stringr_in_class_notes.qmd 
 
 
 
