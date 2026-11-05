@@ -1,0 +1,82 @@
+---
+title: "STAT 118: Homework R"
+subtitle: 'Lubridate'
+author: "YOUR NAME HERE"
+format:
+  html: 
+    toc: true
+    code-overflow: wrap
+    code-fold: true
+    embed-resources: true
+---
+
+```{r message=FALSE, warning=FALSE}
+#LOAD PACKAGES 
+library(tidyverse)
+library(lubridate)
+
+#LOAD DATA
+library(nycflights23)
+data("flights")
+
+```
+
+
+1. Constructing dates
+
+The flights dataset contains separate columns for year, month, and day. First, use `make_date()` to create a new column called date containing the date of each flight. Print out the first few rows of your new dataset. 
+
+Then, use `min()` and `max()` to determine the earliest and latest dates in the dataset. Print the results.
+
+
+
+# 2. Constructing datetimes
+Create a new column in the flights dataset called  `sched_departure_datetime` which displays the scheduled departure datetime (for example, 2013-01-01 05:15:00). Print out the first few rows of the new dataset to show your work. *Hint: look carefully at the columns to find what you need.*
+
+
+
+
+
+# 3. Extracting date components
+Create two new columns. The first column is `weekday`, which contains the name of the day of the week on which each flight was scheduled to depart. The second column is `month_name`, which contains the name of the month in which each flight was scheduled to depart. Print the first few rows of the dataset and be sure to show the columns `date`, `weekday`, and `month_name`.
+
+
+
+
+# 4. Seasonal patterns in flight delays
+
+Do flight delays vary throughout the year? Calculate the average departure delay for each month of the year. Exclude missing delay values (where delay is NA) from the calculation. Create a line plot showing average departure delay by month. Your plot should include appropriate axis labels, a title, and a non-default theme. Which month has the highest average departure delay? Which has the lowest?
+
+
+
+
+# 5. Daily patterns in flight delays
+
+Do delays vary depending on the day of the week? Calculate the average departure delay for each weekday. Create a bar plot showing the average departure delay for each day of the week. Which weekday has the highest average delay? How large is the difference between the highest and lowest weekday averages?
+
+
+
+
+
+# 6. Aggregating observations over time
+
+So far, we've grouped observations by month of the year. Now let's group by week instead. Use `floor_date()` to create a new column called `week_date` that rounds each flight date down to the beginning of its week. Calculate the average departure delay for each week. Create a line plot showing how average departure delay changes throughout the year. Compare this plot with your monthly plot from question 4. What patterns are easier to see at each temporal resolution?
+
+
+
+
+# 7. Filtering dates
+
+Let's investigate a particular period of the year more closely. Filter the dataset to include only flights scheduled between June 1 and August 31, 2023. Calculate the average departure delay for each day during this period. Identify the date with the highest average departure delay during this period. How many flights with recorded departure delays occurred on that date?
+
+
+
+
+# 8. Putting it together: A heatmap of flight delays
+
+Let's combine two temporal variables to investigate how flight delays vary across the week and throughout the year. Calculate the average departure delay for each combination of month and weekday. Create a heatmap using `geom_tile()` with month on one axis, weekday on the other, and average departure delay represented by fill color. Apply a non-default theme and a custom continuous color scale. Include appropriate labels and a title. Identify one interesting pattern in your heatmap and explain what it tells you about flight delays.
+
+
+
+
+

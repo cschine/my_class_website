@@ -1,0 +1,398 @@
+---
+title: 'Working with dates using `lubridate`'
+author: 'Casey Schine adapted from Emily Malcolm-White'
+format:
+  html: 
+    toc: TRUE
+    code-overflow: wrap
+    embed-resources: true
+    code-tools:
+      source: true
+      toggle: false
+      caption: none
+    code-annotations: hover
+  pdf: default
+execute: 
+  message: FALSE
+  warning: FALSE
+editor_options: 
+  chunk_output_type: console
+---
+
+# Housekeeping
+
+- canceling office hours on Friday. Pushing due date on homework to Monday and will have office hours on Monday from 2:30-4:00
+
+
+
+Dates and times are everywhere in data: timestamps on social media posts, transaction dates in sales records, birthdates in survey data. But unlike numbers or strings, dates are tricky—you can’t just subtract them like normal numbers, and parsing them from messy formats can be a headache.
+
+# Date Formats
+
+Think of how many different formats you know of to format a date: 
+
+- 
+- 
+
+Yikes! 
+
+# Date, Time, and Datetime
+
+Date/time data are data that conveys information about, you guessed it, date and/or time! There are three relevant data types when we talk about date/time data:
+
+1. Date - only has the date (e.g. 2020-05-15) 
+2. Time - only has the time (e.g. 20:45:00) 
+3. Datetime - has both the date and time (e.g. 2020-05-15 20:45:00)
+
+# `Lubridate`
+
+```{r}
+#LOAD PACKAGES 
+library(tidyverse) #lubridate is in the tidyverse!
+```
+
+# Standard Date Format
+
+The `ymd()` function transforms data in all kinds of different formats into a standardized date format displaying year, then month, then day. 
+
+```{r}
+# all of the different date formats that you can use with ymd
+# look at the help documentation for examples
+
+
+```
+
+`mdy()` (month day year) and `dmy()` (day month year) formats also exist for dates.
+
+```{r}
+# using mdy()
+
+# using dmy()
+```
+
+
+`ymd_hms()` helps to format datetimes. 
+
+```{r}
+
+# some examples to use with ymd_hms()
+#"2020-04-01 10:30:13"
+#"2010-04-14-04-35-59"
+#"2011-12-31 12:59:59"
+
+
+# some examples to use with ymd_hm()
+#"2020/04/01 10.30"
+#"20100201 07-01"
+
+
+```
+
+# Extracting Components
+
+Once you have a date object, you can easily extract parts of it: 
+
+```{r}
+birthday <- ymd("1998-09-27")
+
+# extract year
+
+
+# extract month
+
+
+# set label=TRUE to get the month name instead of number
+
+
+# extract day
+
+
+# extract day of year using yday()
+# leap years makes things a little funny
+
+
+# want to know what day of the week??? use wday()
+# label=TRUE will give name of day rather than number
+ 
+
+```
+
+
+# Doing Math with Dates
+
+Set up the object `today` as today's date:  
+
+```{r}
+today <- Sys.Date()
+
+today
+```
+
+Calculate the age based on today's date and your birthday. This is possible when both are in date or datetime formats. You can also use the function `difftime()` if you want to specify the units. 
+
+```{r}
+#calc time between today and birthday
+
+
+# calc time between today and birthday using difftime()
+
+
+```
+
+What will be the date 28 days from now? 
+
+```{r}
+
+# add 28 to today
+
+
+
+```
+
+# Portal Data
+
+The Portal Project is a long-term ecological study being conducted near Portal, AZ. Since 1977, the site has been used to study the interactions among rodents, ants and plants and their respective responses to climate.
+
+```{r}
+#LOAD DATA
+portal_rodent <- read_csv("https://github.com/weecology/PortalData/raw/main/Rodents/Portal_rodent.csv")
+```
+
+## Constructing dates from separate columns
+
+Unfortunately, because the information about datetime is divided up into different columns, R does not recognize it as date/time data. What we need to do is combine and convert all of these columns into datetime. To do this, we can use the functions `make_date()` or `make_datetime()`
+
+```{r}
+
+# take a look at the data and how date/time are in the data
+
+# make a new column called date and save to a new object called portal_rodent_mod
+
+```
+
+## Investigating the temporal extent of the data
+
+Before analyzing observations over time, we should understand when they were collected.
+
+We can use `min()` and `max()` to identify the earliest and latest dates.
+
+```{r}
+
+# use summarize (no grouping) with min() and max() on date to make a table of the first and last date in the dataset
+
+
+```
+
+# Filtering Dates
+
+We can use date components to filter observations.
+
+For example, let's select observations from 2020.
+
+```{r}
+
+# use year() to extract year from date column and filter for 2020
+
+
+# how many individual dates were sampled in 2020 and how many observations were made on each date
+
+
+```
+
+We can also compare complete dates using the same comparison operators we've used with numbers.
+
+```{r}
+# Filter for observations after March 15, 2020 ("2020-03-15") 
+# use ymd() to turn it into a date
+
+
+```
+
+What if we want observations between two dates?
+
+```{r}
+
+# Filter for the dates that fall between March 15, 2020 and December 31, 2020
+# use ymd() to turn strings into dates to filter date
+
+```
+
+Alternatively, we can use `between()`.
+
+```{r}
+# between() takes the column being referenced, the start date, the end date
+
+
+```
+
+# Counting Observations Over Time
+
+Let's make a line plot showing the number of rodent captures recorded each day.
+
+We'll use `count(date)` to calculate the number of observations for each date.
+
+```{r}
+
+# use count to count observations on each sampling date
+
+
+# turn it into a line graph with date on the x-axis and n on the y-axis
+
+
+
+```
+
+## In Groups: Working with Date Ranges
+
+1. Filter the dataset to include only observations from 2018 and 2019. Create a new column called `day_of_year` using `yday()`.
+
+```{r}
+
+
+```
+
+
+2. Create a line plot comparing the daily number of captures in the two years. Put `day_of_year` on the x-axis, number of captures on the y-axis, and use color to distinguish years. You should create any additional columns you feel you need.
+
+```{r}
+
+
+
+```
+
+
+# Aggregating Observations Over Time
+
+Sometimes daily observations contain too much detail to easily identify patterns. We can combine observations into larger time intervals, such as months or years. The `floor_date()` function rounds each date down to the beginning of a specified time interval.
+
+```{r}
+# What does floor_date() do?
+
+# use floor_date to extract the month date from "2020-06-17", after turning it into a datetime object with ymd(), set the unit argument to "month"
+
+
+
+# do the same thing but extract the year using floor_date(), set the unit argument to "year"
+
+
+
+```
+
+## Monthly observations
+
+Let's use `floor_date()` to group observations by month.
+
+```{r}
+
+# use floor_date() to make a new column called month_date
+
+
+# take a look at it
+
+# count the number of observations in each month_date
+
+
+# now make the same line figure with month_date on the x-axis
+
+
+```
+
+## Annual observations
+
+We can use exactly the same approach to count observations by year.
+
+```{r}
+# Modify the previous code to create an annual time series
+
+
+```
+
+
+
+# Investigating Seasonal Patterns
+
+So far, we've looked at changes over the entire study period. But what if we want to investigate patterns that repeat within each year? For example, we might want to know whether more rodents are captured in summer or winter. We can extract the month from each date using `month()`.
+
+```{r}
+# use the month() function to create a new column called month_name from the date column
+# count month_name to get the number of observations in each month
+
+
+
+# make a bar plot with month name on the x-axis and count on the y-axis
+
+
+
+```
+
+Notice that this is different from using `floor_date(date, "month")`.
+
+- `floor_date()` preserves the year, so January 2020 and January 2021 remain separate.
+- `month()` extracts the month of the year, so observations from all Januaries can be grouped together.
+
+
+# Investigating Sampling Patterns
+
+Another useful component of a date is the day of the week. We can use `wday()` to identify the day of the week associated with each observation.
+
+```{r}
+
+# create a column called dow and use wday() to extract dow from date
+# set label=TRUE to get the dow name rather than number
+
+
+```
+
+
+## Time Between Observations
+
+The Portal Project has been running for decades, but that doesn't mean researchers collect observations every day. Let's identify the unique dates with recorded captures.
+
+```{r}
+# create a new object called sampling_dates
+# with the unique dates that were sampled
+# arrange in order of date
+
+```
+
+The `lag()` function retrieves the previous value in a sequence. We can use it to calculate the number of days between successive dates with recorded captures.
+
+```{r}
+# make new column called previous_date using lag()
+# make new column calculating the time elapsed between each date and the previous sampling date
+
+```
+
+Let's look at the longest gaps.
+
+```{r}
+# arrange sampling_dates in descending order by date and look at the first few rows
+
+```
+
+
+## In Groups: Investigating Sampling Patterns
+
+**1.** Determine which days of the week have the most recorded rodent captures. Create a bar plot showing the number of captures for each day of the week.
+
+
+```{r}
+# Your code here
+
+
+
+```
+
+**2.** Using the `sampling_dates` dataset, determine how many unique sampling dates occurred on each day of the week. Create a second bar plot.
+
+
+```{r}
+# Your code here
+
+
+
+```
+
+**3.** Compare the two plots. Are they answering the same question? What is the difference between counting capture records and counting dates with recorded captures? 
+
+
