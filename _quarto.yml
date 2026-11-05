@@ -74,6 +74,9 @@ website:
           
         - text: "Working with strings `stringr` (Class K)"
           href: courses/STAT118/notes/published/118_K_stringr_in_class_notes.qmd 
+          
+        - text: "Working with dates and times `lubridate` (Class L)"
+          href: courses/STAT118/notes/published/118_L_lubridate_in_class_notes.qmd 
 
 
 

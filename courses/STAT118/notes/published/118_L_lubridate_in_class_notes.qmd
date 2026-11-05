@@ -11,7 +11,6 @@ format:
       toggle: false
       caption: none
     code-annotations: hover
-  pdf: default
 execute: 
   message: FALSE
   warning: FALSE
@@ -59,6 +58,13 @@ The `ymd()` function transforms data in all kinds of different formats into a st
 # all of the different date formats that you can use with ymd
 # look at the help documentation for examples
 
+class(ymd(20261105))
+
+ymd("2026-11-05")
+ymd("2026 11 05")
+class(ymd("2026-11-5"))
+       
+ymd("95-11-5")
 
 ```
 
@@ -67,7 +73,13 @@ The `ymd()` function transforms data in all kinds of different formats into a st
 ```{r}
 # using mdy()
 
+mdy(11052026)
+
+mdy("11 05 2026")
+
 # using dmy()
+dmy("05 11 2026")
+
 ```
 
 
@@ -76,14 +88,14 @@ The `ymd()` function transforms data in all kinds of different formats into a st
 ```{r}
 
 # some examples to use with ymd_hms()
-#"2020-04-01 10:30:13"
-#"2010-04-14-04-35-59"
+class(ymd_hms("2020-04-01 10:30:13"))
+ymd_hms("2010-04-14-04-35-59", tz = "EST")
 #"2011-12-31 12:59:59"
 
 
 # some examples to use with ymd_hm()
-#"2020/04/01 10.30"
-#"20100201 07-01"
+ymd_hm("2020/04/01 10.30")
+ymd_hm("20100201 07-01")
 
 
 ```
@@ -96,24 +108,31 @@ Once you have a date object, you can easily extract parts of it:
 birthday <- ymd("1998-09-27")
 
 # extract year
+year(birthday)
 
 
 # extract month
+month(birthday)
 
 
 # set label=TRUE to get the month name instead of number
-
+month(birthday, label=TRUE)
 
 # extract day
-
+day(birthday)
 
 # extract day of year using yday()
 # leap years makes things a little funny
 
+yday(birthday)
+
 
 # want to know what day of the week??? use wday()
 # label=TRUE will give name of day rather than number
+
+wday(birthday)
  
+wday(birthday, label=TRUE)
 
 ```
 
@@ -132,9 +151,11 @@ Calculate the age based on today's date and your birthday. This is possible when
 
 ```{r}
 #calc time between today and birthday
+today-birthday
 
 
 # calc time between today and birthday using difftime()
+difftime(today, birthday)
 
 
 ```
@@ -145,7 +166,7 @@ What will be the date 28 days from now?
 
 # add 28 to today
 
-
+today+28
 
 ```
 
@@ -168,6 +189,11 @@ Unfortunately, because the information about datetime is divided up into differe
 
 # make a new column called date and save to a new object called portal_rodent_mod
 
+portal_rodent_mod <- portal_rodent |>
+  mutate(date=make_date(year, month, day))
+
+make_date(year=2026, month=11, day=5)
+
 ```
 
 ## Investigating the temporal extent of the data
@@ -179,6 +205,10 @@ We can use `min()` and `max()` to identify the earliest and latest dates.
 ```{r}
 
 # use summarize (no grouping) with min() and max() on date to make a table of the first and last date in the dataset
+
+portal_rodent_mod |>
+  summarize(min_day=min(date),
+            max_day=max(date))
 
 
 ```
@@ -193,10 +223,19 @@ For example, let's select observations from 2020.
 
 # use year() to extract year from date column and filter for 2020
 
+portal_rodent_mod <- portal_rodent_mod |>
+  mutate(year_new = year(date))
+
 
 # how many individual dates were sampled in 2020 and how many observations were made on each date
 
+portal_rodent_mod |>
+  filter(year_new==2020) |>
+  count()
 
+portal_rodent_mod |>
+  filter(year_new==2018) |>
+  count()
 ```
 
 We can also compare complete dates using the same comparison operators we've used with numbers.
@@ -205,6 +244,8 @@ We can also compare complete dates using the same comparison operators we've use
 # Filter for observations after March 15, 2020 ("2020-03-15") 
 # use ymd() to turn it into a date
 
+portal_rodent_mod |>
+  filter(date>ymd("2020-03-15"))
 
 ```
 
@@ -215,13 +256,20 @@ What if we want observations between two dates?
 # Filter for the dates that fall between March 15, 2020 and December 31, 2020
 # use ymd() to turn strings into dates to filter date
 
+portal_rodent_mod |>
+  filter(date>ymd("2020-03-15") &
+           date<=ymd("2020-12-31"))
+
 ```
 
 Alternatively, we can use `between()`.
 
 ```{r}
 # between() takes the column being referenced, the start date, the end date
-
+portal_rodent_mod |>
+  filter(between(date,
+                 ymd("2020-03-15"),
+                 ymd("2020-12-31")))
 
 ```
 
@@ -235,9 +283,17 @@ We'll use `count(date)` to calculate the number of observations for each date.
 
 # use count to count observations on each sampling date
 
+portal_rodent_mod |>
+  count(date)
+
 
 # turn it into a line graph with date on the x-axis and n on the y-axis
 
+portal_rodent_mod |>
+  count(date) |>
+  ggplot(aes(x=date, y=n)) +
+  geom_line() +
+  theme_minimal()
 
 
 ```
@@ -247,7 +303,10 @@ We'll use `count(date)` to calculate the number of observations for each date.
 1. Filter the dataset to include only observations from 2018 and 2019. Create a new column called `day_of_year` using `yday()`.
 
 ```{r}
-
+portal_rodent_short <- portal_rodent_mod |>
+  filter(between(year, 2018, 2019)) |>
+  mutate(day_of_year=yday(date))
+  
 
 ```
 
@@ -256,7 +315,15 @@ We'll use `count(date)` to calculate the number of observations for each date.
 
 ```{r}
 
-
+portal_rodent_short |>
+  count(year, day_of_year) |>
+  ggplot(aes(x=day_of_year, 
+             y=n, 
+             color=factor(year), 
+             group=year)) +
+  geom_line() +
+  theme_minimal()
+  
 
 ```
 
@@ -268,13 +335,15 @@ Sometimes daily observations contain too much detail to easily identify patterns
 ```{r}
 # What does floor_date() do?
 
-# use floor_date to extract the month date from "2020-06-17", after turning it into a datetime object with ymd(), set the unit argument to "month"
+# use floor_date to extract the month date from "2020-06-17", after turning it into a datetime object with ymd(), set the unit argument to "months"
+
+floor_date(ymd("2020-06-17"), unit="month")
 
 
 
 # do the same thing but extract the year using floor_date(), set the unit argument to "year"
 
-
+floor_date(ymd("2020-06-17"), unit="year")
 
 ```
 
@@ -286,16 +355,54 @@ Let's use `floor_date()` to group observations by month.
 
 # use floor_date() to make a new column called month_date
 
+portal_rodent_mod <- portal_rodent_mod |>
+  mutate(month_date=floor_date(date, unit="month"))
+
 
 # take a look at it
 
 # count the number of observations in each month_date
 
+portal_rodent_mod |>
+  count(month_date)
+
 
 # now make the same line figure with month_date on the x-axis
 
+portal_rodent_mod |>
+  count(month_date) |>
+  ggplot(aes(x=month_date, y=n)) +
+  geom_line() +
+  theme_minimal()
+```
+
+
+In class we talked briefly about how to do something similar without `floor_date()`. This is the best I could come up with:
+
+```{r}
+
+#### Try the same thing without floor_date
+
+library(viridis)
+library(ggthemes)
+
+portal_rodent_mod |> 
+  count(month, year) |>
+  complete(month, year) |> #added this to fill in the months and years that don't have values with NA
+  ggplot(aes(x=factor(month), y=year, fill=n)) +
+  geom_tile() +
+  scale_fill_viridis(na.value = "gray30") +
+  labs(x="Month",
+       y="Year",
+       fill="Count") +
+  theme_tufte()
+  
+  
+
 
 ```
+
+Without using `floor_date()` we can't create a continuous variable for our x-axis so we need to rely on the categorical variables that we can get with `month` and `year`. So we are left with 2 categorical variables and we want to plot them together and also maintain the temporal structure. So, a heatmap is a good way to go. 
 
 ## Annual observations
 
@@ -303,6 +410,12 @@ We can use exactly the same approach to count observations by year.
 
 ```{r}
 # Modify the previous code to create an annual time series
+portal_rodent_mod |>
+  mutate(year_date=floor_date(date, unit="year")) |>
+  count(year_date) |>
+  ggplot(aes(x=year_date, y=n)) +
+  geom_line() +
+  theme_minimal()
 
 
 ```
@@ -317,10 +430,17 @@ So far, we've looked at changes over the entire study period. But what if we wan
 # use the month() function to create a new column called month_name from the date column
 # count month_name to get the number of observations in each month
 
+portal_rodent_mod <- portal_rodent_mod |>
+  mutate(month_name=month(date, label=TRUE))
+
 
 
 # make a bar plot with month name on the x-axis and count on the y-axis
 
+portal_rodent_mod |>
+  ggplot(aes(x=month_name)) +
+  geom_bar() +
+  theme_minimal()
 
 
 ```
@@ -340,6 +460,8 @@ Another useful component of a date is the day of the week. We can use `wday()` t
 # create a column called dow and use wday() to extract dow from date
 # set label=TRUE to get the dow name rather than number
 
+portal_rodent_mod <- portal_rodent_mod |>
+  mutate(dow=wday(date, label=TRUE))
 
 ```
 
@@ -353,6 +475,10 @@ The Portal Project has been running for decades, but that doesn't mean researche
 # with the unique dates that were sampled
 # arrange in order of date
 
+sampling_dates <- portal_rodent_mod |>
+  distinct(date) |>
+  arrange(date)
+
 ```
 
 The `lag()` function retrieves the previous value in a sequence. We can use it to calculate the number of days between successive dates with recorded captures.
@@ -361,12 +487,20 @@ The `lag()` function retrieves the previous value in a sequence. We can use it t
 # make new column called previous_date using lag()
 # make new column calculating the time elapsed between each date and the previous sampling date
 
+sampling_dates <- sampling_dates |>
+  mutate(previous_date = lag(date),
+         time_diff = date-previous_date)
+
 ```
 
 Let's look at the longest gaps.
 
 ```{r}
 # arrange sampling_dates in descending order by date and look at the first few rows
+
+sampling_dates |>
+  arrange(desc(time_diff)) |>
+  head()
 
 ```
 
@@ -379,7 +513,10 @@ Let's look at the longest gaps.
 ```{r}
 # Your code here
 
-
+portal_rodent_mod |>
+  ggplot(aes(x=dow)) +
+  geom_bar() +
+  theme_minimal()
 
 ```
 
@@ -389,8 +526,11 @@ Let's look at the longest gaps.
 ```{r}
 # Your code here
 
-
-
+sampling_dates |>
+  mutate(dow=wday(date, label=TRUE)) |>
+  ggplot(aes(x=dow)) +
+  geom_bar() +
+  theme_minimal()
 ```
 
 **3.** Compare the two plots. Are they answering the same question? What is the difference between counting capture records and counting dates with recorded captures? 
