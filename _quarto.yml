@@ -21,12 +21,13 @@ website:
         
       - text: "Samplers"
         href: sampler.qmd
-        
+          
   sidebar:
     - id: STAT118
       title: "STAT 118: Intro to Data Science"
       logo: courses/STAT118/images/stat0118_hex_sticker.png
       style: docked
+      collapse-level: 1
       contents:
         - text: "STAT 118 Home"
           href: courses/STAT118/index.qmd
