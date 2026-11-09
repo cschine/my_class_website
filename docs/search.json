@@ -892,70 +892,120 @@
     "href": "courses/STAT118/final_project/ready/Data_Sources.html",
     "title": "Final Project: Data Sources",
     "section": "",
-    "text": "This is a starting point.\nThere is no single place to find data. Part of the process is learning where to look, what exists, and what is actually usable.\nSome of these are very easy to work with. Some are not. That’s part of the point.\nYou are not limited to the things listed here."
+    "text": "This is a starting point.\nThere is no single place to find data. Part of the process is learning where to look, what exists, and what is actually usable.\nSome of these are very easy to work with. Some are not. That’s part of the point.\nYou are not limited to the things listed here.",
+    "crumbs": [
+      "STAT 118: Intro to Data Science",
+      "📊 Final Project",
+      "Step 1: Finding Data"
+    ]
   },
   {
     "objectID": "courses/STAT118/final_project/ready/Data_Sources.html#general-aggregated-data",
     "href": "courses/STAT118/final_project/ready/Data_Sources.html#general-aggregated-data",
     "title": "Final Project: Data Sources",
     "section": "General / Aggregated Data",
-    "text": "General / Aggregated Data\n\nKaggle — Large collection of datasets contributed by users on almost any topic.\nGoogle Dataset Search — Search engine for finding datasets across the internet.\nData.gov — U.S. government datasets covering a wide variety of topics.\nTidyTuesday — Curated datasets with descriptions and examples, particularly useful for R.\nOur World in Data — Global datasets on health, education, energy, inequality, population, and more.\ndata.world — Searchable collection of datasets from different organizations and contributors."
+    "text": "General / Aggregated Data\n\nKaggle — Large collection of datasets contributed by users on almost any topic.\nGoogle Dataset Search — Search engine for finding datasets across the internet.\nData.gov — U.S. government datasets covering a wide variety of topics.\nTidyTuesday — Curated datasets with descriptions and examples, particularly useful for R.\nOur World in Data — Global datasets on health, education, energy, inequality, population, and more.\ndata.world — Searchable collection of datasets from different organizations and contributors.",
+    "crumbs": [
+      "STAT 118: Intro to Data Science",
+      "📊 Final Project",
+      "Step 1: Finding Data"
+    ]
   },
   {
     "objectID": "courses/STAT118/final_project/ready/Data_Sources.html#environment-climate-earth-science",
     "href": "courses/STAT118/final_project/ready/Data_Sources.html#environment-climate-earth-science",
     "title": "Final Project: Data Sources",
     "section": "Environment / Climate / Earth Science",
-    "text": "Environment / Climate / Earth Science\n\nNOAA\n\nNOAA main site\nNOAA GML data — Atmospheric measurements, including greenhouse gases.\nClimate Explorer — Historical climate observations and projections.\nNOAA Climate Data Online — Historical temperature, precipitation, and weather observations.\nNOAA Climate at a Glance — Accessible climate time series for different geographic regions.\n\nNASA Earthdata — Satellite observations of Earth’s atmosphere, oceans, land, and ice.\nCopernicus Climate Data Store — Global climate observations, reanalysis products, and projections.\nUSGS\n\nUSGS main site\ndataRetrieval R package — Access USGS water data directly from R.\nUSGS Earthquake Catalog — Searchable earthquake observations, including location, magnitude, and time.\n\nEPA Air Quality Data — Air pollution measurements across the United States.\nGlobal Biodiversity Information Facility (GBIF) — Species occurrence records from around the world.\nMovebank — Animal movement and migration tracking data.\nUSA National Phenology Network — Observations of seasonal biological events, such as flowering and leaf-out.\nNEON — Ecological observations from sites across the United States."
+    "text": "Environment / Climate / Earth Science\n\nNOAA\n\nNOAA main site\nNOAA GML data — Atmospheric measurements, including greenhouse gases.\nClimate Explorer — Historical climate observations and projections.\nNOAA Climate Data Online — Historical temperature, precipitation, and weather observations.\nNOAA Climate at a Glance — Accessible climate time series for different geographic regions.\n\nNASA Earthdata — Satellite observations of Earth’s atmosphere, oceans, land, and ice.\nCopernicus Climate Data Store — Global climate observations, reanalysis products, and projections.\nUSGS\n\nUSGS main site\ndataRetrieval R package — Access USGS water data directly from R.\nUSGS Earthquake Catalog — Searchable earthquake observations, including location, magnitude, and time.\n\nEPA Air Quality Data — Air pollution measurements across the United States.\nGlobal Biodiversity Information Facility (GBIF) — Species occurrence records from around the world.\nMovebank — Animal movement and migration tracking data.\nUSA National Phenology Network — Observations of seasonal biological events, such as flowering and leaf-out.\nNEON — Ecological observations from sites across the United States.",
+    "crumbs": [
+      "STAT 118: Intro to Data Science",
+      "📊 Final Project",
+      "Step 1: Finding Data"
+    ]
   },
   {
     "objectID": "courses/STAT118/final_project/ready/Data_Sources.html#economics-demographics-society",
     "href": "courses/STAT118/final_project/ready/Data_Sources.html#economics-demographics-society",
     "title": "Final Project: Data Sources",
     "section": "Economics / Demographics / Society",
-    "text": "Economics / Demographics / Society\n\nU.S. Census Bureau — Population, demographics, housing, and socioeconomic characteristics.\nBureau of Labor Statistics — Employment, wages, inflation, and labor market statistics.\nWorld Bank — International economic, demographic, and development indicators.\nOECD — Economic and social indicators across countries.\nFRED — Federal Reserve Economic Data — Economic time series, including inflation, unemployment, housing, and interest rates.\nIPUMS — Historical and contemporary census and survey microdata.\nSocial Explorer — Demographic and socioeconomic data with geographic visualization tools.\nNational Center for Education Statistics — Education statistics, school characteristics, and student outcomes.\nHUD Data — Housing affordability, housing markets, and community development.\nNYC Open Data — Public datasets on housing, infrastructure, education, public services, and more."
+    "text": "Economics / Demographics / Society\n\nU.S. Census Bureau — Population, demographics, housing, and socioeconomic characteristics.\nBureau of Labor Statistics — Employment, wages, inflation, and labor market statistics.\nWorld Bank — International economic, demographic, and development indicators.\nOECD — Economic and social indicators across countries.\nFRED — Federal Reserve Economic Data — Economic time series, including inflation, unemployment, housing, and interest rates.\nIPUMS — Historical and contemporary census and survey microdata.\nSocial Explorer — Demographic and socioeconomic data with geographic visualization tools.\nNational Center for Education Statistics — Education statistics, school characteristics, and student outcomes.\nHUD Data — Housing affordability, housing markets, and community development.\nNYC Open Data — Public datasets on housing, infrastructure, education, public services, and more.",
+    "crumbs": [
+      "STAT 118: Intro to Data Science",
+      "📊 Final Project",
+      "Step 1: Finding Data"
+    ]
   },
   {
     "objectID": "courses/STAT118/final_project/ready/Data_Sources.html#health",
     "href": "courses/STAT118/final_project/ready/Data_Sources.html#health",
     "title": "Final Project: Data Sources",
     "section": "Health",
-    "text": "Health\n\nCDC — Public health datasets from the Centers for Disease Control and Prevention.\nWHO — International health statistics and indicators.\nYouth Risk Behavior Surveillance System (YRBS) — Adolescent health behaviors, mental health, and risk factors.\nNHANES — Nutrition, physical activity, health measurements, and demographic information.\nBehavioral Risk Factor Surveillance System (BRFSS) — Health behaviors and outcomes across U.S. states.\nCDC WONDER — Mortality, disease, and population health data.\nGlobal Health Data Exchange — International health datasets, including disease burden and risk factors.\nCounty Health Rankings & Roadmaps — County-level health outcomes and social determinants of health."
+    "text": "Health\n\nCDC — Public health datasets from the Centers for Disease Control and Prevention.\nWHO — International health statistics and indicators.\nYouth Risk Behavior Surveillance System (YRBS) — Adolescent health behaviors, mental health, and risk factors.\nNHANES — Nutrition, physical activity, health measurements, and demographic information.\nBehavioral Risk Factor Surveillance System (BRFSS) — Health behaviors and outcomes across U.S. states.\nCDC WONDER — Mortality, disease, and population health data.\nGlobal Health Data Exchange — International health datasets, including disease burden and risk factors.\nCounty Health Rankings & Roadmaps — County-level health outcomes and social determinants of health.",
+    "crumbs": [
+      "STAT 118: Intro to Data Science",
+      "📊 Final Project",
+      "Step 1: Finding Data"
+    ]
   },
   {
     "objectID": "courses/STAT118/final_project/ready/Data_Sources.html#sports",
     "href": "courses/STAT118/final_project/ready/Data_Sources.html#sports",
     "title": "Final Project: Data Sources",
     "section": "Sports",
-    "text": "Sports\n\nBaseball Savant — Detailed baseball statistics, including pitch tracking and player performance.\nBasketball Reference — Historical NBA statistics for players and teams.\nFiveThirtyEight data — Archived datasets from FiveThirtyEight analyses, including sports.\nPro Football Reference — NFL player, team, and historical statistics.\nFBref — Soccer player and team performance statistics.\nHockey Reference — NHL player and team statistics.\nTennis Abstract — Tennis rankings, match results, and player performance.\nSports Reference — College Basketball — College basketball statistics and historical records."
+    "text": "Sports\n\nBaseball Savant — Detailed baseball statistics, including pitch tracking and player performance.\nBasketball Reference — Historical NBA statistics for players and teams.\nFiveThirtyEight data — Archived datasets from FiveThirtyEight analyses, including sports.\nPro Football Reference — NFL player, team, and historical statistics.\nFBref — Soccer player and team performance statistics.\nHockey Reference — NHL player and team statistics.\nTennis Abstract — Tennis rankings, match results, and player performance.\nSports Reference — College Basketball — College basketball statistics and historical records.",
+    "crumbs": [
+      "STAT 118: Intro to Data Science",
+      "📊 Final Project",
+      "Step 1: Finding Data"
+    ]
   },
   {
     "objectID": "courses/STAT118/final_project/ready/Data_Sources.html#politics-public-opinion",
     "href": "courses/STAT118/final_project/ready/Data_Sources.html#politics-public-opinion",
     "title": "Final Project: Data Sources",
     "section": "Politics / Public Opinion",
-    "text": "Politics / Public Opinion\n\nPew Research Center — Surveys on public opinion, social trends, and political attitudes.\nMIT Election Data and Science Lab — U.S. election results and voting data.\nGeneral Social Survey (GSS) — Long-running survey of social attitudes, behaviors, and demographics.\nAmerican National Election Studies (ANES) — Voting behavior and political attitudes in the United States.\nVarieties of Democracy (V-Dem) — International indicators of democracy and political institutions.\nICPSR — Large archive of social science research datasets.\nWorld Values Survey — International surveys of cultural values and social attitudes."
+    "text": "Politics / Public Opinion\n\nPew Research Center — Surveys on public opinion, social trends, and political attitudes.\nMIT Election Data and Science Lab — U.S. election results and voting data.\nGeneral Social Survey (GSS) — Long-running survey of social attitudes, behaviors, and demographics.\nAmerican National Election Studies (ANES) — Voting behavior and political attitudes in the United States.\nVarieties of Democracy (V-Dem) — International indicators of democracy and political institutions.\nICPSR — Large archive of social science research datasets.\nWorld Values Survey — International surveys of cultural values and social attitudes.",
+    "crumbs": [
+      "STAT 118: Intro to Data Science",
+      "📊 Final Project",
+      "Step 1: Finding Data"
+    ]
   },
   {
     "objectID": "courses/STAT118/final_project/ready/Data_Sources.html#text-media-culture",
     "href": "courses/STAT118/final_project/ready/Data_Sources.html#text-media-culture",
     "title": "Final Project: Data Sources",
     "section": "Text / Media / Culture",
-    "text": "Text / Media / Culture\n\nProject Gutenberg — Free digital books that can be used for text analysis.\nGDELT Project — Global news coverage and event data.\nIMDb Datasets — Movie and television metadata, including genres, ratings, and release dates.\nThe Movie Database (TMDB) — Film and television metadata, including genres and popularity.\nMusicBrainz — Music metadata covering artists, albums, and recordings.\nOpen Library — Information about books, authors, and publication histories.\nWikidata — Structured information about people, places, historical events, and culture.\nGapminder — Global development indicators and historical comparisons."
+    "text": "Text / Media / Culture\n\nProject Gutenberg — Free digital books that can be used for text analysis.\nGDELT Project — Global news coverage and event data.\nIMDb Datasets — Movie and television metadata, including genres, ratings, and release dates.\nThe Movie Database (TMDB) — Film and television metadata, including genres and popularity.\nMusicBrainz — Music metadata covering artists, albums, and recordings.\nOpen Library — Information about books, authors, and publication histories.\nWikidata — Structured information about people, places, historical events, and culture.\nGapminder — Global development indicators and historical comparisons.",
+    "crumbs": [
+      "STAT 118: Intro to Data Science",
+      "📊 Final Project",
+      "Step 1: Finding Data"
+    ]
   },
   {
     "objectID": "courses/STAT118/final_project/ready/Data_Sources.html#transportation-cities",
     "href": "courses/STAT118/final_project/ready/Data_Sources.html#transportation-cities",
     "title": "Final Project: Data Sources",
     "section": "Transportation / Cities",
-    "text": "Transportation / Cities\n\nBureau of Transportation Statistics — Airline performance, flight delays, transportation statistics, and travel patterns.\nCiti Bike System Data — Bicycle trip records, including trip duration, station locations, and dates.\nNYC Taxi & Limousine Commission — Taxi trip records, fares, pickup locations, and travel patterns.\nU.S. DOT Open Data — Transportation infrastructure, safety, and public transportation datasets."
+    "text": "Transportation / Cities\n\nBureau of Transportation Statistics — Airline performance, flight delays, transportation statistics, and travel patterns.\nCiti Bike System Data — Bicycle trip records, including trip duration, station locations, and dates.\nNYC Taxi & Limousine Commission — Taxi trip records, fares, pickup locations, and travel patterns.\nU.S. DOT Open Data — Transportation infrastructure, safety, and public transportation datasets.",
+    "crumbs": [
+      "STAT 118: Intro to Data Science",
+      "📊 Final Project",
+      "Step 1: Finding Data"
+    ]
   },
   {
     "objectID": "courses/STAT118/final_project/ready/Data_Sources.html#a-note-on-usability",
     "href": "courses/STAT118/final_project/ready/Data_Sources.html#a-note-on-usability",
     "title": "Final Project: Data Sources",
     "section": "A note on usability",
-    "text": "A note on usability\nNot all datasets are equally usable. Some will download cleanly as a CSV and open easily in R. Others may require accounts, be in unfamiliar formats, or need substantial cleaning. This is normal. Part of the goal is to start recognizing the difference.\nFinding a dataset that interests you is only the first step. Before committing to it, you need to determine what the observations represent, which variables are available, whether you can download the data, and whether the dataset can actually answer your question."
+    "text": "A note on usability\nNot all datasets are equally usable. Some will download cleanly as a CSV and open easily in R. Others may require accounts, be in unfamiliar formats, or need substantial cleaning. This is normal. Part of the goal is to start recognizing the difference.\nFinding a dataset that interests you is only the first step. Before committing to it, you need to determine what the observations represent, which variables are available, whether you can download the data, and whether the dataset can actually answer your question.",
+    "crumbs": [
+      "STAT 118: Intro to Data Science",
+      "📊 Final Project",
+      "Step 1: Finding Data"
+    ]
   },
   {
     "objectID": "courses/STAT118/notes/published/installguide.html",
