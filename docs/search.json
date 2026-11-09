@@ -863,31 +863,6 @@
     ]
   },
   {
-    "objectID": "courses/STAT118/index.html",
-    "href": "courses/STAT118/index.html",
-    "title": "Stat 118: Intro to Data Science",
-    "section": "",
-    "text": "Use the navigation bar on the left to look at notes from previous classes.",
-    "crumbs": [
-      "STAT 118: Intro to Data Science",
-      "STAT 118 Home"
-    ]
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Home",
-    "section": "",
-    "text": "This is a small website for class materials, examples, and optional extras.\nI put this together last night while half asleep, which is honestly part of the point: this is a very lightweight way to put your work online.\nUse the navigation bar above to explore."
-  },
-  {
-    "objectID": "index.html#welcome",
-    "href": "index.html#welcome",
-    "title": "Home",
-    "section": "",
-    "text": "This is a small website for class materials, examples, and optional extras.\nI put this together last night while half asleep, which is honestly part of the point: this is a very lightweight way to put your work online.\nUse the navigation bar above to explore."
-  },
-  {
     "objectID": "courses/STAT118/final_project/ready/Data_Sources.html",
     "href": "courses/STAT118/final_project/ready/Data_Sources.html",
     "title": "Final Project: Data Sources",
@@ -904,7 +879,7 @@
     "href": "courses/STAT118/final_project/ready/Data_Sources.html#general-aggregated-data",
     "title": "Final Project: Data Sources",
     "section": "General / Aggregated Data",
-    "text": "General / Aggregated Data\n\nKaggle — Large collection of datasets contributed by users on almost any topic.\nGoogle Dataset Search — Search engine for finding datasets across the internet.\nData.gov — U.S. government datasets covering a wide variety of topics.\nTidyTuesday — Curated datasets with descriptions and examples, particularly useful for R.\nOur World in Data — Global datasets on health, education, energy, inequality, population, and more.\ndata.world — Searchable collection of datasets from different organizations and contributors.",
+    "text": "General / Aggregated Data\n\nKaggle — Large collection of datasets contributed by users on almost any topic.\nGoogle Dataset Search — Search engine for finding datasets across the internet.\nData.gov — U.S. government datasets covering a wide variety of topics.\nTidyTuesday — Curated datasets with descriptions and examples, particularly useful for R.\nOur World in Data — Global datasets on health, education, energy, inequality, population, and more.",
     "crumbs": [
       "STAT 118: Intro to Data Science",
       "📊 Final Project",
@@ -1006,6 +981,94 @@
       "📊 Final Project",
       "Step 1: Finding Data"
     ]
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Home",
+    "section": "",
+    "text": "This is a small website for class materials, examples, and optional extras.\nI put this together last night while half asleep, which is honestly part of the point: this is a very lightweight way to put your work online.\nUse the navigation bar above to explore."
+  },
+  {
+    "objectID": "index.html#welcome",
+    "href": "index.html#welcome",
+    "title": "Home",
+    "section": "",
+    "text": "This is a small website for class materials, examples, and optional extras.\nI put this together last night while half asleep, which is honestly part of the point: this is a very lightweight way to put your work online.\nUse the navigation bar above to explore."
+  },
+  {
+    "objectID": "courses/STAT118/index.html",
+    "href": "courses/STAT118/index.html",
+    "title": "Stat 118: Intro to Data Science",
+    "section": "",
+    "text": "Use the navigation bar on the left to look at notes from previous classes.",
+    "crumbs": [
+      "STAT 118: Intro to Data Science",
+      "STAT 118 Home"
+    ]
+  },
+  {
+    "objectID": "courses/STAT118/final_project/ready/Exploring_data_options_notes_for_pub.html",
+    "href": "courses/STAT118/final_project/ready/Exploring_data_options_notes_for_pub.html",
+    "title": "STAT 118: Finding a Dataset Worth Investigating",
+    "section": "",
+    "text": "For your final project, you will choose your own dataset(s), develop a research question, conduct an investigation, and communicate your findings in a final report.\nA few things to keep in mind:\n\nChoose something you’re genuinely interested in. You’ll be spending several weeks working with these data.\nYou don’t need a research question yet. Your question will develop as you explore the data.\nYour project should be an investigation, not simply a collection of unrelated figures.\nYou’ll develop your project over time. We’ll have opportunities for discussion, feedback, and revision throughout the remaining classes.\n\n\n\nThe timeline for this project and all of the intermediate assignments that will help you build your project are on the schedule on Canvas."
+  },
+  {
+    "objectID": "courses/STAT118/final_project/ready/Exploring_data_options_notes_for_pub.html#introduction-to-your-final-project",
+    "href": "courses/STAT118/final_project/ready/Exploring_data_options_notes_for_pub.html#introduction-to-your-final-project",
+    "title": "STAT 118: Finding a Dataset Worth Investigating",
+    "section": "",
+    "text": "For your final project, you will choose your own dataset(s), develop a research question, conduct an investigation, and communicate your findings in a final report.\nA few things to keep in mind:\n\nChoose something you’re genuinely interested in. You’ll be spending several weeks working with these data.\nYou don’t need a research question yet. Your question will develop as you explore the data.\nYour project should be an investigation, not simply a collection of unrelated figures.\nYou’ll develop your project over time. We’ll have opportunities for discussion, feedback, and revision throughout the remaining classes.\n\n\n\nThe timeline for this project and all of the intermediate assignments that will help you build your project are on the schedule on Canvas."
+  },
+  {
+    "objectID": "courses/STAT118/final_project/ready/Exploring_data_options_notes_for_pub.html#good-analysis-starts-with-good-data",
+    "href": "courses/STAT118/final_project/ready/Exploring_data_options_notes_for_pub.html#good-analysis-starts-with-good-data",
+    "title": "STAT 118: Finding a Dataset Worth Investigating",
+    "section": "Good Analysis Starts with Good Data",
+    "text": "Good Analysis Starts with Good Data\nThroughout this semester, I’ve given you datasets to work with. I’ve often told you which variables to examine, what questions to answer, and sometimes even which analyses to perform. That means I’ve been making a lot of important decisions for you. But those decisions are a fundamental part of data science. Before we can analyze data, we need to figure out what data are available, whether they’re appropriate for our purposes, and whether we can trust them.\nFinding a dataset isn’t just a preliminary step before the real work begins. Choosing and evaluating data is part of the real work. The data we choose determine what questions we can answer, what patterns we can investigate, and what conclusions we can reasonably draw.\nFor your final project, you’ll take responsibility for the entire process of conducting a data science investigation, from finding data and developing questions to analyzing results and communicating your findings. Today we’re starting with the first two:\n\nFinding data: Where can we find data relevant to something we want to understand?\nEvaluating data: How can we decide whether those data are useful, reliable, and appropriate for an investigation?\n\nToday, we will be spending some time at the very beginning. Partly because this is a step that has largely been hidden from you until now, both in this class and very likely in other classes as well. And because many of the decisions you make early on in data selection will haunt you if you don’t give them proper attention. This is the burden and the opportunity of being responsible for the full pipeline."
+  },
+  {
+    "objectID": "courses/STAT118/final_project/ready/Exploring_data_options_notes_for_pub.html#what-makes-a-good-dataset",
+    "href": "courses/STAT118/final_project/ready/Exploring_data_options_notes_for_pub.html#what-makes-a-good-dataset",
+    "title": "STAT 118: Finding a Dataset Worth Investigating",
+    "section": "What makes a good dataset?",
+    "text": "What makes a good dataset?\nNot every dataset is a good choice for this project. Before committing to one, we need to consider whether it is interesting, accessible, understandable, and capable of supporting a meaningful investigation.\n\nFive criteria for evaluating datasets\n1. Interest — Do I care about these data?\n\nAm I genuinely curious about the topic?\nWould I enjoy spending several weeks investigating it?\n\n2. Accessibility — Can I get the data?\n\nCan I download the actual data, rather than just looking at someone else’s figures or summaries?\nAre the data available in a format I can open and work with in R?\n\n3. Understanding — Can I make sense of the data?\n\nWhat does one observation (row) represent?\nWhat do the variables mean?\nIs there documentation explaining the data and how they were collected?\n\n4. Analytical potential — Is there enough to investigate?\n\nAre there meaningful differences across groups, locations, or time?\nAre there multiple variables I could compare or relate?\nCan I imagine more than one interesting question?\n\n5. Feasibility — What might prevent me from using these data successfully?\n\nIs the dataset a reasonable size?\nDoes the structure make sense?\nIs there missing information or unclear categories?\nCan I imagine working with it using the R skills we’ve learned?\n\nRemember: A dataset doesn’t need to be perfect. Some cleaning and troubleshooting are expected. The question is whether the challenges are manageable."
+  },
+  {
+    "objectID": "courses/STAT118/final_project/ready/Exploring_data_options_notes_for_pub.html#explore-potential-datasets",
+    "href": "courses/STAT118/final_project/ready/Exploring_data_options_notes_for_pub.html#explore-potential-datasets",
+    "title": "STAT 118: Finding a Dataset Worth Investigating",
+    "section": "Explore potential datasets",
+    "text": "Explore potential datasets\nI have compiled a LARGE list of potential data sources. Use the list I gave you or explore other sources that interest you.\n\nYour task\nFind one dataset and evaluate it against the 5 criteria we discussed.\nBe ready to tell the class about the dataset (where you found it and what the data are about) and how it measured up against our criteria for a good dataset."
+  },
+  {
+    "objectID": "courses/STAT118/final_project/ready/Exploring_data_options_notes_for_pub.html#some-datasets-that-might-not-work-discussion",
+    "href": "courses/STAT118/final_project/ready/Exploring_data_options_notes_for_pub.html#some-datasets-that-might-not-work-discussion",
+    "title": "STAT 118: Finding a Dataset Worth Investigating",
+    "section": "Some datasets that might NOT work? (Discussion)",
+    "text": "Some datasets that might NOT work? (Discussion)\nLet’s look at some datasets that you think might be difficult or unsuitable for this project.\n\nQuestions to consider\n\nWhat makes this dataset potentially unsuitable?\nWhich of our five criteria are we concerned about?\nIs this a problem we could reasonably overcome?\nWhat additional information would help us decide?\n\nAn important distinction: A dataset that requires some work is not necessarily a bad dataset. But some datasets may require more work than we can reasonably accomplish in this project."
+  },
+  {
+    "objectID": "courses/STAT118/final_project/ready/Exploring_data_options_notes_for_pub.html#some-datasets-that-look-promising",
+    "href": "courses/STAT118/final_project/ready/Exploring_data_options_notes_for_pub.html#some-datasets-that-look-promising",
+    "title": "STAT 118: Finding a Dataset Worth Investigating",
+    "section": "5.Some datasets that look promising?",
+    "text": "5.Some datasets that look promising?\nLet’s investigate some of the datasets you found that look promising. We’ll choose one or two examples and evaluate them together.\n\nFor each dataset, let’s investigate:\n1. What did we find?\n\nWhat is the dataset about?\nWhat does one observation represent?\nWhat variables are available?\n\n2. What could we investigate?\n\nWhat differences, patterns, or relationships might be interesting?\nWhat kinds of questions could these data help us answer?\n\n3. What might be difficult?\n\nCan we download the data?\nCan we understand the variables?\nAre there any obvious limitations?\n\n4. What’s our decision?\n\nPursue it: This looks promising enough to investigate further.\nReject it: This probably isn’t a good fit for our project.\nNeed more information: We can’t decide yet.\n\nThe goal isn’t to find the perfect dataset immediately. It’s to learn how to evaluate our options and make informed decisions."
+  },
+  {
+    "objectID": "courses/STAT118/final_project/ready/Exploring_data_options_notes_for_pub.html#what-have-we-learned",
+    "href": "courses/STAT118/final_project/ready/Exploring_data_options_notes_for_pub.html#what-have-we-learned",
+    "title": "STAT 118: Finding a Dataset Worth Investigating",
+    "section": "What have we learned?",
+    "text": "What have we learned?\nReturn to our five criteria:\n\nInterest\nAccessibility\nUnderstanding\nAnalytical potential\nManageability"
+  },
+  {
+    "objectID": "courses/STAT118/final_project/ready/Exploring_data_options_notes_for_pub.html#homework-step-1-finding-and-evaluating-datasets",
+    "href": "courses/STAT118/final_project/ready/Exploring_data_options_notes_for_pub.html#homework-step-1-finding-and-evaluating-datasets",
+    "title": "STAT 118: Finding a Dataset Worth Investigating",
+    "section": "Homework — Step 1: Finding and evaluating datasets",
+    "text": "Homework — Step 1: Finding and evaluating datasets\nFor your first final-project assignment, you will:\n\nIdentify an area of interest.\nFind at least three potential datasets or data sources.\nChoose two specific datasets to investigate more closely.\nAttempt to download and import both datasets into R.\nUse R to inspect the observations, variables, and structure of the datasets.\nIdentify possible investigations for each dataset.\nChoose the dataset that currently seems most promising and explain why.\n\nYou are not committing to a dataset yet.\nIn our next class, we’ll move beyond inspecting the structure of the data and begin exploring patterns, relationships, and possible research questions."
   },
   {
     "objectID": "courses/STAT118/notes/published/installguide.html",

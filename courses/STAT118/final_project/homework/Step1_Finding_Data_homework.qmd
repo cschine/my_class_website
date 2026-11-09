@@ -1,0 +1,80 @@
+---
+title: "Final Project Step 1"
+subtitle: "Finding and evaluating datasets"
+author: "YOUR NAME HERE"
+format:
+  html: 
+    toc: true
+    code-overflow: wrap
+    code-fold: true
+    embed-resources: true
+---
+
+In class, we discussed five criteria for evaluating datasets: **interest, accessibility, documentation and provenance, analytical potential, and feasibility/quality concerns**. In this assignment, you'll apply those criteria to identify and evaluate potential datasets for your final project.
+
+## 1. What interests you?
+
+Choose an area you're genuinely curious about. This can be broad! Write 2–3 sentences describing the topic and why it interests you. Be honest, be quirky, be passionate.
+
+
+## 2. What data are out there?
+
+Explore datasets related to your area of interest. You are not limited to any particular source. Identify **at least three potential datasets**. 
+
+For each, provide:
+
+- The name and a link
+- A brief description of the data available (1–2 sentences)
+
+*I've compiled a list of data sources to help you get started. You'll find the link in the assignment on Canvas. You are welcome to explore beyond this list.*
+
+
+## 3. Let's look at some actual data
+
+Choose **two of the datasets** from the ones that you listed in Question 2 to investigate more closely.
+
+For each dataset:
+
+**a.** Try to download or access the data and load them into R. Include the code you used to import the dataset, even if it didn't work.
+
+**b.** If you successfully imported the data, use R to:
+
+- Print the first few observations.
+- Examine the structure of the dataset. 
+- Determine the number of observations and variables.
+
+Include your code and its output.
+
+**c.** Briefly describe what you found:
+
+- Who collected these data, and for what purpose?
+- What does one observation (row) represent?
+- What kinds of variables are available?
+- Is there documentation explaining the variables?
+- Did you encounter any problems accessing or understanding the data?
+- Do you notice any potential limitations or quality concerns? For example, missing values, unclear variable definitions, or limited spatial or temporal coverage.
+
+*If you cannot import a dataset, explain what you tried and what went wrong. You may include an error message or screenshot. You are not expected to solve every technical problem at this stage.*
+
+
+## 4. Which dataset seems most promising?
+
+Choose the dataset from Question 3 that you would most like to pursue.
+
+Using the five evaluation criteria from class, write a short paragraph explaining why you think this dataset is the strongest candidate. What makes it promising? What concerns or limitations do you anticipate?
+
+**You are not committing to this dataset yet.**
+
+## 5. What could you investigate?
+
+For your chosen dataset, identify two possible things you could investigate.
+
+For each possibility, briefly explain:
+
+- What variables would you use?
+- What would you compare, relate, or track?
+
+These do not need to be fully developed research questions yet. The goal is to identify analytical possibilities based on the data that actually exist.
+
+
+**Submit:** A rendered HTML document containing your responses, code, and output. Make sure your dataset links are included.

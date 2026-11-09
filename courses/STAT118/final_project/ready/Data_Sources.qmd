@@ -19,7 +19,6 @@ You are not limited to the things listed here.
 - [Data.gov](https://data.gov) — U.S. government datasets covering a wide variety of topics.
 - [TidyTuesday](https://github.com/rfordatascience/tidytuesday) — Curated datasets with descriptions and examples, particularly useful for R.
 - [Our World in Data](https://ourworldindata.org/) — Global datasets on health, education, energy, inequality, population, and more.
-- [data.world](https://data.world/) — Searchable collection of datasets from different organizations and contributors.
 
 ## Environment / Climate / Earth Science
 
