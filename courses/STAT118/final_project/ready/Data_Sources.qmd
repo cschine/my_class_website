@@ -1,0 +1,111 @@
+---
+title: "Final Project: Data Sources"
+format: html
+editor: source
+---
+
+This is a starting point.
+
+There is no single place to find data. Part of the process is learning where to look, what exists, and what is actually usable.
+
+Some of these are very easy to work with. Some are not. That’s part of the point.
+
+You are not limited to the things listed here.
+
+## General / Aggregated Data
+
+- [Kaggle](https://www.kaggle.com/datasets) — Large collection of datasets contributed by users on almost any topic.
+- [Google Dataset Search](https://datasetsearch.research.google.com/) — Search engine for finding datasets across the internet.
+- [Data.gov](https://data.gov) — U.S. government datasets covering a wide variety of topics.
+- [TidyTuesday](https://github.com/rfordatascience/tidytuesday) — Curated datasets with descriptions and examples, particularly useful for R.
+- [Our World in Data](https://ourworldindata.org/) — Global datasets on health, education, energy, inequality, population, and more.
+- [data.world](https://data.world/) — Searchable collection of datasets from different organizations and contributors.
+
+## Environment / Climate / Earth Science
+
+- NOAA
+    - [NOAA main site](https://www.noaa.gov/)
+    - [NOAA GML data](https://gml.noaa.gov/data/data.php) — Atmospheric measurements, including greenhouse gases.
+    - [Climate Explorer](https://crt-climate-explorer.nemac.org/) — Historical climate observations and projections.
+    - [NOAA Climate Data Online](https://www.ncei.noaa.gov/cdo-web/) — Historical temperature, precipitation, and weather observations.
+    - [NOAA Climate at a Glance](https://www.ncei.noaa.gov/access/monitoring/climate-at-a-glance/) — Accessible climate time series for different geographic regions.
+- [NASA Earthdata](https://www.earthdata.nasa.gov/data/catalog) — Satellite observations of Earth's atmosphere, oceans, land, and ice.
+- [Copernicus Climate Data Store](https://cds.climate.copernicus.eu/) — Global climate observations, reanalysis products, and projections.
+- USGS
+    - [USGS main site](https://www.usgs.gov/)
+    - [dataRetrieval R package](https://doi-usgs.github.io/dataRetrieval/) — Access USGS water data directly from R.
+    - [USGS Earthquake Catalog](https://earthquake.usgs.gov/earthquakes/search/) — Searchable earthquake observations, including location, magnitude, and time.
+- [EPA Air Quality Data](https://www.epa.gov/outdoor-air-quality-data) — Air pollution measurements across the United States.
+- [Global Biodiversity Information Facility (GBIF)](https://www.gbif.org/) — Species occurrence records from around the world.
+- [Movebank](https://www.movebank.org/) — Animal movement and migration tracking data.
+- [USA National Phenology Network](https://www.usanpn.org/data) — Observations of seasonal biological events, such as flowering and leaf-out.
+- [NEON](https://www.neonscience.org/data) — Ecological observations from sites across the United States.
+
+## Economics / Demographics / Society
+
+- [U.S. Census Bureau](https://data.census.gov/) — Population, demographics, housing, and socioeconomic characteristics.
+- [Bureau of Labor Statistics](https://www.bls.gov/data/) — Employment, wages, inflation, and labor market statistics.
+- [World Bank](https://data.worldbank.org/) — International economic, demographic, and development indicators.
+- [OECD](https://data.oecd.org/) — Economic and social indicators across countries.
+- [FRED — Federal Reserve Economic Data](https://fred.stlouisfed.org/) — Economic time series, including inflation, unemployment, housing, and interest rates.
+- [IPUMS](https://www.ipums.org/) — Historical and contemporary census and survey microdata.
+- [Social Explorer](https://www.socialexplorer.com/) — Demographic and socioeconomic data with geographic visualization tools.
+- [National Center for Education Statistics](https://nces.ed.gov/) — Education statistics, school characteristics, and student outcomes.
+- [HUD Data](https://www.huduser.gov/portal/datasets/pdrdatas.html) — Housing affordability, housing markets, and community development.
+- [NYC Open Data](https://opendata.cityofnewyork.us/) — Public datasets on housing, infrastructure, education, public services, and more.
+
+## Health
+
+- [CDC](https://data.cdc.gov/) — Public health datasets from the Centers for Disease Control and Prevention.
+- [WHO](https://www.who.int/data) — International health statistics and indicators.
+- [Youth Risk Behavior Surveillance System (YRBS)](https://www.cdc.gov/yrbs/) — Adolescent health behaviors, mental health, and risk factors.
+- [NHANES](https://www.cdc.gov/nchs/nhanes/) — Nutrition, physical activity, health measurements, and demographic information.
+- [Behavioral Risk Factor Surveillance System (BRFSS)](https://www.cdc.gov/brfss/) — Health behaviors and outcomes across U.S. states.
+- [CDC WONDER](https://wonder.cdc.gov/) — Mortality, disease, and population health data.
+- [Global Health Data Exchange](https://ghdx.healthdata.org/) — International health datasets, including disease burden and risk factors.
+- [County Health Rankings & Roadmaps](https://www.countyhealthrankings.org/) — County-level health outcomes and social determinants of health.
+
+## Sports
+
+- [Baseball Savant](https://baseballsavant.mlb.com/) — Detailed baseball statistics, including pitch tracking and player performance.
+- [Basketball Reference](https://www.basketball-reference.com/) — Historical NBA statistics for players and teams.
+- [FiveThirtyEight data](https://data.fivethirtyeight.com/) — Archived datasets from FiveThirtyEight analyses, including sports.
+- [Pro Football Reference](https://www.pro-football-reference.com/) — NFL player, team, and historical statistics.
+- [FBref](https://fbref.com/) — Soccer player and team performance statistics.
+- [Hockey Reference](https://www.hockey-reference.com/) — NHL player and team statistics.
+- [Tennis Abstract](https://www.tennisabstract.com/) — Tennis rankings, match results, and player performance.
+- [Sports Reference — College Basketball](https://www.sports-reference.com/cbb/) — College basketball statistics and historical records.
+
+## Politics / Public Opinion
+
+- [Pew Research Center](https://www.pewresearch.org/) — Surveys on public opinion, social trends, and political attitudes.
+- [MIT Election Data and Science Lab](https://electionlab.mit.edu/data) — U.S. election results and voting data.
+- [General Social Survey (GSS)](https://gss.norc.org/) — Long-running survey of social attitudes, behaviors, and demographics.
+- [American National Election Studies (ANES)](https://electionstudies.org/) — Voting behavior and political attitudes in the United States.
+- [Varieties of Democracy (V-Dem)](https://www.v-dem.net/data/) — International indicators of democracy and political institutions.
+- [ICPSR](https://www.icpsr.umich.edu/) — Large archive of social science research datasets.
+- [World Values Survey](https://www.worldvaluessurvey.org/) — International surveys of cultural values and social attitudes.
+
+## Text / Media / Culture
+
+- [Project Gutenberg](https://www.gutenberg.org/) — Free digital books that can be used for text analysis.
+- [GDELT Project](https://www.gdeltproject.org/) — Global news coverage and event data.
+- [IMDb Datasets](https://developer.imdb.com/non-commercial-datasets/) — Movie and television metadata, including genres, ratings, and release dates.
+- [The Movie Database (TMDB)](https://www.themoviedb.org/) — Film and television metadata, including genres and popularity.
+- [MusicBrainz](https://musicbrainz.org/doc/MusicBrainz_Database) — Music metadata covering artists, albums, and recordings.
+- [Open Library](https://openlibrary.org/developers/dumps) — Information about books, authors, and publication histories.
+- [Wikidata](https://www.wikidata.org/) — Structured information about people, places, historical events, and culture.
+- [Gapminder](https://www.gapminder.org/data/) — Global development indicators and historical comparisons.
+
+## Transportation / Cities
+
+- [Bureau of Transportation Statistics](https://www.transtats.bts.gov/) — Airline performance, flight delays, transportation statistics, and travel patterns.
+- [Citi Bike System Data](https://citibikenyc.com/system-data) — Bicycle trip records, including trip duration, station locations, and dates.
+- [NYC Taxi & Limousine Commission](https://www.nyc.gov/site/tlc/about/tlc-trip-record-data.page) — Taxi trip records, fares, pickup locations, and travel patterns.
+- [U.S. DOT Open Data](https://data.transportation.gov/) — Transportation infrastructure, safety, and public transportation datasets.
+
+## A note on usability
+
+Not all datasets are equally usable. Some will download cleanly as a CSV and open easily in R. Others may require accounts, be in unfamiliar formats, or need substantial cleaning. This is normal. Part of the goal is to start recognizing the difference.
+
+Finding a dataset that interests you is only the first step. Before committing to it, you need to determine what the observations represent, which variables are available, whether you can download the data, and whether the dataset can actually answer your question.

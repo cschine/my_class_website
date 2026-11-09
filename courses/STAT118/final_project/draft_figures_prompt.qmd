@@ -1,0 +1,88 @@
+---
+title: "Draft Figures"
+format:
+  html: 
+    code-overflow: wrap
+    embed-resources: true
+    code-tools:
+      source: true
+      toggle: false
+      caption: none
+execute: 
+  message: FALSE
+  warning: FALSE
+editor_options: 
+  chunk_output_type: console
+---
+
+## Overview
+
+At this point, you should be moving from initial exploration toward building the core of your analysis.
+
+This assignment is focused on developing **draft figures** and, more importantly, **thinking through what they show and why they matter**.
+
+These are drafts. They do not need to be polished. The goal is to surface ideas, patterns, and questions.
+
+
+## What to submit
+
+Submit **3 draft figures** that you are considering including in your final project. Use the Template File provided. 
+
+### For each figure include a short written response:
+
+*(a few sentences for each prompt)*
+
+**What did you plot?**  
+- What variables are shown?  
+- What type of plot is this?  
+
+**What do you see?**  
+- What patterns, relationships, or differences stand out?  
+- Be specific  
+
+**What do you think it means?**  
+- What might explain what you’re seeing?  
+- How does this connect to your broader question or idea?  
+
+**What questions does this raise?**  
+- What is unclear?  
+- What would you want to explore next?  
+
+
+## Expectations
+
+- Your figures should be readable (basic labels, axes, etc.)  
+- Each figure should reflect a deliberate choice, not something random  
+- Your responses should show your thinking, not just describe the plot  
+
+If everything feels obvious or straightforward, you probably haven’t pushed far enough yet.
+
+
+## A note
+
+These figures do not need to be final.
+
+It is completely fine if:
+
+- something doesn’t quite make sense  
+- a pattern is unclear  
+- a figure isn’t working the way you expected  
+
+That’s the point of this stage.
+
+
+## Connection to the Discussion Assignment
+
+You will use one of your figures for a follow-up discussion assignment.
+
+The goal of that discussion will be to share something that is **not working**, **unclear**, or **surprising**, and to get input from others.
+
+**More details will be posted soon.**
+
+For now, as you are working on these figures, keep track of:
+
+- something you don’t understand  
+- something that isn’t working the way you expected  
+- or something that raises a question you’re not sure how to answer  
+
+You will use one of your figures as the basis for your discussion post.

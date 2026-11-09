@@ -7,6 +7,7 @@ project:
     - sampler.qmd
     - courses/STAT118/index.qmd
     - courses/STAT118/notes/published/*.qmd
+    - final_project/ready/*.qmd
 
 website:
   title: "Casey’s Data Science Extras"
@@ -29,54 +30,61 @@ website:
       contents:
         - text: "STAT 118 Home"
           href: courses/STAT118/index.qmd
-
-        - text: "📖 Course Notes"
-          class: sidebar-item-group
-
-        - text: "Installing R and RStudio"
-          href: courses/STAT118/notes/published/installguide.qmd
+      
+        - section: "📖 Course Notes"
+          contents:
+          - text: "Installing R and RStudio"
+            href: courses/STAT118/notes/published/installguide.qmd
           
-        - text: "Intro to R & RStudio (Class A)"
-          href: courses/STAT118/notes/published/118_A_in_class_notes.qmd
+          - text: "Intro to R & RStudio (Class A)"
+            href: courses/STAT118/notes/published/118_A_in_class_notes.qmd
           
-        - text: "Data Wrangling Basics (Class B)"
-          href: courses/STAT118/notes/published/118_B_wrangling_in_class_notes.qmd
+          - text: "Data Wrangling Basics (Class B)"
+            href: courses/STAT118/notes/published/118_B_wrangling_in_class_notes.qmd
           
-        - text: "Manipulating and Summarizing Data (Class C)"
-          href: courses/STAT118/notes/published/118_C_aggregating_in_class_notes.qmd
+          - text: "Manipulating and Summarizing Data (Class C)"
+            href: courses/STAT118/notes/published/118_C_aggregating_in_class_notes.qmd
           
-        - text: "`ggplot2`: Barplots and Scatterplots (Class D)"
-          href: courses/STAT118/notes/published/118_D_ggplot_in_class_notes.qmd
+          - text: "`ggplot2`: Barplots and Scatterplots (Class D)"
+            href: courses/STAT118/notes/published/118_D_ggplot_in_class_notes.qmd
           
-        - text: "`ggplot2`: Line Graphs, Histograms, and Boxplots  (Class E)"
-          href: courses/STAT118/notes/published/118_E_ggplot_2_in_class_notes.qmd
+          - text: "`ggplot2`: Line Graphs, Histograms, and Boxplots  (Class E)"
+            href: courses/STAT118/notes/published/118_E_ggplot_2_in_class_notes.qmd
           
-        - text: "`ggplot2`: Customizing Plots (Class F)"
-          href: courses/STAT118/notes/published/118_F_ggplot_3_in_class_notes.qmd
+          - text: "`ggplot2`: Customizing Plots (Class F)"
+            href: courses/STAT118/notes/published/118_F_ggplot_3_in_class_notes.qmd
         
-        - text: "Mapping Data with Choropleth Maps (Class G)"
-          href: courses/STAT118/notes/published/118_G_maps_in_class_notes.qmd
+          - text: "Mapping Data with Choropleth Maps (Class G)"
+            href: courses/STAT118/notes/published/118_G_maps_in_class_notes.qmd
         
-        - text: "Categorical Data with factors, heatmaps, and tables (Class H)"
-          href: courses/STAT118/notes/published/118_H_forcats_in_class_notes.qmd
+          - text: "Categorical Data with factors, heatmaps, and tables (Class H)"
+            href: courses/STAT118/notes/published/118_H_forcats_in_class_notes.qmd
           
-        - text: "Exploratory Data Analysis: working with dense data and proportions"
-          href: courses/STAT118/notes/published/Midterm_Class1.qmd
+          - text: "Exploratory Data Analysis: working with dense data and proportions"
+            href: courses/STAT118/notes/published/Midterm_Class1.qmd
           
-        - text: "Exploratory Data Analysis: percentile rank and building a narrative"
-          href: courses/STAT118/notes/published/Midterm_Class2.qmd
+          - text: "Exploratory Data Analysis: percentile rank and building a narrative"
+            href: courses/STAT118/notes/published/Midterm_Class2.qmd
          
-        - text: "Joining datasets with `dplyr` (Class I)"
-          href: courses/STAT118/notes/published/118_I_joining_in_class_notes.qmd  
+          - text: "Joining datasets with `dplyr` (Class I)"
+            href: courses/STAT118/notes/published/118_I_joining_in_class_notes.qmd  
           
-        - text: "Pivoting datasets `tidyr` (Class J)"
-          href: courses/STAT118/notes/published/118_J_pivoting_in_class_notes.qmd 
+          - text: "Pivoting datasets `tidyr` (Class J)"
+            href: courses/STAT118/notes/published/118_J_pivoting_in_class_notes.qmd 
           
-        - text: "Working with strings `stringr` (Class K)"
-          href: courses/STAT118/notes/published/118_K_stringr_in_class_notes.qmd 
+          - text: "Working with strings `stringr` (Class K)"
+            href: courses/STAT118/notes/published/118_K_stringr_in_class_notes.qmd 
           
-        - text: "Working with dates and times `lubridate` (Class L)"
-          href: courses/STAT118/notes/published/118_L_lubridate_in_class_notes.qmd 
+          - text: "Working with dates and times `lubridate` (Class L)"
+            href: courses/STAT118/notes/published/118_L_lubridate_in_class_notes.qmd 
+            
+        - section: "📊 Final Project"
+          contents:
+          - text: "Final Project Companion Guide"
+            href: courses/STAT118/final_project/ready/Final_Project_Companion_guide.qmd
+
+          - text: "Step 1: Finding Data"
+            href: courses/STAT118/final_project/ready/Data_sources.qmd
 
 
 

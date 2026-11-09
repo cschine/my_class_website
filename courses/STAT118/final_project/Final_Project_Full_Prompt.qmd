@@ -1,0 +1,143 @@
+---
+title: "Final Project"
+subtitle: "Independent Data Analysis"
+format:
+  html: 
+    code-overflow: wrap
+    embed-resources: true
+    code-tools:
+      source: true
+      toggle: false
+      caption: none
+execute: 
+  message: FALSE
+  warning: FALSE
+editor_options: 
+  chunk_output_type: console
+---
+
+## Overview
+
+The goal of the final project is to develop a clear, well-supported analysis using the dataset you selected in Step 0 and refined in your project pitch.
+
+This is similar to the work that you did for your Midterm Project. But, the expectation is more depth, more clarity, and more intentional analysis.
+
+Your project should present a coherent story built from a small number of figures and/or tables that work together to explore a question, pattern, or idea.
+
+For this project I will provide a Template File, a Detailed Guide about what goes in each section, and a Rubric that details the points structure of the assignment.
+
+## What you are doing
+
+For this project, you will:
+
+- refine and develop the question or idea from your project pitch
+- build a set of **4–5 figures and/or tables** that support your analysis
+- include **at least one interactive figure or map**
+- clearly explain what you did, why you did it, and what you found
+- connect your results into a single, readable narrative
+
+Your goal is not to include as many plots as possible. Your goal is to make a small number of strong, meaningful elements that work together.
+
+## Project Structure
+
+Your report should include the following sections:
+
+- Introduction
+- Results
+- Discussion
+- Acknowledgements
+- References
+- Supplemental Materials
+
+You may also include a **Supplemental Materials** (or Figure Graveyard) section for additional figures or tables that are interesting but not essential to your main story. Please be sure to number them, caption them clearly, and at least briefly mention them in the main text. 
+
+## Introduction
+
+Introduce your dataset and your focus.
+
+Include:
+
+- a brief description of the dataset
+- what each observation represents
+- the variables you are focusing on
+- the question, idea, or theme guiding your analysis
+- why this is interesting
+
+## Results
+
+Include **4–5 figures and/or tables**, with **at least one interactive element** (either a plotly plot or leaflet map). Your figures and tables should work together as part of one story, each do a specific piece of work, and not be redundant. 
+
+For **each figure or table**:
+
+- Explain what you are showing
+- Explain why you made this figure or table
+- Describe what you observe. 
+
+Your reader should not have to guess why a figure exists.
+
+**Your figures can contain multiple panels so long as they are clearly related (faceting by a variable for example).**
+
+Strong Results sections feel like a sequence of connected steps. One figure leads to the next, and each element builds on the previous one.
+
+## Discussion
+
+Interpret your results and reflect on your analysis.
+
+You might consider:
+
+- What is the main takeaway from your analysis?
+- What patterns were most important?
+- What surprised you?
+- What are the limitations of your data or approach?
+- What would you want to explore next?
+
+## Expectations
+
+These projects are expected to show clear thinking and explanation, intentional choices in figures and analysis, a coherent throughline across the project, and contain figures that are readable and appropriately labeled.
+
+The emphasis is on clarity rather than complexity.
+
+## A note on figures and tables
+
+Use whichever format best communicates your idea.
+
+In general:
+
+- use a **figure** to show patterns, relationships, or trends
+- use a **table** when exact values or comparisons matter
+
+Examples of when a table might be useful:
+
+- comparing summary statistics across groups
+- showing ranked values such as top or bottom values
+- presenting counts or proportions clearly
+
+*A table can be especially useful in your introduction to list a bunch of variables, their meanings, their units, etc. This will not count in your figure/table count.*
+
+## Interactive requirement
+
+Your project must include **at least one interactive figure or map** (for example, using plotly or leaflet).
+
+This should be used intentionally. It should help the reader explore the data in a way that a static figure cannot.
+
+## Extra Credit: Reach
+
+You may choose to go beyond the core requirements.
+
+Examples include (but are not limited to):
+
+- including more than one interactive element
+- creating especially effective or well-designed interactivity
+- using a new package or technique
+- building a more complex or unusual type of visualization
+- working with text, spatial data, or time in a new way
+
+These are opportunities to try something interesting, not requirements.
+
+You will not be penalized if these attempts are imperfect. Thoughtful effort matters more than perfect execution.
+
+## Submission
+
+Submit your project as a Quarto-generated HTML document.
+
+Your code should be hidden using code-folding, but still accessible. This is already coded into the header of the template file you are provided. 

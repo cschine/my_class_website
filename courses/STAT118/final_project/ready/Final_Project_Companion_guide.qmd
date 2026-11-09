@@ -1,0 +1,160 @@
+---
+title: "Final Project Companion Guide"
+format:
+  html: 
+    code-overflow: wrap
+    embed-resources: true
+    code-tools:
+      source: true
+      toggle: false
+      caption: none
+execute: 
+  message: FALSE
+  warning: FALSE
+editor_options: 
+  chunk_output_type: console
+---
+
+## What this guide is for
+
+This guide is here to clarify what each section of the final project is supposed to do. The goal of the final project is not to produce as many figures as possible. The goal is to build one coherent story and explain your thinking clearly. This guide is meant to help you do that. 
+
+## Introduction
+
+### What this section should do
+
+The Introduction should guide the reader from a broad idea into your specific analysis.
+
+It should not feel like a list of answers. It should feel like a narrowing: each part sets up the next.
+
+A strong Introduction typically does the following:
+
+- Starts with the broader topic, issue, or pattern your project relates to  
+- Gives the reader a reason to care about it  
+- Moves toward a more specific question or idea you want to explore  
+- Introduces the data as a way of examining that question  
+- Clarifies what part of the data you are using and how it is structured  
+- Defines the key variables and what one observation represents  
+
+By the end of the Introduction, your reader should understand:
+
+- What this project is about  
+- Why it matters  
+- What question is being explored  
+- How the data allows you to explore it  
+
+### A strong Introduction
+
+A strong Introduction feels like a progression. The reader is not just given information—they are led toward the question your analysis is trying to answer.
+
+The dataset is introduced as part of that story, not as a separate block of description.
+
+### A weak Introduction
+
+A weak Introduction often:
+
+- starts with generic background that is not clearly connected to the analysis  
+- introduces the dataset abruptly without explaining why it matters  
+- lists variables without context  
+- delays the main question until the end or leaves it unclear  
+
+If your Introduction feels like disconnected pieces (topic → data → variables → question), it likely needs to be more tightly connected.
+
+## Results
+
+### What this section should do
+
+The Results section is where you present the evidence for your analysis. Each figure or table should contribute a piece of information that helps the reader understand your question.
+
+Your Results section should include **4–5 figures and/or tables** that work together. These should not feel like a random collection of plots. Each one should do a specific piece of work in your analysis.
+
+For **each figure or table**, your reader should be able to answer:
+
+- What is this showing?
+- Why did the author make this figure or table?
+- What do they want me to notice?
+- How does this relate to the other figures and tables?
+
+### Questions to answer for each figure or table
+
+For each element, make sure you explain:
+
+- What the figure or table is showing
+- What question or idea it helps investigate
+- What patterns, relationships, or differences stand out
+- What the reader should learn from it
+- How it connects to the broader story of the project
+
+A figure should not appear without explanation. Your reader should not have to guess why it exists.
+
+### What strong Results sections look like
+
+Strong Results sections feel like a sequence of connected steps. One figure leads naturally to the next. The writing helps the reader understand both the figure itself and why it matters. **Note that this ordering might not be the order in which you originally made the plots.**
+
+Strong Results sections do not just describe plots. They explain the role each figure plays in the overall analysis and how each figure relates to the others.
+
+### What weak Results sections look like
+
+Weak Results sections often do one or more of the following:
+
+- Show figures without enough explanation
+- Include figures without making clear what they contribute to the analysis
+- Include elements that feel repetitive, disconnected, or unnecessary
+- Rely on the figure itself to communicate the interpretation
+
+If your reader has to guess what a figure is doing in the project, you need to be clearer.
+
+### How is this different from the Discussion?
+
+Results = assembling and presenting the evidence in a logical sequence
+
+Discussion = stepping back and synthesizing what the evidence means overall
+
+## Discussion
+
+### What this section should do
+
+The Discussion is where you step back from the individual figures and talk about the bigger picture.
+
+By the end of this section, your reader should understand:
+
+- What the main takeaway is
+- What your results suggest or mean when considered together
+- What remains uncertain
+- How your findings connect to broader patterns, expectations, events, or ideas related to the topic
+- What limitations shaped your analysis
+- What you would want to explore next
+
+### A strong Discussion
+
+A strong Discussion ties the project together. It does not just repeat the Results section. Instead, it helps the reader understand the overall significance of what you found and connects the analysis back to the broader topic introduced at the beginning of the project.
+
+It should sound like you have thought about the analysis as a whole.
+
+### A weak Discussion
+
+A weak Discussion often just restates what the plots showed without reflecting on the bigger picture. It may also avoid uncertainty entirely, even when there are clear limitations or open questions.
+
+## When to use a figure and when to use a table
+
+Use a **figure** when you want the reader to quickly see a pattern, relationship, comparison, or trend.
+
+Use a **table** when exact values matter more than visual shape.
+
+A table may be useful when you want to:
+
+- compare summary statistics across groups
+- show ranked values such as top or bottom values
+- present counts or proportions clearly
+- report a small set of exact values that readers may want to compare directly
+
+A table is usually **not** the best choice when a visual pattern is the main point.
+
+## General advice
+
+- Fewer, stronger figures are better than many weak ones.
+- Each paragraph should start with a topic sentence that tells the reader what you are going to convince them of with the rest of the paragraph. YOu should be able to read the first sentence of each paragraph and be able to understand the overall story. 
+- Your figures should support your thinking, not replace it.
+- Try to make the project feel like one story, not several unrelated mini-projects.
+- Be clear about what you did, why you did it, and what you think it shows.
+- Clarity matters more than complexity.

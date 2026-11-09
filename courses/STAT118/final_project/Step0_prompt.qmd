@@ -1,0 +1,30 @@
+---
+title: ""
+format:
+  html:
+    toc: false
+    number-sections: false
+editor: visual
+---
+
+## Final Project (overview)
+
+Your final project will be an independent data analysis based on a question of your choosing.
+
+You will:
+- identify a question you are interested in  
+- find and work with a dataset (or datasets) that can help answer it  
+- create a small set of figures and/or tables  
+- use those to support a clear, evidence-based answer to your question  
+
+***But, before you can do any of that, there is an earlier step that often gets overlooked: figuring out what data actually exists and what you can do with it.***
+
+I am calling this Step 0. 
+
+In my own work, I rarely start with a fully formed question. I start with an area I’m interested in and then figure out what data are available and of the available data what’s actually usable. Often the limiting factor isn’t the idea but rather access and usability.  
+
+At this point, I have a general sense of what’s out there and how difficult it is to get and use. You don’t — yet.  
+
+The goal of this assignment is to help you start working through that process. You will start with an area of interest, explore what data exist, and use that to begin narrowing toward something you can actually work with.  
+
+**For this assignment, download the .qmd file, work through the instructions and upload your rendered .html.**

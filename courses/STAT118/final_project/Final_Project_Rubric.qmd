@@ -1,0 +1,141 @@
+---
+title: "Final Project Companion Guide"
+format:
+  html: 
+    code-overflow: wrap
+    embed-resources: true
+    code-tools:
+      source: true
+      toggle: false
+      caption: none
+execute: 
+  message: FALSE
+  warning: FALSE
+editor_options: 
+  chunk_output_type: console
+---
+
+# Final Project Rubric
+
+| Section | Points |
+|---|---:|
+| Introduction | 15 |
+| Results & Analysis | 40 |
+| Discussion | 20 |
+| Figures & Presentation | 15 |
+| Overall Organization & Writing | 10 |
+| **Total** | **100** |
+
+## Introduction (15 pts)
+
+### Strong (13–15 pts)
+- Clearly introduces the broader topic or issue
+- Uses outside sources, events, or background information to provide meaningful context for the analysis
+- Establishes a focused question, idea, or direction for the analysis
+- Explains how the dataset allows the question to be explored
+- Clearly describes what the observations represent and identifies important variables
+- Feels connected and purposeful rather than list-like
+
+### Developing (8–12 pts)
+- Introduces the topic and data, but connections between them may be unclear
+- Question or analytical focus may be somewhat vague or broad
+- Includes some dataset description, but important context may be missing
+- May feel somewhat checklist-like or disconnected
+
+### Needs Work (0–7 pts)
+- Lacks a clear analytical focus
+- Introduces the dataset without sufficient context
+- Includes generic or unrelated background information
+- Does not clearly explain the data or variables being used
+- Feels fragmented or difficult to follow
+
+
+## Results & Analysis (40 pts)
+
+### Strong (36–40 pts)
+- Includes 4–5 figures and/or tables that work together as part of a coherent analysis
+- Each element contributes something meaningful to the overall project
+- Writing clearly explains what each figure/table shows and what the reader should notice
+- Figures/tables are interpreted thoughtfully rather than simply described
+- Results are organized in a logical sequence that builds the analysis step-by-step
+- Connections between figures/tables and the broader project are clear
+
+### Developing (20–35 pts)
+- Includes several relevant figures/tables, but some may feel repetitive, disconnected, or underdeveloped
+- Some interpretation is present, but explanations may remain surface-level
+- The purpose of some elements may be unclear
+- Organization may feel somewhat abrupt or list-like
+- Reader can generally follow the analysis, though the overall throughline may be weak
+
+### Needs Work (0–19 pts)
+- Figures/tables appear disconnected or lack a clear analytical purpose
+- Minimal explanation or interpretation accompanies figures
+- Results rely heavily on plots to communicate ideas without sufficient guidance
+- Organization is difficult to follow
+- Explanations mainly describe what is visible in the figures without interpreting patterns or relationships
+
+## Discussion (20 pts)
+
+### Strong (18–20 pts)
+- Clearly explains the main takeaway of the project
+- Synthesizes findings across the analysis rather than repeating individual results
+- Connects findings to broader patterns, expectations, events, or ideas related to the topic
+- Thoughtfully discusses uncertainty and limitations
+- Identifies meaningful future directions or unanswered questions
+- Demonstrates reflection on the analysis as a whole
+
+### Developing (10–17 pts)
+- Summarizes major findings, but synthesis may be limited
+- Some broader interpretation is present, though connections may be weak or underdeveloped
+- Attempts to connect the findings to broader patterns, events, or ideas, though those connections may be vague or only partially developed
+- Mentions limitations or uncertainty, but only briefly
+- Future directions may be generic or disconnected from the project
+
+### Needs Work (0–9 pts)
+- Primarily repeats the Results section without deeper interpretation
+- Does not connect findings to a broader context
+- Avoids uncertainty or limitations entirely
+- Includes little reflection on what the analysis means overall
+
+
+
+## Figures & Presentation (15 pts)
+
+### Strong (13–15 pts)
+- Figures/tables are clear, readable, and visually polished
+- Labels, titles, legends, and scales are understandable and appropriately formatted
+- Visual choices support the analysis effectively
+- Layout and formatting help guide the reader through the project
+- Tables are used appropriately when exact values matter more than visual patterns
+
+### Developing (8–12 pts)
+- Most visuals are understandable, though some may be cluttered, confusing, or difficult to interpret
+- Some formatting or design choices weaken clarity
+- Labels or legends may occasionally be unclear or incomplete
+- Visual presentation is functional but inconsistent
+
+### Needs Work (0–7 pts)
+- Visuals are difficult to read or interpret
+- Plot/table choices are inappropriate for the information being shown
+- Missing or unclear labels substantially limit understanding
+- Formatting distracts from or obscures the analysis
+
+
+## Overall Organization & Writing (10 pts)
+
+### Strong (9–10 pts)
+- Project feels cohesive and well organized
+- Writing is clear and understandable
+- Analysis follows a logical progression
+- Reader can easily follow the project from introduction through discussion
+
+### Developing (5–8 pts)
+- Overall structure is understandable, though some sections may feel abrupt or disconnected
+- Writing is occasionally unclear or repetitive
+- Some transitions or organizational choices may weaken flow
+
+### Needs Work (0–4 pts)
+- Project lacks a clear organizational structure
+- Writing is difficult to follow
+- Sections feel disconnected or incomplete
+- Reader struggles to understand the overall argument or analysis

@@ -1,0 +1,63 @@
+---
+title: "Final Project — Step 0 Companion: Data Sources"
+format: html
+editor: source
+---
+
+This is a starting point.
+
+There is no single place to find data. Part of the process is learning where to look, what exists, and what is actually usable.
+
+Some of these are very easy to work with. Some are not. That’s part of the point.
+
+You are not limited to the things listed here.
+
+## General / Aggregated Data
+
+-   [Kaggle](https://www.kaggle.com/datasets)\
+-   [Google Dataset Search](https://datasetsearch.research.google.com/)\
+-   [Data.gov](https://data.gov)
+
+## Environment / Climate / Earth Science
+
+-   NOAA
+    -   [NOAA main site](https://www.noaa.gov/)\
+    -   [NOAA GML data](https://gml.noaa.gov/data/data.php)\
+    -   [Climate Explorer](https://crt-climate-explorer.nemac.org/)
+-   [NASA Earthdata](https://www.earthdata.nasa.gov/data/catalog)\
+-   [Copernicus Climate Data Store](https://cds.climate.copernicus.eu/)\
+-   USGS
+    -   [USGS main site](https://www.usgs.gov/)\
+    -   [dataRetrieval R package](https://doi-usgs.github.io/dataRetrieval/)
+
+## Economics / Demographics / Society
+
+-   [U.S. Census Bureau](https://data.census.gov/)\
+-   [Bureau of Labor Statistics](https://www.bls.gov/data/)\
+-   [World Bank](https://data.worldbank.org/)\
+-   [OECD](https://data.oecd.org/)
+
+## Health
+
+-   [CDC](https://data.cdc.gov/)\
+-   [WHO](https://www.who.int/data)
+
+## Sports
+
+-   [Baseball Savant](https://baseballsavant.mlb.com/)\
+-   [Basketball Reference](https://www.basketball-reference.com/)\
+-   [FiveThirtyEight data](https://data.fivethirtyeight.com/)
+
+## Politics / Public Opinion
+
+-   [Pew Research Center](https://www.pewresearch.org/)\
+-   [MIT Election Data and Science Lab](https://electionlab.mit.edu/data)
+
+## Text / Media / Culture
+
+-   [Project Gutenberg](https://www.gutenberg.org/)\
+-   [GDELT Project](https://www.gdeltproject.org/)
+
+## A note on usability
+
+Not all datasets are equally usable. Some will download cleanly as a CSV and open easily in R. Others may require accounts, be in unfamiliar formats, or need substantial cleaning. This is normal. Part of the goal is to start recognizing the difference.
