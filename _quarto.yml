@@ -84,7 +84,7 @@ website:
           - text: "Final Project Companion Guide"
             href: courses/STAT118/final_project/ready/Final_Project_Companion_guide.qmd
 
-          - text: "Step 1: Finding Data"
+          - text: "Data Sources"
             href: courses/STAT118/final_project/ready/Data_Sources.qmd
 
 
