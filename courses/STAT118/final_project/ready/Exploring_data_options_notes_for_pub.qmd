@@ -1,4 +1,3 @@
-
 ---
 title: "STAT 118: Finding a Dataset Worth Investigating"
 subtitle: "Final Project — Class 1"
@@ -7,6 +6,9 @@ format:
     toc: true
     code-fold: true
     embed-resources: true
+execute: 
+  warning: false
+  message: false
 ---
 
 ## Introduction to your Final Project
@@ -19,10 +21,6 @@ A few things to keep in mind:
 - **You don't need a research question yet.** Your question will develop as you explore the data.
 - **Your project should be an investigation**, not simply a collection of unrelated figures.
 - **You'll develop your project over time.** We'll have opportunities for discussion, feedback, and revision throughout the remaining classes.
-
-### Project timeline
-
-The timeline for this project and all of the intermediate assignments that will help you build your project are on the schedule on Canvas. 
 
 
 ## Good Analysis Starts with Good Data
@@ -80,83 +78,114 @@ Not every dataset is a good choice for this project. Before committing to one, w
 
 ## Explore potential datasets 
 
-I have compiled a LARGE list of potential data sources. Use the list I gave you or explore other sources that interest you.
+I have compiled a [LARGE list of potential data sources](https://cschine.github.io/my_class_website/courses/STAT118/final_project/ready/Data_Sources.html). Use the list I gave you or explore other sources that interest you.
 
-### Your task
+In class you worked in groups to identify potentially interesting datasets. Let's investigate some of the datasets you found and assess them according to our criteria for a good dataset.
 
-Find **one dataset** and evaluate it against the 5 criteria we discussed.
+We looked at 2 datasets. The first was WNBA shooting statistics which required quite a bit of cleaning and manipulation after finding the dataset. 
 
-Be ready to tell the class about the dataset (where you found it and what the data are about) and how it measured up against our criteria for a good dataset. 
+### WNBA data
 
-## Some datasets that might NOT work? (Discussion)
+https://www.basketball-reference.com/wnba/years/2025_shooting.html
 
-Let's look at some datasets that you think might be difficult or unsuitable for this project.
+I tried a few of the other export options that were available at the top of the page. The "Get as Excel Workbook" exports a `.xls` file. It wasn't as simple as reading it straight in from the excel file, which appeared to be corrupted somehow. I opened it in Excel and resaved it as a `.csv` and then imported it. 
 
-### Questions to consider
+```{r}
+library(tidyverse)
+WNBA_data <- read_csv("~/Dropbox/!Middlebury/Teaching/my_class_website/courses/STAT118/final_project/data/sportsref_download.csv", skip=1)
 
-- What makes this dataset potentially unsuitable?
-- Which of our five criteria are we concerned about?
-- Is this a problem we could reasonably overcome?
-- What additional information would help us decide?
+head(WNBA_data)
+```
+You can see that the column names are still a complete mess and will need to be cleared up manually probably. 
 
-**An important distinction:** A dataset that requires some work is not necessarily a bad dataset. But some datasets may require more work than we can reasonably accomplish in this project.
+But we can start to do some basic things with the data like look at distributions of different variables. The histogram below shows the distribution of Field Goal % across all of the players in the dataset. 
+
+```{r}
+library(ggthemes)
+WNBA_data |>
+  ggplot(aes(x=`FG%`)) + # note the ` ` around the FG%, this is necessary with special characters or spaces. If I was going to continue working with these data, I would change this column name so that I don't have to keep doing this.
+  geom_histogram() +
+  theme_tufte()
+```
+Having looked at this I am very curious which players have the highest and lowest `FG%`. Here are the three highest: 
+```{r}
+
+WNBA_data |> 
+  arrange(desc(`FG%`)) |>
+  slice(1:3) |>
+  select(Player, `FG%`)
+
+```
+
+To get at the lowest I decided to filter for all players with an `FG%` of zero:
+
+```{r}
+
+WNBA_data |> 
+  filter(`FG%`==0) |>
+  select(Player, `FG%`)
+
+```
+
+So, according to our criteria, this dataset is **accessible** (reasonably), **understandable** (with a little work, some of the variables are a touch confusing), there is a lot of **analytical potential**, especially if you go after multiple years, and it is **feasible** to work with (not too big, no missing data, etc.). SO, I would call this a good data set, or atleast a good place to start, with a lot more data on the same topic available on the website. 
+
+### Moods and Activities in Music
+
+The second dataset that we looked at came from the website:
+
+https://reshare.ukdataservice.ac.uk/852024/
+
+And was collected by folks at Durham University in the UK. It contains "annotations of music in terms of moods music may express and activities that music might fit". It downloads as a `.zip` file and unpacks to 11 different `.csv` files that each contain a different aspect of the dataset. It comes with a very helpful [`README`](https://reshare.ukdataservice.ac.uk/852024/3/ReadMe.txt), that explains each of the different datasets and what they contain. 
+
+This one is a bit complicated because of how it is distributed across so many files. I'm going to open the `bg_activities_musical.csv` file which contains answers from each user to the question, "How important is music to you in the following activities?" The user assigns a value of 1-5 to each activity.
+
+```{r}
+activities <- read_csv("courses/STAT118/final_project/data/moods_and_activities_in_music/bg_activities_musical.csv")
+
+# to get the number of rows and columns
+dim(activities)
+
+# to get all of the column names
+colnames(activities)
+
+```
+
+So, I have 2,508 observations and 10 variables. The names of the columns are pretty descriptive and give me a decent idea of what activities are being surveyed.
+
+I'm going to take a different route than previously and pivot this dataset longer and then create a stack of ridgeline plots to look at how the distribution changes depending on the activity.
+
+Here we go: 
+```{r}
+activities_long <- activities |>
+  pivot_longer(cols=starts_with("activity"),
+               names_to="activity",
+               values_to="value",
+               names_prefix="activity.")
+
+head(activities_long)
+```
+```{r}
+library(ggridges)
+activities_long |>
+  ggplot(aes(x=value, y=activity, fill=activity)) +
+  geom_density_ridges() +
+  theme_tufte() +
+  theme(legend.position="none") # suppress legend
+
+```
+
+Ew. That it terrible. I'm going to do something similar but a histogram instead.
+
+```{r fig.height=8}
+activities_long |>
+  ggplot(aes(x=value, fill=activity)) +
+  geom_histogram(bins=5) +
+  facet_wrap(~activity, ncol=1) +
+  theme_tufte() +
+  theme(legend.position="none")
+```
+
+I am intrigued by how many people do not rate music as being an important part of live music. Food for thought. 
 
 
-## 5.Some datasets that look promising? 
 
-Let's investigate some of the datasets you found that look promising. We'll choose one or two examples and evaluate them together.
-
-### For each dataset, let's investigate:
-
-**1. What did we find?**
-
-- What is the dataset about?
-- What does one observation represent?
-- What variables are available?
-
-**2. What could we investigate?**
-
-- What differences, patterns, or relationships might be interesting?
-- What kinds of questions could these data help us answer?
-
-**3. What might be difficult?**
-
-- Can we download the data?
-- Can we understand the variables?
-- Are there any obvious limitations?
-
-**4. What's our decision?**
-
-- **Pursue it:** This looks promising enough to investigate further.
-- **Reject it:** This probably isn't a good fit for our project.
-- **Need more information:** We can't decide yet.
-
-The goal isn't to find the perfect dataset immediately. It's to learn how to evaluate our options and make informed decisions.
-
-
-## What have we learned?
-
-Return to our five criteria:
-
-1. Interest
-2. Accessibility
-3. Understanding
-4. Analytical potential
-5. Manageability
-
-
-## Homework — Step 1: Finding and evaluating datasets
-
-For your first final-project assignment, you will:
-
-1. Identify an area of interest.
-2. Find at least three potential datasets or data sources.
-3. Choose two specific datasets to investigate more closely.
-4. Attempt to download and import both datasets into R.
-5. Use R to inspect the observations, variables, and structure of the datasets.
-6. Identify possible investigations for each dataset.
-7. Choose the dataset that currently seems most promising and explain why.
-
-**You are not committing to a dataset yet.**
-
-In our next class, we'll move beyond inspecting the structure of the data and begin exploring patterns, relationships, and possible research questions.
