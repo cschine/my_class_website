@@ -1,0 +1,153 @@
+---
+title: "STAT 118: Exploring Data and Developing Questions"
+subtitle: "Final Project — Class 2"
+format:
+  html:
+    toc: true
+    code-fold: false
+    embed-resources: true
+execute: 
+  warning: false
+  message: false
+---
+
+## How did it go finding data?
+
+### What are some problems you ran into?
+
+### Who found a dataset they are very excited about?
+
+### Remember our criteria for a good dataset
+
+**1. Interest** — Do I care about these data?
+
+**2. Accessibility** — Can I get the data?
+
+**3. Understanding** — Can I make sense of the data?
+
+**4. Analytical potential** — Is there enough to investigate?
+
+**5. Feasibility** — What might prevent me from using these data successfully?
+
+# Data Exploration
+
+### My Rules for Initial Data Exploration
+
+**1. Know your data.** Understand what each row represents, what your variables measure, their units, and where values are missing.
+
+**2. Look before you aggregate.** If your data have a temporal or spatial component, examine patterns at the original resolution before averaging, grouping, or binning. Aggregation can hide important patterns.
+
+**3. Examine distributions.** Look at the range, shape, variability, and outliers of your variables. Are there unexpected values or distinct groups?
+
+**4. Explore relationships.** Investigate how variables relate to one another. Do relationships change across groups, locations, or time?
+
+**5. Follow what you find.** Let interesting patterns, unexpected results, and unanswered questions guide your next analysis. Don't just make figures for the sake of making figures. *Every analysis should teach you something that helps determine what to do next.*
+
+**6. Question your results.** Could a pattern reflect missing data, sampling bias, or the way the data were collected or processed?
+
+**7. Keep track of your questions.** Write down interesting observations and possible explanations as you go. These are the beginnings of your research questions.
+
+**The golden rule:** Look at your data before you manipulate them.
+
+## Me first
+
+My goals in choosing my dataset were slightly different from the ones that I gave to you. My first criteria was ignorance rather than interest. I needed to find data in a subject area I have never worked in before that I have absolutely no familiarity with.
+
+So, I present you with my dataset on the Squirrels of Central Park.
+
+![](https://images.squarespace-cdn.com/content/v1/5b834741f407b4df429d791a/1561681623533-A7X6X0H2FW9A9OIJW79J/Acorn_Starburst_Name_Blue.png){fig-align="center" width="2in"}
+
+I didn't entirely realize what I was getting into. This dataset has a logo, a website, and an instagram.
+
+First let's go over some answers to the questions that I asked about your datasets on your homework:
+
+Examine the structure of the data. How many variables and observations does it have? Print the first few observations.
+
+```{r}
+library(tidyverse)
+
+squirrel_data <- read_csv("~/Dropbox/!Middlebury/Teaching/my_class_website/courses/STAT118/data/2018_Central_Park_Squirrel_Census_-_Squirrel_Data_20261007.csv")
+
+```
+
+Let's talk over some of the answers to the other questions I asked you on your homework:
+
+-   Who collected these data, and for what purpose?
+-   What does one observation (row) represent?
+-   What kinds of variables are available?
+-   Is there documentation explaining the variables?
+-   Did you encounter any problems accessing or understanding the data?
+-   Do you notice any potential limitations or quality concerns? For example, missing values, unclear variable definitions, or limited spatial or temporal coverage.
+-   What makes it promising? What concerns or limitations do you anticipate?
+
+For your chosen dataset, identify two possible things you could investigate.
+
+-   Spatial distribution of squirrels and their activities.
+-   Changes in squirrel behavior in time? In different spots in Central Park? Between adults and juveniles?
+
+First I want to give myself an actual date column.
+
+```{r}
+
+```
+
+Now let's wing it. 
+
+Some things we can explore are changes or differences in time and space, relationships between variables or groups, and distributions of variables. 
+
+```{r}
+
+```
+
+
+## Your turn
+
+With a partner or in a group of three, use the dataset we've been exploring. Identify something interesting in the data and investigate it further. This can be something sparked by an observation in the work that we've just done, or something you are wondering independent of what we've been doing.
+
+Be ready to share:
+
+-   What did you notice?
+-   What question did that observation raise?
+-   What analysis did you perform to investigate it?
+-   What did you discover, and what would you investigate next?
+
+## Possible Research Questions
+
+What are some possible research questions:
+
+- What observation or finding motivated the question?
+- What variables or comparisons would help you investigate it?
+- Do you have the data needed to answer it?
+
+## Reflection
+
+Briefly reflect on your progress.
+
+- What is the most interesting thing you've discovered so far?
+- What challenges or limitations have you encountered?
+- What would you like to investigate next?
+- Do you think this dataset is a good choice for your final project? Why or why not?
+
+## Now with your own data
+
+Now apply the same approach to your own dataset. Start by examining its distributions, temporal or spatial patterns (if applicable), and relationships between variables. As you explore, identify something interesting and conduct at least one follow-up analysis motivated by what you observed. Keep track of questions that arise. You don't need to settle on a research question today, but you should begin identifying possibilities.
+
+### Exploratory Data Analysis: Where to Start?
+
+Not sure what to investigate next? Use these questions to guide your exploration.
+
+| First, investigate… | Ask yourself… | Possible approaches |
+|------------------------|------------------------|------------------------|
+| **Time** | Are there trends, seasonal cycles, gaps, or unusual events? | Time-series plots |
+| **Space** | Are there clusters, gradients, or regional differences? | Maps, spatial plots |
+| **Distributions** | How are values distributed? Are there outliers, skewed distributions, or distinct groups? | Histograms, density plots, boxplots |
+| **Relationships** | Which variables are associated? Are relationships linear or nonlinear? | Scatterplots, heatmaps |
+| **Group differences** | Do patterns or distributions differ across categories, locations, or time periods? | Facets, grouped summaries, boxplots |
+| **Follow-up** | What surprised me? Does a pattern persist when I look more closely? What might explain it? | Filtering, grouping, comparisons, additional figures |
+
+**A few rules to remember:**
+
+-   Examine temporal and spatial patterns at their original available resolution **before aggregating or binning**.
+-   Look at distributions before relying on averages or other summary statistics.
+-   Let what you discover guide your next analysis. You don't need to work through this table in order.
+-   Be curious about unexpected results. Sometimes the most interesting questions come from things you weren't looking for.

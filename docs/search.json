@@ -756,16 +756,148 @@
     ]
   },
   {
-    "objectID": "courses/STAT118/notes/published/installguide.html",
-    "href": "courses/STAT118/notes/published/installguide.html",
-    "title": "Installing R and RStudio",
+    "objectID": "courses/STAT118/notes/published/118_A_intro_quarto.html",
+    "href": "courses/STAT118/notes/published/118_A_intro_quarto.html",
+    "title": "Intro to R and RStudio",
     "section": "",
-    "text": "For this course, you will need to install both R and RStudio on your computer.\n\nR is the programming language that runs your code.\nRStudio is the program we will use to write and run R code.\n\nInstall R first, then install RStudio.\n\n1. Install R\nGo to the R Project download page.\n\nMac\n\nClick Download R for macOS.\nDownload the appropriate installer for your Mac.\nOpen the downloaded .pkg file and follow the installation instructions.\n\n\n\n\n\n\n\nTip\n\n\n\nIf you are unsure which R version you need, click on the Apple in the upper lefthand corner of your desktop and select “About This Mac”, this will contain information both about the chip in your Mac (Intel or M) and the OS that you are running which will allow you to select the correct version of R.\n\n\n\n\nWindows\n\nClick Download R for Windows.\nClick install R for the first time.\nClick Download R-4.6.1 for Windows (the exact R version number may have changed).\nOpen the downloaded installer and accept the default installation options.\n\n\n\n\n2. Install RStudio Desktop\nGo to the RStudio Desktop download page.\n\nDownload the free version of RStudio Desktop for your operating system.\nOpen the installer.\nFollow the installation instructions.\n\n\n\n3. Make sure everything works\nOpen RStudio.\n\n\n\nCredit: moderndive\n\n\nIf the installation was successful, you should see the RStudio interface with a Console pane containing some text about your version of R and a &gt; prompt.\nAt the &gt; prompt, type:\n\n2 + 2\n\nIf R responds with:\n[1] 4\nyou’re ready for class!\nIf you are stumped by 3. Don’t worry about it. If you didn’t get any errors during installation and can open the program ok, then you should be good to go.",
+    "text": "If you have not already, please refer to the Installation Guide to install R and RStudio on your computer.\nR (The brain behind it all)\nRStudio (The interface you work with)\nRStudio is an IDE (Integrated Development Environment) that gives you a user-friendly interface to write and run your R code.\nWhen you open RStudio, you should see something similar to this:"
+  },
+  {
+    "objectID": "courses/STAT118/notes/published/118_A_intro_quarto.html#open-your-.qmd-file-in-rstudio",
+    "href": "courses/STAT118/notes/published/118_A_intro_quarto.html#open-your-.qmd-file-in-rstudio",
+    "title": "Intro to R and RStudio",
+    "section": "1️⃣ Open Your .qmd File in RStudio",
+    "text": "1️⃣ Open Your .qmd File in RStudio\nNavigate to the file on your local computer and click to open it!\n\nSome folks prefer to use the “Files” tab within RStudio to navigate to the file\nOther folks prefer to interact with their files in their typical way (Using Finder on Mac or File Explorer on PC)\n\nEither way works just fine!"
+  },
+  {
+    "objectID": "courses/STAT118/notes/published/118_A_intro_quarto.html#install-quarto-in-rstudio",
+    "href": "courses/STAT118/notes/published/118_A_intro_quarto.html#install-quarto-in-rstudio",
+    "title": "Intro to R and RStudio",
+    "section": "2️⃣ Install Quarto in RStudio",
+    "text": "2️⃣ Install Quarto in RStudio\nOption 1: Using the RStudio Interface\n\nGo to the Packages pane in RStudio (bottom-right by default),\nClick Install,\nIn the box that appears:\n\nEnter the package name (quarto),\n\nMake sure Install dependencies is checked,\nClick Install.\n\n\n\nOption 2: Using R Code in the Console\n\ninstall.packages(\"quarto\")"
+  },
+  {
+    "objectID": "courses/STAT118/notes/published/118_A_intro_quarto.html#render-and-preview",
+    "href": "courses/STAT118/notes/published/118_A_intro_quarto.html#render-and-preview",
+    "title": "Intro to R and RStudio",
+    "section": "3️⃣ Render and Preview",
+    "text": "3️⃣ Render and Preview\nClick the Render button () at the top-right of your RStudio editor window.\nTada! You now have created a .html file!\nThe file has been created in the same folder as your .qmd file: \nWhen you render, a preview of the document will show up!\n\n\n\n\n\n\nTip\n\n\n\nBy default, the preview of .html will pop up in your web browser. This is totally okay. In fact, I tend to prefer this approach when I’m working at a computer station with multiple monitors.\nHowever, you may prefer to have the .html preview in your viewer pane right within RStudio. This is what I prefer when I’m just working on just my laptop.\nClick on the “gear button”  and select “Preview in Viewer Pane”\n\n\nThe preview will update whenever you re-render the document."
+  },
+  {
+    "objectID": "courses/STAT118/notes/published/118_A_intro_quarto.html#footnotes",
+    "href": "courses/STAT118/notes/published/118_A_intro_quarto.html#footnotes",
+    "title": "Intro to R and RStudio",
+    "section": "Footnotes",
+    "text": "Footnotes\n\n\nhttps://moderndive.com/1-getting-started.html↩︎"
+  },
+  {
+    "objectID": "courses/STAT118/final_project/ready/Final_Project_Companion_guide.html",
+    "href": "courses/STAT118/final_project/ready/Final_Project_Companion_guide.html",
+    "title": "Final Project Companion Guide",
+    "section": "",
+    "text": "This guide is here to clarify what each section of the final project is supposed to do. The goal of the final project is not to produce as many figures as possible. The goal is to build one coherent story and explain your thinking clearly. This guide is meant to help you do that.",
     "crumbs": [
       "STAT 118: Intro to Data Science",
-      "📖 Course Notes",
-      "Installing R and RStudio"
+      "📊 Final Project",
+      "Final Project Companion Guide"
     ]
+  },
+  {
+    "objectID": "courses/STAT118/final_project/ready/Final_Project_Companion_guide.html#what-this-guide-is-for",
+    "href": "courses/STAT118/final_project/ready/Final_Project_Companion_guide.html#what-this-guide-is-for",
+    "title": "Final Project Companion Guide",
+    "section": "",
+    "text": "This guide is here to clarify what each section of the final project is supposed to do. The goal of the final project is not to produce as many figures as possible. The goal is to build one coherent story and explain your thinking clearly. This guide is meant to help you do that.",
+    "crumbs": [
+      "STAT 118: Intro to Data Science",
+      "📊 Final Project",
+      "Final Project Companion Guide"
+    ]
+  },
+  {
+    "objectID": "courses/STAT118/final_project/ready/Final_Project_Companion_guide.html#introduction",
+    "href": "courses/STAT118/final_project/ready/Final_Project_Companion_guide.html#introduction",
+    "title": "Final Project Companion Guide",
+    "section": "Introduction",
+    "text": "Introduction\n\nWhat this section should do\nThe Introduction should guide the reader from a broad idea into your specific analysis.\nIt should not feel like a list of answers. It should feel like a narrowing: each part sets up the next.\nA strong Introduction typically does the following:\n\nStarts with the broader topic, issue, or pattern your project relates to\n\nGives the reader a reason to care about it\n\nMoves toward a more specific question or idea you want to explore\n\nIntroduces the data as a way of examining that question\n\nClarifies what part of the data you are using and how it is structured\n\nDefines the key variables and what one observation represents\n\nBy the end of the Introduction, your reader should understand:\n\nWhat this project is about\n\nWhy it matters\n\nWhat question is being explored\n\nHow the data allows you to explore it\n\n\n\nA strong Introduction\nA strong Introduction feels like a progression. The reader is not just given information—they are led toward the question your analysis is trying to answer.\nThe dataset is introduced as part of that story, not as a separate block of description.\n\n\nA weak Introduction\nA weak Introduction often:\n\nstarts with generic background that is not clearly connected to the analysis\n\nintroduces the dataset abruptly without explaining why it matters\n\nlists variables without context\n\ndelays the main question until the end or leaves it unclear\n\nIf your Introduction feels like disconnected pieces (topic → data → variables → question), it likely needs to be more tightly connected.",
+    "crumbs": [
+      "STAT 118: Intro to Data Science",
+      "📊 Final Project",
+      "Final Project Companion Guide"
+    ]
+  },
+  {
+    "objectID": "courses/STAT118/final_project/ready/Final_Project_Companion_guide.html#results",
+    "href": "courses/STAT118/final_project/ready/Final_Project_Companion_guide.html#results",
+    "title": "Final Project Companion Guide",
+    "section": "Results",
+    "text": "Results\n\nWhat this section should do\nThe Results section is where you present the evidence for your analysis. Each figure or table should contribute a piece of information that helps the reader understand your question.\nYour Results section should include 4–5 figures and/or tables that work together. These should not feel like a random collection of plots. Each one should do a specific piece of work in your analysis.\nFor each figure or table, your reader should be able to answer:\n\nWhat is this showing?\nWhy did the author make this figure or table?\nWhat do they want me to notice?\nHow does this relate to the other figures and tables?\n\n\n\nQuestions to answer for each figure or table\nFor each element, make sure you explain:\n\nWhat the figure or table is showing\nWhat question or idea it helps investigate\nWhat patterns, relationships, or differences stand out\nWhat the reader should learn from it\nHow it connects to the broader story of the project\n\nA figure should not appear without explanation. Your reader should not have to guess why it exists.\n\n\nWhat strong Results sections look like\nStrong Results sections feel like a sequence of connected steps. One figure leads naturally to the next. The writing helps the reader understand both the figure itself and why it matters. Note that this ordering might not be the order in which you originally made the plots.\nStrong Results sections do not just describe plots. They explain the role each figure plays in the overall analysis and how each figure relates to the others.\n\n\nWhat weak Results sections look like\nWeak Results sections often do one or more of the following:\n\nShow figures without enough explanation\nInclude figures without making clear what they contribute to the analysis\nInclude elements that feel repetitive, disconnected, or unnecessary\nRely on the figure itself to communicate the interpretation\n\nIf your reader has to guess what a figure is doing in the project, you need to be clearer.\n\n\nHow is this different from the Discussion?\nResults = assembling and presenting the evidence in a logical sequence\nDiscussion = stepping back and synthesizing what the evidence means overall",
+    "crumbs": [
+      "STAT 118: Intro to Data Science",
+      "📊 Final Project",
+      "Final Project Companion Guide"
+    ]
+  },
+  {
+    "objectID": "courses/STAT118/final_project/ready/Final_Project_Companion_guide.html#discussion",
+    "href": "courses/STAT118/final_project/ready/Final_Project_Companion_guide.html#discussion",
+    "title": "Final Project Companion Guide",
+    "section": "Discussion",
+    "text": "Discussion\n\nWhat this section should do\nThe Discussion is where you step back from the individual figures and talk about the bigger picture.\nBy the end of this section, your reader should understand:\n\nWhat the main takeaway is\nWhat your results suggest or mean when considered together\nWhat remains uncertain\nHow your findings connect to broader patterns, expectations, events, or ideas related to the topic\nWhat limitations shaped your analysis\nWhat you would want to explore next\n\n\n\nA strong Discussion\nA strong Discussion ties the project together. It does not just repeat the Results section. Instead, it helps the reader understand the overall significance of what you found and connects the analysis back to the broader topic introduced at the beginning of the project.\nIt should sound like you have thought about the analysis as a whole.\n\n\nA weak Discussion\nA weak Discussion often just restates what the plots showed without reflecting on the bigger picture. It may also avoid uncertainty entirely, even when there are clear limitations or open questions.",
+    "crumbs": [
+      "STAT 118: Intro to Data Science",
+      "📊 Final Project",
+      "Final Project Companion Guide"
+    ]
+  },
+  {
+    "objectID": "courses/STAT118/final_project/ready/Final_Project_Companion_guide.html#when-to-use-a-figure-and-when-to-use-a-table",
+    "href": "courses/STAT118/final_project/ready/Final_Project_Companion_guide.html#when-to-use-a-figure-and-when-to-use-a-table",
+    "title": "Final Project Companion Guide",
+    "section": "When to use a figure and when to use a table",
+    "text": "When to use a figure and when to use a table\nUse a figure when you want the reader to quickly see a pattern, relationship, comparison, or trend.\nUse a table when exact values matter more than visual shape.\nA table may be useful when you want to:\n\ncompare summary statistics across groups\nshow ranked values such as top or bottom values\npresent counts or proportions clearly\nreport a small set of exact values that readers may want to compare directly\n\nA table is usually not the best choice when a visual pattern is the main point.",
+    "crumbs": [
+      "STAT 118: Intro to Data Science",
+      "📊 Final Project",
+      "Final Project Companion Guide"
+    ]
+  },
+  {
+    "objectID": "courses/STAT118/final_project/ready/Final_Project_Companion_guide.html#general-advice",
+    "href": "courses/STAT118/final_project/ready/Final_Project_Companion_guide.html#general-advice",
+    "title": "Final Project Companion Guide",
+    "section": "General advice",
+    "text": "General advice\n\nFewer, stronger figures are better than many weak ones.\nEach paragraph should start with a topic sentence that tells the reader what you are going to convince them of with the rest of the paragraph. YOu should be able to read the first sentence of each paragraph and be able to understand the overall story.\nYour figures should support your thinking, not replace it.\nTry to make the project feel like one story, not several unrelated mini-projects.\nBe clear about what you did, why you did it, and what you think it shows.\nClarity matters more than complexity.",
+    "crumbs": [
+      "STAT 118: Intro to Data Science",
+      "📊 Final Project",
+      "Final Project Companion Guide"
+    ]
+  },
+  {
+    "objectID": "courses/STAT118/index.html",
+    "href": "courses/STAT118/index.html",
+    "title": "Stat 118: Intro to Data Science",
+    "section": "",
+    "text": "Use the navigation bar on the left to look at notes from previous classes.",
+    "crumbs": [
+      "STAT 118: Intro to Data Science",
+      "STAT 118 Home"
+    ]
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Home",
+    "section": "",
+    "text": "This is a small website for class materials, examples, and optional extras.\nI put this together last night while half asleep, which is honestly part of the point: this is a very lightweight way to put your work online.\nUse the navigation bar above to explore."
+  },
+  {
+    "objectID": "index.html#welcome",
+    "href": "index.html#welcome",
+    "title": "Home",
+    "section": "",
+    "text": "This is a small website for class materials, examples, and optional extras.\nI put this together last night while half asleep, which is honestly part of the point: this is a very lightweight way to put your work online.\nUse the navigation bar above to explore."
   },
   {
     "objectID": "courses/STAT118/final_project/ready/Data_Sources.html",
@@ -888,148 +1020,100 @@
     ]
   },
   {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Home",
+    "objectID": "courses/STAT118/notes/published/installguide.html",
+    "href": "courses/STAT118/notes/published/installguide.html",
+    "title": "Installing R and RStudio",
     "section": "",
-    "text": "This is a small website for class materials, examples, and optional extras.\nI put this together last night while half asleep, which is honestly part of the point: this is a very lightweight way to put your work online.\nUse the navigation bar above to explore."
+    "text": "For this course, you will need to install both R and RStudio on your computer.\n\nR is the programming language that runs your code.\nRStudio is the program we will use to write and run R code.\n\nInstall R first, then install RStudio.\n\n1. Install R\nGo to the R Project download page.\n\nMac\n\nClick Download R for macOS.\nDownload the appropriate installer for your Mac.\nOpen the downloaded .pkg file and follow the installation instructions.\n\n\n\n\n\n\n\nTip\n\n\n\nIf you are unsure which R version you need, click on the Apple in the upper lefthand corner of your desktop and select “About This Mac”, this will contain information both about the chip in your Mac (Intel or M) and the OS that you are running which will allow you to select the correct version of R.\n\n\n\n\nWindows\n\nClick Download R for Windows.\nClick install R for the first time.\nClick Download R-4.6.1 for Windows (the exact R version number may have changed).\nOpen the downloaded installer and accept the default installation options.\n\n\n\n\n2. Install RStudio Desktop\nGo to the RStudio Desktop download page.\n\nDownload the free version of RStudio Desktop for your operating system.\nOpen the installer.\nFollow the installation instructions.\n\n\n\n3. Make sure everything works\nOpen RStudio.\n\n\n\nCredit: moderndive\n\n\nIf the installation was successful, you should see the RStudio interface with a Console pane containing some text about your version of R and a &gt; prompt.\nAt the &gt; prompt, type:\n\n2 + 2\n\nIf R responds with:\n[1] 4\nyou’re ready for class!\nIf you are stumped by 3. Don’t worry about it. If you didn’t get any errors during installation and can open the program ok, then you should be good to go.",
+    "crumbs": [
+      "STAT 118: Intro to Data Science",
+      "📖 Course Notes",
+      "Installing R and RStudio"
+    ]
   },
   {
-    "objectID": "index.html#welcome",
-    "href": "index.html#welcome",
-    "title": "Home",
+    "objectID": "courses/STAT118/final_project/ready/Data_exploration_in_class_notes.html",
+    "href": "courses/STAT118/final_project/ready/Data_exploration_in_class_notes.html",
+    "title": "STAT 118: Exploring Data and Developing Questions",
     "section": "",
-    "text": "This is a small website for class materials, examples, and optional extras.\nI put this together last night while half asleep, which is honestly part of the point: this is a very lightweight way to put your work online.\nUse the navigation bar above to explore."
+    "text": "1. Interest — Do I care about these data?\n2. Accessibility — Can I get the data?\n3. Understanding — Can I make sense of the data?\n4. Analytical potential — Is there enough to investigate?\n5. Feasibility — What might prevent me from using these data successfully?",
+    "crumbs": [
+      "STAT 118: Intro to Data Science",
+      "📊 Final Project",
+      "Initial Data Exploration"
+    ]
   },
   {
-    "objectID": "courses/STAT118/index.html",
-    "href": "courses/STAT118/index.html",
-    "title": "Stat 118: Intro to Data Science",
+    "objectID": "courses/STAT118/final_project/ready/Data_exploration_in_class_notes.html#how-did-it-go-finding-data",
+    "href": "courses/STAT118/final_project/ready/Data_exploration_in_class_notes.html#how-did-it-go-finding-data",
+    "title": "STAT 118: Exploring Data and Developing Questions",
     "section": "",
-    "text": "Use the navigation bar on the left to look at notes from previous classes.",
-    "crumbs": [
-      "STAT 118: Intro to Data Science",
-      "STAT 118 Home"
-    ]
-  },
-  {
-    "objectID": "courses/STAT118/final_project/ready/Final_Project_Companion_guide.html",
-    "href": "courses/STAT118/final_project/ready/Final_Project_Companion_guide.html",
-    "title": "Final Project Companion Guide",
-    "section": "",
-    "text": "This guide is here to clarify what each section of the final project is supposed to do. The goal of the final project is not to produce as many figures as possible. The goal is to build one coherent story and explain your thinking clearly. This guide is meant to help you do that.",
+    "text": "1. Interest — Do I care about these data?\n2. Accessibility — Can I get the data?\n3. Understanding — Can I make sense of the data?\n4. Analytical potential — Is there enough to investigate?\n5. Feasibility — What might prevent me from using these data successfully?",
     "crumbs": [
       "STAT 118: Intro to Data Science",
       "📊 Final Project",
-      "Final Project Companion Guide"
+      "Initial Data Exploration"
     ]
   },
   {
-    "objectID": "courses/STAT118/final_project/ready/Final_Project_Companion_guide.html#what-this-guide-is-for",
-    "href": "courses/STAT118/final_project/ready/Final_Project_Companion_guide.html#what-this-guide-is-for",
-    "title": "Final Project Companion Guide",
-    "section": "",
-    "text": "This guide is here to clarify what each section of the final project is supposed to do. The goal of the final project is not to produce as many figures as possible. The goal is to build one coherent story and explain your thinking clearly. This guide is meant to help you do that.",
+    "objectID": "courses/STAT118/final_project/ready/Data_exploration_in_class_notes.html#me-first",
+    "href": "courses/STAT118/final_project/ready/Data_exploration_in_class_notes.html#me-first",
+    "title": "STAT 118: Exploring Data and Developing Questions",
+    "section": "Me first",
+    "text": "Me first\nMy goals in choosing my dataset were slightly different from the ones that I gave to you. My first criteria was ignorance rather than interest. I needed to find data in a subject area I have never worked in before that I have absolutely no familiarity with.\nSo, I present you with my dataset on the Squirrels of Central Park.\n\n\n\n\n\nI didn’t entirely realize what I was getting into. This dataset has a logo, a website, and an instagram.\nFirst let’s go over some answers to the questions that I asked about your datasets on your homework:\nExamine the structure of the data. How many variables and observations does it have? Print the first few observations.\n\nlibrary(tidyverse)\n\nsquirrel_data &lt;- read_csv(\"~/Dropbox/!Middlebury/Teaching/my_class_website/courses/STAT118/data/2018_Central_Park_Squirrel_Census_-_Squirrel_Data_20261007.csv\")\n\nLet’s talk over some of the answers to the other questions I asked you on your homework:\n\nWho collected these data, and for what purpose?\nWhat does one observation (row) represent?\nWhat kinds of variables are available?\nIs there documentation explaining the variables?\nDid you encounter any problems accessing or understanding the data?\nDo you notice any potential limitations or quality concerns? For example, missing values, unclear variable definitions, or limited spatial or temporal coverage.\nWhat makes it promising? What concerns or limitations do you anticipate?\n\nFor your chosen dataset, identify two possible things you could investigate.\n\nSpatial distribution of squirrels and their activities.\nChanges in squirrel behavior in time? In different spots in Central Park? Between adults and juveniles?\n\nFirst I want to give myself an actual date column.\nNow let’s wing it.\nSome things we can explore are changes or differences in time and space, relationships between variables or groups, and distributions of variables.",
     "crumbs": [
       "STAT 118: Intro to Data Science",
       "📊 Final Project",
-      "Final Project Companion Guide"
+      "Initial Data Exploration"
     ]
   },
   {
-    "objectID": "courses/STAT118/final_project/ready/Final_Project_Companion_guide.html#introduction",
-    "href": "courses/STAT118/final_project/ready/Final_Project_Companion_guide.html#introduction",
-    "title": "Final Project Companion Guide",
-    "section": "Introduction",
-    "text": "Introduction\n\nWhat this section should do\nThe Introduction should guide the reader from a broad idea into your specific analysis.\nIt should not feel like a list of answers. It should feel like a narrowing: each part sets up the next.\nA strong Introduction typically does the following:\n\nStarts with the broader topic, issue, or pattern your project relates to\n\nGives the reader a reason to care about it\n\nMoves toward a more specific question or idea you want to explore\n\nIntroduces the data as a way of examining that question\n\nClarifies what part of the data you are using and how it is structured\n\nDefines the key variables and what one observation represents\n\nBy the end of the Introduction, your reader should understand:\n\nWhat this project is about\n\nWhy it matters\n\nWhat question is being explored\n\nHow the data allows you to explore it\n\n\n\nA strong Introduction\nA strong Introduction feels like a progression. The reader is not just given information—they are led toward the question your analysis is trying to answer.\nThe dataset is introduced as part of that story, not as a separate block of description.\n\n\nA weak Introduction\nA weak Introduction often:\n\nstarts with generic background that is not clearly connected to the analysis\n\nintroduces the dataset abruptly without explaining why it matters\n\nlists variables without context\n\ndelays the main question until the end or leaves it unclear\n\nIf your Introduction feels like disconnected pieces (topic → data → variables → question), it likely needs to be more tightly connected.",
+    "objectID": "courses/STAT118/final_project/ready/Data_exploration_in_class_notes.html#your-turn",
+    "href": "courses/STAT118/final_project/ready/Data_exploration_in_class_notes.html#your-turn",
+    "title": "STAT 118: Exploring Data and Developing Questions",
+    "section": "Your turn",
+    "text": "Your turn\nWith a partner or in a group of three, use the dataset we’ve been exploring. Identify something interesting in the data and investigate it further. This can be something sparked by an observation in the work that we’ve just done, or something you are wondering independent of what we’ve been doing.\nBe ready to share:\n\nWhat did you notice?\nWhat question did that observation raise?\nWhat analysis did you perform to investigate it?\nWhat did you discover, and what would you investigate next?",
     "crumbs": [
       "STAT 118: Intro to Data Science",
       "📊 Final Project",
-      "Final Project Companion Guide"
+      "Initial Data Exploration"
     ]
   },
   {
-    "objectID": "courses/STAT118/final_project/ready/Final_Project_Companion_guide.html#results",
-    "href": "courses/STAT118/final_project/ready/Final_Project_Companion_guide.html#results",
-    "title": "Final Project Companion Guide",
-    "section": "Results",
-    "text": "Results\n\nWhat this section should do\nThe Results section is where you present the evidence for your analysis. Each figure or table should contribute a piece of information that helps the reader understand your question.\nYour Results section should include 4–5 figures and/or tables that work together. These should not feel like a random collection of plots. Each one should do a specific piece of work in your analysis.\nFor each figure or table, your reader should be able to answer:\n\nWhat is this showing?\nWhy did the author make this figure or table?\nWhat do they want me to notice?\nHow does this relate to the other figures and tables?\n\n\n\nQuestions to answer for each figure or table\nFor each element, make sure you explain:\n\nWhat the figure or table is showing\nWhat question or idea it helps investigate\nWhat patterns, relationships, or differences stand out\nWhat the reader should learn from it\nHow it connects to the broader story of the project\n\nA figure should not appear without explanation. Your reader should not have to guess why it exists.\n\n\nWhat strong Results sections look like\nStrong Results sections feel like a sequence of connected steps. One figure leads naturally to the next. The writing helps the reader understand both the figure itself and why it matters. Note that this ordering might not be the order in which you originally made the plots.\nStrong Results sections do not just describe plots. They explain the role each figure plays in the overall analysis and how each figure relates to the others.\n\n\nWhat weak Results sections look like\nWeak Results sections often do one or more of the following:\n\nShow figures without enough explanation\nInclude figures without making clear what they contribute to the analysis\nInclude elements that feel repetitive, disconnected, or unnecessary\nRely on the figure itself to communicate the interpretation\n\nIf your reader has to guess what a figure is doing in the project, you need to be clearer.\n\n\nHow is this different from the Discussion?\nResults = assembling and presenting the evidence in a logical sequence\nDiscussion = stepping back and synthesizing what the evidence means overall",
+    "objectID": "courses/STAT118/final_project/ready/Data_exploration_in_class_notes.html#possible-research-questions",
+    "href": "courses/STAT118/final_project/ready/Data_exploration_in_class_notes.html#possible-research-questions",
+    "title": "STAT 118: Exploring Data and Developing Questions",
+    "section": "Possible Research Questions",
+    "text": "Possible Research Questions\nWhat are some possible research questions:\n\nWhat observation or finding motivated the question?\nWhat variables or comparisons would help you investigate it?\nDo you have the data needed to answer it?",
     "crumbs": [
       "STAT 118: Intro to Data Science",
       "📊 Final Project",
-      "Final Project Companion Guide"
+      "Initial Data Exploration"
     ]
   },
   {
-    "objectID": "courses/STAT118/final_project/ready/Final_Project_Companion_guide.html#discussion",
-    "href": "courses/STAT118/final_project/ready/Final_Project_Companion_guide.html#discussion",
-    "title": "Final Project Companion Guide",
-    "section": "Discussion",
-    "text": "Discussion\n\nWhat this section should do\nThe Discussion is where you step back from the individual figures and talk about the bigger picture.\nBy the end of this section, your reader should understand:\n\nWhat the main takeaway is\nWhat your results suggest or mean when considered together\nWhat remains uncertain\nHow your findings connect to broader patterns, expectations, events, or ideas related to the topic\nWhat limitations shaped your analysis\nWhat you would want to explore next\n\n\n\nA strong Discussion\nA strong Discussion ties the project together. It does not just repeat the Results section. Instead, it helps the reader understand the overall significance of what you found and connects the analysis back to the broader topic introduced at the beginning of the project.\nIt should sound like you have thought about the analysis as a whole.\n\n\nA weak Discussion\nA weak Discussion often just restates what the plots showed without reflecting on the bigger picture. It may also avoid uncertainty entirely, even when there are clear limitations or open questions.",
+    "objectID": "courses/STAT118/final_project/ready/Data_exploration_in_class_notes.html#reflection",
+    "href": "courses/STAT118/final_project/ready/Data_exploration_in_class_notes.html#reflection",
+    "title": "STAT 118: Exploring Data and Developing Questions",
+    "section": "Reflection",
+    "text": "Reflection\nBriefly reflect on your progress.\n\nWhat is the most interesting thing you’ve discovered so far?\nWhat challenges or limitations have you encountered?\nWhat would you like to investigate next?\nDo you think this dataset is a good choice for your final project? Why or why not?",
     "crumbs": [
       "STAT 118: Intro to Data Science",
       "📊 Final Project",
-      "Final Project Companion Guide"
+      "Initial Data Exploration"
     ]
   },
   {
-    "objectID": "courses/STAT118/final_project/ready/Final_Project_Companion_guide.html#when-to-use-a-figure-and-when-to-use-a-table",
-    "href": "courses/STAT118/final_project/ready/Final_Project_Companion_guide.html#when-to-use-a-figure-and-when-to-use-a-table",
-    "title": "Final Project Companion Guide",
-    "section": "When to use a figure and when to use a table",
-    "text": "When to use a figure and when to use a table\nUse a figure when you want the reader to quickly see a pattern, relationship, comparison, or trend.\nUse a table when exact values matter more than visual shape.\nA table may be useful when you want to:\n\ncompare summary statistics across groups\nshow ranked values such as top or bottom values\npresent counts or proportions clearly\nreport a small set of exact values that readers may want to compare directly\n\nA table is usually not the best choice when a visual pattern is the main point.",
+    "objectID": "courses/STAT118/final_project/ready/Data_exploration_in_class_notes.html#now-with-your-own-data",
+    "href": "courses/STAT118/final_project/ready/Data_exploration_in_class_notes.html#now-with-your-own-data",
+    "title": "STAT 118: Exploring Data and Developing Questions",
+    "section": "Now with your own data",
+    "text": "Now with your own data\nNow apply the same approach to your own dataset. Start by examining its distributions, temporal or spatial patterns (if applicable), and relationships between variables. As you explore, identify something interesting and conduct at least one follow-up analysis motivated by what you observed. Keep track of questions that arise. You don’t need to settle on a research question today, but you should begin identifying possibilities.\n\nExploratory Data Analysis: Where to Start?\nNot sure what to investigate next? Use these questions to guide your exploration.\n\n\n\n\n\n\n\n\nFirst, investigate…\nAsk yourself…\nPossible approaches\n\n\n\n\nTime\nAre there trends, seasonal cycles, gaps, or unusual events?\nTime-series plots\n\n\nSpace\nAre there clusters, gradients, or regional differences?\nMaps, spatial plots\n\n\nDistributions\nHow are values distributed? Are there outliers, skewed distributions, or distinct groups?\nHistograms, density plots, boxplots\n\n\nRelationships\nWhich variables are associated? Are relationships linear or nonlinear?\nScatterplots, heatmaps\n\n\nGroup differences\nDo patterns or distributions differ across categories, locations, or time periods?\nFacets, grouped summaries, boxplots\n\n\nFollow-up\nWhat surprised me? Does a pattern persist when I look more closely? What might explain it?\nFiltering, grouping, comparisons, additional figures\n\n\n\nA few rules to remember:\n\nExamine temporal and spatial patterns at their original available resolution before aggregating or binning.\nLook at distributions before relying on averages or other summary statistics.\nLet what you discover guide your next analysis. You don’t need to work through this table in order.\nBe curious about unexpected results. Sometimes the most interesting questions come from things you weren’t looking for.",
     "crumbs": [
       "STAT 118: Intro to Data Science",
       "📊 Final Project",
-      "Final Project Companion Guide"
+      "Initial Data Exploration"
     ]
-  },
-  {
-    "objectID": "courses/STAT118/final_project/ready/Final_Project_Companion_guide.html#general-advice",
-    "href": "courses/STAT118/final_project/ready/Final_Project_Companion_guide.html#general-advice",
-    "title": "Final Project Companion Guide",
-    "section": "General advice",
-    "text": "General advice\n\nFewer, stronger figures are better than many weak ones.\nEach paragraph should start with a topic sentence that tells the reader what you are going to convince them of with the rest of the paragraph. YOu should be able to read the first sentence of each paragraph and be able to understand the overall story.\nYour figures should support your thinking, not replace it.\nTry to make the project feel like one story, not several unrelated mini-projects.\nBe clear about what you did, why you did it, and what you think it shows.\nClarity matters more than complexity.",
-    "crumbs": [
-      "STAT 118: Intro to Data Science",
-      "📊 Final Project",
-      "Final Project Companion Guide"
-    ]
-  },
-  {
-    "objectID": "courses/STAT118/notes/published/118_A_intro_quarto.html",
-    "href": "courses/STAT118/notes/published/118_A_intro_quarto.html",
-    "title": "Intro to R and RStudio",
-    "section": "",
-    "text": "If you have not already, please refer to the Installation Guide to install R and RStudio on your computer.\nR (The brain behind it all)\nRStudio (The interface you work with)\nRStudio is an IDE (Integrated Development Environment) that gives you a user-friendly interface to write and run your R code.\nWhen you open RStudio, you should see something similar to this:"
-  },
-  {
-    "objectID": "courses/STAT118/notes/published/118_A_intro_quarto.html#open-your-.qmd-file-in-rstudio",
-    "href": "courses/STAT118/notes/published/118_A_intro_quarto.html#open-your-.qmd-file-in-rstudio",
-    "title": "Intro to R and RStudio",
-    "section": "1️⃣ Open Your .qmd File in RStudio",
-    "text": "1️⃣ Open Your .qmd File in RStudio\nNavigate to the file on your local computer and click to open it!\n\nSome folks prefer to use the “Files” tab within RStudio to navigate to the file\nOther folks prefer to interact with their files in their typical way (Using Finder on Mac or File Explorer on PC)\n\nEither way works just fine!"
-  },
-  {
-    "objectID": "courses/STAT118/notes/published/118_A_intro_quarto.html#install-quarto-in-rstudio",
-    "href": "courses/STAT118/notes/published/118_A_intro_quarto.html#install-quarto-in-rstudio",
-    "title": "Intro to R and RStudio",
-    "section": "2️⃣ Install Quarto in RStudio",
-    "text": "2️⃣ Install Quarto in RStudio\nOption 1: Using the RStudio Interface\n\nGo to the Packages pane in RStudio (bottom-right by default),\nClick Install,\nIn the box that appears:\n\nEnter the package name (quarto),\n\nMake sure Install dependencies is checked,\nClick Install.\n\n\n\nOption 2: Using R Code in the Console\n\ninstall.packages(\"quarto\")"
-  },
-  {
-    "objectID": "courses/STAT118/notes/published/118_A_intro_quarto.html#render-and-preview",
-    "href": "courses/STAT118/notes/published/118_A_intro_quarto.html#render-and-preview",
-    "title": "Intro to R and RStudio",
-    "section": "3️⃣ Render and Preview",
-    "text": "3️⃣ Render and Preview\nClick the Render button () at the top-right of your RStudio editor window.\nTada! You now have created a .html file!\nThe file has been created in the same folder as your .qmd file: \nWhen you render, a preview of the document will show up!\n\n\n\n\n\n\nTip\n\n\n\nBy default, the preview of .html will pop up in your web browser. This is totally okay. In fact, I tend to prefer this approach when I’m working at a computer station with multiple monitors.\nHowever, you may prefer to have the .html preview in your viewer pane right within RStudio. This is what I prefer when I’m just working on just my laptop.\nClick on the “gear button”  and select “Preview in Viewer Pane”\n\n\nThe preview will update whenever you re-render the document."
-  },
-  {
-    "objectID": "courses/STAT118/notes/published/118_A_intro_quarto.html#footnotes",
-    "href": "courses/STAT118/notes/published/118_A_intro_quarto.html#footnotes",
-    "title": "Intro to R and RStudio",
-    "section": "Footnotes",
-    "text": "Footnotes\n\n\nhttps://moderndive.com/1-getting-started.html↩︎"
   },
   {
     "objectID": "courses/STAT118/final_project/ready/Exploring_data_options_notes_for_pub.html",

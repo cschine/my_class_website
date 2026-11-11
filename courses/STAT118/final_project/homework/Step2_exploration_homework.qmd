@@ -1,0 +1,107 @@
+---
+title: "Final Project Step 2 Homework"
+subtitle: "Data Exploration"
+author: "YOUR NAME HERE"
+format:
+  html: 
+    toc: true
+    code-overflow: wrap
+    code-fold: true
+    embed-resources: true
+---
+
+
+# Final Project — Step 2: Exploring Your Data
+
+Now that you've found a promising dataset, it's time to get to know it! Your goal is to explore your data, identify interesting patterns, and begin developing possible research questions for your final project.
+
+**You do not need to have a research question yet.** Your exploratory analysis should help you discover what questions might be worth investigating.
+
+Submit a rendered Quarto document (HTML). 
+
+## 1. Introduce Your Dataset
+
+Briefly describe the dataset you've selected.
+
+- Where did you get the data? Include a link to the source. *Look in the Class A Notes for a reminder on how to include a hyperlink.*
+- What kinds of information does it contain?
+- What aspects of the data are you most interested in investigating?
+- Are there any limitations or problems you've already identified?
+
+## 2. Initial Exploration
+
+Use the guidelines from class to begin exploring your dataset.
+
+**Include at least three figures or summaries** that investigate different aspects of your data. Depending on your dataset, these might include:
+
+- Temporal or spatial patterns
+- Distributions of important variables
+- Relationships between variables
+- Differences across groups or categories
+
+**Remember my rules for initial data exploration!** If your dataset contains temporal or spatial information, examine it at its original available resolution before aggregating or binning. Look at distributions before relying on summary statistics.
+
+For each figure or summary, briefly explain:
+
+- What were you investigating, and why?
+- What did you discover?
+- Was anything surprising or unexpected?
+
+Your figures do not need to be publication-ready, but they should have informative labels and be easy to interpret.
+
+## 3. Dig a Little Deeper
+
+Choose something interesting that you discovered during your initial exploration in Question 2.
+
+Conduct **at least one additional analysis** motivated by that observation.
+
+Explain:
+
+- What did you notice in your initial exploration?
+- What question did that observation raise?
+- What did you do to investigate it further?
+- What did you learn? What remains uncertain?
+
+The goal is to demonstrate how your observations guide your analytical decisions.
+
+## 4. Developing Research Questions
+
+Based on what you've discovered, propose **two possible research questions** that you could investigate for your final project.
+
+For each question, briefly explain:
+
+- What observation or finding motivated the question?
+- What variables or comparisons would help you investigate it?
+- Do you have the data needed to answer it?
+
+You are not committing to either question yet!
+
+## 5. Reflection and Next Steps
+
+Briefly reflect on your progress.
+
+- What is the most interesting thing you've discovered so far?
+- What challenges or limitations have you encountered?
+- What would you like to investigate next?
+- Do you think this dataset is a good choice for your final project? Why or why not?
+
+It's okay if you're still uncertain about your dataset. Identifying potential problems now is part of the process.
+
+## What I'm Looking For
+
+I'm not evaluating whether you've discovered something groundbreaking or produced beautiful figures. I'm looking for evidence that you are:
+
+- Exploring your data thoughtfully rather than producing unrelated figures.
+- Making informed decisions about filtering, grouping, and aggregating.
+- Using observations to motivate additional analyses.
+- Developing specific, answerable questions grounded in your data.
+- Recognizing potential limitations and challenges.
+
+**By the end of this assignment**, you should have a better understanding of your dataset and at least one promising direction for your final project.
+
+Your dataset and research questions remain provisional until the project proposal.
+
+## AI
+
+Did you use AI to help you with this assignment. If so, what did you use, how did you use it, and how do you think it impacted your learning (either positively or negatively)? 
+

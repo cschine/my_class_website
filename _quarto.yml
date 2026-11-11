@@ -89,6 +89,9 @@ website:
             
           - text: "Finding and Evaluating Datasets"
             href: courses/STAT118/final_project/ready/Exploring_data_options_notes_for_pub.qmd
+          
+          - text: "Initial Data Exploration"
+            href: courses/STAT118/final_project/ready/Data_exploration_in_class_notes.qmd
 
 
 
