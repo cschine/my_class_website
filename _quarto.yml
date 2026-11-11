@@ -86,6 +86,9 @@ website:
 
           - text: "Data Sources"
             href: courses/STAT118/final_project/ready/Data_Sources.qmd
+            
+          - text: "Finding and Evaluating Datasets"
+            href: courses/STAT118/final_project/ready/Exploring_data_options_notes_for_pub.qmd
 
 
 

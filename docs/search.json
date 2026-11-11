@@ -744,122 +744,27 @@
     ]
   },
   {
-    "objectID": "courses/STAT118/notes/published/118_A_intro_quarto.html",
-    "href": "courses/STAT118/notes/published/118_A_intro_quarto.html",
-    "title": "Intro to R and RStudio",
+    "objectID": "courses/STAT118/notes/published/118_A_in_class_notes.html",
+    "href": "courses/STAT118/notes/published/118_A_in_class_notes.html",
+    "title": "Class A Notes",
     "section": "",
-    "text": "If you have not already, please refer to the Installation Guide to install R and RStudio on your computer.\nR (The brain behind it all)\nRStudio (The interface you work with)\nRStudio is an IDE (Integrated Development Environment) that gives you a user-friendly interface to write and run your R code.\nWhen you open RStudio, you should see something similar to this:"
+    "text": "Resources\n\nCanvas Site: Will be used for all assignments and contains the course schedule where absolutely everything will be linked\nCourse Schedule: This is probably the most important page for the entire course, everything will be linked here, it is available on the Canvas Site, under “Schedule” from the Homepage\nGithub Website: Completed notes will be rendered and posted to the site\nGithub Code Repository: Files used for homeowrk assignments and .qmd versions of class notes, as well as template files for class notes will be availble here\n\n\n\nSyllabus\n\nAssignments: See the Syllabus and Schedule for more details, but briefly, you will have 2 Homework Assignments per week, a Midterm Project, and a Final Project\nGrade Allocation: Homework is 40% of your grade, Midterm Project is 25% and Final Project is 35%\nLate Policy: See Syllabus for details\n\n\n\nThoughts on AI\n\nAssignment prompts: You will be prompted at the end of your Homework Assignments to tell me whether you used AI, how you used it, and how you think it helped or hindered your learning\nThinking about what it gives you and what it takes away: I am not here to police your use of AI, but I do think it requires important consideration of how it impacts your learning (either positively or negatively)\n\n\n\nDownload Notes Template\nThese will always be linked on the Schedule (on the Canvas Site) before each class. You should download these at the beginning of class so that you will be better able to code along with me in class.\n\n\nDirectory structure\nThe directory structure outlined below is intended to prevent a number of headaches in how Quarto references files automatically. Please make sure that your files and folders are structured like this.\n📁 STAT118/\n   ├── class-notes.qmd\n   ├── homework-01.qmd\n   ├── homework-02.qmd\n   ├── 📁 data/\n   └── 📁 images/\n\n\nR and Rstudio\n\nWhat is the difference?\nR is the engine and RStudio is the car.\n\n\nWhat do the different windows do?\nThe Source window is where you will create and edit your Quarto documents, and write your code. This window should be in the top left pane.\nThe Console window is where the code is run. This window should be in the top right pane.\nThe Environment window will show you the objects and other things that you have created and defined in your code. this should be on the bottom left.\nThe window on the lower right should include Files, Plots, Packages, Help, and Viewer (it’s ok if there are additional tabs). This is where you can look for help documentation on the different functions available through R and additional R packages. This is also where figures and rendered files should pop up.\n\n\n\nSettings\n\nRearrange panes\nIf your panes are not in the configuration outlined above, please change them using the instructions below.\nGo to:\nTools → Global Options → Pane Layout\n\n\nChange theme\nIf you want to change how your RStudio appears.\nWe decided that I could continue to use my dark theme. Yay!\nGo to:\nTools → Global Options → Appearance\n\n\nChange Downloads Permission\nPlease take a minute to change your downloads permissions for the browser that you use. This will make it easier for you to direct downloads to the correct folder and not have to go hunting for things that got sent to weird places.\nGoogle Chrome:\n\nGo to the three-dot menu (top-right corner) → Settings.\nScroll down and click Downloads.\nToggle on “Ask where to save each file before downloading.”\n\nFirefox:\n\nClick the three-line menu (top-right corner) → Settings.\nIn the General section, under Files and Applications, select: “Always ask you where to save files.”\n\nSafari (Mac):\n\nGo to Safari &gt; Preferences &gt; General.\nUnder File download location, select: “Ask for each download.”\n\n\n\n\nQuarto\n\nSource vs. Visual\n\n\nMarkdown Syntax\n\nBold and Italics\nYou make bold text by placing two * before and after the text you wish to bold: **make this text bold**\nmake this text bold\nYou make italics text by placing one * before and after the text you wish to appear in italics: *make this text italics*\nmake this text italics\nYou make bold and italics text by placing three * before and after the text you wish to appear in bold and italics: ***make this text bold and italics***\nmake this text bold and italics\n\n\nLists\nTo make a list put a - before each item on the list.\na list\n\n-   one thing\n-   second thing\n-   third thing\n\nThe result will look like this:\na list\n\none thing\nsecond thing\nthird thing\n\nAlways make sure to include an empty line before the first item on the list, otherwise it will not render properly.\n\n\nHyperlink\nTo add a hyperlink use this syntax:\n[words here](link here)\nThe text should look like this:\n[this is a link to the class website](https://cschine.github.io/my_class_website/courses/STAT118/)\nThe result will look like this:\nthis is a link to the class website\n\n\nImages\nTo add an image, use this syntax:\n![caption](image)\nThe text should look something like this:\n![this is an image](images/NBP_midnight_sun.jpeg)\nAnd the result will look like this:\n\n\n\nthis is an image\n\n\n\n\n\nUsing R in Quarto\nR code chunks\nUse the green +C buttom in the toolbar to add a code chunk\nCreate an object like this:\n\naardvark &lt;- 17\n\nyeti &lt;- 23\n\nYou can do basic arithmetic with named objects using the standard operators:\n\n\n\nOperator\nDescription\n\n\n\n\n+\nAddition\n\n\n-\nSubtraction\n\n\n*\nMultiplication\n\n\n/\nDivision\n\n\n^ or **\nExponentiation\n\n\n\nLike this:\n\naardvark*yeti\n\n[1] 391\n\naardvark/yeti\n\n[1] 0.7391304\n\nchalk &lt;- aardvark*yeti\n\nchalk\n\n[1] 391\n\n\nTo comment code use the # at the beginning of the line and write a description of what the code should be doing, or a note to yourself, or whatever you want. Like this:\n\n# multiply aardvark and yeti\naardvark*yeti\n\n[1] 391\n\n# divide aardvark by yeti\naardvark/yeti\n\n[1] 0.7391304\n\n# assign chalk a value of aardvark multiplied by yeti\nchalk &lt;- aardvark*yeti\n\n# call chalk up\nchalk\n\n[1] 391\n\n\n\n\nRender\nNow it is time to Render your Quarto (.qmd) doc into a .html file (which is the format in which you will be submitting all of your assignments). To do this press the  Render button, which should be visible in the toolbar at the top of your Source Pane (the pane in which you are editing your Quarto document).\nIf your quarto doc does not render correctly, errors can be found in the Background Jobs tab in the Console Pane. This can be very useful and sometimes very confusing.\n\n\n\nAssignments\nAssignments will be linked on the Schedule on Canvas. If you are having any difficulty with your assignment please come to office hours sooner rather than later so that we can get things figured out.",
+    "crumbs": [
+      "STAT 118: Intro to Data Science",
+      "📖 Course Notes",
+      "Intro to R & RStudio (Class A)"
+    ]
   },
   {
-    "objectID": "courses/STAT118/notes/published/118_A_intro_quarto.html#open-your-.qmd-file-in-rstudio",
-    "href": "courses/STAT118/notes/published/118_A_intro_quarto.html#open-your-.qmd-file-in-rstudio",
-    "title": "Intro to R and RStudio",
-    "section": "1️⃣ Open Your .qmd File in RStudio",
-    "text": "1️⃣ Open Your .qmd File in RStudio\nNavigate to the file on your local computer and click to open it!\n\nSome folks prefer to use the “Files” tab within RStudio to navigate to the file\nOther folks prefer to interact with their files in their typical way (Using Finder on Mac or File Explorer on PC)\n\nEither way works just fine!"
-  },
-  {
-    "objectID": "courses/STAT118/notes/published/118_A_intro_quarto.html#install-quarto-in-rstudio",
-    "href": "courses/STAT118/notes/published/118_A_intro_quarto.html#install-quarto-in-rstudio",
-    "title": "Intro to R and RStudio",
-    "section": "2️⃣ Install Quarto in RStudio",
-    "text": "2️⃣ Install Quarto in RStudio\nOption 1: Using the RStudio Interface\n\nGo to the Packages pane in RStudio (bottom-right by default),\nClick Install,\nIn the box that appears:\n\nEnter the package name (quarto),\n\nMake sure Install dependencies is checked,\nClick Install.\n\n\n\nOption 2: Using R Code in the Console\n\ninstall.packages(\"quarto\")"
-  },
-  {
-    "objectID": "courses/STAT118/notes/published/118_A_intro_quarto.html#render-and-preview",
-    "href": "courses/STAT118/notes/published/118_A_intro_quarto.html#render-and-preview",
-    "title": "Intro to R and RStudio",
-    "section": "3️⃣ Render and Preview",
-    "text": "3️⃣ Render and Preview\nClick the Render button () at the top-right of your RStudio editor window.\nTada! You now have created a .html file!\nThe file has been created in the same folder as your .qmd file: \nWhen you render, a preview of the document will show up!\n\n\n\n\n\n\nTip\n\n\n\nBy default, the preview of .html will pop up in your web browser. This is totally okay. In fact, I tend to prefer this approach when I’m working at a computer station with multiple monitors.\nHowever, you may prefer to have the .html preview in your viewer pane right within RStudio. This is what I prefer when I’m just working on just my laptop.\nClick on the “gear button”  and select “Preview in Viewer Pane”\n\n\nThe preview will update whenever you re-render the document."
-  },
-  {
-    "objectID": "courses/STAT118/notes/published/118_A_intro_quarto.html#footnotes",
-    "href": "courses/STAT118/notes/published/118_A_intro_quarto.html#footnotes",
-    "title": "Intro to R and RStudio",
-    "section": "Footnotes",
-    "text": "Footnotes\n\n\nhttps://moderndive.com/1-getting-started.html↩︎"
-  },
-  {
-    "objectID": "courses/STAT118/final_project/ready/Final_Project_Companion_guide.html",
-    "href": "courses/STAT118/final_project/ready/Final_Project_Companion_guide.html",
-    "title": "Final Project Companion Guide",
+    "objectID": "courses/STAT118/notes/published/installguide.html",
+    "href": "courses/STAT118/notes/published/installguide.html",
+    "title": "Installing R and RStudio",
     "section": "",
-    "text": "This guide is here to clarify what each section of the final project is supposed to do. The goal of the final project is not to produce as many figures as possible. The goal is to build one coherent story and explain your thinking clearly. This guide is meant to help you do that.",
+    "text": "For this course, you will need to install both R and RStudio on your computer.\n\nR is the programming language that runs your code.\nRStudio is the program we will use to write and run R code.\n\nInstall R first, then install RStudio.\n\n1. Install R\nGo to the R Project download page.\n\nMac\n\nClick Download R for macOS.\nDownload the appropriate installer for your Mac.\nOpen the downloaded .pkg file and follow the installation instructions.\n\n\n\n\n\n\n\nTip\n\n\n\nIf you are unsure which R version you need, click on the Apple in the upper lefthand corner of your desktop and select “About This Mac”, this will contain information both about the chip in your Mac (Intel or M) and the OS that you are running which will allow you to select the correct version of R.\n\n\n\n\nWindows\n\nClick Download R for Windows.\nClick install R for the first time.\nClick Download R-4.6.1 for Windows (the exact R version number may have changed).\nOpen the downloaded installer and accept the default installation options.\n\n\n\n\n2. Install RStudio Desktop\nGo to the RStudio Desktop download page.\n\nDownload the free version of RStudio Desktop for your operating system.\nOpen the installer.\nFollow the installation instructions.\n\n\n\n3. Make sure everything works\nOpen RStudio.\n\n\n\nCredit: moderndive\n\n\nIf the installation was successful, you should see the RStudio interface with a Console pane containing some text about your version of R and a &gt; prompt.\nAt the &gt; prompt, type:\n\n2 + 2\n\nIf R responds with:\n[1] 4\nyou’re ready for class!\nIf you are stumped by 3. Don’t worry about it. If you didn’t get any errors during installation and can open the program ok, then you should be good to go.",
     "crumbs": [
       "STAT 118: Intro to Data Science",
-      "📊 Final Project",
-      "Final Project Companion Guide"
-    ]
-  },
-  {
-    "objectID": "courses/STAT118/final_project/ready/Final_Project_Companion_guide.html#what-this-guide-is-for",
-    "href": "courses/STAT118/final_project/ready/Final_Project_Companion_guide.html#what-this-guide-is-for",
-    "title": "Final Project Companion Guide",
-    "section": "",
-    "text": "This guide is here to clarify what each section of the final project is supposed to do. The goal of the final project is not to produce as many figures as possible. The goal is to build one coherent story and explain your thinking clearly. This guide is meant to help you do that.",
-    "crumbs": [
-      "STAT 118: Intro to Data Science",
-      "📊 Final Project",
-      "Final Project Companion Guide"
-    ]
-  },
-  {
-    "objectID": "courses/STAT118/final_project/ready/Final_Project_Companion_guide.html#introduction",
-    "href": "courses/STAT118/final_project/ready/Final_Project_Companion_guide.html#introduction",
-    "title": "Final Project Companion Guide",
-    "section": "Introduction",
-    "text": "Introduction\n\nWhat this section should do\nThe Introduction should guide the reader from a broad idea into your specific analysis.\nIt should not feel like a list of answers. It should feel like a narrowing: each part sets up the next.\nA strong Introduction typically does the following:\n\nStarts with the broader topic, issue, or pattern your project relates to\n\nGives the reader a reason to care about it\n\nMoves toward a more specific question or idea you want to explore\n\nIntroduces the data as a way of examining that question\n\nClarifies what part of the data you are using and how it is structured\n\nDefines the key variables and what one observation represents\n\nBy the end of the Introduction, your reader should understand:\n\nWhat this project is about\n\nWhy it matters\n\nWhat question is being explored\n\nHow the data allows you to explore it\n\n\n\nA strong Introduction\nA strong Introduction feels like a progression. The reader is not just given information—they are led toward the question your analysis is trying to answer.\nThe dataset is introduced as part of that story, not as a separate block of description.\n\n\nA weak Introduction\nA weak Introduction often:\n\nstarts with generic background that is not clearly connected to the analysis\n\nintroduces the dataset abruptly without explaining why it matters\n\nlists variables without context\n\ndelays the main question until the end or leaves it unclear\n\nIf your Introduction feels like disconnected pieces (topic → data → variables → question), it likely needs to be more tightly connected.",
-    "crumbs": [
-      "STAT 118: Intro to Data Science",
-      "📊 Final Project",
-      "Final Project Companion Guide"
-    ]
-  },
-  {
-    "objectID": "courses/STAT118/final_project/ready/Final_Project_Companion_guide.html#results",
-    "href": "courses/STAT118/final_project/ready/Final_Project_Companion_guide.html#results",
-    "title": "Final Project Companion Guide",
-    "section": "Results",
-    "text": "Results\n\nWhat this section should do\nThe Results section is where you present the evidence for your analysis. Each figure or table should contribute a piece of information that helps the reader understand your question.\nYour Results section should include 4–5 figures and/or tables that work together. These should not feel like a random collection of plots. Each one should do a specific piece of work in your analysis.\nFor each figure or table, your reader should be able to answer:\n\nWhat is this showing?\nWhy did the author make this figure or table?\nWhat do they want me to notice?\nHow does this relate to the other figures and tables?\n\n\n\nQuestions to answer for each figure or table\nFor each element, make sure you explain:\n\nWhat the figure or table is showing\nWhat question or idea it helps investigate\nWhat patterns, relationships, or differences stand out\nWhat the reader should learn from it\nHow it connects to the broader story of the project\n\nA figure should not appear without explanation. Your reader should not have to guess why it exists.\n\n\nWhat strong Results sections look like\nStrong Results sections feel like a sequence of connected steps. One figure leads naturally to the next. The writing helps the reader understand both the figure itself and why it matters. Note that this ordering might not be the order in which you originally made the plots.\nStrong Results sections do not just describe plots. They explain the role each figure plays in the overall analysis and how each figure relates to the others.\n\n\nWhat weak Results sections look like\nWeak Results sections often do one or more of the following:\n\nShow figures without enough explanation\nInclude figures without making clear what they contribute to the analysis\nInclude elements that feel repetitive, disconnected, or unnecessary\nRely on the figure itself to communicate the interpretation\n\nIf your reader has to guess what a figure is doing in the project, you need to be clearer.\n\n\nHow is this different from the Discussion?\nResults = assembling and presenting the evidence in a logical sequence\nDiscussion = stepping back and synthesizing what the evidence means overall",
-    "crumbs": [
-      "STAT 118: Intro to Data Science",
-      "📊 Final Project",
-      "Final Project Companion Guide"
-    ]
-  },
-  {
-    "objectID": "courses/STAT118/final_project/ready/Final_Project_Companion_guide.html#discussion",
-    "href": "courses/STAT118/final_project/ready/Final_Project_Companion_guide.html#discussion",
-    "title": "Final Project Companion Guide",
-    "section": "Discussion",
-    "text": "Discussion\n\nWhat this section should do\nThe Discussion is where you step back from the individual figures and talk about the bigger picture.\nBy the end of this section, your reader should understand:\n\nWhat the main takeaway is\nWhat your results suggest or mean when considered together\nWhat remains uncertain\nHow your findings connect to broader patterns, expectations, events, or ideas related to the topic\nWhat limitations shaped your analysis\nWhat you would want to explore next\n\n\n\nA strong Discussion\nA strong Discussion ties the project together. It does not just repeat the Results section. Instead, it helps the reader understand the overall significance of what you found and connects the analysis back to the broader topic introduced at the beginning of the project.\nIt should sound like you have thought about the analysis as a whole.\n\n\nA weak Discussion\nA weak Discussion often just restates what the plots showed without reflecting on the bigger picture. It may also avoid uncertainty entirely, even when there are clear limitations or open questions.",
-    "crumbs": [
-      "STAT 118: Intro to Data Science",
-      "📊 Final Project",
-      "Final Project Companion Guide"
-    ]
-  },
-  {
-    "objectID": "courses/STAT118/final_project/ready/Final_Project_Companion_guide.html#when-to-use-a-figure-and-when-to-use-a-table",
-    "href": "courses/STAT118/final_project/ready/Final_Project_Companion_guide.html#when-to-use-a-figure-and-when-to-use-a-table",
-    "title": "Final Project Companion Guide",
-    "section": "When to use a figure and when to use a table",
-    "text": "When to use a figure and when to use a table\nUse a figure when you want the reader to quickly see a pattern, relationship, comparison, or trend.\nUse a table when exact values matter more than visual shape.\nA table may be useful when you want to:\n\ncompare summary statistics across groups\nshow ranked values such as top or bottom values\npresent counts or proportions clearly\nreport a small set of exact values that readers may want to compare directly\n\nA table is usually not the best choice when a visual pattern is the main point.",
-    "crumbs": [
-      "STAT 118: Intro to Data Science",
-      "📊 Final Project",
-      "Final Project Companion Guide"
-    ]
-  },
-  {
-    "objectID": "courses/STAT118/final_project/ready/Final_Project_Companion_guide.html#general-advice",
-    "href": "courses/STAT118/final_project/ready/Final_Project_Companion_guide.html#general-advice",
-    "title": "Final Project Companion Guide",
-    "section": "General advice",
-    "text": "General advice\n\nFewer, stronger figures are better than many weak ones.\nEach paragraph should start with a topic sentence that tells the reader what you are going to convince them of with the rest of the paragraph. YOu should be able to read the first sentence of each paragraph and be able to understand the overall story.\nYour figures should support your thinking, not replace it.\nTry to make the project feel like one story, not several unrelated mini-projects.\nBe clear about what you did, why you did it, and what you think it shows.\nClarity matters more than complexity.",
-    "crumbs": [
-      "STAT 118: Intro to Data Science",
-      "📊 Final Project",
-      "Final Project Companion Guide"
+      "📖 Course Notes",
+      "Installing R and RStudio"
     ]
   },
   {
@@ -1008,90 +913,182 @@
     ]
   },
   {
+    "objectID": "courses/STAT118/final_project/ready/Final_Project_Companion_guide.html",
+    "href": "courses/STAT118/final_project/ready/Final_Project_Companion_guide.html",
+    "title": "Final Project Companion Guide",
+    "section": "",
+    "text": "This guide is here to clarify what each section of the final project is supposed to do. The goal of the final project is not to produce as many figures as possible. The goal is to build one coherent story and explain your thinking clearly. This guide is meant to help you do that.",
+    "crumbs": [
+      "STAT 118: Intro to Data Science",
+      "📊 Final Project",
+      "Final Project Companion Guide"
+    ]
+  },
+  {
+    "objectID": "courses/STAT118/final_project/ready/Final_Project_Companion_guide.html#what-this-guide-is-for",
+    "href": "courses/STAT118/final_project/ready/Final_Project_Companion_guide.html#what-this-guide-is-for",
+    "title": "Final Project Companion Guide",
+    "section": "",
+    "text": "This guide is here to clarify what each section of the final project is supposed to do. The goal of the final project is not to produce as many figures as possible. The goal is to build one coherent story and explain your thinking clearly. This guide is meant to help you do that.",
+    "crumbs": [
+      "STAT 118: Intro to Data Science",
+      "📊 Final Project",
+      "Final Project Companion Guide"
+    ]
+  },
+  {
+    "objectID": "courses/STAT118/final_project/ready/Final_Project_Companion_guide.html#introduction",
+    "href": "courses/STAT118/final_project/ready/Final_Project_Companion_guide.html#introduction",
+    "title": "Final Project Companion Guide",
+    "section": "Introduction",
+    "text": "Introduction\n\nWhat this section should do\nThe Introduction should guide the reader from a broad idea into your specific analysis.\nIt should not feel like a list of answers. It should feel like a narrowing: each part sets up the next.\nA strong Introduction typically does the following:\n\nStarts with the broader topic, issue, or pattern your project relates to\n\nGives the reader a reason to care about it\n\nMoves toward a more specific question or idea you want to explore\n\nIntroduces the data as a way of examining that question\n\nClarifies what part of the data you are using and how it is structured\n\nDefines the key variables and what one observation represents\n\nBy the end of the Introduction, your reader should understand:\n\nWhat this project is about\n\nWhy it matters\n\nWhat question is being explored\n\nHow the data allows you to explore it\n\n\n\nA strong Introduction\nA strong Introduction feels like a progression. The reader is not just given information—they are led toward the question your analysis is trying to answer.\nThe dataset is introduced as part of that story, not as a separate block of description.\n\n\nA weak Introduction\nA weak Introduction often:\n\nstarts with generic background that is not clearly connected to the analysis\n\nintroduces the dataset abruptly without explaining why it matters\n\nlists variables without context\n\ndelays the main question until the end or leaves it unclear\n\nIf your Introduction feels like disconnected pieces (topic → data → variables → question), it likely needs to be more tightly connected.",
+    "crumbs": [
+      "STAT 118: Intro to Data Science",
+      "📊 Final Project",
+      "Final Project Companion Guide"
+    ]
+  },
+  {
+    "objectID": "courses/STAT118/final_project/ready/Final_Project_Companion_guide.html#results",
+    "href": "courses/STAT118/final_project/ready/Final_Project_Companion_guide.html#results",
+    "title": "Final Project Companion Guide",
+    "section": "Results",
+    "text": "Results\n\nWhat this section should do\nThe Results section is where you present the evidence for your analysis. Each figure or table should contribute a piece of information that helps the reader understand your question.\nYour Results section should include 4–5 figures and/or tables that work together. These should not feel like a random collection of plots. Each one should do a specific piece of work in your analysis.\nFor each figure or table, your reader should be able to answer:\n\nWhat is this showing?\nWhy did the author make this figure or table?\nWhat do they want me to notice?\nHow does this relate to the other figures and tables?\n\n\n\nQuestions to answer for each figure or table\nFor each element, make sure you explain:\n\nWhat the figure or table is showing\nWhat question or idea it helps investigate\nWhat patterns, relationships, or differences stand out\nWhat the reader should learn from it\nHow it connects to the broader story of the project\n\nA figure should not appear without explanation. Your reader should not have to guess why it exists.\n\n\nWhat strong Results sections look like\nStrong Results sections feel like a sequence of connected steps. One figure leads naturally to the next. The writing helps the reader understand both the figure itself and why it matters. Note that this ordering might not be the order in which you originally made the plots.\nStrong Results sections do not just describe plots. They explain the role each figure plays in the overall analysis and how each figure relates to the others.\n\n\nWhat weak Results sections look like\nWeak Results sections often do one or more of the following:\n\nShow figures without enough explanation\nInclude figures without making clear what they contribute to the analysis\nInclude elements that feel repetitive, disconnected, or unnecessary\nRely on the figure itself to communicate the interpretation\n\nIf your reader has to guess what a figure is doing in the project, you need to be clearer.\n\n\nHow is this different from the Discussion?\nResults = assembling and presenting the evidence in a logical sequence\nDiscussion = stepping back and synthesizing what the evidence means overall",
+    "crumbs": [
+      "STAT 118: Intro to Data Science",
+      "📊 Final Project",
+      "Final Project Companion Guide"
+    ]
+  },
+  {
+    "objectID": "courses/STAT118/final_project/ready/Final_Project_Companion_guide.html#discussion",
+    "href": "courses/STAT118/final_project/ready/Final_Project_Companion_guide.html#discussion",
+    "title": "Final Project Companion Guide",
+    "section": "Discussion",
+    "text": "Discussion\n\nWhat this section should do\nThe Discussion is where you step back from the individual figures and talk about the bigger picture.\nBy the end of this section, your reader should understand:\n\nWhat the main takeaway is\nWhat your results suggest or mean when considered together\nWhat remains uncertain\nHow your findings connect to broader patterns, expectations, events, or ideas related to the topic\nWhat limitations shaped your analysis\nWhat you would want to explore next\n\n\n\nA strong Discussion\nA strong Discussion ties the project together. It does not just repeat the Results section. Instead, it helps the reader understand the overall significance of what you found and connects the analysis back to the broader topic introduced at the beginning of the project.\nIt should sound like you have thought about the analysis as a whole.\n\n\nA weak Discussion\nA weak Discussion often just restates what the plots showed without reflecting on the bigger picture. It may also avoid uncertainty entirely, even when there are clear limitations or open questions.",
+    "crumbs": [
+      "STAT 118: Intro to Data Science",
+      "📊 Final Project",
+      "Final Project Companion Guide"
+    ]
+  },
+  {
+    "objectID": "courses/STAT118/final_project/ready/Final_Project_Companion_guide.html#when-to-use-a-figure-and-when-to-use-a-table",
+    "href": "courses/STAT118/final_project/ready/Final_Project_Companion_guide.html#when-to-use-a-figure-and-when-to-use-a-table",
+    "title": "Final Project Companion Guide",
+    "section": "When to use a figure and when to use a table",
+    "text": "When to use a figure and when to use a table\nUse a figure when you want the reader to quickly see a pattern, relationship, comparison, or trend.\nUse a table when exact values matter more than visual shape.\nA table may be useful when you want to:\n\ncompare summary statistics across groups\nshow ranked values such as top or bottom values\npresent counts or proportions clearly\nreport a small set of exact values that readers may want to compare directly\n\nA table is usually not the best choice when a visual pattern is the main point.",
+    "crumbs": [
+      "STAT 118: Intro to Data Science",
+      "📊 Final Project",
+      "Final Project Companion Guide"
+    ]
+  },
+  {
+    "objectID": "courses/STAT118/final_project/ready/Final_Project_Companion_guide.html#general-advice",
+    "href": "courses/STAT118/final_project/ready/Final_Project_Companion_guide.html#general-advice",
+    "title": "Final Project Companion Guide",
+    "section": "General advice",
+    "text": "General advice\n\nFewer, stronger figures are better than many weak ones.\nEach paragraph should start with a topic sentence that tells the reader what you are going to convince them of with the rest of the paragraph. YOu should be able to read the first sentence of each paragraph and be able to understand the overall story.\nYour figures should support your thinking, not replace it.\nTry to make the project feel like one story, not several unrelated mini-projects.\nBe clear about what you did, why you did it, and what you think it shows.\nClarity matters more than complexity.",
+    "crumbs": [
+      "STAT 118: Intro to Data Science",
+      "📊 Final Project",
+      "Final Project Companion Guide"
+    ]
+  },
+  {
+    "objectID": "courses/STAT118/notes/published/118_A_intro_quarto.html",
+    "href": "courses/STAT118/notes/published/118_A_intro_quarto.html",
+    "title": "Intro to R and RStudio",
+    "section": "",
+    "text": "If you have not already, please refer to the Installation Guide to install R and RStudio on your computer.\nR (The brain behind it all)\nRStudio (The interface you work with)\nRStudio is an IDE (Integrated Development Environment) that gives you a user-friendly interface to write and run your R code.\nWhen you open RStudio, you should see something similar to this:"
+  },
+  {
+    "objectID": "courses/STAT118/notes/published/118_A_intro_quarto.html#open-your-.qmd-file-in-rstudio",
+    "href": "courses/STAT118/notes/published/118_A_intro_quarto.html#open-your-.qmd-file-in-rstudio",
+    "title": "Intro to R and RStudio",
+    "section": "1️⃣ Open Your .qmd File in RStudio",
+    "text": "1️⃣ Open Your .qmd File in RStudio\nNavigate to the file on your local computer and click to open it!\n\nSome folks prefer to use the “Files” tab within RStudio to navigate to the file\nOther folks prefer to interact with their files in their typical way (Using Finder on Mac or File Explorer on PC)\n\nEither way works just fine!"
+  },
+  {
+    "objectID": "courses/STAT118/notes/published/118_A_intro_quarto.html#install-quarto-in-rstudio",
+    "href": "courses/STAT118/notes/published/118_A_intro_quarto.html#install-quarto-in-rstudio",
+    "title": "Intro to R and RStudio",
+    "section": "2️⃣ Install Quarto in RStudio",
+    "text": "2️⃣ Install Quarto in RStudio\nOption 1: Using the RStudio Interface\n\nGo to the Packages pane in RStudio (bottom-right by default),\nClick Install,\nIn the box that appears:\n\nEnter the package name (quarto),\n\nMake sure Install dependencies is checked,\nClick Install.\n\n\n\nOption 2: Using R Code in the Console\n\ninstall.packages(\"quarto\")"
+  },
+  {
+    "objectID": "courses/STAT118/notes/published/118_A_intro_quarto.html#render-and-preview",
+    "href": "courses/STAT118/notes/published/118_A_intro_quarto.html#render-and-preview",
+    "title": "Intro to R and RStudio",
+    "section": "3️⃣ Render and Preview",
+    "text": "3️⃣ Render and Preview\nClick the Render button () at the top-right of your RStudio editor window.\nTada! You now have created a .html file!\nThe file has been created in the same folder as your .qmd file: \nWhen you render, a preview of the document will show up!\n\n\n\n\n\n\nTip\n\n\n\nBy default, the preview of .html will pop up in your web browser. This is totally okay. In fact, I tend to prefer this approach when I’m working at a computer station with multiple monitors.\nHowever, you may prefer to have the .html preview in your viewer pane right within RStudio. This is what I prefer when I’m just working on just my laptop.\nClick on the “gear button”  and select “Preview in Viewer Pane”\n\n\nThe preview will update whenever you re-render the document."
+  },
+  {
+    "objectID": "courses/STAT118/notes/published/118_A_intro_quarto.html#footnotes",
+    "href": "courses/STAT118/notes/published/118_A_intro_quarto.html#footnotes",
+    "title": "Intro to R and RStudio",
+    "section": "Footnotes",
+    "text": "Footnotes\n\n\nhttps://moderndive.com/1-getting-started.html↩︎"
+  },
+  {
     "objectID": "courses/STAT118/final_project/ready/Exploring_data_options_notes_for_pub.html",
     "href": "courses/STAT118/final_project/ready/Exploring_data_options_notes_for_pub.html",
     "title": "STAT 118: Finding a Dataset Worth Investigating",
     "section": "",
-    "text": "For your final project, you will choose your own dataset(s), develop a research question, conduct an investigation, and communicate your findings in a final report.\nA few things to keep in mind:\n\nChoose something you’re genuinely interested in. You’ll be spending several weeks working with these data.\nYou don’t need a research question yet. Your question will develop as you explore the data.\nYour project should be an investigation, not simply a collection of unrelated figures.\nYou’ll develop your project over time. We’ll have opportunities for discussion, feedback, and revision throughout the remaining classes."
+    "text": "For your final project, you will choose your own dataset(s), develop a research question, conduct an investigation, and communicate your findings in a final report.\nA few things to keep in mind:\n\nChoose something you’re genuinely interested in. You’ll be spending several weeks working with these data.\nYou don’t need a research question yet. Your question will develop as you explore the data.\nYour project should be an investigation, not simply a collection of unrelated figures.\nYou’ll develop your project over time. We’ll have opportunities for discussion, feedback, and revision throughout the remaining classes.",
+    "crumbs": [
+      "STAT 118: Intro to Data Science",
+      "📊 Final Project",
+      "Finding and Evaluating Datasets"
+    ]
   },
   {
     "objectID": "courses/STAT118/final_project/ready/Exploring_data_options_notes_for_pub.html#introduction-to-your-final-project",
     "href": "courses/STAT118/final_project/ready/Exploring_data_options_notes_for_pub.html#introduction-to-your-final-project",
     "title": "STAT 118: Finding a Dataset Worth Investigating",
     "section": "",
-    "text": "For your final project, you will choose your own dataset(s), develop a research question, conduct an investigation, and communicate your findings in a final report.\nA few things to keep in mind:\n\nChoose something you’re genuinely interested in. You’ll be spending several weeks working with these data.\nYou don’t need a research question yet. Your question will develop as you explore the data.\nYour project should be an investigation, not simply a collection of unrelated figures.\nYou’ll develop your project over time. We’ll have opportunities for discussion, feedback, and revision throughout the remaining classes."
+    "text": "For your final project, you will choose your own dataset(s), develop a research question, conduct an investigation, and communicate your findings in a final report.\nA few things to keep in mind:\n\nChoose something you’re genuinely interested in. You’ll be spending several weeks working with these data.\nYou don’t need a research question yet. Your question will develop as you explore the data.\nYour project should be an investigation, not simply a collection of unrelated figures.\nYou’ll develop your project over time. We’ll have opportunities for discussion, feedback, and revision throughout the remaining classes.",
+    "crumbs": [
+      "STAT 118: Intro to Data Science",
+      "📊 Final Project",
+      "Finding and Evaluating Datasets"
+    ]
   },
   {
     "objectID": "courses/STAT118/final_project/ready/Exploring_data_options_notes_for_pub.html#good-analysis-starts-with-good-data",
     "href": "courses/STAT118/final_project/ready/Exploring_data_options_notes_for_pub.html#good-analysis-starts-with-good-data",
     "title": "STAT 118: Finding a Dataset Worth Investigating",
     "section": "Good Analysis Starts with Good Data",
-    "text": "Good Analysis Starts with Good Data\nThroughout this semester, I’ve given you datasets to work with. I’ve often told you which variables to examine, what questions to answer, and sometimes even which analyses to perform. That means I’ve been making a lot of important decisions for you. But those decisions are a fundamental part of data science. Before we can analyze data, we need to figure out what data are available, whether they’re appropriate for our purposes, and whether we can trust them.\nFinding a dataset isn’t just a preliminary step before the real work begins. Choosing and evaluating data is part of the real work. The data we choose determine what questions we can answer, what patterns we can investigate, and what conclusions we can reasonably draw.\nFor your final project, you’ll take responsibility for the entire process of conducting a data science investigation, from finding data and developing questions to analyzing results and communicating your findings. Today we’re starting with the first two:\n\nFinding data: Where can we find data relevant to something we want to understand?\nEvaluating data: How can we decide whether those data are useful, reliable, and appropriate for an investigation?\n\nToday, we will be spending some time at the very beginning. Partly because this is a step that has largely been hidden from you until now, both in this class and very likely in other classes as well. And because many of the decisions you make early on in data selection will haunt you if you don’t give them proper attention. This is the burden and the opportunity of being responsible for the full pipeline."
+    "text": "Good Analysis Starts with Good Data\nThroughout this semester, I’ve given you datasets to work with. I’ve often told you which variables to examine, what questions to answer, and sometimes even which analyses to perform. That means I’ve been making a lot of important decisions for you. But those decisions are a fundamental part of data science. Before we can analyze data, we need to figure out what data are available, whether they’re appropriate for our purposes, and whether we can trust them.\nFinding a dataset isn’t just a preliminary step before the real work begins. Choosing and evaluating data is part of the real work. The data we choose determine what questions we can answer, what patterns we can investigate, and what conclusions we can reasonably draw.\nFor your final project, you’ll take responsibility for the entire process of conducting a data science investigation, from finding data and developing questions to analyzing results and communicating your findings. Today we’re starting with the first two:\n\nFinding data: Where can we find data relevant to something we want to understand?\nEvaluating data: How can we decide whether those data are useful, reliable, and appropriate for an investigation?\n\nToday, we will be spending some time at the very beginning. Partly because this is a step that has largely been hidden from you until now, both in this class and very likely in other classes as well. And because many of the decisions you make early on in data selection will haunt you if you don’t give them proper attention. This is the burden and the opportunity of being responsible for the full pipeline.",
+    "crumbs": [
+      "STAT 118: Intro to Data Science",
+      "📊 Final Project",
+      "Finding and Evaluating Datasets"
+    ]
   },
   {
     "objectID": "courses/STAT118/final_project/ready/Exploring_data_options_notes_for_pub.html#what-makes-a-good-dataset",
     "href": "courses/STAT118/final_project/ready/Exploring_data_options_notes_for_pub.html#what-makes-a-good-dataset",
     "title": "STAT 118: Finding a Dataset Worth Investigating",
     "section": "What makes a good dataset?",
-    "text": "What makes a good dataset?\nNot every dataset is a good choice for this project. Before committing to one, we need to consider whether it is interesting, accessible, understandable, and capable of supporting a meaningful investigation.\n\nFive criteria for evaluating datasets\n1. Interest — Do I care about these data?\n\nAm I genuinely curious about the topic?\nWould I enjoy spending several weeks investigating it?\n\n2. Accessibility — Can I get the data?\n\nCan I download the actual data, rather than just looking at someone else’s figures or summaries?\nAre the data available in a format I can open and work with in R?\n\n3. Understanding — Can I make sense of the data?\n\nWhat does one observation (row) represent?\nWhat do the variables mean?\nIs there documentation explaining the data and how they were collected?\n\n4. Analytical potential — Is there enough to investigate?\n\nAre there meaningful differences across groups, locations, or time?\nAre there multiple variables I could compare or relate?\nCan I imagine more than one interesting question?\n\n5. Feasibility — What might prevent me from using these data successfully?\n\nIs the dataset a reasonable size?\nDoes the structure make sense?\nIs there missing information or unclear categories?\nCan I imagine working with it using the R skills we’ve learned?\n\nRemember: A dataset doesn’t need to be perfect. Some cleaning and troubleshooting are expected. The question is whether the challenges are manageable."
+    "text": "What makes a good dataset?\nNot every dataset is a good choice for this project. Before committing to one, we need to consider whether it is interesting, accessible, understandable, and capable of supporting a meaningful investigation.\n\nFive criteria for evaluating datasets\n1. Interest — Do I care about these data?\n\nAm I genuinely curious about the topic?\nWould I enjoy spending several weeks investigating it?\n\n2. Accessibility — Can I get the data?\n\nCan I download the actual data, rather than just looking at someone else’s figures or summaries?\nAre the data available in a format I can open and work with in R?\n\n3. Understanding — Can I make sense of the data?\n\nWhat does one observation (row) represent?\nWhat do the variables mean?\nIs there documentation explaining the data and how they were collected?\n\n4. Analytical potential — Is there enough to investigate?\n\nAre there meaningful differences across groups, locations, or time?\nAre there multiple variables I could compare or relate?\nCan I imagine more than one interesting question?\n\n5. Feasibility — What might prevent me from using these data successfully?\n\nIs the dataset a reasonable size?\nDoes the structure make sense?\nIs there missing information or unclear categories?\nCan I imagine working with it using the R skills we’ve learned?\n\nRemember: A dataset doesn’t need to be perfect. Some cleaning and troubleshooting are expected. The question is whether the challenges are manageable.",
+    "crumbs": [
+      "STAT 118: Intro to Data Science",
+      "📊 Final Project",
+      "Finding and Evaluating Datasets"
+    ]
   },
   {
     "objectID": "courses/STAT118/final_project/ready/Exploring_data_options_notes_for_pub.html#explore-potential-datasets",
     "href": "courses/STAT118/final_project/ready/Exploring_data_options_notes_for_pub.html#explore-potential-datasets",
     "title": "STAT 118: Finding a Dataset Worth Investigating",
     "section": "Explore potential datasets",
-    "text": "Explore potential datasets\nI have compiled a LARGE list of potential data sources. Use the list I gave you or explore other sources that interest you.\nIn class you worked in groups to identify potentially interesting datasets. Let’s investigate some of the datasets you found and assess them according to our criteria for a good dataset.\nWe looked at 2 datasets. The first was WNBA shooting statistics which required quite a bit of cleaning and manipulation after finding the dataset.\n\nWNBA data\nhttps://www.basketball-reference.com/wnba/years/2025_shooting.html\nI tried a few of the other export options that were available at the top of the page. The “Get as Excel Workbook” exports a .xls file. It wasn’t as simple as reading it straight in from the excel file, which appeared to be corrupted somehow. I opened it in Excel and resaved it as a .csv and then imported it.\n\n\nCode\nlibrary(tidyverse)\n\n\nWarning: package 'ggplot2' was built under R version 4.4.3\n\n\n── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──\n✔ dplyr     1.1.4     ✔ readr     2.1.5\n✔ forcats   1.0.0     ✔ stringr   1.5.1\n✔ ggplot2   4.0.1     ✔ tibble    3.2.1\n✔ lubridate 1.9.3     ✔ tidyr     1.3.1\n✔ purrr     1.0.2     \n── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──\n✖ dplyr::filter() masks stats::filter()\n✖ dplyr::lag()    masks stats::lag()\nℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors\n\n\nCode\nWNBA_data &lt;- read_csv(\"~/Dropbox/!Middlebury/Teaching/my_class_website/courses/STAT118/final_project/data/sportsref_download.csv\", skip=1)\n\n\nNew names:\nRows: 234 Columns: 29\n── Column specification\n──────────────────────────────────────────────────────── Delimiter: \",\" chr\n(3): Player, Tm, Pos dbl (22): G...4, MP...5, G...6, MP...7, FG%, Dist.,\n2P...11, 0-3...12, 10-Ma... lgl (4): ...10, ...17, ...24, ...27\nℹ Use `spec()` to retrieve the full column specification for this data. ℹ\nSpecify the column types or set `show_col_types = FALSE` to quiet this message.\n• `G` -&gt; `G...4`\n• `MP` -&gt; `MP...5`\n• `G` -&gt; `G...6`\n• `MP` -&gt; `MP...7`\n• `` -&gt; `...10`\n• `2P` -&gt; `2P...11`\n• `0-3` -&gt; `0-3...12`\n• `10-Mar` -&gt; `10-Mar...13`\n• `16-Oct` -&gt; `16-Oct...14`\n• `16-3P` -&gt; `16-3P...15`\n• `3P` -&gt; `3P...16`\n• `` -&gt; `...17`\n• `2P` -&gt; `2P...18`\n• `0-3` -&gt; `0-3...19`\n• `10-Mar` -&gt; `10-Mar...20`\n• `16-Oct` -&gt; `16-Oct...21`\n• `16-3P` -&gt; `16-3P...22`\n• `3P` -&gt; `3P...23`\n• `` -&gt; `...24`\n• `2P` -&gt; `2P...25`\n• `3P` -&gt; `3P...26`\n• `` -&gt; `...27`\n\n\nCode\nhead(WNBA_data)\n\n\n# A tibble: 6 × 29\n  Player       Tm    Pos   G...4 MP...5 G...6 MP...7 `FG%` Dist. ...10 `2P...11`\n  &lt;chr&gt;        &lt;chr&gt; &lt;chr&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;lgl&gt;     &lt;dbl&gt;\n1 Maya Caldwe… ATL   G        41    760    41    760 0.426  16.7 NA        0.436\n2 Jordin Cana… ATL   G        28    783    28    783 0.396  11.5 NA        0.685\n3 Nia Coffey   ATL   F        44    455    44    455 0.374  15   NA        0.442\n4 Allisha Gray ATL   G        42   1451    42   1451 0.451  14.7 NA        0.533\n5 Brittney Gr… ATL   C        39    810    39    810 0.518   7.9 NA        0.937\n6 Naz Hillmon  ATL   F        44   1122    44   1122 0.463  14.8 NA        0.45 \n# ℹ 18 more variables: `0-3...12` &lt;dbl&gt;, `10-Mar...13` &lt;dbl&gt;,\n#   `16-Oct...14` &lt;dbl&gt;, `16-3P...15` &lt;dbl&gt;, `3P...16` &lt;dbl&gt;, ...17 &lt;lgl&gt;,\n#   `2P...18` &lt;dbl&gt;, `0-3...19` &lt;dbl&gt;, `10-Mar...20` &lt;dbl&gt;,\n#   `16-Oct...21` &lt;dbl&gt;, `16-3P...22` &lt;dbl&gt;, `3P...23` &lt;dbl&gt;, ...24 &lt;lgl&gt;,\n#   `2P...25` &lt;dbl&gt;, `3P...26` &lt;dbl&gt;, ...27 &lt;lgl&gt;, `%3PA` &lt;dbl&gt;, `3P%` &lt;dbl&gt;\n\n\nYou can see that the column names are still a complete mess and will need to be cleared up manually probably.\nBut we can start to do some basic things with the data like look at distributions of different variables. The histogram below shows the distribution of Field Goal % across all of the players in the dataset.\n\n\nCode\nlibrary(ggthemes)\nWNBA_data |&gt;\n  ggplot(aes(x=`FG%`)) + # note the ` ` around the FG%, this is necessary with special characters or spaces. If I was going to continue working with these data, I would change this column name so that I don't have to keep doing this.\n  geom_histogram() +\n  theme_tufte()\n\n\n`stat_bin()` using `bins = 30`. Pick better value `binwidth`.\n\n\nWarning: Removed 3 rows containing non-finite outside the scale range\n(`stat_bin()`).\n\n\n\n\n\n\n\n\n\nHaving looked at this I am very curious which players have the highest and lowest FG%. Here are the three highest:\n\n\nCode\nWNBA_data |&gt; \n  arrange(desc(`FG%`)) |&gt;\n  slice(1:3) |&gt;\n  select(Player, `FG%`)\n\n\n# A tibble: 3 × 2\n  Player               `FG%`\n  &lt;chr&gt;                &lt;dbl&gt;\n1 Mackenzie Holmes     0.714\n2 Jessica Shepard      0.638\n3 Cheyenne Parker-Tyus 0.625\n\n\nTo get at the lowest I decided to filter for all players with an FG% of zero:\n\n\nCode\nWNBA_data |&gt; \n  filter(`FG%`==0) |&gt;\n  select(Player, `FG%`)\n\n\n# A tibble: 7 × 2\n  Player          `FG%`\n  &lt;chr&gt;           &lt;dbl&gt;\n1 Yvonne Anderson     0\n2 Marième Badiane     0\n3 Serena Sundell      0\n4 Aerial Powers       0\n5 Grace Berger        0\n6 Bree Hall           0\n7 Sika Koné           0\n\n\nSo, according to our criteria, this dataset is accessible (reasonably), understandable (with a little work, some of the variables are a touch confusing), there is a lot of analytical potential, especially if you go after multiple years, and it is feasible to work with (not too big, no missing data, etc.). SO, I would call this a good data set, or atleast a good place to start, with a lot more data on the same topic available on the website.\n\n\nMoods and Activities in Music\nThe second dataset that we looked at came from the website:\nhttps://datacatalogue.cessda.eu/detail/294c7e351c8300199ca0c0743d5236488d00e25ba516a1b5504c1c923b32d67e?lang=en\nAnd was collected by folks at Durham University in the UK. It contains “annotations of music in terms of moods music may express and activities that music might fit”. It downloads as a .zip file and unpacks to 11 different .csv files that each contain a different aspect of the dataset. It comes with a very helpful README, that explains each of the different datasets and what they contain."
-  },
-  {
-    "objectID": "courses/STAT118/final_project/ready/Exploring_data_options_notes_for_pub.html#some-datasets-that-might-not-work-discussion",
-    "href": "courses/STAT118/final_project/ready/Exploring_data_options_notes_for_pub.html#some-datasets-that-might-not-work-discussion",
-    "title": "STAT 118: Finding a Dataset Worth Investigating",
-    "section": "Some datasets that might NOT work? (Discussion)",
-    "text": "Some datasets that might NOT work? (Discussion)\nLet’s look at some datasets that you think might be difficult or unsuitable for this project.\n\nQuestions to consider\n\nWhat makes this dataset potentially unsuitable?\nWhich of our five criteria are we concerned about?\nIs this a problem we could reasonably overcome?\nWhat additional information would help us decide?\n\nAn important distinction: A dataset that requires some work is not necessarily a bad dataset. But some datasets may require more work than we can reasonably accomplish in this project."
-  },
-  {
-    "objectID": "courses/STAT118/final_project/ready/Exploring_data_options_notes_for_pub.html#some-datasets-that-look-promising",
-    "href": "courses/STAT118/final_project/ready/Exploring_data_options_notes_for_pub.html#some-datasets-that-look-promising",
-    "title": "STAT 118: Finding a Dataset Worth Investigating",
-    "section": "5.Some datasets that look promising?",
-    "text": "5.Some datasets that look promising?\nLet’s investigate some of the datasets you found that look promising. We’ll choose one or two examples and evaluate them together.\n\nFor each dataset, let’s investigate:\n1. What did we find?\n\nWhat is the dataset about?\nWhat does one observation represent?\nWhat variables are available?\n\n2. What could we investigate?\n\nWhat differences, patterns, or relationships might be interesting?\nWhat kinds of questions could these data help us answer?\n\n3. What might be difficult?\n\nCan we download the data?\nCan we understand the variables?\nAre there any obvious limitations?\n\n4. What’s our decision?\n\nPursue it: This looks promising enough to investigate further.\nReject it: This probably isn’t a good fit for our project.\nNeed more information: We can’t decide yet.\n\nThe goal isn’t to find the perfect dataset immediately. It’s to learn how to evaluate our options and make informed decisions."
-  },
-  {
-    "objectID": "courses/STAT118/final_project/ready/Exploring_data_options_notes_for_pub.html#what-have-we-learned",
-    "href": "courses/STAT118/final_project/ready/Exploring_data_options_notes_for_pub.html#what-have-we-learned",
-    "title": "STAT 118: Finding a Dataset Worth Investigating",
-    "section": "What have we learned?",
-    "text": "What have we learned?\nReturn to our five criteria:\n\nInterest\nAccessibility\nUnderstanding\nAnalytical potential\nManageability"
-  },
-  {
-    "objectID": "courses/STAT118/final_project/ready/Exploring_data_options_notes_for_pub.html#homework-step-1-finding-and-evaluating-datasets",
-    "href": "courses/STAT118/final_project/ready/Exploring_data_options_notes_for_pub.html#homework-step-1-finding-and-evaluating-datasets",
-    "title": "STAT 118: Finding a Dataset Worth Investigating",
-    "section": "Homework — Step 1: Finding and evaluating datasets",
-    "text": "Homework — Step 1: Finding and evaluating datasets\nFor your first final-project assignment, you will:\n\nIdentify an area of interest.\nFind at least three potential datasets or data sources.\nChoose two specific datasets to investigate more closely.\nAttempt to download and import both datasets into R.\nUse R to inspect the observations, variables, and structure of the datasets.\nIdentify possible investigations for each dataset.\nChoose the dataset that currently seems most promising and explain why.\n\nYou are not committing to a dataset yet.\nIn our next class, we’ll move beyond inspecting the structure of the data and begin exploring patterns, relationships, and possible research questions."
-  },
-  {
-    "objectID": "courses/STAT118/notes/published/installguide.html",
-    "href": "courses/STAT118/notes/published/installguide.html",
-    "title": "Installing R and RStudio",
-    "section": "",
-    "text": "For this course, you will need to install both R and RStudio on your computer.\n\nR is the programming language that runs your code.\nRStudio is the program we will use to write and run R code.\n\nInstall R first, then install RStudio.\n\n1. Install R\nGo to the R Project download page.\n\nMac\n\nClick Download R for macOS.\nDownload the appropriate installer for your Mac.\nOpen the downloaded .pkg file and follow the installation instructions.\n\n\n\n\n\n\n\nTip\n\n\n\nIf you are unsure which R version you need, click on the Apple in the upper lefthand corner of your desktop and select “About This Mac”, this will contain information both about the chip in your Mac (Intel or M) and the OS that you are running which will allow you to select the correct version of R.\n\n\n\n\nWindows\n\nClick Download R for Windows.\nClick install R for the first time.\nClick Download R-4.6.1 for Windows (the exact R version number may have changed).\nOpen the downloaded installer and accept the default installation options.\n\n\n\n\n2. Install RStudio Desktop\nGo to the RStudio Desktop download page.\n\nDownload the free version of RStudio Desktop for your operating system.\nOpen the installer.\nFollow the installation instructions.\n\n\n\n3. Make sure everything works\nOpen RStudio.\n\n\n\nCredit: moderndive\n\n\nIf the installation was successful, you should see the RStudio interface with a Console pane containing some text about your version of R and a &gt; prompt.\nAt the &gt; prompt, type:\n\n2 + 2\n\nIf R responds with:\n[1] 4\nyou’re ready for class!\nIf you are stumped by 3. Don’t worry about it. If you didn’t get any errors during installation and can open the program ok, then you should be good to go.",
+    "text": "Explore potential datasets\nI have compiled a LARGE list of potential data sources. Use the list I gave you or explore other sources that interest you.\nIn class you worked in groups to identify potentially interesting datasets. Let’s investigate some of the datasets you found and assess them according to our criteria for a good dataset.\nWe looked at 2 datasets. The first was WNBA shooting statistics which required quite a bit of cleaning and manipulation after finding the dataset.\n\nWNBA data\nhttps://www.basketball-reference.com/wnba/years/2025_shooting.html\nI tried a few of the other export options that were available at the top of the page. The “Get as Excel Workbook” exports a .xls file. It wasn’t as simple as reading it straight in from the excel file, which appeared to be corrupted somehow. I opened it in Excel and resaved it as a .csv and then imported it.\n\n\nCode\nlibrary(tidyverse)\n\n\nWarning: package 'ggplot2' was built under R version 4.4.3\n\n\n── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──\n✔ dplyr     1.1.4     ✔ readr     2.1.5\n✔ forcats   1.0.0     ✔ stringr   1.5.1\n✔ ggplot2   4.0.1     ✔ tibble    3.2.1\n✔ lubridate 1.9.3     ✔ tidyr     1.3.1\n✔ purrr     1.0.2     \n── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──\n✖ dplyr::filter() masks stats::filter()\n✖ dplyr::lag()    masks stats::lag()\nℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors\n\n\nCode\nWNBA_data &lt;- read_csv(\"~/Dropbox/!Middlebury/Teaching/my_class_website/courses/STAT118/final_project/data/sportsref_download.csv\", skip=1)\n\n\nNew names:\nRows: 234 Columns: 29\n── Column specification\n──────────────────────────────────────────────────────── Delimiter: \",\" chr\n(3): Player, Tm, Pos dbl (22): G...4, MP...5, G...6, MP...7, FG%, Dist.,\n2P...11, 0-3...12, 10-Ma... lgl (4): ...10, ...17, ...24, ...27\nℹ Use `spec()` to retrieve the full column specification for this data. ℹ\nSpecify the column types or set `show_col_types = FALSE` to quiet this message.\n• `G` -&gt; `G...4`\n• `MP` -&gt; `MP...5`\n• `G` -&gt; `G...6`\n• `MP` -&gt; `MP...7`\n• `` -&gt; `...10`\n• `2P` -&gt; `2P...11`\n• `0-3` -&gt; `0-3...12`\n• `10-Mar` -&gt; `10-Mar...13`\n• `16-Oct` -&gt; `16-Oct...14`\n• `16-3P` -&gt; `16-3P...15`\n• `3P` -&gt; `3P...16`\n• `` -&gt; `...17`\n• `2P` -&gt; `2P...18`\n• `0-3` -&gt; `0-3...19`\n• `10-Mar` -&gt; `10-Mar...20`\n• `16-Oct` -&gt; `16-Oct...21`\n• `16-3P` -&gt; `16-3P...22`\n• `3P` -&gt; `3P...23`\n• `` -&gt; `...24`\n• `2P` -&gt; `2P...25`\n• `3P` -&gt; `3P...26`\n• `` -&gt; `...27`\n\n\nCode\nhead(WNBA_data)\n\n\n# A tibble: 6 × 29\n  Player       Tm    Pos   G...4 MP...5 G...6 MP...7 `FG%` Dist. ...10 `2P...11`\n  &lt;chr&gt;        &lt;chr&gt; &lt;chr&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;lgl&gt;     &lt;dbl&gt;\n1 Maya Caldwe… ATL   G        41    760    41    760 0.426  16.7 NA        0.436\n2 Jordin Cana… ATL   G        28    783    28    783 0.396  11.5 NA        0.685\n3 Nia Coffey   ATL   F        44    455    44    455 0.374  15   NA        0.442\n4 Allisha Gray ATL   G        42   1451    42   1451 0.451  14.7 NA        0.533\n5 Brittney Gr… ATL   C        39    810    39    810 0.518   7.9 NA        0.937\n6 Naz Hillmon  ATL   F        44   1122    44   1122 0.463  14.8 NA        0.45 \n# ℹ 18 more variables: `0-3...12` &lt;dbl&gt;, `10-Mar...13` &lt;dbl&gt;,\n#   `16-Oct...14` &lt;dbl&gt;, `16-3P...15` &lt;dbl&gt;, `3P...16` &lt;dbl&gt;, ...17 &lt;lgl&gt;,\n#   `2P...18` &lt;dbl&gt;, `0-3...19` &lt;dbl&gt;, `10-Mar...20` &lt;dbl&gt;,\n#   `16-Oct...21` &lt;dbl&gt;, `16-3P...22` &lt;dbl&gt;, `3P...23` &lt;dbl&gt;, ...24 &lt;lgl&gt;,\n#   `2P...25` &lt;dbl&gt;, `3P...26` &lt;dbl&gt;, ...27 &lt;lgl&gt;, `%3PA` &lt;dbl&gt;, `3P%` &lt;dbl&gt;\n\n\nYou can see that the column names are still a complete mess and will need to be cleared up manually probably.\nBut we can start to do some basic things with the data like look at distributions of different variables. The histogram below shows the distribution of Field Goal % across all of the players in the dataset.\n\n\nCode\nlibrary(ggthemes)\nWNBA_data |&gt;\n  ggplot(aes(x=`FG%`)) + # note the ` ` around the FG%, this is necessary with special characters or spaces. If I was going to continue working with these data, I would change this column name so that I don't have to keep doing this.\n  geom_histogram() +\n  theme_tufte()\n\n\n`stat_bin()` using `bins = 30`. Pick better value `binwidth`.\n\n\nWarning: Removed 3 rows containing non-finite outside the scale range\n(`stat_bin()`).\n\n\n\n\n\n\n\n\n\nHaving looked at this I am very curious which players have the highest and lowest FG%. Here are the three highest:\n\n\nCode\nWNBA_data |&gt; \n  arrange(desc(`FG%`)) |&gt;\n  slice(1:3) |&gt;\n  select(Player, `FG%`)\n\n\n# A tibble: 3 × 2\n  Player               `FG%`\n  &lt;chr&gt;                &lt;dbl&gt;\n1 Mackenzie Holmes     0.714\n2 Jessica Shepard      0.638\n3 Cheyenne Parker-Tyus 0.625\n\n\nTo get at the lowest I decided to filter for all players with an FG% of zero:\n\n\nCode\nWNBA_data |&gt; \n  filter(`FG%`==0) |&gt;\n  select(Player, `FG%`)\n\n\n# A tibble: 7 × 2\n  Player          `FG%`\n  &lt;chr&gt;           &lt;dbl&gt;\n1 Yvonne Anderson     0\n2 Marième Badiane     0\n3 Serena Sundell      0\n4 Aerial Powers       0\n5 Grace Berger        0\n6 Bree Hall           0\n7 Sika Koné           0\n\n\nSo, according to our criteria, this dataset is accessible (reasonably), understandable (with a little work, some of the variables are a touch confusing), there is a lot of analytical potential, especially if you go after multiple years, and it is feasible to work with (not too big, no missing data, etc.). SO, I would call this a good data set, or atleast a good place to start, with a lot more data on the same topic available on the website.\n\n\nMoods and Activities in Music\nThe second dataset that we looked at came from the website:\nhttps://datacatalogue.cessda.eu/detail/294c7e351c8300199ca0c0743d5236488d00e25ba516a1b5504c1c923b32d67e?lang=en\nAnd was collected by folks at Durham University in the UK. It contains “annotations of music in terms of moods music may express and activities that music might fit”. It downloads as a .zip file and unpacks to 11 different .csv files that each contain a different aspect of the dataset. It comes with a very helpful README, that explains each of the different datasets and what they contain.",
     "crumbs": [
       "STAT 118: Intro to Data Science",
-      "📖 Course Notes",
-      "Installing R and RStudio"
-    ]
-  },
-  {
-    "objectID": "courses/STAT118/notes/published/118_A_in_class_notes.html",
-    "href": "courses/STAT118/notes/published/118_A_in_class_notes.html",
-    "title": "Class A Notes",
-    "section": "",
-    "text": "Resources\n\nCanvas Site: Will be used for all assignments and contains the course schedule where absolutely everything will be linked\nCourse Schedule: This is probably the most important page for the entire course, everything will be linked here, it is available on the Canvas Site, under “Schedule” from the Homepage\nGithub Website: Completed notes will be rendered and posted to the site\nGithub Code Repository: Files used for homeowrk assignments and .qmd versions of class notes, as well as template files for class notes will be availble here\n\n\n\nSyllabus\n\nAssignments: See the Syllabus and Schedule for more details, but briefly, you will have 2 Homework Assignments per week, a Midterm Project, and a Final Project\nGrade Allocation: Homework is 40% of your grade, Midterm Project is 25% and Final Project is 35%\nLate Policy: See Syllabus for details\n\n\n\nThoughts on AI\n\nAssignment prompts: You will be prompted at the end of your Homework Assignments to tell me whether you used AI, how you used it, and how you think it helped or hindered your learning\nThinking about what it gives you and what it takes away: I am not here to police your use of AI, but I do think it requires important consideration of how it impacts your learning (either positively or negatively)\n\n\n\nDownload Notes Template\nThese will always be linked on the Schedule (on the Canvas Site) before each class. You should download these at the beginning of class so that you will be better able to code along with me in class.\n\n\nDirectory structure\nThe directory structure outlined below is intended to prevent a number of headaches in how Quarto references files automatically. Please make sure that your files and folders are structured like this.\n📁 STAT118/\n   ├── class-notes.qmd\n   ├── homework-01.qmd\n   ├── homework-02.qmd\n   ├── 📁 data/\n   └── 📁 images/\n\n\nR and Rstudio\n\nWhat is the difference?\nR is the engine and RStudio is the car.\n\n\nWhat do the different windows do?\nThe Source window is where you will create and edit your Quarto documents, and write your code. This window should be in the top left pane.\nThe Console window is where the code is run. This window should be in the top right pane.\nThe Environment window will show you the objects and other things that you have created and defined in your code. this should be on the bottom left.\nThe window on the lower right should include Files, Plots, Packages, Help, and Viewer (it’s ok if there are additional tabs). This is where you can look for help documentation on the different functions available through R and additional R packages. This is also where figures and rendered files should pop up.\n\n\n\nSettings\n\nRearrange panes\nIf your panes are not in the configuration outlined above, please change them using the instructions below.\nGo to:\nTools → Global Options → Pane Layout\n\n\nChange theme\nIf you want to change how your RStudio appears.\nWe decided that I could continue to use my dark theme. Yay!\nGo to:\nTools → Global Options → Appearance\n\n\nChange Downloads Permission\nPlease take a minute to change your downloads permissions for the browser that you use. This will make it easier for you to direct downloads to the correct folder and not have to go hunting for things that got sent to weird places.\nGoogle Chrome:\n\nGo to the three-dot menu (top-right corner) → Settings.\nScroll down and click Downloads.\nToggle on “Ask where to save each file before downloading.”\n\nFirefox:\n\nClick the three-line menu (top-right corner) → Settings.\nIn the General section, under Files and Applications, select: “Always ask you where to save files.”\n\nSafari (Mac):\n\nGo to Safari &gt; Preferences &gt; General.\nUnder File download location, select: “Ask for each download.”\n\n\n\n\nQuarto\n\nSource vs. Visual\n\n\nMarkdown Syntax\n\nBold and Italics\nYou make bold text by placing two * before and after the text you wish to bold: **make this text bold**\nmake this text bold\nYou make italics text by placing one * before and after the text you wish to appear in italics: *make this text italics*\nmake this text italics\nYou make bold and italics text by placing three * before and after the text you wish to appear in bold and italics: ***make this text bold and italics***\nmake this text bold and italics\n\n\nLists\nTo make a list put a - before each item on the list.\na list\n\n-   one thing\n-   second thing\n-   third thing\n\nThe result will look like this:\na list\n\none thing\nsecond thing\nthird thing\n\nAlways make sure to include an empty line before the first item on the list, otherwise it will not render properly.\n\n\nHyperlink\nTo add a hyperlink use this syntax:\n[words here](link here)\nThe text should look like this:\n[this is a link to the class website](https://cschine.github.io/my_class_website/courses/STAT118/)\nThe result will look like this:\nthis is a link to the class website\n\n\nImages\nTo add an image, use this syntax:\n![caption](image)\nThe text should look something like this:\n![this is an image](images/NBP_midnight_sun.jpeg)\nAnd the result will look like this:\n\n\n\nthis is an image\n\n\n\n\n\nUsing R in Quarto\nR code chunks\nUse the green +C buttom in the toolbar to add a code chunk\nCreate an object like this:\n\naardvark &lt;- 17\n\nyeti &lt;- 23\n\nYou can do basic arithmetic with named objects using the standard operators:\n\n\n\nOperator\nDescription\n\n\n\n\n+\nAddition\n\n\n-\nSubtraction\n\n\n*\nMultiplication\n\n\n/\nDivision\n\n\n^ or **\nExponentiation\n\n\n\nLike this:\n\naardvark*yeti\n\n[1] 391\n\naardvark/yeti\n\n[1] 0.7391304\n\nchalk &lt;- aardvark*yeti\n\nchalk\n\n[1] 391\n\n\nTo comment code use the # at the beginning of the line and write a description of what the code should be doing, or a note to yourself, or whatever you want. Like this:\n\n# multiply aardvark and yeti\naardvark*yeti\n\n[1] 391\n\n# divide aardvark by yeti\naardvark/yeti\n\n[1] 0.7391304\n\n# assign chalk a value of aardvark multiplied by yeti\nchalk &lt;- aardvark*yeti\n\n# call chalk up\nchalk\n\n[1] 391\n\n\n\n\nRender\nNow it is time to Render your Quarto (.qmd) doc into a .html file (which is the format in which you will be submitting all of your assignments). To do this press the  Render button, which should be visible in the toolbar at the top of your Source Pane (the pane in which you are editing your Quarto document).\nIf your quarto doc does not render correctly, errors can be found in the Background Jobs tab in the Console Pane. This can be very useful and sometimes very confusing.\n\n\n\nAssignments\nAssignments will be linked on the Schedule on Canvas. If you are having any difficulty with your assignment please come to office hours sooner rather than later so that we can get things figured out.",
-    "crumbs": [
-      "STAT 118: Intro to Data Science",
-      "📖 Course Notes",
-      "Intro to R & RStudio (Class A)"
+      "📊 Final Project",
+      "Finding and Evaluating Datasets"
     ]
   },
   {
