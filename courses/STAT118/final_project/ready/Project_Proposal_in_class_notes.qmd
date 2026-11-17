@@ -29,7 +29,7 @@ Take 3 minutes to write down your thoughts on the following questions. Then you 
 **1. What stood out to you about last class? Was anything surprising, interesting, frustrating, or unexpected about watching me explore an unfamiliar dataset?**
 
 
-**2. Did watching me struggle change how you think about the process of data analysis? Why or why not?**
+**2. Did watching me change how you think about the process of data analysis? Why or why not?**
 
 
 **3. How did last class compare with your own experience exploring your dataset? Did you recognize any of the challenges or frustrations? Were there differences?**
