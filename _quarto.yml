@@ -92,6 +92,9 @@ website:
           
           - text: "Initial Data Exploration"
             href: courses/STAT118/final_project/ready/Data_exploration_in_class_notes.qmd
+            
+          - text: "Exploration to Investigation: Developing a Project Proposal"
+            href: courses/STAT118/final_project/ready/Project_Proposal_in_class_notes.qmd
 
 
 
