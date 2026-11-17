@@ -9,6 +9,8 @@ format:
 execute: 
   warning: false
   message: false
+editor_options: 
+  chunk_output_type: console
 ---
 
 ## How did it go finding data?
@@ -89,13 +91,84 @@ First I want to give myself an actual date column.
 
 ```{r}
 
+squirrel_data_mod <- squirrel_data |>
+  mutate(Date=mdy(Date)) |>
+  mutate(month=month(Date),
+         year=year(Date))
+
+squirrel_data_mod |>
+  distinct(month, year)
+
 ```
 
 Now let's wing it. 
 
+To Do: 
+
+1) Make map with central park as base layer
+
+
+Let's look at behavior between AM and PM
+
+```{r}
+# check for missing values in eating
+squirrel_data_mod |>
+  filter(is.na(Eating))
+
+eating_prop <- squirrel_data_mod |>
+  group_by(Shift) |>
+  summarize(count=n(),
+            behavior=sum(Eating),
+            prop=behavior/count)
+# aggregated before looking at temporal data
+
+```
+
+```{r}
+library(ggthemes)
+
+squirrel_data_mod |>
+  distinct(Date) |>
+  arrange(Date)
+
+squirrel_data_mod |>
+  group_by(Date) |>
+  summarize(count=n())
+
+squirrel_data_mod |>
+  ggplot(aes(x=Date, fill=Eating)) +
+  geom_bar(position="fill") +
+  theme_tufte() +
+  facet_wrap(~Shift)
+
+# make plot with AM/PM bars side-by-side for each date
+
+```
+
+
+spatial distribution distribution of squirrels in hectares
+
+other behavior
+```{r}
+squirrel_data_mod |>
+  ggplot(aes(x=Date, fill=Kuks)) +
+  geom_bar(position="fill") +
+  theme_tufte() +
+  facet_wrap(~Shift)
+```
+
+
 Some things we can explore are changes or differences in time and space, relationships between variables or groups, and distributions of variables. 
 
 ```{r}
+
+#adult v. juvenile fur color
+
+# how many squirrels running/chasing/climbing active vs. not across all obs
+
+# approach (or not) by age
+
+
 
 ```
 
@@ -104,33 +177,18 @@ Some things we can explore are changes or differences in time and space, relatio
 
 With a partner or in a group of three, use the dataset we've been exploring. Identify something interesting in the data and investigate it further. This can be something sparked by an observation in the work that we've just done, or something you are wondering independent of what we've been doing.
 
-Be ready to share:
+```{r}
 
--   What did you notice?
--   What question did that observation raise?
--   What analysis did you perform to investigate it?
--   What did you discover, and what would you investigate next?
+#adult v. juvenile fur color
 
-## Possible Research Questions
+# how many squirrels running/chasing/climbing active vs. not across all obs
 
-What are some possible research questions:
+# approach (or not) by age
 
-- What observation or finding motivated the question?
-- What variables or comparisons would help you investigate it?
-- Do you have the data needed to answer it?
 
-## Reflection
 
-Briefly reflect on your progress.
+```
 
-- What is the most interesting thing you've discovered so far?
-- What challenges or limitations have you encountered?
-- What would you like to investigate next?
-- Do you think this dataset is a good choice for your final project? Why or why not?
-
-## Now with your own data
-
-Now apply the same approach to your own dataset. Start by examining its distributions, temporal or spatial patterns (if applicable), and relationships between variables. As you explore, identify something interesting and conduct at least one follow-up analysis motivated by what you observed. Keep track of questions that arise. You don't need to settle on a research question today, but you should begin identifying possibilities.
 
 ### Exploratory Data Analysis: Where to Start?
 

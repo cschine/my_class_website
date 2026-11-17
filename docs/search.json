@@ -744,6 +744,66 @@
     ]
   },
   {
+    "objectID": "courses/STAT118/final_project/ready/Exploring_data_options_notes_for_pub.html",
+    "href": "courses/STAT118/final_project/ready/Exploring_data_options_notes_for_pub.html",
+    "title": "STAT 118: Finding a Dataset Worth Investigating",
+    "section": "",
+    "text": "For your final project, you will choose your own dataset(s), develop a research question, conduct an investigation, and communicate your findings in a final report.\nA few things to keep in mind:\n\nChoose something you’re genuinely interested in. You’ll be spending several weeks working with these data.\nYou don’t need a research question yet. Your question will develop as you explore the data.\nYour project should be an investigation, not simply a collection of unrelated figures.\nYou’ll develop your project over time. We’ll have opportunities for discussion, feedback, and revision throughout the remaining classes.",
+    "crumbs": [
+      "STAT 118: Intro to Data Science",
+      "📊 Final Project",
+      "Finding and Evaluating Datasets"
+    ]
+  },
+  {
+    "objectID": "courses/STAT118/final_project/ready/Exploring_data_options_notes_for_pub.html#introduction-to-your-final-project",
+    "href": "courses/STAT118/final_project/ready/Exploring_data_options_notes_for_pub.html#introduction-to-your-final-project",
+    "title": "STAT 118: Finding a Dataset Worth Investigating",
+    "section": "",
+    "text": "For your final project, you will choose your own dataset(s), develop a research question, conduct an investigation, and communicate your findings in a final report.\nA few things to keep in mind:\n\nChoose something you’re genuinely interested in. You’ll be spending several weeks working with these data.\nYou don’t need a research question yet. Your question will develop as you explore the data.\nYour project should be an investigation, not simply a collection of unrelated figures.\nYou’ll develop your project over time. We’ll have opportunities for discussion, feedback, and revision throughout the remaining classes.",
+    "crumbs": [
+      "STAT 118: Intro to Data Science",
+      "📊 Final Project",
+      "Finding and Evaluating Datasets"
+    ]
+  },
+  {
+    "objectID": "courses/STAT118/final_project/ready/Exploring_data_options_notes_for_pub.html#good-analysis-starts-with-good-data",
+    "href": "courses/STAT118/final_project/ready/Exploring_data_options_notes_for_pub.html#good-analysis-starts-with-good-data",
+    "title": "STAT 118: Finding a Dataset Worth Investigating",
+    "section": "Good Analysis Starts with Good Data",
+    "text": "Good Analysis Starts with Good Data\nThroughout this semester, I’ve given you datasets to work with. I’ve often told you which variables to examine, what questions to answer, and sometimes even which analyses to perform. That means I’ve been making a lot of important decisions for you. But those decisions are a fundamental part of data science. Before we can analyze data, we need to figure out what data are available, whether they’re appropriate for our purposes, and whether we can trust them.\nFinding a dataset isn’t just a preliminary step before the real work begins. Choosing and evaluating data is part of the real work. The data we choose determine what questions we can answer, what patterns we can investigate, and what conclusions we can reasonably draw.\nFor your final project, you’ll take responsibility for the entire process of conducting a data science investigation, from finding data and developing questions to analyzing results and communicating your findings. Today we’re starting with the first two:\n\nFinding data: Where can we find data relevant to something we want to understand?\nEvaluating data: How can we decide whether those data are useful, reliable, and appropriate for an investigation?\n\nToday, we will be spending some time at the very beginning. Partly because this is a step that has largely been hidden from you until now, both in this class and very likely in other classes as well. And because many of the decisions you make early on in data selection will haunt you if you don’t give them proper attention. This is the burden and the opportunity of being responsible for the full pipeline.",
+    "crumbs": [
+      "STAT 118: Intro to Data Science",
+      "📊 Final Project",
+      "Finding and Evaluating Datasets"
+    ]
+  },
+  {
+    "objectID": "courses/STAT118/final_project/ready/Exploring_data_options_notes_for_pub.html#what-makes-a-good-dataset",
+    "href": "courses/STAT118/final_project/ready/Exploring_data_options_notes_for_pub.html#what-makes-a-good-dataset",
+    "title": "STAT 118: Finding a Dataset Worth Investigating",
+    "section": "What makes a good dataset?",
+    "text": "What makes a good dataset?\nNot every dataset is a good choice for this project. Before committing to one, we need to consider whether it is interesting, accessible, understandable, and capable of supporting a meaningful investigation.\n\nFive criteria for evaluating datasets\n1. Interest — Do I care about these data?\n\nAm I genuinely curious about the topic?\nWould I enjoy spending several weeks investigating it?\n\n2. Accessibility — Can I get the data?\n\nCan I download the actual data, rather than just looking at someone else’s figures or summaries?\nAre the data available in a format I can open and work with in R?\n\n3. Understanding — Can I make sense of the data?\n\nWhat does one observation (row) represent?\nWhat do the variables mean?\nIs there documentation explaining the data and how they were collected?\n\n4. Analytical potential — Is there enough to investigate?\n\nAre there meaningful differences across groups, locations, or time?\nAre there multiple variables I could compare or relate?\nCan I imagine more than one interesting question?\n\n5. Feasibility — What might prevent me from using these data successfully?\n\nIs the dataset a reasonable size?\nDoes the structure make sense?\nIs there missing information or unclear categories?\nCan I imagine working with it using the R skills we’ve learned?\n\nRemember: A dataset doesn’t need to be perfect. Some cleaning and troubleshooting are expected. The question is whether the challenges are manageable.",
+    "crumbs": [
+      "STAT 118: Intro to Data Science",
+      "📊 Final Project",
+      "Finding and Evaluating Datasets"
+    ]
+  },
+  {
+    "objectID": "courses/STAT118/final_project/ready/Exploring_data_options_notes_for_pub.html#explore-potential-datasets",
+    "href": "courses/STAT118/final_project/ready/Exploring_data_options_notes_for_pub.html#explore-potential-datasets",
+    "title": "STAT 118: Finding a Dataset Worth Investigating",
+    "section": "Explore potential datasets",
+    "text": "Explore potential datasets\nI have compiled a LARGE list of potential data sources. Use the list I gave you or explore other sources that interest you.\nIn class you worked in groups to identify potentially interesting datasets. Let’s investigate some of the datasets you found and assess them according to our criteria for a good dataset.\nWe looked at 2 datasets. The first was WNBA shooting statistics which required quite a bit of cleaning and manipulation after finding the dataset.\n\nWNBA data\nhttps://www.basketball-reference.com/wnba/years/2025_shooting.html\nI tried a few of the other export options that were available at the top of the page. The “Get as Excel Workbook” exports a .xls file. It wasn’t as simple as reading it straight in from the excel file, which appeared to be corrupted somehow. I opened it in Excel and resaved it as a .csv and then imported it.\n\n\nCode\nlibrary(tidyverse)\nWNBA_data &lt;- read_csv(\"~/Dropbox/!Middlebury/Teaching/my_class_website/courses/STAT118/final_project/data/sportsref_download.csv\", skip=1)\n\nhead(WNBA_data)\n\n\n# A tibble: 6 × 29\n  Player       Tm    Pos   G...4 MP...5 G...6 MP...7 `FG%` Dist. ...10 `2P...11`\n  &lt;chr&gt;        &lt;chr&gt; &lt;chr&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;lgl&gt;     &lt;dbl&gt;\n1 Maya Caldwe… ATL   G        41    760    41    760 0.426  16.7 NA        0.436\n2 Jordin Cana… ATL   G        28    783    28    783 0.396  11.5 NA        0.685\n3 Nia Coffey   ATL   F        44    455    44    455 0.374  15   NA        0.442\n4 Allisha Gray ATL   G        42   1451    42   1451 0.451  14.7 NA        0.533\n5 Brittney Gr… ATL   C        39    810    39    810 0.518   7.9 NA        0.937\n6 Naz Hillmon  ATL   F        44   1122    44   1122 0.463  14.8 NA        0.45 \n# ℹ 18 more variables: `0-3...12` &lt;dbl&gt;, `10-Mar...13` &lt;dbl&gt;,\n#   `16-Oct...14` &lt;dbl&gt;, `16-3P...15` &lt;dbl&gt;, `3P...16` &lt;dbl&gt;, ...17 &lt;lgl&gt;,\n#   `2P...18` &lt;dbl&gt;, `0-3...19` &lt;dbl&gt;, `10-Mar...20` &lt;dbl&gt;,\n#   `16-Oct...21` &lt;dbl&gt;, `16-3P...22` &lt;dbl&gt;, `3P...23` &lt;dbl&gt;, ...24 &lt;lgl&gt;,\n#   `2P...25` &lt;dbl&gt;, `3P...26` &lt;dbl&gt;, ...27 &lt;lgl&gt;, `%3PA` &lt;dbl&gt;, `3P%` &lt;dbl&gt;\n\n\nYou can see that the column names are still a complete mess and will need to be cleared up manually probably.\nBut we can start to do some basic things with the data like look at distributions of different variables. The histogram below shows the distribution of Field Goal % across all of the players in the dataset.\n\n\nCode\nlibrary(ggthemes)\nWNBA_data |&gt;\n  ggplot(aes(x=`FG%`)) + # note the ` ` around the FG%, this is necessary with special characters or spaces. If I was going to continue working with these data, I would change this column name so that I don't have to keep doing this.\n  geom_histogram() +\n  theme_tufte()\n\n\n\n\n\n\n\n\n\nHaving looked at this I am very curious which players have the highest and lowest FG%. Here are the three highest:\n\n\nCode\nWNBA_data |&gt; \n  arrange(desc(`FG%`)) |&gt;\n  slice(1:3) |&gt;\n  select(Player, `FG%`)\n\n\n# A tibble: 3 × 2\n  Player               `FG%`\n  &lt;chr&gt;                &lt;dbl&gt;\n1 Mackenzie Holmes     0.714\n2 Jessica Shepard      0.638\n3 Cheyenne Parker-Tyus 0.625\n\n\nTo get at the lowest I decided to filter for all players with an FG% of zero:\n\n\nCode\nWNBA_data |&gt; \n  filter(`FG%`==0) |&gt;\n  select(Player, `FG%`)\n\n\n# A tibble: 7 × 2\n  Player          `FG%`\n  &lt;chr&gt;           &lt;dbl&gt;\n1 Yvonne Anderson     0\n2 Marième Badiane     0\n3 Serena Sundell      0\n4 Aerial Powers       0\n5 Grace Berger        0\n6 Bree Hall           0\n7 Sika Koné           0\n\n\nSo, according to our criteria, this dataset is accessible (reasonably), understandable (with a little work, some of the variables are a touch confusing), there is a lot of analytical potential, especially if you go after multiple years, and it is feasible to work with (not too big, no missing data, etc.). SO, I would call this a good data set, or atleast a good place to start, with a lot more data on the same topic available on the website.\n\n\nMoods and Activities in Music\nThe second dataset that we looked at came from the website:\nhttps://reshare.ukdataservice.ac.uk/852024/\nAnd was collected by folks at Durham University in the UK. It contains “annotations of music in terms of moods music may express and activities that music might fit”. It downloads as a .zip file and unpacks to 11 different .csv files that each contain a different aspect of the dataset. It comes with a very helpful README, that explains each of the different datasets and what they contain.\nThis one is a bit complicated because of how it is distributed across so many files. I’m going to open the bg_activities_musical.csv file which contains answers from each user to the question, “How important is music to you in the following activities?” The user assigns a value of 1-5 to each activity.\n\n\nCode\nactivities &lt;- read_csv(\"courses/STAT118/final_project/data/moods_and_activities_in_music/bg_activities_musical.csv\")\n\n# to get the number of rows and columns\ndim(activities)\n\n\n[1] 2508   10\n\n\nCode\n# to get all of the column names\ncolnames(activities)\n\n\n [1] \"userid\"                   \"activity.daily_routines\" \n [3] \"activity.emotional\"       \"activity.entertainment\"  \n [5] \"activity.intellectual\"    \"activity.live_music\"     \n [7] \"activity.music_listening\" \"activity.on_the_move\"    \n [9] \"activity.physical\"        \"activity.social\"         \n\n\nSo, I have 2,508 observations and 10 variables. The names of the columns are pretty descriptive and give me a decent idea of what activities are being surveyed.\nI’m going to take a different route than previously and pivot this dataset longer and then create a stack of ridgeline plots to look at how the distribution changes depending on the activity.\nHere we go:\n\n\nCode\nactivities_long &lt;- activities |&gt;\n  pivot_longer(cols=starts_with(\"activity\"),\n               names_to=\"activity\",\n               values_to=\"value\",\n               names_prefix=\"activity.\")\n\nhead(activities_long)\n\n\n# A tibble: 6 × 3\n  userid activity        value\n   &lt;dbl&gt; &lt;chr&gt;           &lt;dbl&gt;\n1      5 daily_routines      4\n2      5 emotional           5\n3      5 entertainment       2\n4      5 intellectual        3\n5      5 live_music          5\n6      5 music_listening     5\n\n\n\n\nCode\nlibrary(ggridges)\nactivities_long |&gt;\n  ggplot(aes(x=value, y=activity, fill=activity)) +\n  geom_density_ridges() +\n  theme_tufte() +\n  theme(legend.position=\"none\") # suppress legend\n\n\n\n\n\n\n\n\n\nEw. That it terrible. I’m going to do something similar but a histogram instead.\n\n\nCode\nactivities_long |&gt;\n  ggplot(aes(x=value, fill=activity)) +\n  geom_histogram(bins=5) +\n  facet_wrap(~activity, ncol=1) +\n  theme_tufte() +\n  theme(legend.position=\"none\")\n\n\n\n\n\n\n\n\n\nI am intrigued by how many people do not rate music as being an important part of live music. Food for thought.",
+    "crumbs": [
+      "STAT 118: Intro to Data Science",
+      "📊 Final Project",
+      "Finding and Evaluating Datasets"
+    ]
+  },
+  {
     "objectID": "courses/STAT118/notes/published/118_A_in_class_notes.html",
     "href": "courses/STAT118/notes/published/118_A_in_class_notes.html",
     "title": "Class A Notes",
@@ -756,148 +816,16 @@
     ]
   },
   {
-    "objectID": "courses/STAT118/notes/published/118_A_intro_quarto.html",
-    "href": "courses/STAT118/notes/published/118_A_intro_quarto.html",
-    "title": "Intro to R and RStudio",
+    "objectID": "courses/STAT118/notes/published/installguide.html",
+    "href": "courses/STAT118/notes/published/installguide.html",
+    "title": "Installing R and RStudio",
     "section": "",
-    "text": "If you have not already, please refer to the Installation Guide to install R and RStudio on your computer.\nR (The brain behind it all)\nRStudio (The interface you work with)\nRStudio is an IDE (Integrated Development Environment) that gives you a user-friendly interface to write and run your R code.\nWhen you open RStudio, you should see something similar to this:"
-  },
-  {
-    "objectID": "courses/STAT118/notes/published/118_A_intro_quarto.html#open-your-.qmd-file-in-rstudio",
-    "href": "courses/STAT118/notes/published/118_A_intro_quarto.html#open-your-.qmd-file-in-rstudio",
-    "title": "Intro to R and RStudio",
-    "section": "1️⃣ Open Your .qmd File in RStudio",
-    "text": "1️⃣ Open Your .qmd File in RStudio\nNavigate to the file on your local computer and click to open it!\n\nSome folks prefer to use the “Files” tab within RStudio to navigate to the file\nOther folks prefer to interact with their files in their typical way (Using Finder on Mac or File Explorer on PC)\n\nEither way works just fine!"
-  },
-  {
-    "objectID": "courses/STAT118/notes/published/118_A_intro_quarto.html#install-quarto-in-rstudio",
-    "href": "courses/STAT118/notes/published/118_A_intro_quarto.html#install-quarto-in-rstudio",
-    "title": "Intro to R and RStudio",
-    "section": "2️⃣ Install Quarto in RStudio",
-    "text": "2️⃣ Install Quarto in RStudio\nOption 1: Using the RStudio Interface\n\nGo to the Packages pane in RStudio (bottom-right by default),\nClick Install,\nIn the box that appears:\n\nEnter the package name (quarto),\n\nMake sure Install dependencies is checked,\nClick Install.\n\n\n\nOption 2: Using R Code in the Console\n\ninstall.packages(\"quarto\")"
-  },
-  {
-    "objectID": "courses/STAT118/notes/published/118_A_intro_quarto.html#render-and-preview",
-    "href": "courses/STAT118/notes/published/118_A_intro_quarto.html#render-and-preview",
-    "title": "Intro to R and RStudio",
-    "section": "3️⃣ Render and Preview",
-    "text": "3️⃣ Render and Preview\nClick the Render button () at the top-right of your RStudio editor window.\nTada! You now have created a .html file!\nThe file has been created in the same folder as your .qmd file: \nWhen you render, a preview of the document will show up!\n\n\n\n\n\n\nTip\n\n\n\nBy default, the preview of .html will pop up in your web browser. This is totally okay. In fact, I tend to prefer this approach when I’m working at a computer station with multiple monitors.\nHowever, you may prefer to have the .html preview in your viewer pane right within RStudio. This is what I prefer when I’m just working on just my laptop.\nClick on the “gear button”  and select “Preview in Viewer Pane”\n\n\nThe preview will update whenever you re-render the document."
-  },
-  {
-    "objectID": "courses/STAT118/notes/published/118_A_intro_quarto.html#footnotes",
-    "href": "courses/STAT118/notes/published/118_A_intro_quarto.html#footnotes",
-    "title": "Intro to R and RStudio",
-    "section": "Footnotes",
-    "text": "Footnotes\n\n\nhttps://moderndive.com/1-getting-started.html↩︎"
-  },
-  {
-    "objectID": "courses/STAT118/final_project/ready/Final_Project_Companion_guide.html",
-    "href": "courses/STAT118/final_project/ready/Final_Project_Companion_guide.html",
-    "title": "Final Project Companion Guide",
-    "section": "",
-    "text": "This guide is here to clarify what each section of the final project is supposed to do. The goal of the final project is not to produce as many figures as possible. The goal is to build one coherent story and explain your thinking clearly. This guide is meant to help you do that.",
+    "text": "For this course, you will need to install both R and RStudio on your computer.\n\nR is the programming language that runs your code.\nRStudio is the program we will use to write and run R code.\n\nInstall R first, then install RStudio.\n\n1. Install R\nGo to the R Project download page.\n\nMac\n\nClick Download R for macOS.\nDownload the appropriate installer for your Mac.\nOpen the downloaded .pkg file and follow the installation instructions.\n\n\n\n\n\n\n\nTip\n\n\n\nIf you are unsure which R version you need, click on the Apple in the upper lefthand corner of your desktop and select “About This Mac”, this will contain information both about the chip in your Mac (Intel or M) and the OS that you are running which will allow you to select the correct version of R.\n\n\n\n\nWindows\n\nClick Download R for Windows.\nClick install R for the first time.\nClick Download R-4.6.1 for Windows (the exact R version number may have changed).\nOpen the downloaded installer and accept the default installation options.\n\n\n\n\n2. Install RStudio Desktop\nGo to the RStudio Desktop download page.\n\nDownload the free version of RStudio Desktop for your operating system.\nOpen the installer.\nFollow the installation instructions.\n\n\n\n3. Make sure everything works\nOpen RStudio.\n\n\n\nCredit: moderndive\n\n\nIf the installation was successful, you should see the RStudio interface with a Console pane containing some text about your version of R and a &gt; prompt.\nAt the &gt; prompt, type:\n\n2 + 2\n\nIf R responds with:\n[1] 4\nyou’re ready for class!\nIf you are stumped by 3. Don’t worry about it. If you didn’t get any errors during installation and can open the program ok, then you should be good to go.",
     "crumbs": [
       "STAT 118: Intro to Data Science",
-      "📊 Final Project",
-      "Final Project Companion Guide"
+      "📖 Course Notes",
+      "Installing R and RStudio"
     ]
-  },
-  {
-    "objectID": "courses/STAT118/final_project/ready/Final_Project_Companion_guide.html#what-this-guide-is-for",
-    "href": "courses/STAT118/final_project/ready/Final_Project_Companion_guide.html#what-this-guide-is-for",
-    "title": "Final Project Companion Guide",
-    "section": "",
-    "text": "This guide is here to clarify what each section of the final project is supposed to do. The goal of the final project is not to produce as many figures as possible. The goal is to build one coherent story and explain your thinking clearly. This guide is meant to help you do that.",
-    "crumbs": [
-      "STAT 118: Intro to Data Science",
-      "📊 Final Project",
-      "Final Project Companion Guide"
-    ]
-  },
-  {
-    "objectID": "courses/STAT118/final_project/ready/Final_Project_Companion_guide.html#introduction",
-    "href": "courses/STAT118/final_project/ready/Final_Project_Companion_guide.html#introduction",
-    "title": "Final Project Companion Guide",
-    "section": "Introduction",
-    "text": "Introduction\n\nWhat this section should do\nThe Introduction should guide the reader from a broad idea into your specific analysis.\nIt should not feel like a list of answers. It should feel like a narrowing: each part sets up the next.\nA strong Introduction typically does the following:\n\nStarts with the broader topic, issue, or pattern your project relates to\n\nGives the reader a reason to care about it\n\nMoves toward a more specific question or idea you want to explore\n\nIntroduces the data as a way of examining that question\n\nClarifies what part of the data you are using and how it is structured\n\nDefines the key variables and what one observation represents\n\nBy the end of the Introduction, your reader should understand:\n\nWhat this project is about\n\nWhy it matters\n\nWhat question is being explored\n\nHow the data allows you to explore it\n\n\n\nA strong Introduction\nA strong Introduction feels like a progression. The reader is not just given information—they are led toward the question your analysis is trying to answer.\nThe dataset is introduced as part of that story, not as a separate block of description.\n\n\nA weak Introduction\nA weak Introduction often:\n\nstarts with generic background that is not clearly connected to the analysis\n\nintroduces the dataset abruptly without explaining why it matters\n\nlists variables without context\n\ndelays the main question until the end or leaves it unclear\n\nIf your Introduction feels like disconnected pieces (topic → data → variables → question), it likely needs to be more tightly connected.",
-    "crumbs": [
-      "STAT 118: Intro to Data Science",
-      "📊 Final Project",
-      "Final Project Companion Guide"
-    ]
-  },
-  {
-    "objectID": "courses/STAT118/final_project/ready/Final_Project_Companion_guide.html#results",
-    "href": "courses/STAT118/final_project/ready/Final_Project_Companion_guide.html#results",
-    "title": "Final Project Companion Guide",
-    "section": "Results",
-    "text": "Results\n\nWhat this section should do\nThe Results section is where you present the evidence for your analysis. Each figure or table should contribute a piece of information that helps the reader understand your question.\nYour Results section should include 4–5 figures and/or tables that work together. These should not feel like a random collection of plots. Each one should do a specific piece of work in your analysis.\nFor each figure or table, your reader should be able to answer:\n\nWhat is this showing?\nWhy did the author make this figure or table?\nWhat do they want me to notice?\nHow does this relate to the other figures and tables?\n\n\n\nQuestions to answer for each figure or table\nFor each element, make sure you explain:\n\nWhat the figure or table is showing\nWhat question or idea it helps investigate\nWhat patterns, relationships, or differences stand out\nWhat the reader should learn from it\nHow it connects to the broader story of the project\n\nA figure should not appear without explanation. Your reader should not have to guess why it exists.\n\n\nWhat strong Results sections look like\nStrong Results sections feel like a sequence of connected steps. One figure leads naturally to the next. The writing helps the reader understand both the figure itself and why it matters. Note that this ordering might not be the order in which you originally made the plots.\nStrong Results sections do not just describe plots. They explain the role each figure plays in the overall analysis and how each figure relates to the others.\n\n\nWhat weak Results sections look like\nWeak Results sections often do one or more of the following:\n\nShow figures without enough explanation\nInclude figures without making clear what they contribute to the analysis\nInclude elements that feel repetitive, disconnected, or unnecessary\nRely on the figure itself to communicate the interpretation\n\nIf your reader has to guess what a figure is doing in the project, you need to be clearer.\n\n\nHow is this different from the Discussion?\nResults = assembling and presenting the evidence in a logical sequence\nDiscussion = stepping back and synthesizing what the evidence means overall",
-    "crumbs": [
-      "STAT 118: Intro to Data Science",
-      "📊 Final Project",
-      "Final Project Companion Guide"
-    ]
-  },
-  {
-    "objectID": "courses/STAT118/final_project/ready/Final_Project_Companion_guide.html#discussion",
-    "href": "courses/STAT118/final_project/ready/Final_Project_Companion_guide.html#discussion",
-    "title": "Final Project Companion Guide",
-    "section": "Discussion",
-    "text": "Discussion\n\nWhat this section should do\nThe Discussion is where you step back from the individual figures and talk about the bigger picture.\nBy the end of this section, your reader should understand:\n\nWhat the main takeaway is\nWhat your results suggest or mean when considered together\nWhat remains uncertain\nHow your findings connect to broader patterns, expectations, events, or ideas related to the topic\nWhat limitations shaped your analysis\nWhat you would want to explore next\n\n\n\nA strong Discussion\nA strong Discussion ties the project together. It does not just repeat the Results section. Instead, it helps the reader understand the overall significance of what you found and connects the analysis back to the broader topic introduced at the beginning of the project.\nIt should sound like you have thought about the analysis as a whole.\n\n\nA weak Discussion\nA weak Discussion often just restates what the plots showed without reflecting on the bigger picture. It may also avoid uncertainty entirely, even when there are clear limitations or open questions.",
-    "crumbs": [
-      "STAT 118: Intro to Data Science",
-      "📊 Final Project",
-      "Final Project Companion Guide"
-    ]
-  },
-  {
-    "objectID": "courses/STAT118/final_project/ready/Final_Project_Companion_guide.html#when-to-use-a-figure-and-when-to-use-a-table",
-    "href": "courses/STAT118/final_project/ready/Final_Project_Companion_guide.html#when-to-use-a-figure-and-when-to-use-a-table",
-    "title": "Final Project Companion Guide",
-    "section": "When to use a figure and when to use a table",
-    "text": "When to use a figure and when to use a table\nUse a figure when you want the reader to quickly see a pattern, relationship, comparison, or trend.\nUse a table when exact values matter more than visual shape.\nA table may be useful when you want to:\n\ncompare summary statistics across groups\nshow ranked values such as top or bottom values\npresent counts or proportions clearly\nreport a small set of exact values that readers may want to compare directly\n\nA table is usually not the best choice when a visual pattern is the main point.",
-    "crumbs": [
-      "STAT 118: Intro to Data Science",
-      "📊 Final Project",
-      "Final Project Companion Guide"
-    ]
-  },
-  {
-    "objectID": "courses/STAT118/final_project/ready/Final_Project_Companion_guide.html#general-advice",
-    "href": "courses/STAT118/final_project/ready/Final_Project_Companion_guide.html#general-advice",
-    "title": "Final Project Companion Guide",
-    "section": "General advice",
-    "text": "General advice\n\nFewer, stronger figures are better than many weak ones.\nEach paragraph should start with a topic sentence that tells the reader what you are going to convince them of with the rest of the paragraph. YOu should be able to read the first sentence of each paragraph and be able to understand the overall story.\nYour figures should support your thinking, not replace it.\nTry to make the project feel like one story, not several unrelated mini-projects.\nBe clear about what you did, why you did it, and what you think it shows.\nClarity matters more than complexity.",
-    "crumbs": [
-      "STAT 118: Intro to Data Science",
-      "📊 Final Project",
-      "Final Project Companion Guide"
-    ]
-  },
-  {
-    "objectID": "courses/STAT118/index.html",
-    "href": "courses/STAT118/index.html",
-    "title": "Stat 118: Intro to Data Science",
-    "section": "",
-    "text": "Use the navigation bar on the left to look at notes from previous classes.",
-    "crumbs": [
-      "STAT 118: Intro to Data Science",
-      "STAT 118 Home"
-    ]
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Home",
-    "section": "",
-    "text": "This is a small website for class materials, examples, and optional extras.\nI put this together last night while half asleep, which is honestly part of the point: this is a very lightweight way to put your work online.\nUse the navigation bar above to explore."
-  },
-  {
-    "objectID": "index.html#welcome",
-    "href": "index.html#welcome",
-    "title": "Home",
-    "section": "",
-    "text": "This is a small website for class materials, examples, and optional extras.\nI put this together last night while half asleep, which is honestly part of the point: this is a very lightweight way to put your work online.\nUse the navigation bar above to explore."
   },
   {
     "objectID": "courses/STAT118/final_project/ready/Data_Sources.html",
@@ -1020,16 +948,148 @@
     ]
   },
   {
-    "objectID": "courses/STAT118/notes/published/installguide.html",
-    "href": "courses/STAT118/notes/published/installguide.html",
-    "title": "Installing R and RStudio",
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Home",
     "section": "",
-    "text": "For this course, you will need to install both R and RStudio on your computer.\n\nR is the programming language that runs your code.\nRStudio is the program we will use to write and run R code.\n\nInstall R first, then install RStudio.\n\n1. Install R\nGo to the R Project download page.\n\nMac\n\nClick Download R for macOS.\nDownload the appropriate installer for your Mac.\nOpen the downloaded .pkg file and follow the installation instructions.\n\n\n\n\n\n\n\nTip\n\n\n\nIf you are unsure which R version you need, click on the Apple in the upper lefthand corner of your desktop and select “About This Mac”, this will contain information both about the chip in your Mac (Intel or M) and the OS that you are running which will allow you to select the correct version of R.\n\n\n\n\nWindows\n\nClick Download R for Windows.\nClick install R for the first time.\nClick Download R-4.6.1 for Windows (the exact R version number may have changed).\nOpen the downloaded installer and accept the default installation options.\n\n\n\n\n2. Install RStudio Desktop\nGo to the RStudio Desktop download page.\n\nDownload the free version of RStudio Desktop for your operating system.\nOpen the installer.\nFollow the installation instructions.\n\n\n\n3. Make sure everything works\nOpen RStudio.\n\n\n\nCredit: moderndive\n\n\nIf the installation was successful, you should see the RStudio interface with a Console pane containing some text about your version of R and a &gt; prompt.\nAt the &gt; prompt, type:\n\n2 + 2\n\nIf R responds with:\n[1] 4\nyou’re ready for class!\nIf you are stumped by 3. Don’t worry about it. If you didn’t get any errors during installation and can open the program ok, then you should be good to go.",
+    "text": "This is a small website for class materials, examples, and optional extras.\nI put this together last night while half asleep, which is honestly part of the point: this is a very lightweight way to put your work online.\nUse the navigation bar above to explore."
+  },
+  {
+    "objectID": "index.html#welcome",
+    "href": "index.html#welcome",
+    "title": "Home",
+    "section": "",
+    "text": "This is a small website for class materials, examples, and optional extras.\nI put this together last night while half asleep, which is honestly part of the point: this is a very lightweight way to put your work online.\nUse the navigation bar above to explore."
+  },
+  {
+    "objectID": "courses/STAT118/index.html",
+    "href": "courses/STAT118/index.html",
+    "title": "Stat 118: Intro to Data Science",
+    "section": "",
+    "text": "Use the navigation bar on the left to look at notes from previous classes.",
     "crumbs": [
       "STAT 118: Intro to Data Science",
-      "📖 Course Notes",
-      "Installing R and RStudio"
+      "STAT 118 Home"
     ]
+  },
+  {
+    "objectID": "courses/STAT118/final_project/ready/Final_Project_Companion_guide.html",
+    "href": "courses/STAT118/final_project/ready/Final_Project_Companion_guide.html",
+    "title": "Final Project Companion Guide",
+    "section": "",
+    "text": "This guide is here to clarify what each section of the final project is supposed to do. The goal of the final project is not to produce as many figures as possible. The goal is to build one coherent story and explain your thinking clearly. This guide is meant to help you do that.",
+    "crumbs": [
+      "STAT 118: Intro to Data Science",
+      "📊 Final Project",
+      "Final Project Companion Guide"
+    ]
+  },
+  {
+    "objectID": "courses/STAT118/final_project/ready/Final_Project_Companion_guide.html#what-this-guide-is-for",
+    "href": "courses/STAT118/final_project/ready/Final_Project_Companion_guide.html#what-this-guide-is-for",
+    "title": "Final Project Companion Guide",
+    "section": "",
+    "text": "This guide is here to clarify what each section of the final project is supposed to do. The goal of the final project is not to produce as many figures as possible. The goal is to build one coherent story and explain your thinking clearly. This guide is meant to help you do that.",
+    "crumbs": [
+      "STAT 118: Intro to Data Science",
+      "📊 Final Project",
+      "Final Project Companion Guide"
+    ]
+  },
+  {
+    "objectID": "courses/STAT118/final_project/ready/Final_Project_Companion_guide.html#introduction",
+    "href": "courses/STAT118/final_project/ready/Final_Project_Companion_guide.html#introduction",
+    "title": "Final Project Companion Guide",
+    "section": "Introduction",
+    "text": "Introduction\n\nWhat this section should do\nThe Introduction should guide the reader from a broad idea into your specific analysis.\nIt should not feel like a list of answers. It should feel like a narrowing: each part sets up the next.\nA strong Introduction typically does the following:\n\nStarts with the broader topic, issue, or pattern your project relates to\n\nGives the reader a reason to care about it\n\nMoves toward a more specific question or idea you want to explore\n\nIntroduces the data as a way of examining that question\n\nClarifies what part of the data you are using and how it is structured\n\nDefines the key variables and what one observation represents\n\nBy the end of the Introduction, your reader should understand:\n\nWhat this project is about\n\nWhy it matters\n\nWhat question is being explored\n\nHow the data allows you to explore it\n\n\n\nA strong Introduction\nA strong Introduction feels like a progression. The reader is not just given information—they are led toward the question your analysis is trying to answer.\nThe dataset is introduced as part of that story, not as a separate block of description.\n\n\nA weak Introduction\nA weak Introduction often:\n\nstarts with generic background that is not clearly connected to the analysis\n\nintroduces the dataset abruptly without explaining why it matters\n\nlists variables without context\n\ndelays the main question until the end or leaves it unclear\n\nIf your Introduction feels like disconnected pieces (topic → data → variables → question), it likely needs to be more tightly connected.",
+    "crumbs": [
+      "STAT 118: Intro to Data Science",
+      "📊 Final Project",
+      "Final Project Companion Guide"
+    ]
+  },
+  {
+    "objectID": "courses/STAT118/final_project/ready/Final_Project_Companion_guide.html#results",
+    "href": "courses/STAT118/final_project/ready/Final_Project_Companion_guide.html#results",
+    "title": "Final Project Companion Guide",
+    "section": "Results",
+    "text": "Results\n\nWhat this section should do\nThe Results section is where you present the evidence for your analysis. Each figure or table should contribute a piece of information that helps the reader understand your question.\nYour Results section should include 4–5 figures and/or tables that work together. These should not feel like a random collection of plots. Each one should do a specific piece of work in your analysis.\nFor each figure or table, your reader should be able to answer:\n\nWhat is this showing?\nWhy did the author make this figure or table?\nWhat do they want me to notice?\nHow does this relate to the other figures and tables?\n\n\n\nQuestions to answer for each figure or table\nFor each element, make sure you explain:\n\nWhat the figure or table is showing\nWhat question or idea it helps investigate\nWhat patterns, relationships, or differences stand out\nWhat the reader should learn from it\nHow it connects to the broader story of the project\n\nA figure should not appear without explanation. Your reader should not have to guess why it exists.\n\n\nWhat strong Results sections look like\nStrong Results sections feel like a sequence of connected steps. One figure leads naturally to the next. The writing helps the reader understand both the figure itself and why it matters. Note that this ordering might not be the order in which you originally made the plots.\nStrong Results sections do not just describe plots. They explain the role each figure plays in the overall analysis and how each figure relates to the others.\n\n\nWhat weak Results sections look like\nWeak Results sections often do one or more of the following:\n\nShow figures without enough explanation\nInclude figures without making clear what they contribute to the analysis\nInclude elements that feel repetitive, disconnected, or unnecessary\nRely on the figure itself to communicate the interpretation\n\nIf your reader has to guess what a figure is doing in the project, you need to be clearer.\n\n\nHow is this different from the Discussion?\nResults = assembling and presenting the evidence in a logical sequence\nDiscussion = stepping back and synthesizing what the evidence means overall",
+    "crumbs": [
+      "STAT 118: Intro to Data Science",
+      "📊 Final Project",
+      "Final Project Companion Guide"
+    ]
+  },
+  {
+    "objectID": "courses/STAT118/final_project/ready/Final_Project_Companion_guide.html#discussion",
+    "href": "courses/STAT118/final_project/ready/Final_Project_Companion_guide.html#discussion",
+    "title": "Final Project Companion Guide",
+    "section": "Discussion",
+    "text": "Discussion\n\nWhat this section should do\nThe Discussion is where you step back from the individual figures and talk about the bigger picture.\nBy the end of this section, your reader should understand:\n\nWhat the main takeaway is\nWhat your results suggest or mean when considered together\nWhat remains uncertain\nHow your findings connect to broader patterns, expectations, events, or ideas related to the topic\nWhat limitations shaped your analysis\nWhat you would want to explore next\n\n\n\nA strong Discussion\nA strong Discussion ties the project together. It does not just repeat the Results section. Instead, it helps the reader understand the overall significance of what you found and connects the analysis back to the broader topic introduced at the beginning of the project.\nIt should sound like you have thought about the analysis as a whole.\n\n\nA weak Discussion\nA weak Discussion often just restates what the plots showed without reflecting on the bigger picture. It may also avoid uncertainty entirely, even when there are clear limitations or open questions.",
+    "crumbs": [
+      "STAT 118: Intro to Data Science",
+      "📊 Final Project",
+      "Final Project Companion Guide"
+    ]
+  },
+  {
+    "objectID": "courses/STAT118/final_project/ready/Final_Project_Companion_guide.html#when-to-use-a-figure-and-when-to-use-a-table",
+    "href": "courses/STAT118/final_project/ready/Final_Project_Companion_guide.html#when-to-use-a-figure-and-when-to-use-a-table",
+    "title": "Final Project Companion Guide",
+    "section": "When to use a figure and when to use a table",
+    "text": "When to use a figure and when to use a table\nUse a figure when you want the reader to quickly see a pattern, relationship, comparison, or trend.\nUse a table when exact values matter more than visual shape.\nA table may be useful when you want to:\n\ncompare summary statistics across groups\nshow ranked values such as top or bottom values\npresent counts or proportions clearly\nreport a small set of exact values that readers may want to compare directly\n\nA table is usually not the best choice when a visual pattern is the main point.",
+    "crumbs": [
+      "STAT 118: Intro to Data Science",
+      "📊 Final Project",
+      "Final Project Companion Guide"
+    ]
+  },
+  {
+    "objectID": "courses/STAT118/final_project/ready/Final_Project_Companion_guide.html#general-advice",
+    "href": "courses/STAT118/final_project/ready/Final_Project_Companion_guide.html#general-advice",
+    "title": "Final Project Companion Guide",
+    "section": "General advice",
+    "text": "General advice\n\nFewer, stronger figures are better than many weak ones.\nEach paragraph should start with a topic sentence that tells the reader what you are going to convince them of with the rest of the paragraph. YOu should be able to read the first sentence of each paragraph and be able to understand the overall story.\nYour figures should support your thinking, not replace it.\nTry to make the project feel like one story, not several unrelated mini-projects.\nBe clear about what you did, why you did it, and what you think it shows.\nClarity matters more than complexity.",
+    "crumbs": [
+      "STAT 118: Intro to Data Science",
+      "📊 Final Project",
+      "Final Project Companion Guide"
+    ]
+  },
+  {
+    "objectID": "courses/STAT118/notes/published/118_A_intro_quarto.html",
+    "href": "courses/STAT118/notes/published/118_A_intro_quarto.html",
+    "title": "Intro to R and RStudio",
+    "section": "",
+    "text": "If you have not already, please refer to the Installation Guide to install R and RStudio on your computer.\nR (The brain behind it all)\nRStudio (The interface you work with)\nRStudio is an IDE (Integrated Development Environment) that gives you a user-friendly interface to write and run your R code.\nWhen you open RStudio, you should see something similar to this:"
+  },
+  {
+    "objectID": "courses/STAT118/notes/published/118_A_intro_quarto.html#open-your-.qmd-file-in-rstudio",
+    "href": "courses/STAT118/notes/published/118_A_intro_quarto.html#open-your-.qmd-file-in-rstudio",
+    "title": "Intro to R and RStudio",
+    "section": "1️⃣ Open Your .qmd File in RStudio",
+    "text": "1️⃣ Open Your .qmd File in RStudio\nNavigate to the file on your local computer and click to open it!\n\nSome folks prefer to use the “Files” tab within RStudio to navigate to the file\nOther folks prefer to interact with their files in their typical way (Using Finder on Mac or File Explorer on PC)\n\nEither way works just fine!"
+  },
+  {
+    "objectID": "courses/STAT118/notes/published/118_A_intro_quarto.html#install-quarto-in-rstudio",
+    "href": "courses/STAT118/notes/published/118_A_intro_quarto.html#install-quarto-in-rstudio",
+    "title": "Intro to R and RStudio",
+    "section": "2️⃣ Install Quarto in RStudio",
+    "text": "2️⃣ Install Quarto in RStudio\nOption 1: Using the RStudio Interface\n\nGo to the Packages pane in RStudio (bottom-right by default),\nClick Install,\nIn the box that appears:\n\nEnter the package name (quarto),\n\nMake sure Install dependencies is checked,\nClick Install.\n\n\n\nOption 2: Using R Code in the Console\n\ninstall.packages(\"quarto\")"
+  },
+  {
+    "objectID": "courses/STAT118/notes/published/118_A_intro_quarto.html#render-and-preview",
+    "href": "courses/STAT118/notes/published/118_A_intro_quarto.html#render-and-preview",
+    "title": "Intro to R and RStudio",
+    "section": "3️⃣ Render and Preview",
+    "text": "3️⃣ Render and Preview\nClick the Render button () at the top-right of your RStudio editor window.\nTada! You now have created a .html file!\nThe file has been created in the same folder as your .qmd file: \nWhen you render, a preview of the document will show up!\n\n\n\n\n\n\nTip\n\n\n\nBy default, the preview of .html will pop up in your web browser. This is totally okay. In fact, I tend to prefer this approach when I’m working at a computer station with multiple monitors.\nHowever, you may prefer to have the .html preview in your viewer pane right within RStudio. This is what I prefer when I’m just working on just my laptop.\nClick on the “gear button”  and select “Preview in Viewer Pane”\n\n\nThe preview will update whenever you re-render the document."
+  },
+  {
+    "objectID": "courses/STAT118/notes/published/118_A_intro_quarto.html#footnotes",
+    "href": "courses/STAT118/notes/published/118_A_intro_quarto.html#footnotes",
+    "title": "Intro to R and RStudio",
+    "section": "Footnotes",
+    "text": "Footnotes\n\n\nhttps://moderndive.com/1-getting-started.html↩︎"
   },
   {
     "objectID": "courses/STAT118/final_project/ready/Data_exploration_in_class_notes.html",
@@ -1060,7 +1120,7 @@
     "href": "courses/STAT118/final_project/ready/Data_exploration_in_class_notes.html#me-first",
     "title": "STAT 118: Exploring Data and Developing Questions",
     "section": "Me first",
-    "text": "Me first\nMy goals in choosing my dataset were slightly different from the ones that I gave to you. My first criteria was ignorance rather than interest. I needed to find data in a subject area I have never worked in before that I have absolutely no familiarity with.\nSo, I present you with my dataset on the Squirrels of Central Park.\n\n\n\n\n\nI didn’t entirely realize what I was getting into. This dataset has a logo, a website, and an instagram.\nFirst let’s go over some answers to the questions that I asked about your datasets on your homework:\nExamine the structure of the data. How many variables and observations does it have? Print the first few observations.\n\nlibrary(tidyverse)\n\nsquirrel_data &lt;- read_csv(\"~/Dropbox/!Middlebury/Teaching/my_class_website/courses/STAT118/data/2018_Central_Park_Squirrel_Census_-_Squirrel_Data_20261007.csv\")\n\nLet’s talk over some of the answers to the other questions I asked you on your homework:\n\nWho collected these data, and for what purpose?\nWhat does one observation (row) represent?\nWhat kinds of variables are available?\nIs there documentation explaining the variables?\nDid you encounter any problems accessing or understanding the data?\nDo you notice any potential limitations or quality concerns? For example, missing values, unclear variable definitions, or limited spatial or temporal coverage.\nWhat makes it promising? What concerns or limitations do you anticipate?\n\nFor your chosen dataset, identify two possible things you could investigate.\n\nSpatial distribution of squirrels and their activities.\nChanges in squirrel behavior in time? In different spots in Central Park? Between adults and juveniles?\n\nFirst I want to give myself an actual date column.\nNow let’s wing it.\nSome things we can explore are changes or differences in time and space, relationships between variables or groups, and distributions of variables.",
+    "text": "Me first\nMy goals in choosing my dataset were slightly different from the ones that I gave to you. My first criteria was ignorance rather than interest. I needed to find data in a subject area I have never worked in before that I have absolutely no familiarity with.\nSo, I present you with my dataset on the Squirrels of Central Park.\n\n\n\n\n\nI didn’t entirely realize what I was getting into. This dataset has a logo, a website, and an instagram.\nFirst let’s go over some answers to the questions that I asked about your datasets on your homework:\nExamine the structure of the data. How many variables and observations does it have? Print the first few observations.\n\nlibrary(tidyverse)\n\nsquirrel_data &lt;- read_csv(\"~/Dropbox/!Middlebury/Teaching/my_class_website/courses/STAT118/data/2018_Central_Park_Squirrel_Census_-_Squirrel_Data_20261007.csv\")\n\nLet’s talk over some of the answers to the other questions I asked you on your homework:\n\nWho collected these data, and for what purpose?\nWhat does one observation (row) represent?\nWhat kinds of variables are available?\nIs there documentation explaining the variables?\nDid you encounter any problems accessing or understanding the data?\nDo you notice any potential limitations or quality concerns? For example, missing values, unclear variable definitions, or limited spatial or temporal coverage.\nWhat makes it promising? What concerns or limitations do you anticipate?\n\nFor your chosen dataset, identify two possible things you could investigate.\n\nSpatial distribution of squirrels and their activities.\nChanges in squirrel behavior in time? In different spots in Central Park? Between adults and juveniles?\n\nFirst I want to give myself an actual date column.\n\nsquirrel_data_mod &lt;- squirrel_data |&gt;\n  mutate(Date=mdy(Date)) |&gt;\n  mutate(month=month(Date),\n         year=year(Date))\n\nsquirrel_data_mod |&gt;\n  distinct(month, year)\n\n# A tibble: 1 × 2\n  month  year\n  &lt;dbl&gt; &lt;dbl&gt;\n1    10  2018\n\n\nNow let’s wing it.\nTo Do:\n\nMake map with central park as base layer\n\nLet’s look at behavior between AM and PM\n\n# check for missing values in eating\nsquirrel_data_mod |&gt;\n  filter(is.na(Eating))\n\n# A tibble: 0 × 33\n# ℹ 33 variables: X &lt;dbl&gt;, Y &lt;dbl&gt;, Unique Squirrel ID &lt;chr&gt;, Hectare &lt;chr&gt;,\n#   Shift &lt;chr&gt;, Date &lt;date&gt;, Hectare Squirrel Number &lt;dbl&gt;, Age &lt;chr&gt;,\n#   Primary Fur Color &lt;chr&gt;, Highlight Fur Color &lt;chr&gt;,\n#   Combination of Primary and Highlight Color &lt;chr&gt;, Color notes &lt;chr&gt;,\n#   Location &lt;chr&gt;, Above Ground Sighter Measurement &lt;chr&gt;,\n#   Specific Location &lt;chr&gt;, Running &lt;lgl&gt;, Chasing &lt;lgl&gt;, Climbing &lt;lgl&gt;,\n#   Eating &lt;lgl&gt;, Foraging &lt;lgl&gt;, Other Activities &lt;chr&gt;, Kuks &lt;lgl&gt;, …\n\neating_prop &lt;- squirrel_data_mod |&gt;\n  group_by(Shift) |&gt;\n  summarize(count=n(),\n            behavior=sum(Eating),\n            prop=behavior/count)\n# aggregated before looking at temporal data\n\n\nlibrary(ggthemes)\n\nsquirrel_data_mod |&gt;\n  distinct(Date) |&gt;\n  arrange(Date)\n\n# A tibble: 11 × 1\n   Date      \n   &lt;date&gt;    \n 1 2018-10-06\n 2 2018-10-07\n 3 2018-10-08\n 4 2018-10-10\n 5 2018-10-12\n 6 2018-10-13\n 7 2018-10-14\n 8 2018-10-17\n 9 2018-10-18\n10 2018-10-19\n11 2018-10-20\n\nsquirrel_data_mod |&gt;\n  group_by(Date) |&gt;\n  summarize(count=n())\n\n# A tibble: 11 × 2\n   Date       count\n   &lt;date&gt;     &lt;int&gt;\n 1 2018-10-06   337\n 2 2018-10-07   405\n 3 2018-10-08   285\n 4 2018-10-10   335\n 5 2018-10-12   218\n 6 2018-10-13   434\n 7 2018-10-14   368\n 8 2018-10-17   216\n 9 2018-10-18   200\n10 2018-10-19   158\n11 2018-10-20    67\n\nsquirrel_data_mod |&gt;\n  ggplot(aes(x=Date, fill=Eating)) +\n  geom_bar(position=\"fill\") +\n  theme_tufte() +\n  facet_wrap(~Shift)\n\n\n\n\n\n\n\n# make plot with AM/PM bars side-by-side for each date\n\nspatial distribution distribution of squirrels in hectares\nother behavior\n\nsquirrel_data_mod |&gt;\n  ggplot(aes(x=Date, fill=Kuks)) +\n  geom_bar(position=\"fill\") +\n  theme_tufte() +\n  facet_wrap(~Shift)\n\n\n\n\n\n\n\n\nSome things we can explore are changes or differences in time and space, relationships between variables or groups, and distributions of variables.\n\n#adult v. juvenile fur color\n\n# how many squirrels running/chasing/climbing active vs. not across all obs\n\n# approach (or not) by age",
     "crumbs": [
       "STAT 118: Intro to Data Science",
       "📊 Final Project",
@@ -1072,7 +1132,7 @@
     "href": "courses/STAT118/final_project/ready/Data_exploration_in_class_notes.html#your-turn",
     "title": "STAT 118: Exploring Data and Developing Questions",
     "section": "Your turn",
-    "text": "Your turn\nWith a partner or in a group of three, use the dataset we’ve been exploring. Identify something interesting in the data and investigate it further. This can be something sparked by an observation in the work that we’ve just done, or something you are wondering independent of what we’ve been doing.\nBe ready to share:\n\nWhat did you notice?\nWhat question did that observation raise?\nWhat analysis did you perform to investigate it?\nWhat did you discover, and what would you investigate next?",
+    "text": "Your turn\nWith a partner or in a group of three, use the dataset we’ve been exploring. Identify something interesting in the data and investigate it further. This can be something sparked by an observation in the work that we’ve just done, or something you are wondering independent of what we’ve been doing.\n\n#adult v. juvenile fur color\n\n# how many squirrels running/chasing/climbing active vs. not across all obs\n\n# approach (or not) by age\n\n\nExploratory Data Analysis: Where to Start?\nNot sure what to investigate next? Use these questions to guide your exploration.\n\n\n\n\n\n\n\n\nFirst, investigate…\nAsk yourself…\nPossible approaches\n\n\n\n\nTime\nAre there trends, seasonal cycles, gaps, or unusual events?\nTime-series plots\n\n\nSpace\nAre there clusters, gradients, or regional differences?\nMaps, spatial plots\n\n\nDistributions\nHow are values distributed? Are there outliers, skewed distributions, or distinct groups?\nHistograms, density plots, boxplots\n\n\nRelationships\nWhich variables are associated? Are relationships linear or nonlinear?\nScatterplots, heatmaps\n\n\nGroup differences\nDo patterns or distributions differ across categories, locations, or time periods?\nFacets, grouped summaries, boxplots\n\n\nFollow-up\nWhat surprised me? Does a pattern persist when I look more closely? What might explain it?\nFiltering, grouping, comparisons, additional figures\n\n\n\nA few rules to remember:\n\nExamine temporal and spatial patterns at their original available resolution before aggregating or binning.\nLook at distributions before relying on averages or other summary statistics.\nLet what you discover guide your next analysis. You don’t need to work through this table in order.\nBe curious about unexpected results. Sometimes the most interesting questions come from things you weren’t looking for.",
     "crumbs": [
       "STAT 118: Intro to Data Science",
       "📊 Final Project",
@@ -1080,99 +1140,123 @@
     ]
   },
   {
-    "objectID": "courses/STAT118/final_project/ready/Data_exploration_in_class_notes.html#possible-research-questions",
-    "href": "courses/STAT118/final_project/ready/Data_exploration_in_class_notes.html#possible-research-questions",
-    "title": "STAT 118: Exploring Data and Developing Questions",
-    "section": "Possible Research Questions",
-    "text": "Possible Research Questions\nWhat are some possible research questions:\n\nWhat observation or finding motivated the question?\nWhat variables or comparisons would help you investigate it?\nDo you have the data needed to answer it?",
+    "objectID": "courses/STAT118/final_project/ready/Project_Proposal_in_class_notes.html",
+    "href": "courses/STAT118/final_project/ready/Project_Proposal_in_class_notes.html",
+    "title": "STAT 118:Developing Your Project Proposal",
+    "section": "",
+    "text": "Homework Schedule changed, HWs due Thursdays and Sundays",
     "crumbs": [
       "STAT 118: Intro to Data Science",
       "📊 Final Project",
-      "Initial Data Exploration"
+      "Exploration to Investigation: Developing a Project Proposal"
     ]
   },
   {
-    "objectID": "courses/STAT118/final_project/ready/Data_exploration_in_class_notes.html#reflection",
-    "href": "courses/STAT118/final_project/ready/Data_exploration_in_class_notes.html#reflection",
-    "title": "STAT 118: Exploring Data and Developing Questions",
+    "objectID": "courses/STAT118/final_project/ready/Project_Proposal_in_class_notes.html#reflection",
+    "href": "courses/STAT118/final_project/ready/Project_Proposal_in_class_notes.html#reflection",
+    "title": "STAT 118:Developing Your Project Proposal",
     "section": "Reflection",
-    "text": "Reflection\nBriefly reflect on your progress.\n\nWhat is the most interesting thing you’ve discovered so far?\nWhat challenges or limitations have you encountered?\nWhat would you like to investigate next?\nDo you think this dataset is a good choice for your final project? Why or why not?",
+    "text": "Reflection\nLast class, you watched me explore an unfamiliar dataset in real time. The goal was to show you what the early stages of data analysis actually look like when you don’t already know what you’re going to find or where the analysis will lead.\nTake 3 minutes to write down your thoughts on the following questions. Then you will discuss them with a partner before we share with the class.\n1. What stood out to you about last class? Was anything surprising, interesting, frustrating, or unexpected about watching me explore an unfamiliar dataset?\n2. Did watching me struggle change how you think about the process of data analysis? Why or why not?\n3. How did last class compare with your own experience exploring your dataset? Did you recognize any of the challenges or frustrations? Were there differences?",
     "crumbs": [
       "STAT 118: Intro to Data Science",
       "📊 Final Project",
-      "Initial Data Exploration"
+      "Exploration to Investigation: Developing a Project Proposal"
     ]
   },
   {
-    "objectID": "courses/STAT118/final_project/ready/Data_exploration_in_class_notes.html#now-with-your-own-data",
-    "href": "courses/STAT118/final_project/ready/Data_exploration_in_class_notes.html#now-with-your-own-data",
-    "title": "STAT 118: Exploring Data and Developing Questions",
-    "section": "Now with your own data",
-    "text": "Now with your own data\nNow apply the same approach to your own dataset. Start by examining its distributions, temporal or spatial patterns (if applicable), and relationships between variables. As you explore, identify something interesting and conduct at least one follow-up analysis motivated by what you observed. Keep track of questions that arise. You don’t need to settle on a research question today, but you should begin identifying possibilities.\n\nExploratory Data Analysis: Where to Start?\nNot sure what to investigate next? Use these questions to guide your exploration.\n\n\n\n\n\n\n\n\nFirst, investigate…\nAsk yourself…\nPossible approaches\n\n\n\n\nTime\nAre there trends, seasonal cycles, gaps, or unusual events?\nTime-series plots\n\n\nSpace\nAre there clusters, gradients, or regional differences?\nMaps, spatial plots\n\n\nDistributions\nHow are values distributed? Are there outliers, skewed distributions, or distinct groups?\nHistograms, density plots, boxplots\n\n\nRelationships\nWhich variables are associated? Are relationships linear or nonlinear?\nScatterplots, heatmaps\n\n\nGroup differences\nDo patterns or distributions differ across categories, locations, or time periods?\nFacets, grouped summaries, boxplots\n\n\nFollow-up\nWhat surprised me? Does a pattern persist when I look more closely? What might explain it?\nFiltering, grouping, comparisons, additional figures\n\n\n\nA few rules to remember:\n\nExamine temporal and spatial patterns at their original available resolution before aggregating or binning.\nLook at distributions before relying on averages or other summary statistics.\nLet what you discover guide your next analysis. You don’t need to work through this table in order.\nBe curious about unexpected results. Sometimes the most interesting questions come from things you weren’t looking for.",
+    "objectID": "courses/STAT118/final_project/ready/Project_Proposal_in_class_notes.html#my-experience",
+    "href": "courses/STAT118/final_project/ready/Project_Proposal_in_class_notes.html#my-experience",
+    "title": "STAT 118:Developing Your Project Proposal",
+    "section": "My Experience",
+    "text": "My Experience",
     "crumbs": [
       "STAT 118: Intro to Data Science",
       "📊 Final Project",
-      "Initial Data Exploration"
+      "Exploration to Investigation: Developing a Project Proposal"
     ]
   },
   {
-    "objectID": "courses/STAT118/final_project/ready/Exploring_data_options_notes_for_pub.html",
-    "href": "courses/STAT118/final_project/ready/Exploring_data_options_notes_for_pub.html",
-    "title": "STAT 118: Finding a Dataset Worth Investigating",
-    "section": "",
-    "text": "For your final project, you will choose your own dataset(s), develop a research question, conduct an investigation, and communicate your findings in a final report.\nA few things to keep in mind:\n\nChoose something you’re genuinely interested in. You’ll be spending several weeks working with these data.\nYou don’t need a research question yet. Your question will develop as you explore the data.\nYour project should be an investigation, not simply a collection of unrelated figures.\nYou’ll develop your project over time. We’ll have opportunities for discussion, feedback, and revision throughout the remaining classes.",
+    "objectID": "courses/STAT118/final_project/ready/Project_Proposal_in_class_notes.html#my-breakthrough",
+    "href": "courses/STAT118/final_project/ready/Project_Proposal_in_class_notes.html#my-breakthrough",
+    "title": "STAT 118:Developing Your Project Proposal",
+    "section": "My Breakthrough",
+    "text": "My Breakthrough\nWhen I left class I was thinking about how much I hated my data and how much I wanted better data. I wanted the position of each squirrel and the observed behavior but in relation to the infrastructure of Central Park. Otherwise it all felt kind of meaningless. And then came the brain wave. I can make that! I can find the data that I need to make that!",
     "crumbs": [
       "STAT 118: Intro to Data Science",
       "📊 Final Project",
-      "Finding and Evaluating Datasets"
+      "Exploration to Investigation: Developing a Project Proposal"
     ]
   },
   {
-    "objectID": "courses/STAT118/final_project/ready/Exploring_data_options_notes_for_pub.html#introduction-to-your-final-project",
-    "href": "courses/STAT118/final_project/ready/Exploring_data_options_notes_for_pub.html#introduction-to-your-final-project",
-    "title": "STAT 118: Finding a Dataset Worth Investigating",
-    "section": "",
-    "text": "For your final project, you will choose your own dataset(s), develop a research question, conduct an investigation, and communicate your findings in a final report.\nA few things to keep in mind:\n\nChoose something you’re genuinely interested in. You’ll be spending several weeks working with these data.\nYou don’t need a research question yet. Your question will develop as you explore the data.\nYour project should be an investigation, not simply a collection of unrelated figures.\nYou’ll develop your project over time. We’ll have opportunities for discussion, feedback, and revision throughout the remaining classes.",
+    "objectID": "courses/STAT118/final_project/ready/Project_Proposal_in_class_notes.html#progress",
+    "href": "courses/STAT118/final_project/ready/Project_Proposal_in_class_notes.html#progress",
+    "title": "STAT 118:Developing Your Project Proposal",
+    "section": "Progress",
+    "text": "Progress\nI found the data layer that I need\n\nMap of Squirrel Data\nAs promised, one of my next steps was to map the data. I used the maptiles library for the actual detailed map and I used the terra and tidyterra packages to put the pieces together in ggplot.\n\nlibrary(maptiles)\nlibrary(terra)\nlibrary(tidyterra)\n\nsquirrels_sf &lt;- squirrel_data |&gt;\n  st_as_sf(coords = c(\"X\", \"Y\"), crs = 4326) |&gt;\n  st_transform(32618)\n\nbasemap &lt;- get_tiles(squirrels_sf, \n                     provider = \"OpenStreetMap\", # source for the map tiles\n                     zoom = 15, # higher zoom means higher resolution tiles\n                     crop = TRUE)\n\nggplot() +\n  geom_spatraster_rgb(data = basemap) +\n  geom_sf(data = squirrels_sf,\n          color = \"magenta\", size = 0.6, alpha = 0.3) +\n  coord_sf() +\n  theme_void()\n\n\n\n\n\n\n\n\nI played back and forth with this map for a bit, changing the zoom to get higher and lower resolution tiles. But really couldn’t get a map that I liked to come out of the end.I played around with the point color and found that magenta showed up the best, but didn’t feel that I really had a good basemap for\nSo, I decided to explore what other map tiles I might be able to use, and found the Esri.WorldImagery set of maptiles which gives a satellite view.\n\nbasemap &lt;- get_tiles(squirrels_sf,\n                     provider = \"Esri.WorldImagery\",# change tile source\n                     zoom = 15,\n                     crop = TRUE)\n\nggplot() +\n  geom_spatraster_rgb(data = basemap) +\n  geom_sf(data = squirrels_sf,\n          color = \"magenta\", size = 0.6, alpha = 0.3) +\n  coord_sf() +\n  theme_void()\n\n\n\n\n\n\n\n\nAgain, not in love with this map, but at least I don’t have any squirrels in bodies of water so at least it seems like the squirrel position data is accurate.\nI will be teaching you a much better way to map on Thursday, so we’re going to leave this here for now.\n\n\nCentral Park Landcover\nIn my quest to turn the squirrel data into a dataset that I would be exctied to use, I decided I needed detailed land cover data for the city. I found this on NYC Open Data which has a set of data for city-wide landcover from 2017 at 6-inch resolution! That is so tiny! There is data for roads, buildings, transportation structures, railroads, sidewalks, and even green roofs (and much much more).\nI had to pause here. Because this dataset is MASSIVE. 50 GB! So, I imported it and wrote myself out a cropped and much smaller version. The code below shows what I did, but was not run as part of this analysis. I had to delete the original because it was just too enormous.\n\n# Load NYC land-cover data\nlandcover &lt;- rast(\"~/Dropbox/!Middlebury/Teaching/my_class_website/courses/STAT118/data/NYC_layers/Land_Cover/NYC_2017_LiDAR_LandCover.img\")\n\n# Transform squirrel points to the land-cover CRS\n# they have to be projected the same in order to work togther\nsquirrels_lc &lt;- st_transform(squirrels_sf, crs(landcover))\n\n# Crop to squirrel extent with a 500-foot margin\npark_extent &lt;- ext(vect(squirrels_lc)) + 500\n\n# crop the landcover data to just Central Park\nlandcover_park &lt;- crop(landcover, park_extent)\n\nwriteRaster(landcover_park, \"central_park_landcover.tif\",\n            overwrite = TRUE, #telling it to overwrite the previous version each time I run this line\n            gdal = c(\"COMPRESS=LZW\")) #telling it to use gdal to write the raster\n\nNow I read in the cropped version that I just created so that I can delete the original files and reclaim the 50 GB on my hard drive.\n\nlandcover_park &lt;- rast(\"/Users/caseysmith/Dropbox/!Middlebury/Teaching/my_class_website/courses/STAT118/data/NYC_layers/central_park_landcover.tif\")\n\n# add vegetation classes back in\nlevels(landcover_park) &lt;- data.frame(\n  Value = 1:8,\n  Class = c(\"Tree Canopy\",\"Grass\\\\Shrubs\",\"Bare Soil\",\"Water\",\n            \"Buildings\",\"Roads\",\"Other Impervious\",\"Railroads\"))\n\n# Transform squirrel points to the land-cover CRS\n# they have to be projected the same in order to work togther\nsquirrels_lc &lt;- st_transform(squirrels_sf, crs(landcover_park))\n\nNow let’s take a look. I’ve designated some hopefully helpful colors to each land use category.\n\nggplot() +\n  geom_spatraster(data = landcover_park) +\n  scale_fill_manual(values = c(\"Tree Canopy\" = \"#216E39\",\n                               \"Grass\\\\Shrubs\" = \"#A8D46F\",\n                               \"Bare Soil\" = \"#C8A77B\",\n                               \"Water\" = \"#69B9E8\",\n                               \"Buildings\" = \"#C45B55\",\n                               \"Roads\" = \"#555555\",\n                               \"Other Impervious\" = \"#D0D0D0\",\n                               \"Railroads\" = \"#222222\"),\n                    name = \"Land cover\") +\n  coord_sf(expand=FALSE) + #gets rid of the margin around the outside of the plot\n  theme_minimal()\n\n\n\n\n\n\n\n\nNow let’s add the squirrels!\n\nggplot() +\n  geom_spatraster(data = landcover_park) +\n  scale_fill_manual(values = c(\"Tree Canopy\" = \"#216E39\",\n                               \"Grass\\\\Shrubs\" = \"#A8D46F\",\n                               \"Bare Soil\" = \"#C8A77B\",\n                               \"Water\" = \"#69B9E8\",\n                               \"Buildings\" = \"#C45B55\",\n                               \"Roads\" = \"#555555\",\n                               \"Other Impervious\" = \"#D0D0D0\",\n                               \"Railroads\" = \"#222222\"),\n                    name = \"Land cover\") +\n  geom_sf(data = squirrels_lc,\n          color = \"magenta\",\n          size = 0.6,\n          alpha = 0.5) +\n  coord_sf() +\n  theme_minimal()\n\n\n\n\n\n\n\n\nLet’s clean this up and play with some of the colors. The buildings are too visually dominant here considering they are not the point. And the x-axis labels are plotting on top of one another.\n\nggplot() +\n  geom_spatraster(data = landcover_park) +\n  scale_fill_manual(values = c(\"Tree Canopy\" = \"#216E39\",\n                               \"Grass\\\\Shrubs\" = \"#A8D46F\",\n                               \"Bare Soil\" = \"#C8A77B\",\n                               \"Water\" = \"#3478A8\",\n                               \"Buildings\" = \"#8FA9B5\",\n                               \"Roads\" = \"#555555\",\n                               \"Other Impervious\" = \"#D0D0D0\",\n                               \"Railroads\" = \"#222222\"),\n                    name = \"Land cover\") +\n  geom_sf(data = squirrels_lc,\n          color = \"magenta\",\n          size = 0.6,\n          alpha = 0.5) +\n  coord_sf(expand=FALSE) +\n  theme_minimal() +\n  theme(axis.text.x = element_text(angle = 45, hjust = 1))",
     "crumbs": [
       "STAT 118: Intro to Data Science",
       "📊 Final Project",
-      "Finding and Evaluating Datasets"
+      "Exploration to Investigation: Developing a Project Proposal"
     ]
   },
   {
-    "objectID": "courses/STAT118/final_project/ready/Exploring_data_options_notes_for_pub.html#good-analysis-starts-with-good-data",
-    "href": "courses/STAT118/final_project/ready/Exploring_data_options_notes_for_pub.html#good-analysis-starts-with-good-data",
-    "title": "STAT 118: Finding a Dataset Worth Investigating",
-    "section": "Good Analysis Starts with Good Data",
-    "text": "Good Analysis Starts with Good Data\nThroughout this semester, I’ve given you datasets to work with. I’ve often told you which variables to examine, what questions to answer, and sometimes even which analyses to perform. That means I’ve been making a lot of important decisions for you. But those decisions are a fundamental part of data science. Before we can analyze data, we need to figure out what data are available, whether they’re appropriate for our purposes, and whether we can trust them.\nFinding a dataset isn’t just a preliminary step before the real work begins. Choosing and evaluating data is part of the real work. The data we choose determine what questions we can answer, what patterns we can investigate, and what conclusions we can reasonably draw.\nFor your final project, you’ll take responsibility for the entire process of conducting a data science investigation, from finding data and developing questions to analyzing results and communicating your findings. Today we’re starting with the first two:\n\nFinding data: Where can we find data relevant to something we want to understand?\nEvaluating data: How can we decide whether those data are useful, reliable, and appropriate for an investigation?\n\nToday, we will be spending some time at the very beginning. Partly because this is a step that has largely been hidden from you until now, both in this class and very likely in other classes as well. And because many of the decisions you make early on in data selection will haunt you if you don’t give them proper attention. This is the burden and the opportunity of being responsible for the full pipeline.",
+    "objectID": "courses/STAT118/final_project/ready/Project_Proposal_in_class_notes.html#next-steps",
+    "href": "courses/STAT118/final_project/ready/Project_Proposal_in_class_notes.html#next-steps",
+    "title": "STAT 118:Developing Your Project Proposal",
+    "section": "Next Steps",
+    "text": "Next Steps\n\nCreate new squirrel data\nNow that I have this new data. I want to do the resampling. I want to calculate the distance for every single squirrel in the census to each of these different landcover types.",
     "crumbs": [
       "STAT 118: Intro to Data Science",
       "📊 Final Project",
-      "Finding and Evaluating Datasets"
+      "Exploration to Investigation: Developing a Project Proposal"
     ]
   },
   {
-    "objectID": "courses/STAT118/final_project/ready/Exploring_data_options_notes_for_pub.html#what-makes-a-good-dataset",
-    "href": "courses/STAT118/final_project/ready/Exploring_data_options_notes_for_pub.html#what-makes-a-good-dataset",
-    "title": "STAT 118: Finding a Dataset Worth Investigating",
-    "section": "What makes a good dataset?",
-    "text": "What makes a good dataset?\nNot every dataset is a good choice for this project. Before committing to one, we need to consider whether it is interesting, accessible, understandable, and capable of supporting a meaningful investigation.\n\nFive criteria for evaluating datasets\n1. Interest — Do I care about these data?\n\nAm I genuinely curious about the topic?\nWould I enjoy spending several weeks investigating it?\n\n2. Accessibility — Can I get the data?\n\nCan I download the actual data, rather than just looking at someone else’s figures or summaries?\nAre the data available in a format I can open and work with in R?\n\n3. Understanding — Can I make sense of the data?\n\nWhat does one observation (row) represent?\nWhat do the variables mean?\nIs there documentation explaining the data and how they were collected?\n\n4. Analytical potential — Is there enough to investigate?\n\nAre there meaningful differences across groups, locations, or time?\nAre there multiple variables I could compare or relate?\nCan I imagine more than one interesting question?\n\n5. Feasibility — What might prevent me from using these data successfully?\n\nIs the dataset a reasonable size?\nDoes the structure make sense?\nIs there missing information or unclear categories?\nCan I imagine working with it using the R skills we’ve learned?\n\nRemember: A dataset doesn’t need to be perfect. Some cleaning and troubleshooting are expected. The question is whether the challenges are manageable.",
+    "objectID": "courses/STAT118/final_project/ready/Project_Proposal_in_class_notes.html#the-5-pieces-i-am-looking-for-in-your-project-proposal",
+    "href": "courses/STAT118/final_project/ready/Project_Proposal_in_class_notes.html#the-5-pieces-i-am-looking-for-in-your-project-proposal",
+    "title": "STAT 118:Developing Your Project Proposal",
+    "section": "The 5 Pieces I am Looking for in Your Project Proposal",
+    "text": "The 5 Pieces I am Looking for in Your Project Proposal\n\n1) Data Background\n\nWhere did your data come from, and what do the observations represent?\nWhat information is available in your dataset?\n\n\n\n2) Why does this matter? Why is it interesting?\n\nWhat makes this topic worth investigating?\nWhat could we learn, and why might someone care about the results?\n\n\n\n3) What is my question?\n\nWhat specific question will your project investigate?\nWhat variables or relationships will you focus on?\n\n\n\n4) Preliminary Results: What Can I Show?\n\nWhat have you already discovered through your exploratory analysis?\nWhat figures or results help establish that your investigation is interesting and feasible?\nWhat do these results tell us, and what questions remain?\n\n\n\n5) Plan of Attack\n\nWhat specific analyses will you conduct to investigate your question?\nWhat will each analysis help you understand?\nWhat challenges or limitations do you anticipate?",
     "crumbs": [
       "STAT 118: Intro to Data Science",
       "📊 Final Project",
-      "Finding and Evaluating Datasets"
+      "Exploration to Investigation: Developing a Project Proposal"
     ]
   },
   {
-    "objectID": "courses/STAT118/final_project/ready/Exploring_data_options_notes_for_pub.html#explore-potential-datasets",
-    "href": "courses/STAT118/final_project/ready/Exploring_data_options_notes_for_pub.html#explore-potential-datasets",
-    "title": "STAT 118: Finding a Dataset Worth Investigating",
-    "section": "Explore potential datasets",
-    "text": "Explore potential datasets\nI have compiled a LARGE list of potential data sources. Use the list I gave you or explore other sources that interest you.\nIn class you worked in groups to identify potentially interesting datasets. Let’s investigate some of the datasets you found and assess them according to our criteria for a good dataset.\nWe looked at 2 datasets. The first was WNBA shooting statistics which required quite a bit of cleaning and manipulation after finding the dataset.\n\nWNBA data\nhttps://www.basketball-reference.com/wnba/years/2025_shooting.html\nI tried a few of the other export options that were available at the top of the page. The “Get as Excel Workbook” exports a .xls file. It wasn’t as simple as reading it straight in from the excel file, which appeared to be corrupted somehow. I opened it in Excel and resaved it as a .csv and then imported it.\n\n\nCode\nlibrary(tidyverse)\nWNBA_data &lt;- read_csv(\"~/Dropbox/!Middlebury/Teaching/my_class_website/courses/STAT118/final_project/data/sportsref_download.csv\", skip=1)\n\nhead(WNBA_data)\n\n\n# A tibble: 6 × 29\n  Player       Tm    Pos   G...4 MP...5 G...6 MP...7 `FG%` Dist. ...10 `2P...11`\n  &lt;chr&gt;        &lt;chr&gt; &lt;chr&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;lgl&gt;     &lt;dbl&gt;\n1 Maya Caldwe… ATL   G        41    760    41    760 0.426  16.7 NA        0.436\n2 Jordin Cana… ATL   G        28    783    28    783 0.396  11.5 NA        0.685\n3 Nia Coffey   ATL   F        44    455    44    455 0.374  15   NA        0.442\n4 Allisha Gray ATL   G        42   1451    42   1451 0.451  14.7 NA        0.533\n5 Brittney Gr… ATL   C        39    810    39    810 0.518   7.9 NA        0.937\n6 Naz Hillmon  ATL   F        44   1122    44   1122 0.463  14.8 NA        0.45 \n# ℹ 18 more variables: `0-3...12` &lt;dbl&gt;, `10-Mar...13` &lt;dbl&gt;,\n#   `16-Oct...14` &lt;dbl&gt;, `16-3P...15` &lt;dbl&gt;, `3P...16` &lt;dbl&gt;, ...17 &lt;lgl&gt;,\n#   `2P...18` &lt;dbl&gt;, `0-3...19` &lt;dbl&gt;, `10-Mar...20` &lt;dbl&gt;,\n#   `16-Oct...21` &lt;dbl&gt;, `16-3P...22` &lt;dbl&gt;, `3P...23` &lt;dbl&gt;, ...24 &lt;lgl&gt;,\n#   `2P...25` &lt;dbl&gt;, `3P...26` &lt;dbl&gt;, ...27 &lt;lgl&gt;, `%3PA` &lt;dbl&gt;, `3P%` &lt;dbl&gt;\n\n\nYou can see that the column names are still a complete mess and will need to be cleared up manually probably.\nBut we can start to do some basic things with the data like look at distributions of different variables. The histogram below shows the distribution of Field Goal % across all of the players in the dataset.\n\n\nCode\nlibrary(ggthemes)\nWNBA_data |&gt;\n  ggplot(aes(x=`FG%`)) + # note the ` ` around the FG%, this is necessary with special characters or spaces. If I was going to continue working with these data, I would change this column name so that I don't have to keep doing this.\n  geom_histogram() +\n  theme_tufte()\n\n\n\n\n\n\n\n\n\nHaving looked at this I am very curious which players have the highest and lowest FG%. Here are the three highest:\n\n\nCode\nWNBA_data |&gt; \n  arrange(desc(`FG%`)) |&gt;\n  slice(1:3) |&gt;\n  select(Player, `FG%`)\n\n\n# A tibble: 3 × 2\n  Player               `FG%`\n  &lt;chr&gt;                &lt;dbl&gt;\n1 Mackenzie Holmes     0.714\n2 Jessica Shepard      0.638\n3 Cheyenne Parker-Tyus 0.625\n\n\nTo get at the lowest I decided to filter for all players with an FG% of zero:\n\n\nCode\nWNBA_data |&gt; \n  filter(`FG%`==0) |&gt;\n  select(Player, `FG%`)\n\n\n# A tibble: 7 × 2\n  Player          `FG%`\n  &lt;chr&gt;           &lt;dbl&gt;\n1 Yvonne Anderson     0\n2 Marième Badiane     0\n3 Serena Sundell      0\n4 Aerial Powers       0\n5 Grace Berger        0\n6 Bree Hall           0\n7 Sika Koné           0\n\n\nSo, according to our criteria, this dataset is accessible (reasonably), understandable (with a little work, some of the variables are a touch confusing), there is a lot of analytical potential, especially if you go after multiple years, and it is feasible to work with (not too big, no missing data, etc.). SO, I would call this a good data set, or atleast a good place to start, with a lot more data on the same topic available on the website.\n\n\nMoods and Activities in Music\nThe second dataset that we looked at came from the website:\nhttps://reshare.ukdataservice.ac.uk/852024/\nAnd was collected by folks at Durham University in the UK. It contains “annotations of music in terms of moods music may express and activities that music might fit”. It downloads as a .zip file and unpacks to 11 different .csv files that each contain a different aspect of the dataset. It comes with a very helpful README, that explains each of the different datasets and what they contain.\nThis one is a bit complicated because of how it is distributed across so many files. I’m going to open the bg_activities_musical.csv file which contains answers from each user to the question, “How important is music to you in the following activities?” The user assigns a value of 1-5 to each activity.\n\n\nCode\nactivities &lt;- read_csv(\"courses/STAT118/final_project/data/moods_and_activities_in_music/bg_activities_musical.csv\")\n\n# to get the number of rows and columns\ndim(activities)\n\n\n[1] 2508   10\n\n\nCode\n# to get all of the column names\ncolnames(activities)\n\n\n [1] \"userid\"                   \"activity.daily_routines\" \n [3] \"activity.emotional\"       \"activity.entertainment\"  \n [5] \"activity.intellectual\"    \"activity.live_music\"     \n [7] \"activity.music_listening\" \"activity.on_the_move\"    \n [9] \"activity.physical\"        \"activity.social\"         \n\n\nSo, I have 2,508 observations and 10 variables. The names of the columns are pretty descriptive and give me a decent idea of what activities are being surveyed.\nI’m going to take a different route than previously and pivot this dataset longer and then create a stack of ridgeline plots to look at how the distribution changes depending on the activity.\nHere we go:\n\n\nCode\nactivities_long &lt;- activities |&gt;\n  pivot_longer(cols=starts_with(\"activity\"),\n               names_to=\"activity\",\n               values_to=\"value\",\n               names_prefix=\"activity.\")\n\nhead(activities_long)\n\n\n# A tibble: 6 × 3\n  userid activity        value\n   &lt;dbl&gt; &lt;chr&gt;           &lt;dbl&gt;\n1      5 daily_routines      4\n2      5 emotional           5\n3      5 entertainment       2\n4      5 intellectual        3\n5      5 live_music          5\n6      5 music_listening     5\n\n\n\n\nCode\nlibrary(ggridges)\nactivities_long |&gt;\n  ggplot(aes(x=value, y=activity, fill=activity)) +\n  geom_density_ridges() +\n  theme_tufte() +\n  theme(legend.position=\"none\") # suppress legend\n\n\n\n\n\n\n\n\n\nEw. That it terrible. I’m going to do something similar but a histogram instead.\n\n\nCode\nactivities_long |&gt;\n  ggplot(aes(x=value, fill=activity)) +\n  geom_histogram(bins=5) +\n  facet_wrap(~activity, ncol=1) +\n  theme_tufte() +\n  theme(legend.position=\"none\")\n\n\n\n\n\n\n\n\n\nI am intrigued by how many people do not rate music as being an important part of live music. Food for thought.",
+    "objectID": "courses/STAT118/final_project/ready/Project_Proposal_in_class_notes.html#real-world-example-ridges-proposal",
+    "href": "courses/STAT118/final_project/ready/Project_Proposal_in_class_notes.html#real-world-example-ridges-proposal",
+    "title": "STAT 118:Developing Your Project Proposal",
+    "section": "Real-World Example: RIDGES Proposal",
+    "text": "Real-World Example: RIDGES Proposal",
     "crumbs": [
       "STAT 118: Intro to Data Science",
       "📊 Final Project",
-      "Finding and Evaluating Datasets"
+      "Exploration to Investigation: Developing a Project Proposal"
+    ]
+  },
+  {
+    "objectID": "courses/STAT118/final_project/ready/Project_Proposal_in_class_notes.html#squirrel-project-proposal",
+    "href": "courses/STAT118/final_project/ready/Project_Proposal_in_class_notes.html#squirrel-project-proposal",
+    "title": "STAT 118:Developing Your Project Proposal",
+    "section": "Squirrel Project Proposal",
+    "text": "Squirrel Project Proposal\n\n1) Data Background\nI found the Central Park Squirrel Census dataset through TidyTuesday [ref]. I chose it largely because I know almost nothing about squirrels, and I thought it would be fun to investigate something completely unfamiliar. The dataset contains observations of squirrels throughout Central Park, including their locations, physical characteristics, and behaviors.\n\n\n2) Why does this matter?\nIt really doesn’t. Most of my research concerns melting ice sheets, ocean circulation, and a rapidly changing climate. For this project, I deliberately chose something considerably less consequential.\nBut that doesn’t mean there aren’t interesting questions to ask. Central Park is a highly modified environment where wildlife lives alongside roads, buildings, recreational spaces, and thousands of people. It find it interesting to think about whether squirrels behave differently depending on their immediate surroundings. Essentially how the built environment created by humans impacts this ubiquitous creature.\n\n\n3) What is my question?\nDose squirrel behavior differ based on proximity to different land-cover types?\nIn particular, I’m interested in whether squirrels near roads, buildings, and heavily developed areas exhibit different behaviors from those in more vegetated parts of the park.\n\n\n4) Preliminary Results\nMy initial exploration established that the dataset contains spatial information and several behavioral observations, including whether squirrels were running, foraging, eating, or interacting with people.\n\nsquirrels_lc |&gt;\n  st_drop_geometry() |&gt;\n  select(Running, Chasing, Climbing, Eating, Foraging) |&gt;\n  pivot_longer(everything(),names_to = \"behavior\",values_to = \"observed\") |&gt;\n  group_by(behavior) |&gt;\n  summarize(pct = mean(observed == TRUE, na.rm = TRUE)) |&gt;\n  ggplot(aes(x = reorder(behavior, pct), y = pct)) +\n  geom_col(fill = \"#8FA9B5\") +\n  coord_flip() +\n  scale_y_continuous(labels = scales::label_percent()) +\n  labs(x = NULL, y = \"Percentage of squirrels\",\n       title = \"Figure 1: Frequency of Observed Squirrel Behaviors\") +\n  theme_minimal()\n\n\n\n\n\n\n\n\nI also very quickly established that the data in its native form was very limiting and lacked a lot of contextual spatial information to explain varying squirrel behavior. To address the lack of spatial information, I have obtained high-resolution land-cover data for New York City, which allows me to characterize the environment around each squirrel observation (Figure 2).\n\nggplot() +\n  geom_spatraster(data = landcover_park) +\n  scale_fill_manual(values = c(\"Tree Canopy\" = \"#216E39\",\n                               \"Grass\\\\Shrubs\" = \"#A8D46F\",\n                               \"Bare Soil\" = \"#C8A77B\",\n                               \"Water\" = \"#3478A8\",\n                               \"Buildings\" = \"#8FA9B5\",\n                               \"Roads\" = \"#555555\",\n                               \"Other Impervious\" = \"#D0D0D0\",\n                               \"Railroads\" = \"#222222\"),\n                    name = \"Land cover\") +\n  geom_sf(data = squirrels_lc,\n          color = \"magenta\",\n          size = 0.6,\n          alpha = 0.5) +\n  coord_sf(expand=FALSE) +\n  ggtitle(\"Figure 2: Central Park Land Cover and Squirrel Position\") +\n  theme_minimal()\n\n\n\n\n\n\n\n\nI used the land-cover data to calculate the distance from each squirrel observation to the nearest road, building, and water body. I also estimated the proportion of vegetation within a 50-meter radius of each squirrel. (This is a slightly fancy thing to be doing, but I felt limited by the scope of the original squirrel dataset and I’m fancy.)\n\nroads &lt;- rast(\"/Users/caseysmith/Dropbox/!Middlebury/Teaching/my_class_website/courses/STAT118/data/NYC_layers/central_park_roads.tif\")\n\nsquirrels_lc &lt;- st_read(\"/Users/caseysmith/Dropbox/!Middlebury/Teaching/my_class_website/courses/STAT118/data/squirrels_environment.gpkg\")\n\nReading layer `squirrels_environment' from data source \n  `/Users/caseysmith/Dropbox/!Middlebury/Teaching/my_class_website/courses/STAT118/data/squirrels_environment.gpkg' \n  using driver `GPKG'\nSimple feature collection with 3023 features and 33 fields\nGeometry type: POINT\nDimension:     XY\nBounding box:  xmin: 989469 ymin: 217955.4 xmax: 998171 ymax: 230784.6\nProjected CRS: NAD83 New York State Planes, Long Island, US Foot\n\nggplot() +\n  geom_spatraster(data = roads) +\n  scale_fill_gradient(low = \"gray40\",high = \"gray40\",\n                     na.value = \"white\", guide = \"none\") +\n  geom_sf(data = squirrels_lc,\n          aes(color = dist_roads_m),\n          size = 1) +\n  scale_color_viridis_c(name = \"Distance to road (m)\",option = \"magma\",\n                        direction=-1) +\n  coord_sf(expand = FALSE) +\n  theme_void()\n\n\n\n\n\n\n\n\nThe above figure shows a map of just roads with the locations of squirrels in Central Park colored by their distance to the nearest road. The dark patches indicate parts of the park that are very distant from roads.\nThis demonstrates that I can combine the squirrel observations with the land-cover data to quantify the surrounding environment at each squirrel’s location.\n\n\n5) Plan of Attack\nTo investigate whether squirrel behaviors differ across environmental conditions, I will first examine how the frequency of each behavior changes with distance to roads and buildings. For example, are squirrels observed running more frequently near roads? I will compare the proportion of squirrels exhibiting each behavior across different distance ranges.\nNext, I will investigate whether vegetation cover is associated with squirrel behavior. I will compare the frequency of foraging and eating across areas with different levels of vegetation cover and examine whether squirrels in heavily vegetated areas are less likely to approach humans.\nFinally, I will consider how these environmental variables relate to one another. Roads and buildings tend to occur in areas with less vegetation, so an apparent relationship between behavior and proximity to roads might actually reflect differences in vegetation cover. I will explore these relationships to better understand which environmental characteristics are most strongly associated with squirrel behavior.\nThese analyses will help determine whether squirrel behavior varies systematically with the surrounding landscape.",
+    "crumbs": [
+      "STAT 118: Intro to Data Science",
+      "📊 Final Project",
+      "Exploration to Investigation: Developing a Project Proposal"
+    ]
+  },
+  {
+    "objectID": "courses/STAT118/final_project/ready/Project_Proposal_in_class_notes.html#start-building-your-proposal",
+    "href": "courses/STAT118/final_project/ready/Project_Proposal_in_class_notes.html#start-building-your-proposal",
+    "title": "STAT 118:Developing Your Project Proposal",
+    "section": "Start Building Your Proposal",
+    "text": "Start Building Your Proposal\n\nShare and Evaluate Plans\nWith a partner, explain:\n\nWhat is your research question?\nWhy do you think your data can help answer it?\nWhat analyses are you planning to conduct?",
+    "crumbs": [
+      "STAT 118: Intro to Data Science",
+      "📊 Final Project",
+      "Exploration to Investigation: Developing a Project Proposal"
     ]
   },
   {

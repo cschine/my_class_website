@@ -1,0 +1,424 @@
+---
+title: "STAT 118:Developing Your Project Proposal"
+subtitle: "Final Project — Class 3"
+format:
+  html:
+    toc: true
+    code-fold: false
+    embed-resources: true
+execute: 
+  warning: false
+  message: false
+editor_options: 
+  chunk_output_type: console
+---
+
+# Housekeeping
+
+- Homework Schedule changed, HWs due Thursdays and Sundays
+
+
+# Early Data Analysis 
+
+## Reflection
+
+Last class, you watched me explore an unfamiliar dataset in real time. The goal was to show you what the early stages of data analysis actually look like when you don't already know what you're going to find or where the analysis will lead.
+
+Take 3 minutes to write down your thoughts on the following questions. Then you will discuss them with a partner before we share with the class. 
+
+**1. What stood out to you about last class? Was anything surprising, interesting, frustrating, or unexpected about watching me explore an unfamiliar dataset?**
+
+
+**2. Did watching me struggle change how you think about the process of data analysis? Why or why not?**
+
+
+**3. How did last class compare with your own experience exploring your dataset? Did you recognize any of the challenges or frustrations? Were there differences?**
+
+## My Experience
+
+## My Breakthrough
+
+When I left class I was thinking about how much I hated my data and how much I wanted better data. I wanted the position of each squirrel and the observed behavior but in relation to the infrastructure of Central Park. Otherwise it all felt kind of meaningless. And then came the brain wave. I can make that! I can find the data that I need to make that!
+
+# Squirrel Census 2.0
+
+```{r}
+library(tidyverse)
+library(sf)
+
+squirrel_data <- read_csv("~/Dropbox/!Middlebury/Teaching/my_class_website/courses/STAT118/data/2018_Central_Park_Squirrel_Census_-_Squirrel_Data_20261007.csv")
+
+```
+
+## Progress
+
+I found the data layer that I need 
+
+### Map of Squirrel Data
+
+As promised, one of my next steps was to map the data. I used the `maptiles` library for the actual detailed map and I used the `terra` and `tidyterra` packages to put the pieces together in `ggplot`. 
+
+```{r}
+library(maptiles)
+library(terra)
+library(tidyterra)
+
+squirrels_sf <- squirrel_data |>
+  st_as_sf(coords = c("X", "Y"), crs = 4326) |>
+  st_transform(32618)
+
+basemap <- get_tiles(squirrels_sf, 
+                     provider = "OpenStreetMap", # source for the map tiles
+                     zoom = 15, # higher zoom means higher resolution tiles
+                     crop = TRUE)
+
+ggplot() +
+  geom_spatraster_rgb(data = basemap) +
+  geom_sf(data = squirrels_sf,
+          color = "magenta", size = 0.6, alpha = 0.3) +
+  coord_sf() +
+  theme_void()
+
+```
+
+I played back and forth with this map for a bit, changing the zoom to get higher and lower resolution tiles. But really couldn't get a map that I liked to come out of the end.I played around with the point color and found that magenta showed up the best, but didn't feel that I really had a good basemap for 
+
+So, I decided to explore what other map tiles I might be able to use, and found the `Esri.WorldImagery` set of maptiles which gives a satellite view. 
+
+```{r}
+
+basemap <- get_tiles(squirrels_sf,
+                     provider = "Esri.WorldImagery",# change tile source
+                     zoom = 15,
+                     crop = TRUE)
+
+ggplot() +
+  geom_spatraster_rgb(data = basemap) +
+  geom_sf(data = squirrels_sf,
+          color = "magenta", size = 0.6, alpha = 0.3) +
+  coord_sf() +
+  theme_void()
+
+```
+
+Again, not in love with this map, but at least I don't have any squirrels in bodies of water so at least it seems like the squirrel position data is accurate. 
+
+I will be teaching you a much better way to map on Thursday, so we're going to leave this here for now. 
+
+### Central Park Landcover
+
+In my quest to turn the squirrel data into a dataset that I would be exctied to use, I decided I needed detailed land cover data for the city. I found this on [NYC Open Data](https://data.cityofnewyork.us/Environment/Land-Cover-Raster-Data-2017-6in-Resolution/he6d-2qns/about_data?utm_source=chatgpt.com) which has a set of data for city-wide landcover from 2017 at 6-inch resolution! That is so tiny! There is data for roads, buildings, transportation structures, railroads, sidewalks, and even green roofs (and much much more).
+
+I had to pause here. Because this dataset is MASSIVE. 50 GB! So, I imported it and wrote myself out a cropped and much smaller version. The code below shows what I did, but was not run as part of this analysis. I had to delete the original because it was just too enormous. 
+
+```{r eval=FALSE}
+# Load NYC land-cover data
+landcover <- rast("~/Dropbox/!Middlebury/Teaching/my_class_website/courses/STAT118/data/NYC_layers/Land_Cover/NYC_2017_LiDAR_LandCover.img")
+
+# Transform squirrel points to the land-cover CRS
+# they have to be projected the same in order to work togther
+squirrels_lc <- st_transform(squirrels_sf, crs(landcover))
+
+# Crop to squirrel extent with a 500-foot margin
+park_extent <- ext(vect(squirrels_lc)) + 500
+
+# crop the landcover data to just Central Park
+landcover_park <- crop(landcover, park_extent)
+
+writeRaster(landcover_park, "central_park_landcover.tif",
+            overwrite = TRUE, #telling it to overwrite the previous version each time I run this line
+            gdal = c("COMPRESS=LZW")) #telling it to use gdal to write the raster
+```
+
+Now I read in the cropped version that I just created so that I can delete the original files and reclaim the 50 GB on my hard drive. 
+```{r}
+
+landcover_park <- rast("/Users/caseysmith/Dropbox/!Middlebury/Teaching/my_class_website/courses/STAT118/data/NYC_layers/central_park_landcover.tif")
+
+# add vegetation classes back in
+levels(landcover_park) <- data.frame(
+  Value = 1:8,
+  Class = c("Tree Canopy","Grass\\Shrubs","Bare Soil","Water",
+            "Buildings","Roads","Other Impervious","Railroads"))
+
+# Transform squirrel points to the land-cover CRS
+# they have to be projected the same in order to work togther
+squirrels_lc <- st_transform(squirrels_sf, crs(landcover_park))
+
+```
+
+Now let's take a look. I've designated some hopefully helpful colors to each land use category.
+
+```{r}
+ggplot() +
+  geom_spatraster(data = landcover_park) +
+  scale_fill_manual(values = c("Tree Canopy" = "#216E39",
+                               "Grass\\Shrubs" = "#A8D46F",
+                               "Bare Soil" = "#C8A77B",
+                               "Water" = "#69B9E8",
+                               "Buildings" = "#C45B55",
+                               "Roads" = "#555555",
+                               "Other Impervious" = "#D0D0D0",
+                               "Railroads" = "#222222"),
+                    name = "Land cover") +
+  coord_sf(expand=FALSE) + #gets rid of the margin around the outside of the plot
+  theme_minimal()
+```
+
+Now let's add the squirrels! 
+
+```{r}
+ggplot() +
+  geom_spatraster(data = landcover_park) +
+  scale_fill_manual(values = c("Tree Canopy" = "#216E39",
+                               "Grass\\Shrubs" = "#A8D46F",
+                               "Bare Soil" = "#C8A77B",
+                               "Water" = "#69B9E8",
+                               "Buildings" = "#C45B55",
+                               "Roads" = "#555555",
+                               "Other Impervious" = "#D0D0D0",
+                               "Railroads" = "#222222"),
+                    name = "Land cover") +
+  geom_sf(data = squirrels_lc,
+          color = "magenta",
+          size = 0.6,
+          alpha = 0.5) +
+  coord_sf() +
+  theme_minimal()
+```
+
+Let's clean this up and play with some of the colors. The buildings are too visually dominant here considering they are not the point. And the x-axis labels are plotting on top of one another.
+
+```{r}
+ggplot() +
+  geom_spatraster(data = landcover_park) +
+  scale_fill_manual(values = c("Tree Canopy" = "#216E39",
+                               "Grass\\Shrubs" = "#A8D46F",
+                               "Bare Soil" = "#C8A77B",
+                               "Water" = "#3478A8",
+                               "Buildings" = "#8FA9B5",
+                               "Roads" = "#555555",
+                               "Other Impervious" = "#D0D0D0",
+                               "Railroads" = "#222222"),
+                    name = "Land cover") +
+  geom_sf(data = squirrels_lc,
+          color = "magenta",
+          size = 0.6,
+          alpha = 0.5) +
+  coord_sf(expand=FALSE) +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+```
+
+## Next Steps
+
+### Create new squirrel data
+
+Now that I have this new data. I want to do the resampling. I want to calculate the distance for every single squirrel in the census to each of these different landcover types. 
+
+```{r eval=FALSE, echo=FALSE}
+
+# Identify roads, buildings, and water
+roads <- ifel(landcover_park == 6, 1, NA)
+buildings <- ifel(landcover_park == 5, 1, NA)
+water <- ifel(landcover_park == 4, 1, NA)
+
+filename <- "/Users/caseysmith/Dropbox/!Middlebury/Teaching/my_class_website/courses/STAT118/data/NYC_layers/central_park_roads.tif"
+
+writeRaster(roads, filename,
+            overwrite = TRUE, #telling it to overwrite the previous version each time I run this line
+            gdal = c("COMPRESS=LZW")) #telling it to use gdal to write the raster
+
+# Calculate distance to nearest road for every raster cell
+dist_roads <- terra::distance(roads)
+
+# Extract distance at each squirrel location and convert feet to meters
+squirrels_lc$dist_roads_m <- terra::extract(dist_roads,
+                                            vect(squirrels_lc),
+                                            ID = FALSE)[, 1] * 0.3048006096
+
+dist_buildings <- terra::distance(buildings)
+
+squirrels_lc$dist_buildings_m <- terra::extract(dist_buildings, 
+                                                vect(squirrels_lc), 
+                                                ID = FALSE)[, 1] * 0.3048006096
+
+
+dist_water <- terra::distance(water)
+
+squirrels_lc$dist_water_m <- terra::extract(dist_water, 
+                                            vect(squirrels_lc), 
+                                            ID = FALSE)[, 1] * 0.3048006096
+
+```
+
+```{r eval=FALSE, echo=FALSE}
+# Create a raster where vegetation = 1 and everything else = 0
+vegetation <- ifel(landcover_park %in% c(1, 2), 1, 0)
+
+# Calculate mean vegetation cover within 50 meters
+veg_values <- terra::extract(vegetation,
+                             vect(squirrels_lc),
+                             buffer = 50 / 0.3048006096,
+                             fun = mean,
+                             na.rm = TRUE)
+
+# Add the results to the squirrel data
+squirrels_lc$veg_cover_50m <- veg_values[, 2]
+
+filename <- "/Users/caseysmith/Dropbox/!Middlebury/Teaching/my_class_website/courses/STAT118/data/squirrels_environment.gpkg"
+
+st_write(squirrels_lc, filename, delete_dsn = TRUE)
+```
+
+
+# Project Proposal
+
+## The 5 Pieces I am Looking for in Your Project Proposal
+
+### 1) Data Background
+
+- Where did your data come from, and what do the observations represent?
+- What information is available in your dataset?
+
+### 2) Why does this matter? Why is it interesting?
+
+- What makes this topic worth investigating?
+- What could we learn, and why might someone care about the results?
+
+### 3) What is my question?
+
+- What specific question will your project investigate?
+- What variables or relationships will you focus on?
+
+### 4) Preliminary Results: What Can I Show?
+
+- What have you already discovered through your exploratory analysis?
+- What figures or results help establish that your investigation is interesting and feasible?
+- What do these results tell us, and what questions remain?
+
+### 5) Plan of Attack
+
+- What specific analyses will you conduct to investigate your question?
+- What will each analysis help you understand?
+- What challenges or limitations do you anticipate?
+
+
+## Real-World Example: RIDGES Proposal
+
+## Squirrel Project Proposal
+
+#### 1) Data Background
+
+I found the Central Park Squirrel Census dataset through TidyTuesday [ref]. I chose it largely because I know almost nothing about squirrels, and I thought it would be fun to investigate something completely unfamiliar. The dataset contains observations of squirrels throughout Central Park, including their locations, physical characteristics, and behaviors.
+
+#### 2) Why does this matter?
+
+It really doesn't. Most of my research concerns melting ice sheets, ocean circulation, and a rapidly changing climate. For this project, I deliberately chose something considerably less consequential.
+
+But that doesn't mean there aren't interesting questions to ask. Central Park is a highly modified environment where wildlife lives alongside roads, buildings, recreational spaces, and thousands of people. It find it interesting to think about whether squirrels behave differently depending on their immediate surroundings. Essentially how the built environment created by humans impacts this ubiquitous creature. 
+
+#### 3) What is my question?
+
+Dose squirrel behavior differ based on proximity to different land-cover types?
+
+In particular, I'm interested in whether squirrels near roads, buildings, and heavily developed areas exhibit different behaviors from those in more vegetated parts of the park.
+
+#### 4) Preliminary Results
+
+My initial exploration established that the dataset contains spatial information and several behavioral observations, including whether squirrels were running, foraging, eating, or interacting with people. 
+
+```{r}
+squirrels_lc |>
+  st_drop_geometry() |>
+  select(Running, Chasing, Climbing, Eating, Foraging) |>
+  pivot_longer(everything(),names_to = "behavior",values_to = "observed") |>
+  group_by(behavior) |>
+  summarize(pct = mean(observed == TRUE, na.rm = TRUE)) |>
+  ggplot(aes(x = reorder(behavior, pct), y = pct)) +
+  geom_col(fill = "#8FA9B5") +
+  coord_flip() +
+  scale_y_continuous(labels = scales::label_percent()) +
+  labs(x = NULL, y = "Percentage of squirrels",
+       title = "Figure 1: Frequency of Observed Squirrel Behaviors") +
+  theme_minimal()
+```
+
+
+I also very quickly established that the data in its native form was very limiting and lacked a lot of contextual spatial information to explain varying squirrel behavior. To address the lack of spatial information, I have obtained high-resolution land-cover data for New York City, which allows me to characterize the environment around each squirrel observation (Figure 2).
+
+
+```{r}
+ggplot() +
+  geom_spatraster(data = landcover_park) +
+  scale_fill_manual(values = c("Tree Canopy" = "#216E39",
+                               "Grass\\Shrubs" = "#A8D46F",
+                               "Bare Soil" = "#C8A77B",
+                               "Water" = "#3478A8",
+                               "Buildings" = "#8FA9B5",
+                               "Roads" = "#555555",
+                               "Other Impervious" = "#D0D0D0",
+                               "Railroads" = "#222222"),
+                    name = "Land cover") +
+  geom_sf(data = squirrels_lc,
+          color = "magenta",
+          size = 0.6,
+          alpha = 0.5) +
+  coord_sf(expand=FALSE) +
+  ggtitle("Figure 2: Central Park Land Cover and Squirrel Position") +
+  theme_minimal()
+```
+
+I used the land-cover data to calculate the distance from each squirrel observation to the nearest road, building, and water body. I also estimated the proportion of vegetation within a 50-meter radius of each squirrel. *(This is a slightly fancy thing to be doing, but I felt limited by the scope of the original squirrel dataset and I'm fancy.)*
+
+```{r}
+
+roads <- rast("/Users/caseysmith/Dropbox/!Middlebury/Teaching/my_class_website/courses/STAT118/data/NYC_layers/central_park_roads.tif")
+
+squirrels_lc <- st_read("/Users/caseysmith/Dropbox/!Middlebury/Teaching/my_class_website/courses/STAT118/data/squirrels_environment.gpkg")
+
+ggplot() +
+  geom_spatraster(data = roads) +
+  scale_fill_gradient(low = "gray40",high = "gray40",
+                     na.value = "white", guide = "none") +
+  geom_sf(data = squirrels_lc,
+          aes(color = dist_roads_m),
+          size = 1) +
+  scale_color_viridis_c(name = "Distance to road (m)",option = "magma",
+                        direction=-1) +
+  coord_sf(expand = FALSE) +
+  theme_void()
+```
+
+The above figure shows a map of just roads with the locations of squirrels in Central Park colored by their distance to the nearest road. The dark patches indicate parts of the park that are very distant from roads. 
+
+This demonstrates that I can combine the squirrel observations with the land-cover data to quantify the surrounding environment at each squirrel's location.
+
+#### 5) Plan of Attack
+
+To investigate whether squirrel behaviors differ across environmental conditions, I will first examine how the frequency of each behavior changes with distance to roads and buildings. For example, are squirrels observed running more frequently near roads? I will compare the proportion of squirrels exhibiting each behavior across different distance ranges. 
+
+Next, I will investigate whether vegetation cover is associated with squirrel behavior. I will compare the frequency of foraging and eating across areas with different levels of vegetation cover and examine whether squirrels in heavily vegetated areas are less likely to approach humans.
+
+Finally, I will consider how these environmental variables relate to one another. Roads and buildings tend to occur in areas with less vegetation, so an apparent relationship between behavior and proximity to roads might actually reflect differences in vegetation cover. I will explore these relationships to better understand which environmental characteristics are most strongly associated with squirrel behavior.
+
+These analyses will help determine whether squirrel behavior varies systematically with the surrounding landscape.
+
+
+## Start Building Your Proposal
+
+### Share and Evaluate Plans
+
+With a partner, explain:
+
+1. What is your research question?
+2. Why do you think your data can help answer it?
+3. What analyses are you planning to conduct?
+
+
+
+
+
+
+
+
