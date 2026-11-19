@@ -1,0 +1,462 @@
+---
+title: "STAT 118: Interactive Data Visualization"
+subtitle: "Leaflet, Plotly, and Developing Your Final Project"
+format:
+  html:
+    toc: true
+    code-fold: true
+    embed-resources: true
+execute:
+  warning: false
+  message: false
+---
+
+
+## Today's Goals
+
+- Explore interactive visualization using `leaflet` and `plotly`.
+- Consider when interactive figures add value to an analysis.
+- Evaluate and refine your Final Project analytical plans.
+- Make progress toward Step 4: Developing Your Results.
+
+## Looking Ahead
+
+### Step 4: Developing Your Results
+
+**Due Sunday, November 22**
+
+- Develop at least two carefully refined figures or tables.
+- Describe your observations before interpreting your results.
+- Identify specific questions for instructor feedback.
+- Outline your next analytical steps.
+
+**Extended deadline:** Sunday, November 29 (no penalty).
+
+Submissions received by November 22 will receive feedback by Wednesday, November 25.
+
+**Remember:** Everything you are doing now should contribute directly to your Final Project report.
+
+## Interactive Visualization
+
+Why make a figure interactive? An interactive figure if not thought through properly can be confusing and very busy. Just because it's cool and flashy doesn't make it a good choice. Please consider whether a static figure can do the same work. What does the interactive figure do that a static figure can't? How does an interactive visualization help us explore our data?
+
+It's not always the right choice. With that caveat in mind, let's take a look at some flashy interactive figures!
+
+## Leaflet: Interactive Maps
+
+### Returning to our squirrel analysis
+
+I will now be working with the dataset that I created with the information about how close each squirrel is to buildings, roads, etc. I created the dataset, which took a lot of computational time, so I wrote it out once I was done and I will be working from there. This is something I will explicitly need to talk about in my report (the creation of the spatial data).
+
+```{r}
+library(sf)
+library(tidyverse)
+
+filename <- "/Users/caseysmith/Dropbox/!Middlebury/Teaching/my_class_website/courses/STAT118/data/squirrels_environment.gpkg"
+
+squirrels_lc_in <- st_read(filename)
+
+colnames(squirrels_lc_in)
+```
+
+#### Quick clean up tool for column names
+
+```{r}
+library(janitor)
+
+squirrels_lc_in <- squirrels_lc_in |>
+  clean_names()
+```
+
+
+How can interactive maps help us investigate the spatial distribution of squirrels in Central Park?
+
+
+```{r}
+library(leaflet)
+```
+
+Creating a basic interactive map:
+
+```{r}
+# coordinates and zoom: lng = -73.9654, lat = 40.7829, zoom = 13
+# use leaflet and then addTiles and then setView
+# addTiles defaults to using Open Street Map tiles
+
+
+
+# change the view lat/lng
+
+
+
+```
+
+Change the tiles using the `addProviderTiles()` function instead of just `addTiles()`: 
+
+```{r}
+# ?addProviderTiles and follow link to Provider options
+# provider options:
+# Stadia.AlidadeSmooth
+# Stadia.StamenWatercolor
+# Esri.WorldTopoMap
+
+
+
+```
+
+Adding squirrel locations using `addCircleMarkers()`. You can set the `color`, `radius`, and `fillOpacity` as arguments. 
+
+```{r}
+
+# Transform squirrel coordinates to longitude/latitude
+squirrels_map <- st_transform(squirrels_lc_in, 4326)
+
+# set radius to 3
+# set color
+# set fillOpacity
+
+```
+
+Add data to circle markers as a color.
+
+```{r}
+
+pal <- colorNumeric(palette = "viridis", domain = squirrels_map$dist_roads_m)
+
+leaflet(squirrels_map) |>
+  addProviderTiles(provider="Stadia.StamenWatercolor") |>
+  addCircleMarkers(color = ~pal(dist_roads_m),
+                   radius = 3,
+                   stroke = FALSE,
+                   fillOpacity = 0.5) |>
+  setView(lng = -73.9654, lat = 40.7829, zoom = 13)
+
+```
+
+
+Adding information to our map using the `popup` argument in `addCircleMarkers()`
+
+```{r}
+# Add popups or labels with squirrel attributes
+
+# Create interactive map
+leaflet(squirrels_map) |>
+  addProviderTiles(provider="Stadia.StamenWatercolor") |>
+  addCircleMarkers(radius = 3,
+                   color = "magenta",
+                   fillOpacity = 0.7,
+                   stroke = FALSE,
+                   popup = ~paste0(
+                     "<b>Fur color:</b> ",  primary_fur_color,
+                     "<br><b>Running:</b> ", running,
+                     "<br><b>Foraging:</b> ", foraging)) |>
+  setView(lng = -73.9654, lat = 40.7829, zoom = 13)
+```
+
+You can also add layer options to the interactive `leaflet` map, allowing the user to make choices about how the data are visualized.
+
+You can add multiple map tile options:
+```{r}
+
+leaflet() |>
+  # Basemaps
+  addTiles(group = "OpenStreetMap") |>
+  addProviderTiles("Esri.WorldImagery", group = "Satellite") |>
+  addProviderTiles("Esri.WorldTopoMap", group = "Topographic") |>
+
+  # Layer control
+  addLayersControl(baseGroups = c("OpenStreetMap", "Satellite", "Topographic"),
+                   options = layersControlOptions(collapsed = FALSE)) |>
+
+  # Center on Central Park
+  setView(lng = -73.9654, lat = 40.7829, zoom = 13)
+
+```
+
+You can add options to the points as well:
+
+```{r}
+
+# Color palettes
+road_pal <- colorNumeric(palette = "viridis", domain = squirrels_map$dist_roads_m)
+tree_pal <- colorNumeric(palette = "Greens", domain = squirrels_map$tree_cover_15m)
+
+leaflet(squirrels_map) |>
+  addTiles(group = "OpenStreetMap") |>
+  addProviderTiles("Esri.WorldImagery", group = "Satellite") |>
+  addProviderTiles("Esri.WorldTopoMap", group = "Topographic") |>
+
+  # Road proximity
+  addCircleMarkers(color = ~road_pal(dist_roads_m),
+                   radius = 3,
+                   stroke = FALSE,
+                   fillOpacity = 0.8,
+                   group = "Road proximity") |>
+
+  # Tree cover
+  addCircleMarkers(color = ~tree_pal(tree_cover_15m),
+                   radius = 3,
+                   stroke = FALSE,
+                   fillOpacity = 0.8,
+                   group = "Tree cover") |>
+
+  addLayersControl(baseGroups = c("OpenStreetMap", "Satellite", "Topographic"),
+                   overlayGroups = c("Tree cover", "Road proximity"),
+                   options = layersControlOptions(collapsed = FALSE)) |>
+
+  hideGroup("Road proximity") |>
+
+  setView(lng = -73.9654, lat = 40.7829, zoom = 13)
+
+```
+
+
+What does this map help us investigate?
+
+- What becomes easier to see or explore?
+- What are the limitations of mapping individual observations?
+- How might we improve this visualization?
+
+## Plotly: Interactive Figures
+
+
+```{r}
+library(plotly)
+```
+
+Let's start this with a point plot. 
+
+```{r}
+# point plot
+
+```
+
+And now use plotly to make it interactive.
+
+```{r}
+# Convert the ggplot using ggplotly()
+
+
+```
+
+And now let's try it with a different plot.
+```{r}
+# Add informative hover text
+
+
+```
+
+There are also tools that you can use to customize what shows up in the popup window when you hover over the figure. Look at the plotly website linked in the schedule for more information. 
+
+Is interactivity helping?
+
+- What information can we now access?
+- Does interactivity improve the figure or make it more complicated?
+- Would we use this in our Final Project report?
+
+## What Does a Step 4 Submission Look Like?
+
+Let's return to my squirrel project and look at what I might submit for Step 4.
+
+**Remember:** This is not a separate homework exercise. The analyses, figures, and writing you produce should be building toward your Final Project report.
+
+### My Research Questions
+
+Does the built environment impact squirrel behavior? Do we see systematic shifts in behavior in proximity to buildings, roads, and other man-made features?
+
+### Figure 1: Squirrel map update
+
+```{r}
+
+# Color palettes
+road_pal <- colorNumeric(palette = "viridis", domain = squirrels_map$dist_roads_m)
+tree_pal <- colorNumeric(palette = "Greens", domain = squirrels_map$tree_cover_15m)
+
+leaflet(squirrels_map) |>
+  addTiles(group = "OpenStreetMap") |>
+  addProviderTiles("Esri.WorldImagery", group = "Satellite") |>
+  addProviderTiles("Esri.WorldTopoMap", group = "Topographic") |>
+  
+  addCircleMarkers(radius = 3,
+                   color = "magenta",
+                   fillOpacity = 0.7,
+                   stroke = FALSE,
+                   popup = ~paste0(
+                     "<b>Fur color:</b> ", primary_fur_color,
+                     "<br><b>Running:</b> ", running,
+                     "<br><b>Foraging:</b> ", foraging),
+                   group="Basic Info") |>
+
+  # Road proximity
+  addCircleMarkers(color = ~road_pal(dist_roads_m),
+                   radius = 3,
+                   stroke = FALSE,
+                   fillOpacity = 0.8,
+                   group = "Road proximity") |>
+
+  # Tree cover
+  addCircleMarkers(color = ~tree_pal(tree_cover_15m),
+                   radius = 3,
+                   stroke = FALSE,
+                   fillOpacity = 0.8,
+                   group = "Tree cover") |>
+
+  addLayersControl(baseGroups = c("OpenStreetMap", "Satellite", "Topographic"),
+                   overlayGroups = c("Basic Info","Tree cover", "Road proximity"),
+                   options = layersControlOptions(collapsed = FALSE)) |>
+
+  hideGroup("Tree cover") |>
+  hideGroup("Road proximity") |>
+
+  setView(lng = -73.9654, lat = 40.7829, zoom = 13) |>
+  addControl(html = "<strong>Figure 1: Squirrel Locations in Central Park</strong>",
+             position = "bottomleft") #adding a title
+
+```
+
+
+This is the map that I think is the most useful that I've made so far. It just gives a little bit of information about each squirrel and provides multiple tile options and multiple point options. I think it helps the reader get a sense for the data and how the bits fit together. I think this figure is really just for context. There was always going to need to be a map to show the data spatially. I think it's nice to have something that the reader can play with some options. You can toggle on and off different map tiles and different data on the squirrel points. The squirrel points can show basic information about each squirrel in a pop-up, or the points can be colored by the smount of tree covere in a 15 meter radius around the squirrel o the squirrels proximity to the closest road. I may change the data layers depending on what I find in the rest of the analysis.
+
+My basic observations about the distribution of squirrels observed in Central Park is that they are widely distributed, but much fewer squirrels are observed in areas of open grass (like the baseball fields that are apparently everywhere). There are some more heavily wooded areas that appear to have a high density of squirrels. 
+
+
+### Figure 2: Frequency of Observed Squirrel Behaviors
+
+```{r}
+
+library(ggthemes)
+
+plot1 <- squirrels_lc_in |>
+  st_drop_geometry() |>
+  select(running, chasing, climbing, eating, foraging) |>
+  pivot_longer(everything(),
+               names_to = "behavior",
+               values_to = "observed") |>
+  mutate(behavior = snakecase::to_title_case(behavior)) |> # Fixed my axis labels to look nicer
+  group_by(behavior) |> # want to due calc within each behavior
+  summarize(pct = mean(observed, na.rm = TRUE)) |> #calculate % squirrels showing behavior
+  ggplot(aes(x = reorder(behavior, pct), y = pct)) +
+  geom_col(fill = "#8FA9B5") + # the behavior is binary so bars are my only option really
+  coord_flip() + # swap the location of the x and y, just being fancy, you can just swap them in aes()
+  scale_y_continuous(labels = scales::label_percent()) + # use the scales package for pretty labels
+  labs(x = NULL,
+       y = "Percentage of Squirrels",
+       title = "Activity") +
+  theme_tufte()
+
+plot2 <- squirrels_lc_in |>
+  st_drop_geometry() |>
+  select(kuks, quaas, tail_flags, tail_twitches, 
+         approaches, indifferent, runs_from) |>
+  pivot_longer(everything(),
+               names_to = "behavior",
+               values_to = "observed") |>
+  mutate(behavior = snakecase::to_title_case(behavior)) |>
+  group_by(behavior) |>
+  summarize(pct = mean(observed, na.rm = TRUE)) |>
+  ggplot(aes(x = reorder(behavior, pct), y = pct)) +
+  geom_col(fill = "#8FA9B5") +
+  coord_flip() +
+  scale_y_continuous(labels = scales::label_percent()) +
+  labs(x = NULL,
+       y = "Percentage of Squirrels",
+       title = "Social Behavior") +
+  theme_tufte()
+
+
+library(patchwork)
+# Combine into one figure
+(plot1 | plot2) +
+  plot_annotation(title = "Figure 2: Frequency of Observed Squirrel Behaviors",
+                  theme = theme_tufte())
+
+```
+
+Before taking my analysis further, I want basic information about which behaviors are the most frequent. I want to examine the distribution of road proximity (and other factors, but I'm starting with roads) within each behavior. Rarely observed behaviors may not provide enough data and frequently observed behaviors might be too frequently observed to show aany difference (all squirrels are doing this behavior all of the time regardless of where they are).
+
+The most frequent activity squirrels are observed engaging in is foraging. An approximately equal percent of squirrels are observed eating, running, and climbing, with chasing as the least observed behavior. The most frequently observed social behavior is indifference, which tracks. Kuks, quaas, and tail flags are the least frequently observed social behaviors. I can't really assign any meaning to this. I'm mostly trying to get context for the analysis I really want to do, and I think behavioral frequency is important context. 
+
+### Figure 3: Squirrel behavior by road proximity
+
+```{r}
+library(ggridges)
+
+density_plot <- squirrels_lc_in |>
+  st_drop_geometry() |>
+  select(dist_roads_m, running, chasing, climbing, eating, foraging) |>
+  pivot_longer(cols = c(running, chasing, climbing, eating, foraging),
+               names_to = "behavior",
+               values_to = "observed") |>
+  filter(observed == TRUE) |>
+  ggplot(aes(x = dist_roads_m, y = behavior, fill = behavior)) +
+  geom_density_ridges(alpha = 0.7) +
+  labs(x = "Distance to nearest road (feet)",
+       y = NULL,
+       title = "Distribution of Squirrel Behaviors by Distance to Roads") +
+  theme_tufte() +
+  theme(legend.position = "none")
+
+ggplotly(density_plot)
+```
+
+With this plot I am trying to see if a squirrels distance to a road impacts a behavior. I observe that the density distribution of squirrel distance to road is the same across all activities. I'm not sure if I am ready to say that squirrel behavior is not impacted by their distance to a road, but I am confident in saying that if there are behavioral differences along this gradient, this is not a good way to show them. 
+
+My guess is that if I look at the density distribution for distance to road of the entire squirrel population that I will see pretty much this same distribution. And I am just sampling the overall density distribution of squirrels locations relative to roads. I've converted this to a plotly plot so you can hover over the plot and get information about the density values at different distances. 
+
+### Questions I Would Like Feedback On
+
+1. Does my approach to examining squirrel behavior across land cover types make sense, or am I overlooking important limitations of the dataset? Am I being a dum dum?
+
+2. Is my map an effective way to communicate the spatial patterns, or would a different visualization better support my research questions?
+
+### My Next Steps
+
+1. Try this density plot with the other land cover types and with the social behaviors. 
+
+2. Calculate the frequency of different squirrel behaviors within each land cover category to investigate whether behavior varies across habitats.
+
+
+### What Makes This a Good Step 4 Submission?
+
+- The figures contribute to specific research questions.
+- They have been thoughtfully developed and refined.
+- The writing guides the reader through observations before offering interpretations.
+- The feedback questions identify genuine analytical uncertainties.
+- The next steps build directly on the existing work.
+
+**The goal is not to have your Final Project finished. The goal is to demonstrate that your analysis is moving in a productive direction.**
+
+
+## Group Activity: Developing Your Final Project Analysis
+
+Each person will have about 8 minutes to present their project and receive feedback.
+
+### Present your project
+
+1. **Research question:** What are you trying to investigate?
+2. **Current progress:** What analyses have you completed? Show your figures or preliminary results.
+3. **Analytical plan:** What do you intend to investigate next?
+4. **Uncertainties:** What are you struggling with or unsure about?
+
+### Give constructive feedback
+
+As you listen to your group members, consider:
+
+- Does the proposed analysis actually address the research question?
+- Are the comparisons or relationships being investigated appropriate?
+- What important patterns or questions might be missing?
+- Are there potential problems with the data or analytical approach?
+- What specific suggestions could strengthen the project?
+
+
+## Individual Project Work
+
+Use the remaining class time to begin acting on the feedback you received.
+
+Possible tasks:
+
+- Revise an existing figure.
+- Test a new analytical approach.
+- Refine your research question.
+- Investigate a potential problem with your data.
+- Begin developing a figure for your Final Project report.

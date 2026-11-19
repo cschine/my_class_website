@@ -26,13 +26,13 @@ Last class, you watched me explore an unfamiliar dataset in real time. The goal 
 
 Take 3 minutes to write down your thoughts on the following questions. Then you will discuss them with a partner before we share with the class. 
 
-**1. What stood out to you about last class? Was anything surprising, interesting, frustrating, or unexpected about watching me explore an unfamiliar dataset?**
+*1. What stood out to you about last class? Was anything surprising, interesting, frustrating, or unexpected about watching me explore an unfamiliar dataset?*
 
 
-**2. Did watching me change how you think about the process of data analysis? Why or why not?**
+*2. Did watching me change how you think about the process of data analysis? Why or why not?*
 
 
-**3. How did last class compare with your own experience exploring your dataset? Did you recognize any of the challenges or frustrations? Were there differences?**
+*3. How did last class compare with your own experience exploring your dataset? Did you recognize any of the challenges or frustrations? Were there differences?*
 
 ## My Experience
 
@@ -223,9 +223,9 @@ roads <- ifel(landcover_park == 6, 1, NA)
 buildings <- ifel(landcover_park == 5, 1, NA)
 water <- ifel(landcover_park == 4, 1, NA)
 
-filename <- "/Users/caseysmith/Dropbox/!Middlebury/Teaching/my_class_website/courses/STAT118/data/NYC_layers/central_park_roads.tif"
+filename <- "/Users/caseysmith/Dropbox/!Middlebury/Teaching/my_class_website/courses/STAT118/data/NYC_layers/central_park_water.tif"
 
-writeRaster(roads, filename,
+writeRaster(water, filename,
             overwrite = TRUE, #telling it to overwrite the previous version each time I run this line
             gdal = c("COMPRESS=LZW")) #telling it to use gdal to write the raster
 
@@ -253,18 +253,45 @@ squirrels_lc$dist_water_m <- terra::extract(dist_water,
 ```
 
 ```{r eval=FALSE, echo=FALSE}
-# Create a raster where vegetation = 1 and everything else = 0
-vegetation <- ifel(landcover_park %in% c(1, 2), 1, 0)
+# Create separate binary rasters
+tree_cover <- terra::ifel(landcover_park == 1, 1, 0)
+grass_cover <- terra::ifel(landcover_park == 2, 1, 0)
 
-# Calculate mean vegetation cover within 50 meters
-veg_values <- terra::extract(vegetation,
-                             vect(squirrels_lc),
-                             buffer = 50 / 0.3048006096,
-                             fun = mean,
-                             na.rm = TRUE)
+filename <- "/Users/caseysmith/Dropbox/!Middlebury/Teaching/my_class_website/courses/STAT118/data/NYC_layers/central_park_grass.tif"
 
-# Add the results to the squirrel data
-squirrels_lc$veg_cover_50m <- veg_values[, 2]
+writeRaster(grass_cover, filename,
+            overwrite = TRUE, #telling it to overwrite the previous version each time I run this line
+            gdal = c("COMPRESS=LZW")) #telling it to use gdal to write the raster
+
+# Create 15-meter buffers around squirrel locations
+buffer_width <- 15 / 0.3048006096
+
+squirrel_buffers <- terra::buffer(
+  terra::vect(squirrels_lc),
+  width = buffer_width
+)
+
+# Calculate proportion of tree canopy and grass/shrubs
+tree_values <- terra::extract(
+  tree_cover,
+  squirrel_buffers,
+  fun = mean,
+  na.rm = TRUE
+)
+
+grass_values <- terra::extract(
+  grass_cover,
+  squirrel_buffers,
+  fun = mean,
+  na.rm = TRUE
+)
+
+# Add results to squirrel data
+squirrels_lc$tree_cover_15m <- tree_values[, 2]
+squirrels_lc$grass_cover_15m <- grass_values[, 2]
+
+squirrels_lc <- squirrels_lc |>
+  select(-veg_cover_50m, -grass_cover_50m, -tree_cover_50m)
 
 filename <- "/Users/caseysmith/Dropbox/!Middlebury/Teaching/my_class_website/courses/STAT118/data/squirrels_environment.gpkg"
 

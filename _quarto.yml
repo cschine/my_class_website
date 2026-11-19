@@ -95,7 +95,9 @@ website:
             
           - text: "Exploration to Investigation: Developing a Project Proposal"
             href: courses/STAT118/final_project/ready/Project_Proposal_in_class_notes.qmd
-
+            
+          - text: "Continued Investigation"
+            href: courses/STAT118/final_project/ready/Step4_continued_analysis_in_class_notes.qmd
 
 
 format:
